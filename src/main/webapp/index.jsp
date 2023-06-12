@@ -83,6 +83,7 @@
 <%-- 세욱이 추가한거 --%>
 
 <div><a href="freeList">자유게시판 이동</a></div>
+<div><a href="choose_counselor">상담예약서 작성</a></div>
 
 </body>
 </html>
