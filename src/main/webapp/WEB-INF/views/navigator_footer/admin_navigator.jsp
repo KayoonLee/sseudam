@@ -87,12 +87,14 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                    <img src="images/muzik5.jpg" alt="">
                     <span class="d-none d-md-block dropdown-toggle ps-2">관리자</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>Admin</h6>
+                        <img src="images/muzik5.jpg" alt="">
+                        <h6>관리자</h6>
                         <span>Administer</span>
                     </li>
                     <%-- 관리자 프로필 수정 --%>
@@ -100,7 +102,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="admin">
+                        <a class="dropdown-item d-flex align-items-center" href="adminProfile">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>

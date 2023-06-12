@@ -22,7 +22,7 @@
 
         <%-- 일반회원 --%>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="memberPage">
+            <a class="nav-link collapsed" href="adminMemberPage">
                 <i class="bi bi-menu-button-wide"></i>
                 <span>일반회원</span>
             </a>
@@ -30,7 +30,7 @@
 
         <%-- 신고받은 일반회원 --%>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="memberReport">
+            <a class="nav-link collapsed" href="adminMemberReport">
                 <i class="bi bi-menu-button-wide"></i>
                 <span>신고받은 회원관리</span>
             </a>
@@ -44,12 +44,12 @@
             </a>
             <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="dogPage">
+                    <a href="adminDogPage">
                         <i class="bi bi-circle"></i><span>강아지</span>
                     </a>
                 </li>
                 <li>
-                    <a href="catPage">
+                    <a href="adminCatPage">
                         <i class="bi bi-circle"></i><span>고양이</span>
                     </a>
                 </li>
@@ -63,13 +63,13 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="counselorPage">
-                        <i class="bi bi-circle"></i><span>상담사 정보<%-- 상담사 관리 Counselor Page--%></span>
+                    <a href="adminCounselorPage">
+                        <i class="bi bi-circle"></i><span>상담사 정보</span>
                     </a>
                 </li>
                 <li>
-                    <a href="counselorApply">
-                        <i class="bi bi-circle"></i><span>상담사 신청관리<%-- 상담사 신청관리 Counselor Apply--%></span>
+                    <a href="adminCounselorApply">
+                        <i class="bi bi-circle"></i><span>상담사 신청관리</span>
                     </a>
                 </li>
             </ul>

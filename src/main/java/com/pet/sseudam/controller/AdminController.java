@@ -14,42 +14,42 @@ public class AdminController {
     }
 
     // 일반회원 페이지
-    @GetMapping("memberPage")
+    @GetMapping("adminMemberPage")
     public String memberPage() {
         System.out.println("회원관리 페이지로 이동");
         return "adminPage/admin_member_page";
     }
 
     // 일반회원 신고 페이지
-    @GetMapping("memberReport")
+    @GetMapping("adminMemberReport")
     public String memberReport() {
         System.out.println("신고받은 회원 페이지로 이동");
         return "adminPage/admin_member_report";
     }
 
     // 상담사 관리 페이지
-    @GetMapping("counselorPage")
+    @GetMapping("adminCounselorPage")
     public String counselorPage() {
         System.out.println("상담사 관리 페이지로 이동");
         return "adminPage/admin_counselor_page";
     }
 
     // 상담사 신청 페이지
-    @GetMapping("counselorApply")
+    @GetMapping("adminCounselorApply")
     public String counselorApply() {
         System.out.println("상담사 신청 페이지로 이동");
         return "adminPage/admin_counselor_apply";
     }
 
     // 강아지 리스트 페이지
-    @GetMapping("dogPage")
+    @GetMapping("adminDogPage")
     public String dogPage() {
         System.out.println("강아지 리스트 페이지 진입");
         return "adminPage/admin_dog_page";
     }
     
     // 고양이 리스트 페이지
-    @GetMapping("catPage")
+    @GetMapping("adminCatPage")
     public String catPage() {
         System.out.println("고양이 리스트 페이지 진입");
         return "adminPage/admin_cat_page";
