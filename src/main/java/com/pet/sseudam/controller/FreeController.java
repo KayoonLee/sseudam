@@ -29,13 +29,6 @@ public class FreeController {
         return "freeBoard/freeboard";
     }
 
-    // 메인페이지
-    @GetMapping("main_page")
-    public String mainPage() {
-        System.out.println("메인페이지 진입");
-        return "mainPage/main_page";
-    }
-
     //자유게시판 목록
     @GetMapping("freeList")
     public String freeList(@RequestParam(value = "pageNum",

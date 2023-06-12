@@ -80,13 +80,16 @@
         </div>
     </div>
 </div>
+
 <%-- 세욱이 추가한거 --%>
-
 <div><a href="freeList">자유게시판 이동</a></div>
-
 
 <%-- 은희 추가한거 --%>
 <div><a href="memberMain">일반회원 마이페이지</a></div>
 <div><a href="counselorMain">상담사회원 마이페이지(아직 안만듬)</a></div>
+
+<%-- 가윤 추가한거 --%>
+<div><a href="adminMain">관리자 페이지</a></div>
+
 </body>
 </html>
