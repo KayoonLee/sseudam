@@ -4,9 +4,6 @@
 <head>
     <title>Navigator_Manage</title>
 
-    <!-- 창 상단에 뜨는 이미지 -->
-    <link href="images/muzik2.jpg" rel="icon">
-
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -103,7 +100,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                        <a class="dropdown-item d-flex align-items-center" href="admin">
                             <i class="bi bi-person"></i>
                             <span>My Profile</span>
                         </a>
