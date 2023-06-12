@@ -87,6 +87,6 @@
 
 <%-- 은희 추가한거 --%>
 <div><a href="memberMain">일반회원 마이페이지</a></div>
-<div><a href="counselorMain">상담사회원 마이페이지(아직 안만듬)</a></div>
+<div><a href="counselorMain">상담사회원 마이페이지</a></div>
 </body>
 </html>
