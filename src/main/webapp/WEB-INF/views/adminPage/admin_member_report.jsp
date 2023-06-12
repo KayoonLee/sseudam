@@ -5,6 +5,19 @@
     <title>Member Report</title>
 </head>
 <body>
-회원 신고 페이지2
+
+<!-- ======= Header ======= -->
+<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
+
+<!-- ======= Sidebar ======= -->
+<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
+
+<main id="main" class="main">
+
+</main>
+
+<!-- ======= Footer ======= -->
+<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
+
 </body>
 </html>

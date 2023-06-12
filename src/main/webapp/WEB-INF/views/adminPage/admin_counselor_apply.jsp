@@ -5,6 +5,19 @@
     <title>Counselor Apply</title>
 </head>
 <body>
-상담사 신청 페이지2
+
+<!-- ======= Header ======= -->
+<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
+
+<!-- ======= Sidebar ======= -->
+<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
+
+<main id="main" class="main">
+
+</main>
+
+<!-- ======= Footer ======= -->
+<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
+
 </body>
 </html>
