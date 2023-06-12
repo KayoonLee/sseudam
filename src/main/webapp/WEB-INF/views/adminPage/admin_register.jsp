@@ -5,6 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-관리자 등록페이지2
+
+<!-- ======= Header ======= -->
+<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
+
+<!-- ======= Sidebar ======= -->
+<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
+
+<!-- ======= Footer ======= -->
+<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
+
 </body>
 </html>
