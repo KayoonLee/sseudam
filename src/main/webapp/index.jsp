@@ -82,7 +82,7 @@
 </div>
 <%-- 세욱이 추가한거 --%>
 
-<div><a href="freeList">자유게시판 이동</a></div>
+<div><a href="freeList">자유게시판 이동.</a></div>
 
 
 <%-- 은희 추가한거 --%>
