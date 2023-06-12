@@ -5,6 +5,6 @@
     <title>Title</title>
 </head>
 <body>
-관리자 등록페이지
+관리자 등록페이지2
 </body>
 </html>

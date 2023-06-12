@@ -5,6 +5,6 @@
     <title>Member Report</title>
 </head>
 <body>
-회원 신고 페이지
+회원 신고 페이지2
 </body>
 </html>

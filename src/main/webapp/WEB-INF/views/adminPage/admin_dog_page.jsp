@@ -5,6 +5,6 @@
     <title>DogList</title>
 </head>
 <body>
-강아지 페이지
+강아지 페이지2
 </body>
 </html>

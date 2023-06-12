@@ -5,6 +5,6 @@
     <title>Counselor Apply</title>
 </head>
 <body>
-상담사 신청 페이지
+상담사 신청 페이지2
 </body>
 </html>

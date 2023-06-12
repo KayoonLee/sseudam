@@ -5,6 +5,6 @@
     <title>CatList</title>
 </head>
 <body>
-고양이 페이지
+고양이 페이지2
 </body>
 </html>

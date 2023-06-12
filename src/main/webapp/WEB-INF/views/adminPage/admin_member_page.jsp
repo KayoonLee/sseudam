@@ -5,6 +5,6 @@
     <title>Member Page</title>
 </head>
 <body>
-회원관리 페이지
+회원관리 페이지2
 </body>
 </html>

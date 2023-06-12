@@ -5,6 +5,6 @@
     <title>Counselor Manage</title>
 </head>
 <body>
-상담사 관리 페이지
+상담사 관리 페이지2
 </body>
 </html>

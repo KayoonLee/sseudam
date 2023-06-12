@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
-    // 관리자 메인페이지
+    // 관리자 메인페이지 다시 업로드
     @GetMapping("adminMain")
     public String adminPage() {
         System.out.println("관리자 페이지로 진입성공");
