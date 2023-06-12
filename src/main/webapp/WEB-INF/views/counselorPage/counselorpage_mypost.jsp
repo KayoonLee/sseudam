@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 82108
-  Date: 2023-06-11
-  Time: 오후 8:15
+  Date: 2023-06-12
+  Time: 오전 9:40
   To change this template use File | Settings | File Templates.
 --%>
 
@@ -121,8 +121,8 @@
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>홍은희</h6>
-                        <span>닉네임</span>
+                        <h6>Kevin Anderson</h6>
+                        <span>Web Designer</span>
                     </li>
                     <li>
                         <hr class="dropdown-divider">
@@ -174,92 +174,50 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="memberMain">
+<form action="counselorMain">
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberMain">
+                <a class="nav-link collapsed" href="counselorMain">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="memberPet">
-                    <i class="bi bi-balloon"></i><span>동물페이지</span>
+                <a class="nav-link collapsed" href="counselorRequest">
+                    <i class="bi bi-balloon"></i><span>상담요청목록</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link " data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <ul id="components-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberPost">
+                        <a href="counselorPost" class="active">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberReply">
+                        <a href="counselorReply" >
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberLike">
+                        <a href="counselorLike" >
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>상담신청내역</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="memberCounselor">
-                    <i class="bi bi-grid"></i>
-                    <span>즐겨찾는 상담사</span>
-                </a>
-            </li>
-
         </ul>
     </aside>
-
-    <!-- 레시피 조의 레시피 리스트 형식-->
     <main id="main" class="main">
-        <div class="container" align="center">
-            <div class="row">
-                <c:if test="${empty list}">
-                    <div class="col-sm-12 text-bg-secondary">
-                        <b>등록된 반려동물이 없습니다</b>
-                    </div>
-                </c:if>
-                <c:if test="${not empty list}">
-                    <c:forEach var="board" items="${list }">
-                        <c:if test="${board.state != 'n' }">
-                            <div class="col-sm-3">
-                                <div>
-                                    <div class="card">
-                                        <a href="r_view?rnum=${board.rnum }&pageNum=${pageNum}">
-                                            <img class="card-img-top" src="./t_images/${board.thumbnail }">
-                                        </a>
-                                        <div class="card-body">
-                                            <h4 class="card-title">${board.subject }</h4>
-                                            <c:if test="${not empty board.profile }">
-                                                <img src ="./upload/${board.profile }" width=30 height=30>
-                                            </c:if>
-                                            <c:if test="${empty board.profile }">
-                                                <img src ="./upload/pepe.jpg" width=30 height=30>
-                                            </c:if>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:if>
-                    </c:forEach>
-                </c:if>
-            </div>
+        <div>
+            <h1>내가 쓴 글</h1>
+
+
         </div>
 
     </main>
@@ -267,3 +225,5 @@
 </form>
 </body>
 </html>
+
+

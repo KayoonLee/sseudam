@@ -1,10 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: 82108
-  Date: 2023-06-10
-  Time: 오후 8:43
+  Date: 2023-06-12
+  Time: 오전 9:38
   To change this template use File | Settings | File Templates.
 --%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <meta charset="UTF-8">
@@ -14,17 +15,11 @@
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-
 
 </head>
 <body>
@@ -36,9 +31,7 @@
             <img src="images/muzik5.jpg" alt="">
             <span class="d-none d-lg-block">쓰담</span>
         </a>
-
         <i class="bi bi-list toggle-sidebar-btn"></i>
-
     </div><!-- End Logo -->
 
 
@@ -181,56 +174,44 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="memberMain">
-<aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-            <a class="nav-link " href="#">
-                <i class="bi bi-person"></i>
-                <span>나의 프로필</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberPet">
-                <i class="bi bi-balloon"></i><span>동물페이지</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="memberPost">
-                        <i class="bi bi-circle"></i><span>내가 쓴 글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberReply">
-                        <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberLike">
-                        <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberPaper">
-                        <i class="bi bi-circle"></i><span>상담신청내역</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Components Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberCounselor">
-                <i class="bi bi-grid"></i>
-                <span>즐겨찾는 상담사</span>
-            </a>
-        </li>
-
-    </ul>
-</aside>
+<form action="counselorMain">
+    <aside id="sidebar" class="sidebar">
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <a class="nav-link " href="#">
+                    <i class="bi bi-person"></i>
+                    <span>나의 프로필</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="counselorRequest">
+                    <i class="bi bi-balloon"></i><span>상담요청목록</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
+                </a>
+                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a href="counselorPost">
+                            <i class="bi bi-circle"></i><span>내가 쓴 글</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="counselorReply">
+                            <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="counselorLike">
+                            <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
+                        </a>
+                    </li>
+                </ul>
+            </li><!-- End Components Nav -->
+        </ul>
+    </aside>
     <main id="main" class="main">
 
         <div class="pagetitle">
@@ -412,6 +393,5 @@
     </main><!-- End #main -->
 
 </form>
-
 </body>
 </html>

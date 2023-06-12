@@ -1,6 +1,5 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.service.MemberPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,12 +11,12 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class MemberPageController {
 
-    @Autowired
-    private final MemberPageService mps;
-
-    public MemberPageController(MemberPageService mps) {
-        this.mps = mps;
-    }
+//    @Autowired
+//    private final MemberPageService mps;
+//
+//    public MemberPageController(MemberPageService mps) {
+//        this.mps = mps;
+//    }
 
 
 
@@ -29,12 +28,15 @@ public class MemberPageController {
 //
 //        return "memberpage/memberpage_main";
 //    }
+    
+    // 메인페이지
     @GetMapping("memberMain")
     public String memberPageMain(){
         System.out.println("일반회원 페이지로 진입성공");
         return "memberPage/memberpage_main";
     }
     
+    // 나의 반려동물
     @GetMapping("memberPet")
     public String memberPagePet(){
         System.out.println("동물페이지로 진입성공");
