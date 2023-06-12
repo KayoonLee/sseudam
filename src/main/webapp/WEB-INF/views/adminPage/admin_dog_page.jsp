@@ -12,6 +12,10 @@
 <!-- ======= Sidebar ======= -->
 <jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
 
+<main id="main" class="main">
+
+</main>
+
 <!-- ======= Footer ======= -->
 <jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
 
