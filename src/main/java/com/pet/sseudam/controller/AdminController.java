@@ -1,6 +1,7 @@
 package com.pet.sseudam.controller;
 
 import com.pet.sseudam.service.AdminService;
+import com.pet.sseudam.service.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AdminController {
 
-    //@Autowired
-    //private final AdminService adminservice;
+    @Autowired
+    private AdminServiceImpl adminservice;
 
     // 관리자 메인페이지
     @GetMapping("adminMain")
