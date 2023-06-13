@@ -1,12 +1,17 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.service.AdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class AdminController {
 
-    // 관리자 메인페이지 다시 업로드
+    //@Autowired
+    //private final AdminService adminservice;
+
+    // 관리자 메인페이지
     @GetMapping("adminMain")
     public String adminPage() {
         System.out.println("관리자 페이지로 진입성공");
@@ -71,6 +76,22 @@ public class AdminController {
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
+    // 회원수, 상담자수, 관리자수, 오늘 방문자 통계cnt(메인페이지 접속 횟수)로 가져오기
 
+    // 일반회원 리스트 불러오기
+
+    // 강아지 리스트 불러오기
+
+    // 고양이 리스트 불러오기
+
+    // 상담사 리스트 불러오기
+
+    // 상담사 신청관리 리스트 불러오기
+
+    // 상담사 신청 3(보류) ->2 (확정) update (String형으로 되어 있음)
+    
+    // 관리자 프로필
+
+    // 관리자 등록 (Admin table)
 
 }
