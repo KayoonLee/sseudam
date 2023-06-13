@@ -126,8 +126,8 @@ public class FreeController {
         String multi_path = request.getRealPath("img");
         System.out.println("multi_path는 " +multi_path);
 
-        String final_names = "";
-        int i=1;
+        int i = 1;
+        int max_num = service.getMaxnum();
 
         for(MultipartFile mf : file_list){
             String multi_filename =mf.getOriginalFilename();
@@ -135,20 +135,17 @@ public class FreeController {
             String extension = multi_filename.substring(multi_filename.lastIndexOf("."));
             UUID uuid =UUID.randomUUID();
 
-            String new_multi_filename = uuid.toString() + extension;
+            String new_multi_filename = uuid.toString().replace("-", "") + extension;
 
             System.out.println("new_multi_filename: " + new_multi_filename);
-
-            final_names += new_multi_filename + "]";
 
             try{
                 mf.transferTo(new File(multi_path + "/" + new_multi_filename));
             }catch(Exception e){
                 e.getMessage();
             }
-            int max_num = service.getMaxnum();
 
-
+            img_board.setFile_num(max_num);
             img_board.setFile_serial(i);
             img_board.setFile_origin(multi_filename);
             img_board.setFile_name(new_multi_filename);
@@ -157,11 +154,8 @@ public class FreeController {
             System.out.println(count + "번째 파일 업로드");
             i++;
         }
-        fboard.setFile_num(im);
 
-
-
-
+        fboard.setFile_num(max_num);
 
         int result = service.fInsert(fboard);
 

@@ -155,7 +155,13 @@
                                sysdate())
 </insert>
 
-    <select id="getMaxnum"
+    <select id="getMaxnum" resultType="int">
+        select ifnull(max(file_num), 0) from img_file
+    </select>
+
+    <insert id="imgAdd" parameterType="image_board">
+        insert into img_file values(#{file_num}, #{file_serial}, #{file_serial}, #{file_serial})
+    </insert>
 
 
 </mapper>

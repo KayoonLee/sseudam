@@ -2,6 +2,7 @@ package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.FreeDao;
 import com.pet.sseudam.model.FreeBean;
+import com.pet.sseudam.model.ImgBean;
 import com.pet.sseudam.model.RecomBean;
 import com.pet.sseudam.model.ReportBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,10 @@ public class FreeService {
     }
 
     public int getMaxnum() {
-        dao.getMaxnum();
+        return dao.getMaxnum();
+    }
+
+    public int imgAdd(ImgBean imgBoard) {
+        return dao.imgAdd(imgBoard);
     }
 }

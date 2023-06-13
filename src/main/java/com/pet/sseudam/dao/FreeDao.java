@@ -1,6 +1,7 @@
 package com.pet.sseudam.dao;
 
 import com.pet.sseudam.model.FreeBean;
+import com.pet.sseudam.model.ImgBean;
 import com.pet.sseudam.model.RecomBean;
 import com.pet.sseudam.model.ReportBean;
 import org.apache.ibatis.annotations.Mapper;
@@ -40,5 +41,7 @@ public interface FreeDao {
 
     int recomMinus(RecomBean recomb);
 
-    void getMaxnum();
+    int getMaxnum();
+
+    int imgAdd(ImgBean imgBoard);
 }
