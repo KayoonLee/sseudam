@@ -52,6 +52,8 @@
             return idRegex.test(email);
     }
 
+
+
     $(document).ready(function(){
           $("form").on("submit", function(){
 
@@ -96,6 +98,8 @@
                 }); //ajax end
             });
 
+
+
             // email중복검사
             $("#emailChk").click(function(){
                var email = $("#email").val();
@@ -127,6 +131,8 @@
                         }
                      }
                });
+
+
             });
     });
       </script>
@@ -137,7 +143,7 @@
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
 
-        <h4 class="mb-3">회원가입</h4>
+        <h4 class="mb-3">상담사 회원가입</h4>
 
         <form class="validation-form" action="insertCounsel" method="post">
          <input type="hidden" name="identifier" value="3"><!--상담사 승인대기: 3-->
@@ -184,10 +190,11 @@
 
           <div class="mb-3">
             <label for="tel">휴대폰</label>
-            <input type="text" class="form-control" id="tel" name="tel" required>
+            <input type="text" class="form-control" id="tel" name="tel" placeholder="010-0000-0000 형태로 입력해주세요"required>
             <div class="invalid-feedback">
               전화번호를 입력해주세요.
             </div>
+            <p id="checkTel"></p>
           </div>
 
 
@@ -231,6 +238,16 @@
         }, false);
       });
     }, false);
+
+      $( '#tel' ).on( 'focus keyup', function() {
+        var brn = document.getElementById( "tel" ).value;
+            if ( /^010-[0-9]{4}-[0-9]{4}$/.test( brn ) ) {
+              document.getElementById( "checkTel" ).innerText = "유효한 휴대전화번호입니다.";
+              } else {
+              document.getElementById( "checkTel" ).innerText = "유효하지 않은 휴대전화번호입니다.";
+              document.getElementById('checkTel').style.color = 'red';
+              }
+           } );
   </script>
 </body>
 

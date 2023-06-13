@@ -183,12 +183,13 @@
           </div>
 
           <div class="mb-3">
-            <label for="tel">휴대폰</label>
-            <input type="text" class="form-control" id="tel" name="tel" placeholder="" required>
-            <div class="invalid-feedback">
+             <label for="tel">휴대폰</label>
+             <input type="text" class="form-control" id="tel" name="tel" placeholder="010-0000-0000 형태로 입력해주세요" required>
+             <div class="invalid-feedback">
               전화번호를 입력해주세요.
+             </div>
+             <p id="checkTel"></p>
             </div>
-          </div>
 
 
           <hr class="mb-4">
@@ -222,6 +223,15 @@
       });
     }, false);
 
+$( '#tel' ).on( 'focus keyup', function() {
+        var brn = document.getElementById( "tel" ).value;
+            if ( /^010-[0-9]{4}-[0-9]{4}$/.test( brn ) ) {
+              document.getElementById( "checkTel" ).innerText = "유효한 휴대전화번호입니다.";
+              } else {
+              document.getElementById( "checkTel" ).innerText = "유효하지 않은 휴대전화번호입니다.";
+              document.getElementById('checkTel').style.color = 'red';
+              }
+           } );
   </script>
 </body>
 
