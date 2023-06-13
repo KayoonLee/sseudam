@@ -27,6 +27,13 @@ public class TempAdminController {
 
         return "adminPage/admin_member_page";
     }
+    
+    @GetMapping("adminViewPage")
+    public String adminViewPage(Member meber, Model model){
+        System.out.println("상세페이지 보이기");
+
+        return "adminPage/admin_member_view";
+    }
 
 
 }
