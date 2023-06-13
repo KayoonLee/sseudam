@@ -88,6 +88,14 @@ function delete_check(){
 
 </script>
 
+    <style>
+        .thumbnail{
+            max-width: 500px;
+            max-height: 400px;
+            margin: 5px;
+        }
+    </style>
+
 </head>
 <body>
 <div class="bgcolor">
@@ -100,6 +108,11 @@ function delete_check(){
             <h1>${fboard.subject }</h1>
             <div>카테고리 : ${fboard.category }</div>
             <div>조회수 ${fboard.readcount }</div>
+        </div>
+        <div>
+            <c:forEach var="list" items="${img_list}">
+                <p><img src="./img/${list.file_name}" name="thumbnail"></p>
+            </c:forEach>
         </div>
         <div>
             <div>${fboard.content}</div>

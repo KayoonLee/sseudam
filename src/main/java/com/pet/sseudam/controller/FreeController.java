@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -127,7 +128,7 @@ public class FreeController {
         System.out.println("multi_path는 " +multi_path);
 
         int i = 1;
-        int max_num = service.getMaxnum();
+        int max_num = service.getMaxnum() + 1;
 
         for(MultipartFile mf : file_list){
             String multi_filename =mf.getOriginalFilename();
@@ -137,6 +138,7 @@ public class FreeController {
 
             String new_multi_filename = uuid.toString().replace("-", "") + extension;
 
+            System.out.println("multi_filename: " + multi_filename);
             System.out.println("new_multi_filename: " + new_multi_filename);
 
             try{
@@ -151,7 +153,7 @@ public class FreeController {
             img_board.setFile_name(new_multi_filename);
 
             int count = service.imgAdd(img_board);
-            System.out.println(count + "번째 파일 업로드");
+            System.out.println(i + "번째 파일 업로드");
             i++;
         }
 
@@ -175,9 +177,12 @@ public class FreeController {
 
         FreeBean fboard = service.fView(freeboard);
 
+        List<ImgBean> img_list = service.imgView(fboard.getFile_num());
+
         System.out.println("fboard :" + fboard);
 
         model.addAttribute("fboard", fboard);
+        model.addAttribute("img_list", img_list);
         model.addAttribute("pageNum", pageNum);
 
         return "freeBoard/free_view";
