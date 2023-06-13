@@ -160,8 +160,12 @@
     </select>
 
     <insert id="imgAdd" parameterType="image_board">
-        insert into img_file values(#{file_num}, #{file_serial}, #{file_serial}, #{file_serial})
+        insert into img_file values (#{file_num}, #{file_serial}, #{file_origin}, #{file_name})
     </insert>
+
+    <select id="imgView" parameterType="int">
+        select * from img_file where file_num=#{file_num}
+    </select>
 
 
 </mapper>

@@ -44,4 +44,6 @@ public interface FreeDao {
     int getMaxnum();
 
     int imgAdd(ImgBean imgBoard);
+
+    List<ImgBean> imgView(int fileNum);
 }
