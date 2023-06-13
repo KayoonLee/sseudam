@@ -5,21 +5,8 @@
 <head>
     <title>Member Page</title>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $('table.display').DataTable();
-        });
-    </script>
-    <style>
-        div.dataTables_wrapper {
-            margin-bottom: 3em;
-        }
-    </style>
+    <!-- ======= Table ======= -->
+    <jsp:include page="../navigator_footer/admin_table.jsp"></jsp:include>
 
 </head>
 <body>
@@ -32,7 +19,17 @@
 
 <main id="main" class="main">
 
-    <table id="" class="display" style="width:100%">
+    <div class="pagetitle">
+        <h1>일반회원</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="adminDogPage">일반회원</a></li>
+                <%--<li class="breadcrumb-item active">하위페이지</li>--%>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <table id="example" class="table is-striped" style="width:100%">
         <thead>
         <tr>
             <th>번호</th>
@@ -49,20 +46,38 @@
         </thead>
         <tbody>
         <c:if test="${not empty admin_list}">
-        <c:forEach var="member" items="${admin_list}">
-        <tr>
-            <td>${member.m_id}</td>
-            <td>${member.name}</td>
-            <td>${member.email}</td>
-            <td>${member.passwd}</td>
-            <td>${member.nick}</td>
-            <td>${member.birth}</td>
-            <td>${member.tel}</td>
-            <td>${member.identifier}</td>   <!-- 구분 코드 따라서 출력 바꿔주기 -->
-            <td>${member.state}</td>
-            <td>${member.join_date}</td>
-        </tr>
-        </c:forEach>
+            <c:forEach var="member" items="${admin_list}">
+                <tr>
+                    <td>${member.m_id}</td>
+                    <td>${member.name}</td>
+                    <td>${member.email}</td>
+                    <td>${member.passwd}</td>
+                    <td>${member.nick}</td>
+                    <td>${member.birth}</td>
+                    <td>${member.tel}</td>
+                    <!-- identifier 회원 구분코드 -->
+                    <c:if test="${member.identifier == '1'}">
+                        <td>일반회원</td>
+                    </c:if>
+                    <c:if test="${member.identifier == '2'}">
+                        <td>상담사</td>
+                    </c:if>
+                    <c:if test="${member.identifier == '3'}">
+                        <td>전직 대기</td>
+                    </c:if>
+                    <c:if test="${member.identifier != '1' and  member.identifier != '2' and member.identifier != '3'}">
+                        <td>Bug</td>
+                    </c:if>
+                    <!-- 탈퇴회원 구분여부-->
+                    <c:if test="${member.state == 1}">
+                        <td>활동</td>
+                    </c:if>
+                    <c:if test="${member.state == 0}">
+                        <td>탈퇴</td>
+                    </c:if>
+                    <td>${member.join_date}</td>
+                </tr>
+            </c:forEach>
         </c:if>
         </tbody>
         <tfoot>
@@ -81,7 +96,21 @@
         </tfoot>
     </table>
 
-    <table id="" class="display" style="width:100%">
+    <br><br>
+    <hr>
+    <br><br>
+
+    <div class="pagetitle">
+        <h1>일반회원</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="adminDogPage">일반회원</a></li>
+                <%--<li class="breadcrumb-item active">하위페이지</li>--%>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <table id="example2" class="table is-striped" style="width:100%">
         <thead>
         <tr>
             <th>Name</th>
