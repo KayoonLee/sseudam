@@ -1,8 +1,26 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
 <head>
     <title>Member Page</title>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('table.display').DataTable();
+        });
+    </script>
+    <style>
+        div.dataTables_wrapper {
+            margin-bottom: 3em;
+        }
+    </style>
+
 </head>
 <body>
 
@@ -14,128 +32,161 @@
 
 <main id="main" class="main">
 
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="dataTables_length" id="dataTable_length"><label>Show <select
-                                    name="dataTable_length" aria-controls="dataTable"
-                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                <option value="10">10</option>
-                                <option value="25">25</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select> entries</label></div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <div id="dataTable_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                                                                                      class="form-control form-control-sm"
-                                                                                                      placeholder=""
-                                                                                                      aria-controls="dataTable"></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
-                                   role="grid" aria-describedby="dataTable_info" style="width: 100%;">
-                                <thead>
-                                <tr role="row">
-                                    <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable" rowspan="1"
-                                        colspan="1" aria-sort="ascending"
-                                        aria-label="Name: activate to sort column descending" style="width: 64.75px;">
-                                        Name
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                        aria-label="Position: activate to sort column ascending"
-                                        style="width: 80.6146px;">Position
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                        aria-label="Office: activate to sort column ascending"
-                                        style="width: 55.7917px;">Office
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                        aria-label="Age: activate to sort column ascending" style="width: 30.1667px;">
-                                        Age
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                        aria-label="Start date: activate to sort column ascending"
-                                        style="width: 67.8646px;">Start date
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1" colspan="1"
-                                        aria-label="Salary: activate to sort column ascending"
-                                        style="width: 66.1042px;">Salary
-                                    </th>
-                                </tr>
-                                </thead>
+    <table id="" class="display" style="width:100%">
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>비밀번호</th>
+            <th>닉네임</th>
+            <th>생일</th>
+            <th>전화번호</th>
+            <th>회원</th>
+            <th>상태</th>
+            <th>가입날짜</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:if test="${not empty admin_list}">
+        <c:forEach var="member" items="${admin_list}">
+        <tr>
+            <td>${member.m_id}</td>
+            <td>${member.name}</td>
+            <td>${member.email}</td>
+            <td>${member.passwd}</td>
+            <td>${member.nick}</td>
+            <td>${member.birth}</td>
+            <td>${member.tel}</td>
+            <td>${member.identifier}</td>   <!-- 구분 코드 따라서 출력 바꿔주기 -->
+            <td>${member.state}</td>
+            <td>${member.join_date}</td>
+        </tr>
+        </c:forEach>
+        </c:if>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>비밀번호</th>
+            <th>닉네임</th>
+            <th>생일</th>
+            <th>전화번호</th>
+            <th>회원</th>
+            <th>상태</th>
+            <th>가입날짜</th>
+        </tr>
+        </tfoot>
+    </table>
 
-                                <tbody>
-
-                                <tr class="odd">
-                                    <td class="name">이름</td>
-                                    <td>Accountant</td>
-                                    <td>지역?</td>
-                                    <td>나이</td>
-                                    <td>가입일?</td>
-                                    <td>$162,700</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-5">
-                            <div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1
-                                to 10 of 57 entries
-                            </div>
-                        </div>
-
-                        <!-- paging 처리-->
-                        <%--
-                        <div class="col-sm-12 col-md-7">
-                            <div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate">
-                                <ul class="pagination">
-                                    <li class="paginate_button page-item previous disabled" id="dataTable_previous"><a
-                                            href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0"
-                                            class="page-link">Previous</a></li>
-                                    <li class="paginate_button page-item active"><a href="#" aria-controls="dataTable"
-                                                                                    data-dt-idx="1" tabindex="0"
-                                                                                    class="page-link">1</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                                                              data-dt-idx="2" tabindex="0"
-                                                                              class="page-link">2</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                                                              data-dt-idx="3" tabindex="0"
-                                                                              class="page-link">3</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                                                              data-dt-idx="4" tabindex="0"
-                                                                              class="page-link">4</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                                                              data-dt-idx="5" tabindex="0"
-                                                                              class="page-link">5</a></li>
-                                    <li class="paginate_button page-item "><a href="#" aria-controls="dataTable"
-                                                                              data-dt-idx="6" tabindex="0"
-                                                                              class="page-link">6</a></li>
-                                    <li class="paginate_button page-item next" id="dataTable_next"><a href="#"
-                                                                                                      aria-controls="dataTable"
-                                                                                                      data-dt-idx="7"
-                                                                                                      tabindex="0"
-                                                                                                      class="page-link">Next</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
---%>                <!-- paging 처리끝-->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <table id="" class="display" style="width:100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Jena Gaines</td>
+            <td>Office Manager</td>
+            <td>London</td>
+            <td>30</td>
+            <td>$90,560</td>
+        </tr>
+        <tr>
+            <td>Haley Kennedy</td>
+            <td>Senior Marketing Designer</td>
+            <td>London</td>
+            <td>43</td>
+            <td>$313,500</td>
+        </tr>
+        <tr>
+            <td>Tatyana Fitzpatrick</td>
+            <td>Regional Director</td>
+            <td>London</td>
+            <td>19</td>
+            <td>$385,750</td>
+        </tr>
+        <tr>
+            <td>Michael Silva</td>
+            <td>Marketing Designer</td>
+            <td>London</td>
+            <td>66</td>
+            <td>$198,500</td>
+        </tr>
+        <tr>
+            <td>Bradley Greer</td>
+            <td>Software Engineer</td>
+            <td>London</td>
+            <td>41</td>
+            <td>$132,000</td>
+        </tr>
+        <tr>
+            <td>Angelica Ramos</td>
+            <td>Chief Executive Officer (CEO)</td>
+            <td>London</td>
+            <td>47</td>
+            <td>$1,200,000</td>
+        </tr>
+        <tr>
+            <td>Suki Burks</td>
+            <td>Developer</td>
+            <td>London</td>
+            <td>53</td>
+            <td>$114,500</td>
+        </tr>
+        <tr>
+            <td>Prescott Bartlett</td>
+            <td>Technical Author</td>
+            <td>London</td>
+            <td>27</td>
+            <td>$145,000</td>
+        </tr>
+        <tr>
+            <td>Timothy Mooney</td>
+            <td>Office Manager</td>
+            <td>London</td>
+            <td>37</td>
+            <td>$136,200</td>
+        </tr>
+        <tr>
+            <td>Bruno Nash</td>
+            <td>Software Engineer</td>
+            <td>London</td>
+            <td>38</td>
+            <td>$163,500</td>
+        </tr>
+        <tr>
+            <td>Hermione Butler</td>
+            <td>Regional Director</td>
+            <td>London</td>
+            <td>47</td>
+            <td>$356,250</td>
+        </tr>
+        <tr>
+            <td>Lael Greer</td>
+            <td>Systems Administrator</td>
+            <td>London</td>
+            <td>21</td>
+            <td>$103,500</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Salary</th>
+        </tr>
+        </tfoot>
+    </table>
 
 </main>
 

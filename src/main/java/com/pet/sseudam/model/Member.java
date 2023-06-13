@@ -3,12 +3,13 @@ package com.pet.sseudam.model;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.ibatis.type.Alias;
 
 import java.sql.Date;
 @Getter
 @Setter
 @Data
-
+@Alias("member")
 public class Member {
     private String m_id;
     private String name;
