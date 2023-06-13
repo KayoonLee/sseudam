@@ -128,10 +128,11 @@
 
 <div class="bgcolor">
     <div class="outbox">
-        <h2 align="center">레시피 글 수정</h2><br>
+        <h2 align="center">게시판 글수정</h2><br>
         <form enctype="multipart/form-data" action="freeUpdate" method="post">
             <input type="hidden" name="num" value="${fboard.num}">
             <input type="hidden" name="board_num" value="${fboard.board_num}">
+            <input type="hidden" name="file_num" value="${fboard.file_num}">
             <div class="container innerbox">
                 <div>
                     <div>제목</div>
@@ -155,7 +156,7 @@
                     <textarea id="content" name="content" rows="5" cols="50">${fboard.content}</textarea><br>
                     <div id="previewContainer">
                         <c:forEach var="list" items="${img_list}">
-                            <p><img src="./img/${list.file_name}" name="thumbnail"></p>
+                            <p><img src="./img/${list.file_name}" class="thumbnail"></p>
                     </c:forEach></div>
                 </div>
                 <div>
@@ -169,7 +170,7 @@
                                 type="text" id="hashtag" placeholder="#태그입력"
                                 class="form-control">
                         </div>
-                        <ul id="tag-list"></ul>
+                        <ul id="tag-list"><li>${fboard.hashtag}</li></ul>
                     </div>
                 </div>
 
@@ -178,6 +179,7 @@
                 <a href="freeList">목록</a>
 
             </div>
+        </form>
     </div>
 </div>
 

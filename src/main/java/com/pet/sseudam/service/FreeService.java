@@ -91,4 +91,12 @@ public class FreeService {
     public List<ImgBean> imgView(int fileNum) {
         return dao.imgView(fileNum);
     }
+
+    public void imgUpdate(ImgBean imgBoard) {
+        dao.imgUpdate(imgBoard);
+    }
+
+    public List<ImgBean> imgList(ImgBean imgBoard) {
+        return dao.imgList(imgBoard);
+    }
 }
