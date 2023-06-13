@@ -22,7 +22,12 @@
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z
+    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
@@ -220,14 +225,7 @@
             </li><!-- End Components Nav -->
         </ul>
     </aside>
-    <main id="main" class="main">
-        <div>
-            <h1>상담요청목록</h1>
 
-
-        </div>
-
-    </main>
 
 </form>
 </body>

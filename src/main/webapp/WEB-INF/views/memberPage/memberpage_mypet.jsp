@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 82108
@@ -13,13 +14,48 @@
 <head>
     <title>Title</title>
 
+
+    <style>
+        /* 모달 스타일링을 위한 CSS */
+        .modal {
+            display: none; /* 초기에는 모달을 숨깁니다. */
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5); /* 배경에 어둡게 보이도록 설정합니다. */
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 1000px;
+        }
+    </style>
+
+
+
+
+
+
+
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
 <body>
@@ -236,30 +272,138 @@
                     </div>
                 </c:if>
                 <c:if test="${not empty list}">
-                    <c:forEach var="board" items="${list }">
-                        <c:if test="${board.state != 'n' }">
+                    <c:forEach var="pet" items="${list }">
                             <div class="col-sm-3">
                                 <div>
                                     <div class="card">
-                                        <a href="r_view?rnum=${board.rnum }&pageNum=${pageNum}">
-                                            <img class="card-img-top" src="./t_images/${board.thumbnail }">
-                                        </a>
-                                        <div class="card-body">
-                                            <h4 class="card-title">${board.subject }</h4>
-                                            <c:if test="${not empty board.profile }">
-                                                <img src ="./upload/${board.profile }" width=30 height=30>
-                                            </c:if>
-                                            <c:if test="${empty board.profile }">
-                                                <img src ="./upload/pepe.jpg" width=30 height=30>
-                                            </c:if>
-                                        </div>
+                                        <td>${pet.p_id}</td>
+                                        <td>${pet.g_id}</td>
+                                        <td>${pet.animal}</td>
+                                        <td>${pet.birth}</td>
+                                        <td>${pet.kind}</td>
+                                        <td>${pet.breed}</td>
+                                        <td>${pet.profile}</td>
+                                        <td>${pet.feature}</td>
+                                        <td>${pet.gender}</td>
+                                        <td>${pet.neutering}</td>
+                                        <td>${pet.state}</td>
                                     </div>
                                 </div>
                             </div>
-                        </c:if>
                     </c:forEach>
                 </c:if>
             </div>
+
+            <a href="#">
+                <img src="images/add.png" width="50" id="modal-image">
+            </a>
+
+            <div id="modal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2>반려동물추가폼</h2>
+                    <form>
+                        <div class="row mb-3">
+                            <label for="profile" class="col-md-4 col-lg-3 col-form-label">반려동물 사진</label>
+                            <div class="col-md-8 col-lg-9">
+                                <img src="assets/img/profile-img.jpg" alt="Profile">
+                                <div class="pt-2">
+                                    <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="petName" class="col-md-4 col-lg-3 col-form-label">이름</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="petName" type="text" class="form-control" id="petName" value="">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="birth" class="col-md-4 col-lg-3 col-form-label">생일</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="birth" type="text" class="form-control" id="birth" value="">
+                            </div>
+                        </div>
+
+                        <!-- 강아지 고양이 라디오 버튼-->
+                        <div><input type="radio" name="kind" value="dog">강아지</div>
+                        <div><input type="radio" name="kind" value="cat">고양이</div>
+
+                        <div class="row mb-3">
+                            <label for="about" class="col-md-4 col-lg-3 col-form-label">특이사항</label>
+                            <div class="col-md-8 col-lg-9">
+                                <textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- 성별 구분 라디오 버튼 -->
+                        <div><input type="radio" name="sex" value="female">암컷</div>
+                        <div><input type="radio" name="sex" value="male">수컷</div>
+
+
+                        <!-- 중성화 체크 박스-->
+                        <div><input type="checkbox" name="neutering" value="done">중성화</div>
+
+                        <div class="row mb-3">
+                            <label for="breed" class="col-md-4 col-lg-3 col-form-label">품종</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="breed" type="text" class="form-control" id="breed" value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="country" type="text" class="form-control" id="Country" value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="address" type="text" class="form-control" id="Address" value="">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                            <div class="col-md-8 col-lg-9">
+                                <input name="phone" type="text" class="form-control" id="Phone" value="">
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary">저장</button>
+                        </div>
+                        <!-- 글 작성 폼 요소들을 추가합니다. -->
+                    </form>
+                </div>
+            </div>
+
+            <script>
+                // 이미지 클릭 시 모달 열기
+                var modalImage = document.getElementById("modal-image");
+                var modal = document.getElementById("modal");
+                var closeBtn = document.getElementsByClassName("close")[0];
+
+                modalImage.addEventListener("click", function() {
+                    modal.style.display = "block";
+                });
+
+                // 모달 닫기 버튼 클릭 시 모달 닫기
+                closeBtn.addEventListener("click", function() {
+                    modal.style.display = "none";
+                });
+
+                // 모달 외부 영역 클릭 시 모달 닫기
+                window.addEventListener("click", function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                });
+            </script>
+
+
         </div>
 
     </main>

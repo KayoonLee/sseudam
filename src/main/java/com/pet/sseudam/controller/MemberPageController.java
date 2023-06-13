@@ -1,25 +1,28 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.service.MemberPageService;
+import com.pet.sseudam.service.PagingPgm;
+import com.pet.sseudam.service.PetPageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+//import org.springframework.ui.Model;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class MemberPageController {
 
-//    @Autowired
-//    private final MemberPageService mps;
-//
-//    public MemberPageController(MemberPageService mps) {
-//        this.mps = mps;
-//    }
+    @Autowired
+    private MemberPageService mps;
 
-
-
+    public MemberPageController(MemberPageService mps) {
+        this.mps = mps;
+    }
 
     // 마이페이지(일반회원)
 //    @GetMapping("memberpage_main")
@@ -36,13 +39,7 @@ public class MemberPageController {
         return "memberPage/memberpage_main";
     }
     
-    // 나의 반려동물
-    @GetMapping("memberPet")
-    public String memberPagePet(){
-        System.out.println("동물페이지로 진입성공");
-        return "memberPage/memberpage_mypet";
-    }
-    
+    // 나의 반려동물 관련 컨트롤러는 PetPageController에서
 
     // 내가 쓴 글
     @GetMapping("memberPost")
