@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,11 +28,16 @@
             <a href="#plans" class="w3-button w3-block">Plans</a>
         </div>
         <div class="w3-col s3">
-            <a href="#about" class="w3-button w3-block">About</a>
+            <a href="separate_join" class="w3-button w3-block">join</a>
         </div>
         <div class="w3-col s3">
-            <a href="#contact" class="w3-button w3-block">Contact</a>
+            <a href="login_form" class="w3-button w3-block">login</a>
         </div>
+        <c:if test="${!empty member.nick}">
+        <div class="w3-col s3">
+            <a href="test" class="w3-button w3-block">my page</a>
+        </div>
+        </c:if>
     </div>
 </div>
 
