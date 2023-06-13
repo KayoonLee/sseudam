@@ -196,7 +196,10 @@ public class FreeController {
 
         fboard = service.fView(fboard);
 
+        List<ImgBean> img_list = service.imgView(fboard.getFile_num());
+
         model.addAttribute("fboard", fboard);
+        model.addAttribute("img_list", img_list);
 
         return "freeBoard/free_update_form";
     }

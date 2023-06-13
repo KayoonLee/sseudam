@@ -116,6 +116,8 @@ function delete_check(){
         </div>
         <div>
             <div>${fboard.content}</div>
+            <div>해시태그</div>
+                <div>${fboard.hashtag}</div>
         </div>
 
 

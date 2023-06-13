@@ -31,6 +31,84 @@
 			}
 		}
 	}
+	<!-- 해시태그 처리 -->
+	$(document)
+			.ready(
+					function() {
+						var hashtag = [];
+						var counter = 0;
+
+						// 입력한 값을 태그로 생성한다.
+						function addTag(value) {
+							hashtag[counter] = value;
+							counter++; // del-btn의 고유 id가 된다.
+						}
+
+						// 서버에 제공
+						$("#hashtag").on("keyup", function(e) {
+
+							var tag = $("#tag-list").text();
+							console.log(tag);
+							$("#tag").val(tag);
+
+						});
+
+						$("#hashtag")
+								.on(
+										"keypress",
+										function(e) {
+											var self = $(this);
+
+											// 엔터나 스페이스바 눌렀을 때 실행
+											if (e.key === "Enter"
+													|| e.keyCode == 32) {
+												var tagValue = self.val()
+														.trim();
+
+												// 해시태그 값이 없으면 실행하지 않음
+												if (tagValue !== "") {
+													// 같은 태그가 있는지 검사한다. 있다면 해당 값이 배열로 반환된다.
+													var result = Object
+															.values(hashtag)
+															.filter(
+																	function(
+																			word) {
+																		return word === tagValue;
+																	});
+
+													// 해시태그가 중복되지 않으면 추가
+													if (result.length === 0) {
+														$("#tag-list")
+																.append(
+																		"<li>"
+																		+ tagValue
+																		+ "<span class='del-btn' idx='" + counter + "'>✕</span></li>");
+														addTag(tagValue);
+														self.val("");
+
+														console
+																.log("hashtag: "
+																		+ hashtag);
+														console
+																.log("tagValue: "
+																		+ tagValue);
+													} else {
+														alert("태그값이 중복됩니다.");
+													}
+												}
+												e.preventDefault(); // SpaceBar 시 빈공간이 생기지 않도록 방지
+											}
+										});
+
+						// 삭제 버튼
+						// 인덱스 검사 후 삭제
+						$(document).on("click", ".del-btn", function(e) {
+							var index = $(this).attr("idx");
+							hashtag[index] = "";
+							$(this).parent().remove();
+						});
+					})
+
 </script>
 
 	<style type="text/css">
@@ -78,10 +156,14 @@
 					</div>
 
 					<div>
-					<div>
-					<input type="text" name="hashtag" placeholder="#태그입력"></div>
-					<%-- 해시태그 보일곳 --%>
-					<div></div>
+						<div class="tr_hashTag_area">
+							<div class="form-group">
+								<input type="hidden" id="tag" name="hashtag" value=""> <input
+									type="text" id="hashtag" placeholder="#태그입력"
+									class="form-control">
+							</div>
+							<ul id="tag-list"></ul>
+						</div>
 					</div>
 
 					<input type="submit" value="작성">
