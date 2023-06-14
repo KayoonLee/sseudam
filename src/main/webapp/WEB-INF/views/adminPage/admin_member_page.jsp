@@ -23,7 +23,7 @@
         <h1>일반회원</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="adminDogPage">일반회원</a></li>
+                <li class="breadcrumb-item"><a href="adminMemberPage">일반회원</a></li>
                 <%--<li class="breadcrumb-item active">하위페이지</li>--%>
             </ol>
         </nav>
@@ -104,8 +104,8 @@
         <h1>일반회원</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="adminDogPage">일반회원</a></li>
-                <%--<li class="breadcrumb-item active">하위페이지</li>--%>
+                <li class="breadcrumb-item"><a href="adminMemberPage">일반회원</a></li>
+                <li class="breadcrumb-item active">하위페이지</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->

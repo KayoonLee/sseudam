@@ -3,16 +3,19 @@
 <html>
 <head>
     <title>Admin_Register</title>
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/admin_header.jsp" %>
+
+    <!-- ======= Table ======= -->
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
 </head>
 <body>
 
 <!-- ======= Header ======= -->
-<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
-
 <!-- ======= Sidebar ======= -->
-<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
 
-<main>
+<%--<main>--%>
     <div class="container">
 
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -21,7 +24,7 @@
                     <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
                         <div class="d-flex justify-content-center py-4">
-                            <a href="index.html" class="logo d-flex align-items-center w-auto">
+                            <a href="#" class="logo d-flex align-items-center w-auto"> <%-- adminRegister --%>
                                 <img src="assets/img/logo.png" alt="">
                                 <span class="d-none d-lg-block">NiceAdmin</span>
                             </a>
@@ -75,7 +78,7 @@
                                         <button class="btn btn-primary w-100" type="submit">Create Account</button>
                                     </div>
                                     <div class="col-12">
-                                        <p class="small mb-0">Already have an account? <a href="pages-login.html">Log in</a></p>
+                                        <p class="small mb-0">Already have an account? <a href="#">Log in</a></p> <%-- pages-login.html --%>
                                     </div>
                                 </form>
 
@@ -89,14 +92,14 @@
         </section>
 
     </div>
-</main><!-- End #main -->
+<%--</main>--%><!-- End #main -->
 
 <%--
 <main id="main" class="main">
 </main>
 --%>
+
 <!-- ======= Footer ======= -->
-<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
 
 </body>
 </html>

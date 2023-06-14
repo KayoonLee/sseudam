@@ -4,25 +4,25 @@
 <head>
     <title>Member Report</title>
 
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/admin_header.jsp" %>
+
     <!-- ======= Table ======= -->
-    <jsp:include page="../navigator_footer/admin_table.jsp"></jsp:include>
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
 </head>
 <body>
 
 <!-- ======= Header ======= -->
-<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
-
 <!-- ======= Sidebar ======= -->
-<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
 
-<main id="main" class="main">
+<%--<main id="main" class="main">--%>
 
     <div class="pagetitle">
         <h1>신고받은 회원관리</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="adminMemberReport">신고받은 회원관리</a></li>
-                <%--<li class="breadcrumb-item active">신고받은 회원관리</li>--%>
+                <li class="breadcrumb-item"><a href="#">신고받은 회원관리</a></li> <%-- adminMemberReport --%>
+                <%--<li class="breadcrumb-item">신고받은 회원관리</li>--%>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -65,8 +65,8 @@
         <h1>신고받은 회원관리</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="adminMemberReport">신고받은 회원관리</a></li>
-                <li class="breadcrumb-item active">하위페이지</li>
+                <li class="breadcrumb-item"><a href="#">신고받은 회원관리</a></li> <%-- adminMemberReport --%>
+                <li class="breadcrumb-item">하위페이지</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -100,10 +100,9 @@
         </tr>
         </tfoot>
     </table>
-</main><!-- End #main -->
+<%--</main>--%><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
 
 </body>
 </html>
