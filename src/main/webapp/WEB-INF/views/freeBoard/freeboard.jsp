@@ -4,4 +4,4 @@
 
 
 왔는지 확인
-<a href="freeList">자유게시판 보러가기</a>
+<a href="freeList?num=2">자유게시판 보러가기</a>

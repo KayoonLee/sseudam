@@ -3,102 +3,107 @@
 <html>
 <head>
     <title>DogList</title>
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/admin_header.jsp" %>
+
+    <!-- ======= Table ======= -->
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
 </head>
 <body>
 
 <!-- ======= Header ======= -->
-<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
-
 <!-- ======= Sidebar ======= -->
-<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
 
-<main id="main" class="main">
+<%--<main id="main" class="main">--%>
 
     <div class="pagetitle">
-        <h1>Data Tables</h1>
+        <h1>강아지</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item"><a href="#">반려동물</a></li> <%-- adminDogPage --%>
+                <li class="breadcrumb-item">강아지</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
-    <section class="section">
-        <div class="row">
-            <div class="col-lg-12">
+    <table id="example" class="table is-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>$320,800</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Salary</th>
+        </tr>
+        </tfoot>
+    </table>
 
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Datatables</h5>
-                        <p>Add lightweight datatables to your project with using the <a
-                                href="https://github.com/fiduswriter/Simple-DataTables" target="_blank">Simple
-                            DataTables</a> library. Just add <code>.datatable</code> class name to any table you wish to
-                            conver to a datatable</p>
+    <br><br>
+    <hr>
+    <br><br>
 
-                        <!-- Table with stripped rows -->
-                        <table class="table datatable">
-                            <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Position</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Start Date</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Brandon Jacob</td>
-                                <td>Designer</td>
-                                <td>28</td>
-                                <td>2016-05-25</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Bridie Kessler</td>
-                                <td>Developer</td>
-                                <td>35</td>
-                                <td>2014-12-05</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Ashleigh Langosh</td>
-                                <td>Finance</td>
-                                <td>45</td>
-                                <td>2011-08-12</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Angus Grady</td>
-                                <td>HR</td>
-                                <td>34</td>
-                                <td>2012-06-11</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Raheem Lehner</td>
-                                <td>Dynamic Division Officer</td>
-                                <td>47</td>
-                                <td>2011-04-19</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <!-- End Table with stripped rows -->
+    <div class="pagetitle">
+        <h1>강아지</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">반려동물</a></li> <%-- adminDogPage --%>
+                <li class="breadcrumb-item">하위페이지</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
 
-                    </div>
-                </div>
+    <table id="example2" class="table is-striped" style="width:100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Salary</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Jena Gaines</td>
+            <td>Office Manager</td>
+            <td>London</td>
+            <td>30</td>
+            <td>$90,560</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Salary</th>
+        </tr>
+        </tfoot>
+    </table>
 
-            </div>
-        </div>
-    </section>
-
-</main><!-- End #main -->
+<%--</main>--%><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
 
 </body>
 </html>
