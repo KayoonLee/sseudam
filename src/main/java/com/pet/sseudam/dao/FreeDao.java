@@ -47,7 +47,7 @@ public interface FreeDao {
 
     List<ImgBean> imgView(int fileNum);
 
-    void imgUpdate(ImgBean imgBoard);
-
     List<ImgBean> imgList(ImgBean imgBoard);
+
+    int imgDelete(int fileNum);
 }

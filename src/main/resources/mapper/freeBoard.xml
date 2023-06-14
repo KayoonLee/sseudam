@@ -3,6 +3,7 @@
 
 <mapper namespace="com.pet.sseudam.dao.FreeDao">
 
+    <!--목록 관련-->
  <select id="getTotal" resultType="int" parameterType="fboard">
     select count(*) from board where
     <if test="category != 0">
@@ -155,11 +156,11 @@
                                sysdate())
 </insert>
 
+    <!--이미지 관련-->
     <select id="getMaxnum" resultType="int">
         select ifnull(max(file_num), 0) from img_file
     </select>
 
-<!--이미지 관련-->
     <insert id="imgAdd" parameterType="image_board">
         insert into img_file values (#{file_num}, #{file_serial}, #{file_origin}, #{file_name})
     </insert>
@@ -168,14 +169,13 @@
         select * from img_file where file_num=#{file_num}
     </select>
 
-    <update id="imgUpdate" parameterType="image_board">
-        update img_file set file_serial=#{file_serial}, file_origin=#{file_origin}, file_name=#{file_name}
-        where file_num=#{file_num}
-    </update>
-
     <select id="imgList" parameterType="image_board" resultType="image_board">
         select file_name from img_file where file_num=#{file_num}
     </select>
+
+    <delete id="imgDelete" parameterType="int">
+        delete from img_file where file_num=#{file_num}
+    </delete>
 
 
 </mapper>

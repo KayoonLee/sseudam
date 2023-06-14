@@ -92,11 +92,11 @@ public class FreeService {
         return dao.imgView(fileNum);
     }
 
-    public void imgUpdate(ImgBean imgBoard) {
-        dao.imgUpdate(imgBoard);
-    }
-
     public List<ImgBean> imgList(ImgBean imgBoard) {
         return dao.imgList(imgBoard);
+    }
+
+    public int imgDelete(int file_Num) {
+        return dao.imgDelete(file_Num);
     }
 }

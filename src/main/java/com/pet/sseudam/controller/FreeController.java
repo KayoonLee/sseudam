@@ -200,12 +200,19 @@ public class FreeController {
     @GetMapping("freeUpdateForm")
     public String freeUpdateForm(FreeBean fboard, Model model) {
 
-        System.out.println("freeInsert 진입확인");
+        System.out.println("freeUpdateForm 진입확인");
 
         fboard = service.fView(fboard);
 
         List<ImgBean> img_list = service.imgView(fboard.getFile_num());
 
+        String[] hashtag = fboard.getHashtag().split("x");
+
+        for(int i=0; i<hashtag.length; i++){
+            System.out.println("hashtag:"+hashtag[i]);
+        }
+
+        model.addAttribute("hashtag", hashtag);
         model.addAttribute("fboard", fboard);
         model.addAttribute("img_list", img_list);
 
@@ -217,7 +224,7 @@ public class FreeController {
     public String freeUpdate(HttpServletRequest request, FreeBean fboard, ImgBean img_board,
                              MultipartHttpServletRequest mhr, Model model) {
 
-        System.out.println("freeInsert 진입확인");
+        System.out.println("freeUpdate 진입확인");
 
         List<MultipartFile> file_list = mhr.getFiles("files");
         String multi_path = request.getRealPath("img");
@@ -226,6 +233,20 @@ public class FreeController {
 
         //첨부파일이 있을경우
         if(!file_list.get(0).getOriginalFilename().equals("")){
+
+            //이전 실제 첨부파일 삭제
+            List<ImgBean> old_filelist = service.imgList(img_board);
+            for(int j=0; j< old_filelist.size(); j++){
+                String real_name = old_filelist.get(j).getFile_name();
+                System.out.println("삭제할 파일 경로" + multi_path + "/" + real_name);
+                File real_file =new File(multi_path + "/" + real_name);
+                real_file.delete();
+            }
+            //이전 첨부파일 컬럼 삭제
+            int del_count = service.imgDelete(img_board.getFile_num());
+            System.out.println("del_count: " + del_count);
+
+
             // file 일련번호
             int i=1;
 
@@ -250,19 +271,13 @@ public class FreeController {
                 img_board.setFile_origin(multi_filename);
                 img_board.setFile_name(new_multi_filename);
 
-                service.imgUpdate(img_board);
+                service.imgAdd(img_board);
 
                 System.out.println(i + "번째 파일 업로드");
                 i++;
 
             }
 
-            //이전 첨부파일 삭제
-            List<ImgBean> old_filelist = service.imgList(img_board);
-            for(int j=0; j< old_filelist.size(); j++){
-                File real_file =new File(multi_path + "/" + old_filelist.get(j));
-                real_file.delete();
-            }
         }
 
         int result = service.fUpdate(fboard);
