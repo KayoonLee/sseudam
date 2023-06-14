@@ -2,23 +2,28 @@ package com.pet.sseudam.controller;
 
 
 
+import com.pet.sseudam.model.Mail;
 import com.pet.sseudam.model.Member;
 
 import com.pet.sseudam.service.MemberService;
+import com.pet.sseudam.service.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class MemberController {
     @Autowired
     private MemberService ms;
 
+    @Resource(name = "SendEmailService")
+    private SendEmailService emailService;
 
     //일반회원 가입
     @RequestMapping("/insertMember")
@@ -31,7 +36,7 @@ public class MemberController {
     }
 
     //로그인 - 구분코드에 따라서 분리
-    @PostMapping("login")
+    @RequestMapping("login")
     public String mem_login(@RequestParam("email") String email,
                             @RequestParam("passwd") String passwd,
                             HttpSession session, Model model){
@@ -95,45 +100,68 @@ public class MemberController {
         return "login/nickCheck";
     }
 
-//
-//    // email(아이디) 찾기 폼
-//    @GetMapping("findEmail.do")
-//    public String findEmailForm(){
-//        return "loginForm/find_emailForm";
-//    }
-//
-//    // email 있는지 확인
-//    @GetMapping("findUserEmail")
-//    @ResponseBody
-//    public Member findEmail(Member member){
-//        Member findmember = ms.searchEmail(member);
-//        System.out.println("findmember 확인:"+findmember);
-//        if(findmember==null){
-//            return findmember;
-//        }
-//        return findmember;
-//    }
-//
-//    // 닉네임 일치하면 아이디랑 닉네임 알려주기
-//    @GetMapping("noticeEmail.do")
-//    public String noticeEmail(String email, String nick, Model model){
-//        model.addAttribute("email", email);
-//        model.addAttribute("nick", nick);
-//        return "loginForm/noticeEmail";
-//    }
 
-    //임시 비밀번호 발송
-//    @Transactional
-//    @PostMapping("/sendEmail")
-//    public String sendEmail(@RequestParam("email") String email){
-//        Mail mail= ms.tempPw(email);
+    // email(아이디) 찾기 창
+    @RequestMapping("findEmail.do")
+    public String findEmailForm(){
+        return "login/find_email";
+    }
+
+   // 나의 email 있는지 확인
+    @RequestMapping("findUserEmail")
+    @ResponseBody
+    public Member findEmail(Member member){
+        System.out.println("findUserEmail 진입");
+        Member findmember = ms.searchEmail(member);
+        System.out.println("findmember 확인:"+findmember);
+
+        return findmember;
+    }
+
+   // 닉네임 일치하면 아이디랑 닉네임 알려주기
+    @RequestMapping("notice_email.do")
+    public String noticeEmail(String email, String nick, Model model){
+        System.out.println("notice_email진입");
+        model.addAttribute("email", email);
+        model.addAttribute("nick", nick);
+        return "login/notice_email";
+    }
+
+    // 비밀번호 찾기 폼
+    @RequestMapping("findPasswd.do")
+    public String findPasswdForm(){
+        return "login/find_passwd";
+    }
+
+    //pw찾기
+    @RequestMapping("findpw")
+    public String findpw(Member member){
+       Member findmember = ms.searchPwd(member);
+        System.out.println(findmember);
+        String result = null;
+        //가입된 이메일이 존재한다면 이메일 전송
+        if(findmember!=null) {
+            emailService.sendEmail();
+            //임시 비밀번호 생성(UUID이용)
+//            String tempPw=UUID.randomUUID().toString().replace("-", "");//-를 제거
+//            tempPw = tempPw.substring(0,10);//tempPw를 앞에서부터 10자리 잘라줌
+//            System.out.println("임시 비밀번호 " + tempPw);
 //
-//        ms.mailSend(mail);
-//
-//        return "/login/login_form";
-//    }
+//            findmember.setPasswd(tempPw);//임시 비밀번호 담기
 
 
+//            ms.updatePwd(findmember);
+            result="true";
+            System.out.println(result);
+
+
+        }else {
+            result="false";
+            System.out.println(result);
+        }
+
+        return result;
+    }
 
 
 

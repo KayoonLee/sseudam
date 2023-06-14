@@ -15,4 +15,9 @@ public interface MemberDao {
     Member nickChk(String nick);
 
     int getNumber(Member member);
+
+    Member searchEmail(Member member);
+
+
+    Member searchPwd(Member member);
 }

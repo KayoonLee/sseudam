@@ -38,6 +38,26 @@
       box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
     }
   </style>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>
+    $(document).ready(function() {
+    		var popupX = ((window.screen.width-600)/2);
+        var popupY = ((window.screen.height-400)/2);
+         $("#findEmail").on('click', function(){
+             window.open("findEmail.do", "ID 찾기창", "resizeable=no, location=0, status=0, width=600, height=650, left="+popupX+", top="+popupY);
+         });
+    });
+
+   $(document).ready(function() {
+   			var popupX = ((window.screen.width-600)/2);
+             var popupY = ((window.screen.height-400)/2);
+              $("#findPasswd").on('click', function(){
+                  window.open("findPasswd.do", "비밀번호 찾기창", "resizeable=no, location=0, status=0, width=600, height=650, left="+popupX+", top="+popupY);
+              });
+  });
+
+
+  </script>
 </head>
 
 <body>
@@ -63,6 +83,14 @@
                  비밀번호를 입력해주세요.
              </div>
          </div>
+
+        <div class="row" align="center">
+            <div class="col-md-6 mb-3" align="center">
+                <button type="button" class="btn btn-secondary" id="findEmail">이메일아이디 찾기</button>
+
+                <button type="button" class="btn btn-secondary" id="findPasswd">비밀번호 찾기</button>
+              </div>
+        </div>
 
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">로그인</button>

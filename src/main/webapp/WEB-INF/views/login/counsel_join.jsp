@@ -156,7 +156,7 @@
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label for="birth">생년월일</label>
+              <label for="birth">생년월일(-없이 입력)</label>
               <input type="text" class="form-control" id="birth" name="birth" placeholder="6자로 입력하세요" required>
               <div class="invalid-feedback">
                 생년월일을 입력해주세요.
@@ -248,6 +248,8 @@
               document.getElementById('checkTel').style.color = 'red';
               }
            } );
+
+
   </script>
 </body>
 

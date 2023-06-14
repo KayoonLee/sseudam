@@ -50,6 +50,7 @@
             return idRegex.test(email);
     }
 
+
     $(document).ready(function(){
           $("form").on("submit", function(){
 

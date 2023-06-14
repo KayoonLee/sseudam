@@ -37,5 +37,18 @@ public class MemberServiceImpl implements MemberService{
         return cnt;
     }
 
-    ;
+    @Override
+    public Member searchEmail(Member member) {
+        return md.searchEmail(member);
+    }
+
+    @Override
+    public Member searchPwd(Member member) {
+        return md.searchPwd(member);
+    }
+
+
 }
+
+
+

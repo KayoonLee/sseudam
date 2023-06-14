@@ -12,4 +12,8 @@ public interface MemberService{
 
     int nickChk(String nick);
 
+    Member searchEmail(Member member);
+
+
+    Member searchPwd(Member member);
 }
