@@ -3,24 +3,26 @@
 <html>
 <head>
     <title>Title</title>
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/admin_header.jsp" %>
+
+    <!-- ======= Table ======= -->
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
 </head>
 <body>
 
 <!-- ======= Header ======= -->
-<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
-
 <!-- ======= Sidebar ======= -->
-<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
 
-<main id="main" class="main">
+<%--<main id="main" class="main">--%>
 
     <div class="pagetitle">
         <h1>Profile</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Profile</li>
+                <li class="breadcrumb-item"><a href="#">Users</a></li> <%-- adminProfile --%>
+                <li class="breadcrumb-item">Profile</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -54,7 +56,7 @@
                         <ul class="nav nav-tabs nav-tabs-bordered">
 
                             <li class="nav-item">
-                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
+                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-overview">Overview</button>
                             </li>
 
                             <li class="nav-item">
@@ -304,10 +306,9 @@
         </div>
     </section>
 
-</main><!-- End #main -->
+<%--</main>--%><!-- End #main -->
 
 <!-- ======= Footer ======= -->
-<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
 
 </body>
 </html>

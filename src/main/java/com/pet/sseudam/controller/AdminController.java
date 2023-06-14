@@ -14,17 +14,24 @@ public class AdminController {
 
     // 관리자 메인페이지
     @GetMapping("adminMain")
-    public String adminPage() {
+    public String adminMain() {
         System.out.println("관리자 페이지로 진입성공");
         return "adminPage/adminpage_main";
     }
 
-//    // 일반회원 페이지
-//    @GetMapping("adminMemberPage")
-//    public String memberPage() {
-//        System.out.println("회원관리 페이지로 이동");
-//        return "adminPage/admin_member_page";
-//    }
+    // 대시보드(회원수 통계) 페이지
+    @GetMapping("adminDashboard")
+    public String adminDashboard() {
+        System.out.println("대시보드 페이지로 이동");
+        return "adminPage/admin_dashboard";
+    }
+
+    // 일반회원 페이지
+    @GetMapping("adminMemberPage")
+    public String memberPage() {
+        System.out.println("회원관리 페이지로 이동");
+        return "adminPage/admin_member_page";
+    }
 
     // 일반회원 신고 페이지
     @GetMapping("adminMemberReport")
