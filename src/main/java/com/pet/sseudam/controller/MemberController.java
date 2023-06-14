@@ -1,8 +1,6 @@
 package com.pet.sseudam.controller;
 
 
-
-import com.pet.sseudam.model.Mail;
 import com.pet.sseudam.model.Member;
 
 import com.pet.sseudam.service.MemberService;
@@ -14,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
+
 
 @Controller
 public class MemberController {
@@ -135,22 +133,24 @@ public class MemberController {
 
     //pw찾기
     @RequestMapping("findpw")
-    public String findpw(Member member){
+    @ResponseBody
+    public String findpw(Member member)throws Exception{
        Member findmember = ms.searchPwd(member);
         System.out.println(findmember);
         String result = null;
         //가입된 이메일이 존재한다면 이메일 전송
         if(findmember!=null) {
-            emailService.sendEmail();
+
             //임시 비밀번호 생성(UUID이용)
-//            String tempPw=UUID.randomUUID().toString().replace("-", "");//-를 제거
-//            tempPw = tempPw.substring(0,10);//tempPw를 앞에서부터 10자리 잘라줌
-//            System.out.println("임시 비밀번호 " + tempPw);
-//
-//            findmember.setPasswd(tempPw);//임시 비밀번호 담기
+            String tempPw= UUID.randomUUID().toString().replace("-","");
+            tempPw = tempPw.substring(0,10);//tempPw를 앞에서부터 10자리 잘라줌
+            System.out.println("임시 비밀번호 " + tempPw);
 
+            findmember.setPasswd(tempPw);//임시 비밀번호 담기
 
-//            ms.updatePwd(findmember);
+            emailService.sendEmail(); //mail 발송
+
+            ms.updatePwd(findmember);
             result="true";
             System.out.println(result);
 

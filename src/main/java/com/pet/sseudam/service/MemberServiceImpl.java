@@ -47,6 +47,11 @@ public class MemberServiceImpl implements MemberService{
         return md.searchPwd(member);
     }
 
+    @Override
+    public void updatePwd(Member findmember) {
+        md.updatePwd(findmember);
+    }
+
 
 }
 

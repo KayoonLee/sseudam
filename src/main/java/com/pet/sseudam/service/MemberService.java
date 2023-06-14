@@ -16,4 +16,6 @@ public interface MemberService{
 
 
     Member searchPwd(Member member);
+
+    void updatePwd(Member findmember);
 }

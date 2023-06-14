@@ -10,8 +10,10 @@
 <script type="text/javascript">
 $(function(){
 		$("#sendEmail").click(function(){
+
 			let email=$("input[name='email']").val();
 			let nick=$("input[name='nick']").val();
+
 			$.ajax({
 				url:"findpw",
 				data:{"email":email,"nick":nick},
@@ -21,15 +23,15 @@ $(function(){
 						console.log(data);
 						location.href="login";
 					}else{
-						alert("아이디 또는 닉네임을 정확하게 입력해 주세요");
+						alert("이메일아이디 또는 닉네임을 정확하게 입력해 주세요");
 						$("#email").val("");
 						$("#nick").val("");
 						console.log(data);
-				}
-		   	}
-		});
-	});
-});
+			    	}
+		    	}
+		    });
+	    });
+    });
 </script>
    <style>
       body {
