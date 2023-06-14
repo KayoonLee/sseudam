@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../header/header.jsp" %>
 
 <html>
 <head>
@@ -9,6 +10,51 @@
 
     <!-- ======= Table ======= -->
     <%@ include file="../navigator_footer/admin_table.jsp" %>
+
+
+    <%--세욱 추가--%>
+    <script>
+
+        // 이미지 업로드를 위한 JavaScript 함수
+        function uploadImage() {
+            $("#imageInput").click();
+        }
+        function removeImage(){
+            $("#imageInput").src("./images/muzik5.jpg");
+        }
+
+        function previewImage(input) {
+            var previewContainer = document.getElementById("previewContainer");
+            previewContainer.innerHTML = ""; // 기존의 미리보기 이미지 초기화
+
+            if (input.files && input.files.length > 0) {
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var preview = document.createElement("img");
+                        preview.src = e.target.result;
+                        preview.className = "thumbnail";
+                        previewContainer.appendChild(preview);
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        }
+
+    </script>
+
+
+    <style type="text/css">
+        input[type=file] {
+            display: none;
+        }
+
+        .thumbnail {
+            max-width: 500px;
+            max-height: 400px;
+            margin: 5px;
+        }
+    </style>
 </head>
 <body>
 
@@ -120,10 +166,13 @@
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="assets/img/profile-img.jpg" alt="Profile">
+                                            <div id="previewContainer">
+                                            <img src="./images/muzik5.jpg" alt="Profile" class="thumbnail">
+                                            </div>
                                             <div class="pt-2">
-                                                <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+                                                <input type="file" id="imageInput" name="files" onchange="previewImage(this)">
+                                                <button type="button" onclick="uploadImage()" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></button>
+                                                <button type="button" onclick="removeImage()" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></button>
                                             </div>
                                         </div>
                                     </div>
