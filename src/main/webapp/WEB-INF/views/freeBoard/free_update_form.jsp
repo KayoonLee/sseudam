@@ -5,7 +5,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시판 수정폼</title>
+    <title>게시판 수정</title>
 
     <script src="./js/free.js"></script>
 
