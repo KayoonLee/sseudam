@@ -18,6 +18,7 @@ public class TempAdminController {
     private TempAdminServiceImpl adminservice;
 
     // 일반회원 페이지
+/*
     @GetMapping("adminMemberPage")
     public String memberPage(Member member, Model model) {
         System.out.println("회원관리 페이지로 이동");
@@ -27,6 +28,6 @@ public class TempAdminController {
 
         return "adminPage/admin_member_page";
     }
-
+*/
 
 }
