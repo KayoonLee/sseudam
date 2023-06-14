@@ -8,7 +8,7 @@ import java.util.Date;
 @Data
 @Alias("fboard")
 public class FreeBean {
-
+asdsdsfdfs
     private int board_num;
     private int num;
     private String subject;

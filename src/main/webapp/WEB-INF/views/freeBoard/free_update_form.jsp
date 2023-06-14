@@ -169,7 +169,7 @@
                                 type="text" id="hashtag" placeholder="#태그입력"
                                 class="form-control">
                         </div>
-                        <ul id="tag-list"></ul>
+                        <ul id="tag-list">${fboard.hashtag}</ul>
                     </div>
                 </div>
 
