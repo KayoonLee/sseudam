@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -27,32 +28,41 @@
         </nav>
     </div><!-- End Page Title -->
 
+<%-- 품종/동물프사/특이사항 --%>
     <table id="example" class="table is-striped" style="width:100%">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Salary</th>
+            <th>회원번호</th>
+            <th>동물번호</th>
+            <th>동물이름</th>
+            <th>생일</th>
+            <th>성별</th>
+            <th>중성화여부</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Tiger Nixon</td>
-            <td>System Architect</td>
-            <td>Edinburgh</td>
-            <td>61</td>
-            <td>$320,800</td>
-        </tr>
+        <%-- 고양이일 경우 출력 --%>
+        <c:if test="${pet.kind == 'C'}">
+            <c:forEach var="cat" items="${cat_list}"> <%-- Controller 의 List 에서 수정할 것 --%>
+                <tr>
+                    <td>${cat.g_id}</td>
+                    <td>${cat.p_id}</td>
+                    <td>${cat.animal}</td>
+                    <td>${cat.birth}</td>
+                    <td>${cat.gender}</td>
+                    <td>${cat.neutering}</td>
+                </tr>
+            </c:forEach>
+        </c:if>
         </tbody>
         <tfoot>
         <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Salary</th>
+            <th>회원번호</th>
+            <th>동물번호</th>
+            <th>동물이름</th>
+            <th>생일</th>
+            <th>성별</th>
+            <th>중성화여부</th>
         </tr>
         </tfoot>
     </table>
@@ -74,11 +84,12 @@
     <table id="example2" class="table is-striped" style="width:100%">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Salary</th>
+            <th>회원번호</th>
+            <th>동물번호</th>
+            <th>동물이름</th>
+            <th>생일</th>
+            <th>성별</th>
+            <th>중성화여부</th>
         </tr>
         </thead>
         <tbody>
@@ -92,11 +103,12 @@
         </tbody>
         <tfoot>
         <tr>
-            <th>Name</th>
-            <th>Position</th>
-            <th>Office</th>
-            <th>Age</th>
-            <th>Salary</th>
+            <th>회원번호</th>
+            <th>동물번호</th>
+            <th>동물이름</th>
+            <th>생일</th>
+            <th>성별</th>
+            <th>중성화여부</th>
         </tr>
         </tfoot>
     </table>
