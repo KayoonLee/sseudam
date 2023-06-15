@@ -27,12 +27,11 @@ public class AdminController {
         return "adminPage/admin_dashboard";
     }
 
-    // 일반회원 페이지
-    @GetMapping("adminMemberPage")
-    public String adminMemberPage() {
-        System.out.println("회원관리 페이지로 이동");
-        return "adminPage/admin_member_page";
-    }
+//    // 일반회원 페이지
+//    @GetMapping("adminMemberPage")
+//    public String memberPage() {
+//        System.out.println("회원관리 페이지로 이동");
+//        return "adminPage/admin_member_page";
 
     // 일반회원 신고 페이지
     @GetMapping("adminMemberReport")
@@ -105,6 +104,6 @@ public class AdminController {
     
     // 관리자 프로필
 
-    // 관리자 등록 (Admin table)
+    // 관리자 등록 (Admin table) // 시간 나면 하기
 
 }
