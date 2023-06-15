@@ -15,15 +15,15 @@
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.esm.js"></script>
+
+
+
+
 
 
 </head>
@@ -32,7 +32,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="index.jsp" class="logo d-flex align-items-center"><!--편의상 무직타이거로 가게 해놨음(임시)-->
             <img src="images/muzik5.jpg" alt="">
             <span class="d-none d-lg-block">쓰담</span>
         </a>
@@ -181,17 +181,16 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="memberMain">
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link " href="#">
+            <a class="nav-link " href="memberpage_main">
                 <i class="bi bi-person"></i>
                 <span>나의 프로필</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="memberPet">
+            <a class="nav-link collapsed" href="memberpage_mypet">
                 <i class="bi bi-balloon"></i><span>동물페이지</span>
             </a>
         </li>
@@ -201,29 +200,29 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="memberPost">
+                    <a href="memberpage_mypost">
                         <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="memberReply">
+                    <a href="memberpage_myreply">
                         <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="memberLike">
+                    <a href="memberpage_mylike">
                         <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="memberPaper">
+                    <a href="memberpage_mypaper">
                         <i class="bi bi-circle"></i><span>상담신청내역</span>
                     </a>
                 </li>
             </ul>
         </li><!-- End Components Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="memberCounselor">
+            <a class="nav-link collapsed" href="memberpage_mycounselor">
                 <i class="bi bi-grid"></i>
                 <span>즐겨찾는 상담사</span>
             </a>
@@ -267,19 +266,7 @@
                     <div class="card">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
-                            <ul class="nav nav-tabs nav-tabs-bordered">
-                                <li class="nav-item">
-                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview">프로필</button>
-                                </li>
 
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-edit">프로필수정</button>
-                                </li>
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">비밀번호 변경</button>
-                                </li>
-
-                            </ul>
                             <div class="tab-content pt-2">
 
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">

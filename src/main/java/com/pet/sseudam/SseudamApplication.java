@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SseudamApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(SseudamApplication.class, args);
 	}
 
