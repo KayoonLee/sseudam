@@ -1,9 +1,10 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.service.AdminService;
+import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.service.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -60,11 +61,15 @@ public class AdminController {
         System.out.println("강아지 리스트 페이지 진입");
         return "adminPage/admin_dog_page";
     }
-    
-    // 고양이 리스트 페이지
+
+    // 고양이 리스트 페이지 수정중...
     @GetMapping("adminCatPage")
-    public String adminCatPage() {
+    public String adminCatPage(PetBean pet, Model model) {
         System.out.println("고양이 리스트 페이지 진입");
+
+        //List<Pet> cat_list = adminservice.cat_list(pet);
+        //model.addAttribute("", cat_list);
+
         return "adminPage/admin_cat_page";
     }
     
