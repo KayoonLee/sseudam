@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.sseudam.dao.CounselorDao">
+
+
+    <!--    상담사 가입 부분-->
+    <insert id="insert_counsel" parameterType="counselor">
+        insert into counselor (c_id, career, license) values (#{c_id}, #{career}, #{license})
+    </insert>
+
+    <!--    email 중복검사-->
+    <select id="emailChk" parameterType="String" resultType="member">
+        select * from member where email = #{email}
+    </select>
+
+    <!--    nick 중복검사-->
+    <select id="nickChk" parameterType="String" resultType="member">
+        select * from member where nick = #{nick}
+    </select>
+</mapper>
