@@ -17,6 +17,7 @@ public class PetPageController {
     private PetPageService pps;
 
     // 나의 반려동물 목록
+    // 주석
     @GetMapping("memberpage_mypet")
     public String memberPagePet(String pageNum, PetBean pet, Model model) throws Exception {
         System.out.println("동물페이지로 진입성공");
