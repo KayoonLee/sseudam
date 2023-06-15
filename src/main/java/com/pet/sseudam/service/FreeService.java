@@ -87,4 +87,16 @@ public class FreeService {
     public int imgAdd(ImgBean imgBoard) {
         return dao.imgAdd(imgBoard);
     }
+
+    public List<ImgBean> imgView(int fileNum) {
+        return dao.imgView(fileNum);
+    }
+
+    public List<ImgBean> imgList(ImgBean imgBoard) {
+        return dao.imgList(imgBoard);
+    }
+
+    public int imgDelete(int file_Num) {
+        return dao.imgDelete(file_Num);
+    }
 }

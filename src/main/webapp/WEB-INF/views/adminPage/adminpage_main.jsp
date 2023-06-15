@@ -78,7 +78,8 @@
 <%--<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>--%>
 <%@ include file="../navigator_footer/admin_sidebar.jsp" %>
 
-<!-- ======= Dashboard ======= -->
+<!-- ======= Main ======= -->
+<%--<div id="adminmain"></div>--%>
 <main id="main" class="main">
 
     <div id="adminmain"></div>

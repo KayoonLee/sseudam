@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -76,14 +77,14 @@ public class FreeController {
         System.out.println("currentPage" + currentPage);
 
         int startRow = (currentPage - 1) * rowPerPage;
-        int endRow = startRow + rowPerPage;
+   //     int endRow = startRow + rowPerPage;
         PagingPgm pp = new PagingPgm(total, rowPerPage, currentPage);
-        System.out.println("startRow" + startRow);
-        System.out.println("endRow" + endRow);
 
         fboard.setSort(fboard.getSort());
         fboard.setStartRow(startRow);
-        fboard.setEndRow(endRow);
+  //      fboard.setEndRow(endRow);
+        System.out.println("startRow" + startRow);
+  //      System.out.println("endRow" + endRow);
         int number = total - startRow;
 
         List<FreeBean> list = service.f_list(fboard);
@@ -125,11 +126,17 @@ public class FreeController {
         List<MultipartFile> file_list = mhr.getFiles("files");
         String multi_path = request.getRealPath("img");
         System.out.println("multi_path는 " +multi_path);
+        System.out.println("file_list는 "+ file_list);
 
-        int i = 1;
-        int max_num = service.getMaxnum();
+        if(!file_list.get(0).getOriginalFilename().equals("")){
 
-        for(MultipartFile mf : file_list){
+            System.out.println("for문 진입");
+            int i = 1;
+            int max_num = service.getMaxnum() + 1;
+
+
+            for(MultipartFile mf : file_list){
+
             String multi_filename =mf.getOriginalFilename();
 
             String extension = multi_filename.substring(multi_filename.lastIndexOf("."));
@@ -137,6 +144,7 @@ public class FreeController {
 
             String new_multi_filename = uuid.toString().replace("-", "") + extension;
 
+            System.out.println("multi_filename: " + multi_filename);
             System.out.println("new_multi_filename: " + new_multi_filename);
 
             try{
@@ -151,13 +159,15 @@ public class FreeController {
             img_board.setFile_name(new_multi_filename);
 
             int count = service.imgAdd(img_board);
-            System.out.println(count + "번째 파일 업로드");
+            System.out.println(i + "번째 파일 업로드");
             i++;
+
+            } // for end
+            fboard.setFile_num(max_num);
         }
 
-        fboard.setFile_num(max_num);
-
         int result = service.fInsert(fboard);
+        if(result == 1) System.out.println("게시글 입력 성공");
 
         model.addAttribute("result", result);
         model.addAttribute("num", fboard.getNum());
@@ -175,9 +185,12 @@ public class FreeController {
 
         FreeBean fboard = service.fView(freeboard);
 
+        List<ImgBean> img_list = service.imgView(fboard.getFile_num());
+
         System.out.println("fboard :" + fboard);
 
         model.addAttribute("fboard", fboard);
+        model.addAttribute("img_list", img_list);
         model.addAttribute("pageNum", pageNum);
 
         return "freeBoard/free_view";
@@ -187,20 +200,85 @@ public class FreeController {
     @GetMapping("freeUpdateForm")
     public String freeUpdateForm(FreeBean fboard, Model model) {
 
-        System.out.println("freeInsert 진입확인");
+        System.out.println("freeUpdateForm 진입확인");
 
         fboard = service.fView(fboard);
 
+        List<ImgBean> img_list = service.imgView(fboard.getFile_num());
+
+        String[] hashtag = fboard.getHashtag().split("x");
+
+        for(int i=0; i<hashtag.length; i++){
+            System.out.println("hashtag:"+hashtag[i]);
+        }
+
+        model.addAttribute("hashtag", hashtag);
         model.addAttribute("fboard", fboard);
+        model.addAttribute("img_list", img_list);
 
         return "freeBoard/free_update_form";
     }
 
     // 글수정
     @PostMapping("freeUpdate")
-    public String freeUpdate(FreeBean fboard, Model model) {
+    public String freeUpdate(HttpServletRequest request, FreeBean fboard, ImgBean img_board,
+                             MultipartHttpServletRequest mhr, Model model) {
 
-        System.out.println("freeInsert 진입확인");
+        System.out.println("freeUpdate 진입확인");
+
+        List<MultipartFile> file_list = mhr.getFiles("files");
+        String multi_path = request.getRealPath("img");
+        System.out.println("multi_path는 " +multi_path);
+        System.out.println("file_list는 "+ file_list);
+
+        //첨부파일이 있을경우
+        if(!file_list.get(0).getOriginalFilename().equals("")){
+
+            //이전 실제 첨부파일 삭제
+            List<ImgBean> old_filelist = service.imgList(img_board);
+            for(int j=0; j< old_filelist.size(); j++){
+                String real_name = old_filelist.get(j).getFile_name();
+                System.out.println("삭제할 파일 경로" + multi_path + "/" + real_name);
+                File real_file =new File(multi_path + "/" + real_name);
+                real_file.delete();
+            }
+            //이전 첨부파일 컬럼 삭제
+            int del_count = service.imgDelete(img_board.getFile_num());
+            System.out.println("del_count: " + del_count);
+
+
+            // file 일련번호
+            int i=1;
+
+            for (MultipartFile mf : file_list) {
+                String multi_filename = mf.getOriginalFilename();
+
+                String extension = multi_filename.substring(multi_filename.lastIndexOf("."));
+                UUID uuid = UUID.randomUUID();
+
+                String new_multi_filename = uuid.toString().replace("-", "") + extension;
+
+                System.out.println("multi_filename: " + multi_filename);
+                System.out.println("new_multi_filename: " + new_multi_filename);
+
+                try{
+                    mf.transferTo(new File(multi_path + "/" + new_multi_filename));
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                img_board.setFile_serial(i);
+                img_board.setFile_origin(multi_filename);
+                img_board.setFile_name(new_multi_filename);
+
+                service.imgAdd(img_board);
+
+                System.out.println(i + "번째 파일 업로드");
+                i++;
+
+            }
+
+        }
 
         int result = service.fUpdate(fboard);
 
@@ -215,7 +293,7 @@ public class FreeController {
     @ResponseBody
     public int freeDelete(FreeBean fboard, Model model) {
 
-        System.out.println("freeInsert 진입확인");
+        System.out.println("freeDelete 진입확인");
 
         int result = service.fDelete(fboard);
 
