@@ -11,7 +11,7 @@ import java.sql.Date;
 @Data
 @Alias("member")
 public class Member {
-    private int m_id;
+    private Integer m_id;
     private String name;
     private String email;
     private String passwd;

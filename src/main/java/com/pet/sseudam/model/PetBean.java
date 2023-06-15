@@ -9,9 +9,9 @@ import java.util.List;
 @Alias("pet")
 public class PetBean {
     private Integer p_id;
-    private int m_id;
+    private int g_id;
     private String animal;
-    private Date birth;
+    private String birth;
     private String kind;
     private String breed;
     private String profile;

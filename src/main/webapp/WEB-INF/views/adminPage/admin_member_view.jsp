@@ -14,6 +14,7 @@
 <!-- ===============수정중=================== -->
 <table id="example" class="table is-striped" style="width:100%">
     <input type = "hidden" name="m_id" value="${memberDto.m_id}">
+    <input type = "hidden" name="g_id" value="${pet.g_id}">
 
     <thead>
     <tr>

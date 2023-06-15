@@ -1,6 +1,7 @@
 package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.service.TempAdminService;
 import com.pet.sseudam.service.TempAdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +30,18 @@ public class TempAdminController {
         return "adminPage/admin_member_page";
     }
     
+    //일반회원 페이지 상세
     @GetMapping("adminViewPage")
-    public String adminViewPage(Model model, Integer m_id ){
+    public String adminViewPage(Model model, Integer m_id, PetBean petBean){
         System.out.println("상세페이지 보이기");
-        Member memberDto = adminservice.adminSelect(m_id);
-        System.out.println(memberDto);
-        model.addAttribute("memberDto",memberDto);
 
+        Member memberDto = adminservice.adminSelect(m_id);
+        petBean = adminservice.petSelect(m_id);
+
+        System.out.println(memberDto);
+        System.out.println(petBean);
+        model.addAttribute("memberDto",memberDto);
+        model.addAttribute("pet",petBean);
         return "adminPage/admin_member_view";
     }
-
-
 }

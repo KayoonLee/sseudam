@@ -8,7 +8,12 @@
 
     <select id="adminSelect" resultType="member">
         select member.*, pet.* from member join pet ON member.m_id = #{m_id}
-            and pet.m_id = #{m_id}
+            and pet.g_id = #{m_id}
+    </select>
+
+    <select id="petSelect" resultType="pet">
+        select member.*, pet.* from member join pet ON member.m_id = #{m_id}
+            and pet.g_id = #{m_id}
     </select>
 
 
