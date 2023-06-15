@@ -1,7 +1,6 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.model.Member;
-import org.springframework.context.annotation.Primary;
 
 import java.util.List;
 

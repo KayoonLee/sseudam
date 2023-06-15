@@ -7,7 +7,8 @@
     </select>
 
     <select id="adminSelect" resultType="member">
-        select * from member where m_id = #{m_id}
+        select member.*, pet.* from member join pet ON member.m_id = #{m_id}
+            and pet.m_id = #{m_id}
     </select>
 
 
