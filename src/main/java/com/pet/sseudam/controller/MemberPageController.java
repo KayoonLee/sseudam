@@ -1,5 +1,6 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.service.MemberPageService;
 import com.pet.sseudam.service.PagingPgm;
@@ -27,7 +28,8 @@ public class MemberPageController {
     
     // 나의 프로필(마이페이지 default)
     @GetMapping("memberpage_main")
-    public String memberPageMain(HttpSession session, Model model){
+    public String memberPageMain(HttpSession session, Member member, Model model){
+
 
         System.out.println("일반회원 페이지로 진입성공");
         return "memberPage/memberpage_main";

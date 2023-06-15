@@ -58,7 +58,7 @@ public class PetPageController {
 
     // 동물 상세페이지
     @RequestMapping("/memberpage_petview")
-    public String petView( Integer p_id, Model model, String pageNum) {
+    public String petView(Integer p_id, Model model, String pageNum) {
         System.out.println("동물 상세페이지");
 
             PetBean pet = pps.p_select(p_id);   // 상세정보구하기
