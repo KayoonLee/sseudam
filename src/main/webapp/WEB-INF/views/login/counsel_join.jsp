@@ -53,7 +53,6 @@
     }
 
 
-
     $(document).ready(function(){
           $("form").on("submit", function(){
 
@@ -161,6 +160,7 @@
               <div class="invalid-feedback">
                 생년월일을 입력해주세요.
               </div>
+              <p id="checkBirth"></p>
             </div>
              <div class="col-md-6 mb-3">
                 <label for="birth">닉네임</label>
@@ -248,7 +248,15 @@
               document.getElementById('checkTel').style.color = 'red';
               }
            } );
-
+    $( '#birth' ).on( 'focus keyup', function() {
+        var brn = document.getElementById( "birth" ).value;
+            if ( /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/.test( brn ) ) {
+              document.getElementById( "checkBirth" ).innerText = "올바른 형식입니다.";
+              } else {
+              document.getElementById( "checkBirth" ).innerText = "올바르지 않은 형식입니다.";
+              document.getElementById('checkBirth').style.color = 'red';
+              }
+           } );
 
   </script>
 </body>

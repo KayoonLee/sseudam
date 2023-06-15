@@ -18,7 +18,7 @@
 
 <c:if test="${result == 3}">
 	<script>
-		alert("가입 심사 중입니다.");
+		alert("가입 심사 중입니다. 심사는 최대 5일 소요됩니다.");
 		location = "main_page";
 	</script>
 </c:if>

@@ -37,6 +37,10 @@
         <div class="w3-col s3">
             <a href="test" class="w3-button w3-block">my page</a>
         </div>
+        <div class="w3-col s3">
+            <a href="logout" class="w3-button w3-block">logout</a>
+        </div>
+
         </c:if>
     </div>
 </div>
