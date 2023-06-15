@@ -14,18 +14,22 @@
             margin: 50px auto;
             max-width: 400px;
         }
+
         .calendar table {
             width: 100%;
             border-collapse: collapse;
         }
+
         .calendar th, .calendar td {
             text-align: center;
             padding: 5px;
         }
+
         .calendar .current-month {
             background-color: #f0f0f0;
             font-weight: bold;
         }
+
         .calendar .current-date {
             background-color: #007bff;
             color: #fff;
@@ -38,7 +42,13 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th colspan="7" class="current-month">June 2023</th>
+                <th colspan="3">
+                    <button id="prevMonthBtn" class="btn btn-primary">Prev</button>
+                </th>
+                <th colspan="1" id="currentMonthHeader" class="current-month"></th>
+                <th colspan="3">
+                    <button id="nextMonthBtn" class="btn btn-primary">Next</button>
+                </th>
             </tr>
             <tr>
                 <th>Sun</th>
@@ -50,7 +60,7 @@
                 <th>Sat</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="calendarBody">
             <tr>
                 <td></td>
                 <td></td>
@@ -103,8 +113,76 @@
 
 <!-- 부트스트랩 JS 및 jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // 현재 날짜 객체 생성
+    var currentDate = new Date();
+
+    // 이전 달로 이동하는 함수
+    function prevMonth() {
+        currentDate.setMonth(currentDate.getMonth() - 1);
+        renderCalendar();
+    }
+
+    // 다음 달로 이동하는 함수
+    function nextMonth() {
+        currentDate.setMonth(currentDate.getMonth() + 1);
+        renderCalendar();
+    }
+
+    // 달력을 렌더링하는 함수
+    function renderCalendar() {
+        var calendarBody = document.getElementById("calendarBody");
+        calendarBody.innerHTML = "";
+
+        var year = currentDate.getFullYear();
+        var month = currentDate.getMonth();
+        var date = new Date(year, month, 1);
+
+        var row, cell;
+        var daysInMonth = new Date(year, month + 1, 0).getDate();
+        var dayOfWeek = date.getDay();
+
+        // 첫 주의 빈 칸 생성
+        row = document.createElement("tr");
+        for (var i = 0; i < dayOfWeek; i++) {
+            cell = document.createElement("td");
+            row.appendChild(cell);
+        }
+        calendarBody.appendChild(row);
+
+        // 날짜 채우기
+        var currentDay = 1;
+        while (currentDay <= daysInMonth) {
+            // 주 생성
+            row = document.createElement("tr");
+            for (var j = 0; j < 7; j++) {
+                // 날짜 셀 생성
+                if (currentDay > daysInMonth) {
+                    break;
+                }
+                cell = document.createElement("td");
+                if (j === 0 || j === 6) {
+                    cell.classList.add("weekend");
+                }
+                if (currentDay === currentDate.getDate() && month === currentDate.getMonth()) {
+                    cell.classList.add("current-date");
+                }
+                cell.textContent = currentDay;
+                row.appendChild(cell);
+                currentDay++;
+            }
+            calendarBody.appendChild(row);
+        }
+
+        // 초기 달력 렌더링
+        renderCalendar();
+
+        // Prev 버튼 클릭 이벤트 처리
+        document.getElementById("prevMonthBtn").addEventListener("click", prevMonth);
+
+        // Next 버튼 클릭 이벤트 처리
+        document.getElementById("nextMonthBtn").addEventListener("click", nextMonth);
+</script>
 </body>
 </html>
-
-
