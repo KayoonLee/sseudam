@@ -24,7 +24,7 @@
         select * from member where nick = #{nick} and state=1
     </select>
 
-<!-- 로그인 인증 -->
+<!-- 로그인 -->
     <select id="userCheck" parameterType="String" resultType="member">
         select * from member where email=#{email} and state=1
     </select>
@@ -43,5 +43,10 @@
     <update id="updatePwd" parameterType="member">
         update member set passwd=#{passwd}, reset='y' where email=#{email} and nick=#{nick}
         and state=1
+    </update>
+
+<!--임시비번에서 원하는 비번으로 수정, reset 컬럼 'n' 수정-->
+    <update id="updateNewPw" parameterType="member">
+        update member set passwd=#{passwd}, reset='n' where email=#{email} and nick=#{nick}
     </update>
 </mapper>

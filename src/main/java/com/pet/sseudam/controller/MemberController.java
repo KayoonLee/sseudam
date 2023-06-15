@@ -37,42 +37,43 @@ public class MemberController {
     @RequestMapping("login")
     public String mem_login(@RequestParam("email") String email,
                             @RequestParam("passwd") String passwd,
-                            HttpSession session, Model model){
+                            HttpSession session, Model model) {
         int result = 0;
         Member member = ms.userCheck(email);
 
-        if (member == null){//등록되지 않은 회원일 때
-            result=1;
+        if (member == null) {//등록되지 않은 회원일 때
+            result = 1;
             model.addAttribute("result", result);
             return "login/login_result";
-        }else { //등록된 회원일 때 - 구분코드로 회원, 상담사 구분하기...
-            if (member.getPasswd().equals(passwd)){
-                if (member.getIdentifier().equals("1")){ // 일반회원일 때
+        } else { //등록된 회원일 때 - 구분코드로 회원, 상담사 구분하기...
+            if (member.getPasswd().equals(passwd)) {
+                if (member.getIdentifier().equals("1")) { // 일반회원일 때
+                        session.setAttribute("member", member);
+                        String nick = member.getNick(); // 화면에 닉네임 보여주기
+                        model.addAttribute("nick", nick);
+                        return "mainPage/main_page";
+                        //!@!나중에 일반회원, 상담회원 메인 분리해서 링크 걸기!!!
+                } else if (member.getIdentifier().equals("2")) { //상담사 회원일 때
 
-                    session.setAttribute("member", member) ;
-                    String nick = member.getNick(); // 화면에 닉네임 보여주기
-                    model.addAttribute("nick", nick);
-                    return "mainPage/main_page"; //!@!나중에 일반회원, 상담회원 메인 분리해서 링크 걸기!!!
-
-                }else if(member.getIdentifier().equals("2")){ //상담사 회원일 때
-
-                    session.setAttribute("member", member) ;
+                    session.setAttribute("member", member);
                     String nick = member.getNick();
                     model.addAttribute("nick", nick);
                     return "mainPage/main_page";
 
-                }else { //상담사 승인 대기 중일 때
-                    result=3;
+                } else { //상담사 승인 대기 중일 때
+                    result = 3;
                     model.addAttribute("result", result);
                     return "login/login_result";
                 }
-            }else { // 비번 불일치
+            } else { // 비번 불일치
                 result = 2;
                 model.addAttribute("result", result);
                 return "login/login_result";
             }
         }
     }
+
+
 
     //email 중복검사
     @PostMapping("emailChk.do")
@@ -97,6 +98,28 @@ public class MemberController {
 
         return "login/nickCheck";
     }
+
+    // mail 인증
+    @RequestMapping("mailCheck")
+    @ResponseBody
+    public String authMail(String email){
+        System.out.println("mail인증 진입:"+ email);
+        String result = null;
+
+        String auth= UUID.randomUUID().toString().replace("-","");
+        auth = auth.substring(0,5);//tempPw를 앞에서부터 5자리 잘라줌
+        System.out.println("인증번호 " + auth);
+
+        emailService.sendAuth(email, auth); //mail 발송
+
+        result="true";
+        System.out.println(result);
+        return auth;
+    }
+
+
+
+
 
 
     // email(아이디) 찾기 창
