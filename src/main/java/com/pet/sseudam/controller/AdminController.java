@@ -104,6 +104,6 @@ public class AdminController {
     
     // 관리자 프로필
 
-    // 관리자 등록 (Admin table)
+    // 관리자 등록 (Admin table) // 시간 나면 하기
 
 }
