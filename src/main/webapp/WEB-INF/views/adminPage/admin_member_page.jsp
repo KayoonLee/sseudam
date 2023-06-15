@@ -5,8 +5,11 @@
 <head>
     <title>Member Page</title>
 
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/admin_header.jsp" %>
+
     <!-- ======= Table ======= -->
-    <jsp:include page="../navigator_footer/admin_table.jsp"></jsp:include>
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
     <script>
         function loadMemberPage(m_id) {
             $.ajax({
@@ -23,10 +26,9 @@
 <body>
 
 <!-- ======= Header ======= -->
-<jsp:include page="../navigator_footer/admin_navigator.jsp"></jsp:include>
-
 <!-- ======= Sidebar ======= -->
-<jsp:include page="../navigator_footer/admin_sidebar.jsp"></jsp:include>
+
+<%--<main id="main" class="main">--%>
 
 <div class="pagetitle">
     <h1>일반회원</h1>
@@ -119,7 +121,6 @@
 
 
 <!-- ======= Footer ======= -->
-<jsp:include page="../navigator_footer/admin_footer.jsp"></jsp:include>
 
 </body>
 </html>

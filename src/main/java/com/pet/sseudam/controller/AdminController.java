@@ -1,9 +1,10 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.service.AdminService;
+import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.service.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -31,46 +32,49 @@ public class AdminController {
 //    public String memberPage() {
 //        System.out.println("회원관리 페이지로 이동");
 //        return "adminPage/admin_member_page";
-//    }
 
     // 일반회원 신고 페이지
     @GetMapping("adminMemberReport")
-    public String memberReport() {
+    public String adminMemberReport() {
         System.out.println("신고받은 회원 페이지로 이동");
         return "adminPage/admin_member_report";
     }
 
     // 상담사 관리 페이지
     @GetMapping("adminCounselorPage")
-    public String counselorPage() {
+    public String adminCounselorPage() {
         System.out.println("상담사 관리 페이지로 이동");
         return "adminPage/admin_counselor_page";
     }
 
     // 상담사 신청 페이지
     @GetMapping("adminCounselorApply")
-    public String counselorApply() {
+    public String adminCounselorApply() {
         System.out.println("상담사 신청 페이지로 이동");
         return "adminPage/admin_counselor_apply";
     }
 
     // 강아지 리스트 페이지
     @GetMapping("adminDogPage")
-    public String dogPage() {
+    public String adminDogPage() {
         System.out.println("강아지 리스트 페이지 진입");
         return "adminPage/admin_dog_page";
     }
-    
-    // 고양이 리스트 페이지
+
+    // 고양이 리스트 페이지 수정중...
     @GetMapping("adminCatPage")
-    public String catPage() {
+    public String adminCatPage(PetBean pet, Model model) {
         System.out.println("고양이 리스트 페이지 진입");
+
+        //List<Pet> cat_list = adminservice.cat_list(pet);
+        //model.addAttribute("", cat_list);
+
         return "adminPage/admin_cat_page";
     }
     
     // 관리자 프로필/마이페이지
     @GetMapping("adminProfile")
-    public String adminPrifile() {
+    public String adminProfile() {
         System.out.println("관리자 프로필 페이지로 이동");
         return "adminPage/admin_profile";
     }
