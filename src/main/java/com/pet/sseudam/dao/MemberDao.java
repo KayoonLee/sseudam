@@ -22,4 +22,6 @@ public interface MemberDao {
     Member searchPwd(Member member);
 
     void updatePwd(Member findmember);
+
+    int updateNewPw(Member member);
 }

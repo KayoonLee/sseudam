@@ -52,6 +52,11 @@ public class MemberServiceImpl implements MemberService{
         md.updatePwd(findmember);
     }
 
+    @Override
+    public int updateNewPw(Member member) {
+        return md.updateNewPw(member);
+    }
+
 
 }
 
