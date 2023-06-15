@@ -46,4 +46,8 @@ public interface FreeDao {
     int imgAdd(ImgBean imgBoard);
 
     List<ImgBean> imgView(int fileNum);
+
+    List<ImgBean> imgList(ImgBean imgBoard);
+
+    int imgDelete(int fileNum);
 }

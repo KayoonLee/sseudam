@@ -3,6 +3,7 @@
 
 <mapper namespace="com.pet.sseudam.dao.FreeDao">
 
+    <!--목록 관련-->
  <select id="getTotal" resultType="int" parameterType="fboard">
     select count(*) from board where
     <if test="category != 0">
@@ -51,7 +52,7 @@
             <when test="sort == 'recom'">recom</when>
             <when test="sort == 'readcount'">readcount</when>
         </choose>
-        desc limit #{startRow}, #{endRow}
+        desc limit #{startRow}, 10
     <!--select a.board_num, a.num, subject, category, a.m_id, hashtag, file_num, readcount,
             a.reg_date, (select count(*) from b where num=#{num} and board_num=#{board_num})
     from board a join board_recom b on a.num=b.num and a.board_num = b.board_num
@@ -155,6 +156,7 @@
                                sysdate())
 </insert>
 
+    <!--이미지 관련-->
     <select id="getMaxnum" resultType="int">
         select ifnull(max(file_num), 0) from img_file
     </select>
@@ -166,6 +168,14 @@
     <select id="imgView" parameterType="int">
         select * from img_file where file_num=#{file_num}
     </select>
+
+    <select id="imgList" parameterType="image_board" resultType="image_board">
+        select file_name from img_file where file_num=#{file_num}
+    </select>
+
+    <delete id="imgDelete" parameterType="int">
+        delete from img_file where file_num=#{file_num}
+    </delete>
 
 
 </mapper>

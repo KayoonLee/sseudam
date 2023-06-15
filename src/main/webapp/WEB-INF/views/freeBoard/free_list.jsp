@@ -90,26 +90,26 @@
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
 					<c:if test="${pp.startPage > pp.pagePerBlk }">
-						<li class="page-item"><a class="page-link" href="freeList?category=${category }&pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}">이전</a></li>
+						<li class="page-item"><a class="page-link" href="freeList?num=${num}&category=${category }&pageNum=${pp.startPage - 1}&search=${search}&keyword=${keyword}">이전</a></li>
 					</c:if>
 
 					<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
 						<c:if test="${pp.currentPage==i}">
 							<li class="page-item active" aria-current="page">
-								<a class="page-link" href="freeList?category=${category }&pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a>
+								<a class="page-link" href="freeList?num=${num}&category=${category }&pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a>
 							</li>
 						</c:if>
 
 						<c:if test="${pp.currentPage!=i}">
 							<li class="page-item">
-								<a class="page-link" href="freeList?category=${category }&pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a>
+								<a class="page-link" href="freeList?num=${num}&category=${category }&pageNum=${i}&search=${search}&keyword=${keyword}">${i}</a>
 							</li>
 						</c:if>
 
 					</c:forEach>
 
 					<c:if test="${pp.endPage < pp.totalPage}">
-						<li><a href="freeList?category=${category }&pageNum=${pp.endPage + 1}&search=${search}&keyword=${keyword}">다음</a></li>
+						<li><a href="freeList?num=${num}category=${category }&&pageNum=${pp.endPage + 1}&search=${search}&keyword=${keyword}">다음</a></li>
 					</c:if>
 				</ul>
 			</nav>
@@ -119,7 +119,7 @@
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
 					<c:if test="${pp.startPage > pp.pagePerBlk }">
-						<li class="page-item"><a class="page-link" href="freeList?category=${category }&pageNum=${pp.startPage - 1}">이전</a></li>
+						<li class="page-item"><a class="page-link" href="freeList?num=${num}&category=${category }&pageNum=${pp.startPage - 1}">이전</a></li>
 					</c:if>
 
 
@@ -132,13 +132,13 @@
 
 						<c:if test="${pp.currentPage!=i}">
 							<li class="page-item">
-								<a class="page-link" href="freeList?category=${category }&pageNum=${i}">${i}</a>
+								<a class="page-link" href="freeList?num=${num}&category=${category }&pageNum=${i}">${i}</a>
 							</li>
 						</c:if>
 					</c:forEach>
 
 					<c:if test="${pp.endPage < pp.totalPage}">
-						<li class="page-item"><a class="page-link" href="freeList?category=${category }&pageNum=${pp.endPage + 1}">다음</a></li>
+						<li class="page-item"><a class="page-link" href="freeList?num=${num}&category=${category }&pageNum=${pp.endPage + 1}">다음</a></li>
 					</c:if>
 
 				</ul>

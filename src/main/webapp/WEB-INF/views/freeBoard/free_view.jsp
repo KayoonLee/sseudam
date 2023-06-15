@@ -111,7 +111,7 @@ function delete_check(){
         </div>
         <div>
             <c:forEach var="list" items="${img_list}">
-                <p><img src="./img/${list.file_name}" name="thumbnail"></p>
+                <p><img src="./img/${list.file_name}" class="thumbnail"></p>
             </c:forEach>
         </div>
         <div>
