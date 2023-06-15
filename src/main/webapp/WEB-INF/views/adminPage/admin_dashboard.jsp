@@ -20,6 +20,8 @@
 
 <!-- ======= Dashboard ======= -->
 <%--<main id="main" class="main">--%>
+<a href="adminTest">토스트ui 테스트</a>
+<a href="adminTest2">calendar test</a>
 
     <div class="pagetitle">
         <h1>Dashboard</h1>
