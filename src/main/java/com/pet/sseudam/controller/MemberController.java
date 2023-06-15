@@ -131,13 +131,13 @@ public class MemberController {
         return "login/find_passwd";
     }
 
-    //pw찾기
+    //pw찾기 + 임시비번
     @RequestMapping("findpw")
     @ResponseBody
     public String findpw(Member member)throws Exception{
        Member findmember = ms.searchPwd(member);
         System.out.println(findmember);
-        String result = null;
+        String result=null;
         //가입된 이메일이 존재한다면 이메일 전송
         if(findmember!=null) {
 
@@ -147,10 +147,12 @@ public class MemberController {
             System.out.println("임시 비밀번호 " + tempPw);
 
             findmember.setPasswd(tempPw);//임시 비밀번호 담기
+            String email = findmember.getEmail();
+            String nick = findmember.getNick();
 
-            emailService.sendEmail(); //mail 발송
+            emailService.sendEmail(email,nick,tempPw); //mail 발송
 
-            ms.updatePwd(findmember);
+            ms.updatePwd(findmember); //임시비번으로 비번 변경
             result="true";
             System.out.println(result);
 

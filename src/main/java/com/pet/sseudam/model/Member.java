@@ -9,8 +9,8 @@ import org.apache.ibatis.type.Alias;
 
 import java.sql.Date;
 @Data
-@Setter
 @Getter
+@Setter
 
 @Alias("member")
 
@@ -27,4 +27,5 @@ public class Member {
     private int state;
     private Date join_date;
     private String reset;
+    private int profile_num;
 }

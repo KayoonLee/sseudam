@@ -8,10 +8,10 @@
         select m_id from member where nick = #{nick}
     </select>
 
-<!--    일반회원 가입-->
+<!--(공통요소)회원가입-->
     <insert id="insert" parameterType="member">
-        insert into member (name, email, passwd, nick, birth, tel, identifier, state, join_date, reset) values
-        (#{name}, #{email}, #{passwd}, #{nick}, #{birth}, #{tel}, #{identifier}, 1 , sysdate(), 'n')
+        insert into member (name, email, passwd, nick, birth, tel, identifier, state, join_date, reset, profile_num) values
+        (#{name}, #{email}, #{passwd}, #{nick}, #{birth}, #{tel}, #{identifier}, 1 , sysdate(), 'n', null)
     </insert>
 
 <!--    email 중복검사-->
@@ -39,9 +39,9 @@
         select * from member where email=#{email} and nick=#{nick} and state=1
     </select>
 
-<!-- 임시비번으로 비번 업뎃-->
+<!-- 임시비번으로 비번 업뎃, reset컬럼 y로 변경-->
     <update id="updatePwd" parameterType="member">
-        update member set passwd=#{passwd} where email=#{email} and nick=#{nick}
+        update member set passwd=#{passwd}, reset='y' where email=#{email} and nick=#{nick}
         and state=1
     </update>
 </mapper>

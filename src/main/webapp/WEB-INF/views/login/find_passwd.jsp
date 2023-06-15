@@ -5,7 +5,7 @@
 <head>
    <meta charset="UTF-8">
    <title>비밀번호 찾기</title>
-   <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script type="text/javascript">
 $(function(){
@@ -18,10 +18,11 @@ $(function(){
 				url:"findpw",
 				data:{"email":email,"nick":nick},
 				success:function(data){
-					if(data==true){
+					if(data=='true'){
 						alert("임시 비밀번호가 발급되었습니다.메일함을 확인해 주세요");
 						console.log(data);
-						location.href="login";
+						location.href="login?email="+email+"&nick="+nick;
+						self.close();
 					}else{
 						alert("이메일아이디 또는 닉네임을 정확하게 입력해 주세요");
 						$("#email").val("");
@@ -106,10 +107,10 @@ $(function(){
 <body>
    <h1>비밀번호 찾기</h1>
    <form>
-      <label for="id">가입한 이메일</label>
+      <label for="email">가입 시 이메일</label>
       <input type="email" id="email" name="email" required="required" placeholder="ID를 입력하세요">
 
-      <label for="nick">가입한 닉네임</label>
+      <label for="nick">가입 시 닉네임</label>
       <input type="email" id="nick" name="nick" required="required" placeholder="닉네임을 입력하세요">
 
 	  <div align="center">
