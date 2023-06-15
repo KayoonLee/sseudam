@@ -99,7 +99,7 @@ public class MemberController {
         return "login/nickCheck";
     }
 
-    // mail 인증
+    // 가입 시 mail 인증
     @RequestMapping("mailCheck")
     @ResponseBody
     public String authMail(String email){
@@ -110,7 +110,7 @@ public class MemberController {
         auth = auth.substring(0,5);//tempPw를 앞에서부터 5자리 잘라줌
         System.out.println("인증번호 " + auth);
 
-        emailService.sendAuth(email, auth); //mail 발송
+        emailService.sendAuthmail(email, auth); //mail 발송
 
         result="true";
         System.out.println(result);

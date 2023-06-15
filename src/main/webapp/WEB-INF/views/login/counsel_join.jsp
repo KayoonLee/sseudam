@@ -177,16 +177,27 @@
                   닉네임을 입력해주세요.
                  </div>
             </div>
-          </div>
+            <div class="col-md-6 mb-3">
+                <label for="email">이메일</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="you@example.com" required>
+                <input type="button" id="emailChk" value="중복 확인">
+                <div class="invalid-feedback">
+                이메일을 입력해주세요.
+                </div>
+            </div>
 
-          <div class="mb-3">
-            <label for="email">이메일</label>
-            <input type="text" class="form-control" id="email" name="email" placeholder="you@example.com" required>
-            <input type="button" id="emailChk" value="중복 확인">
-            <div class="invalid-feedback">
-              이메일를 입력해주세요.
+            <div class="col-md-6 mb-3">
+                 <label for="auth">이메일 인증</label>
+                 <input type="text" class="form-control" id="auth" name="auth" placeholder="인증문자를 입력하세요" required>
+                 <input type="button" id="auth_btn" value="인증 번호 받기" onClick="authEmail()">
+                 <div class="invalid-feedback">
+                 인증번호를 입력해주세요.
+                 </div><p>
+                 <span id="checkAuth"></span>
             </div>
           </div>
+
+
 
           <div class="mb-3">
             <label for="tel">휴대폰</label>
@@ -258,6 +269,37 @@
               }
            } );
 
+
+    function authEmail(){
+
+       $.ajax({
+               type:"POST",
+               url: "emailAuth",
+               data : {"email" : $("#email").val()},
+               success:function(data){
+
+                 if(data){
+                   alert("인증 이메일이 전송되었습니다. 메일을 확인해주세요.");
+                            //if(data == $("#auth").val()){
+
+                             $( '#auth' ).on( 'focus keyup', function() {
+                                     if ( data == $("#auth").val() ) {
+                                       $("#checkAuth").text("인증되었습니다.");
+                                       } else {
+                                        $("#checkAuth").text("올바르지 않은 형식입니다.");
+                                       document.getElementById('checkAuth').style.color = 'red';
+                                       }
+                              } );
+
+                            //}
+
+
+                          }
+                   }
+
+             });
+
+    }
   </script>
 </body>
 

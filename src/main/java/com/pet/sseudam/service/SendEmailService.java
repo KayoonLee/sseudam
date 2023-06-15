@@ -13,6 +13,7 @@ public class SendEmailService {
 private JavaMailSender mailSender;
 private static final String from_address ="testbootforme@gmail.com";
 
+// 가입 시 메일 인증 (회원용)
     public void sendAuth(String email, String auth){
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(SendEmailService.from_address);
@@ -22,7 +23,18 @@ private static final String from_address ="testbootforme@gmail.com";
         mailSender.send(msg);
     }
 
-// 메일 보내기
+// 가입 시 메일 인증 (상담자용)
+    public void sendAuthmail(String email, String auth){
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(SendEmailService.from_address);
+        msg.setSubject("[쓰담쓰담] 회원가입 인증 이메일입니다.");
+        msg.setTo(email);
+        msg.setText("안녕하세요. 회원가입에 필요한 인증번호는 "+ auth + " 입니다."+"감사합니다.");
+        mailSender.send(msg);
+    }
+
+
+// 임시 비번 메일 보내기
     public void sendEmail(String email,String nick, String tempPw){
         // 메일 보낼 객체 생성
         SimpleMailMessage message = new SimpleMailMessage();

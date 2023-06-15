@@ -4,15 +4,15 @@ import com.pet.sseudam.model.Counselor;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.service.CounselorService;
 import com.pet.sseudam.service.MemberService;
+import com.pet.sseudam.service.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.UUID;
 
 @Controller
 public class CounselorController {
@@ -21,6 +21,9 @@ public class CounselorController {
 
     @Autowired
     private MemberService ms;
+
+    @Resource(name = "SendEmailService")
+    private SendEmailService emailService;
 
     // 상담사 회원가입
     @PostMapping("insertCounsel")
@@ -33,6 +36,24 @@ public class CounselorController {
         session.invalidate(); //메인 창으로 돌아가서 로그인 하게 끔
 
         return "login/after_join";
+    }
+
+    // 회원가입 시 이메일 인증
+    @RequestMapping("emailAuth")
+    @ResponseBody
+    public String authEMail(String email){
+        System.out.println("상담사 email인증 진입:"+ email);
+        String result = null;
+
+        String auth= UUID.randomUUID().toString().replace("-","");
+        auth = auth.substring(0,5);//tempPw를 앞에서부터 5자리 잘라줌
+        System.out.println("인증번호 " + auth);
+
+        emailService.sendAuthmail(email, auth); //mail 발송
+
+        result="true";
+        System.out.println(result);
+        return auth;
     }
 
     //email 중복검사
