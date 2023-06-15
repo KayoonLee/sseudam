@@ -6,6 +6,4 @@ import org.springframework.stereotype.Service;
 @Service
 @Primary
 public class MemberPageServiceImpl implements MemberPageService {
-
-
 }
