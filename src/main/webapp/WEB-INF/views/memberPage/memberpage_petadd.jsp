@@ -1,11 +1,10 @@
 <%--
   Created by IntelliJ IDEA.
   User: 82108
-  Date: 2023-06-11
-  Time: 오후 5:13
+  Date: 2023-06-15
+  Time: 오전 10:19
   To change this template use File | Settings | File Templates.
 --%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <meta charset="UTF-8">
@@ -18,8 +17,12 @@
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
+    <link href="css/tab" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link href="css/member.css" rel="stylesheet">
+
+
 
 </head>
 <body>
@@ -112,7 +115,6 @@
             </li><!-- End Notification Nav -->
 
 
-
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -174,7 +176,6 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="memberMain">
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -185,27 +186,27 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberpage_mypet">
+                <a class="nav-link" href="memberpage_mypet">
                     <i class="bi bi-balloon"></i><span>동물페이지</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberpage_mypost" >
+                        <a href="memberpage_mypost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberpage_myreply" >
+                        <a href="memberpage_myreply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberpage_mylike" class="active">
+                        <a href="memberpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
@@ -226,15 +227,82 @@
         </ul>
     </aside>
     <main id="main" class="main">
-        <div>
-            <h1>내가 좋아요한 글</h1>
+        <div class="pagetitle">
+            <h1>내 반려동물</h1>
+            <br>
+        </div><!-- End Page Title -->
+        <form action="petadd" method="post">
+        <section class="section profile">
+            <div class="row">
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body pt-3">
+
+                            <!-- Profile Edit Form -->
+
+                            <!-- 프로필사진 수정하는 코드 들어가야됨-->
 
 
-        </div>
+                                <div class="row mb-3">
+                                    <label for="animal" class="col-md-4 col-lg-3 col-form-label">이름</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="animal" type="text" class="form-control" id="animal"
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="kind" class="col-md-4 col-lg-3 col-form-label">종류</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="kind" type="radio" value="d" id="kind">강아지
+                                        <input name="kind" type="radio" value="c" >고양이
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="breed" class="col-md-4 col-lg-3 col-form-label">품종</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="breed" type="text" class="form-control" id="breed"
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="birth" class="col-md-4 col-lg-3 col-form-label">생일</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="birth" type="date" class="form-control" id="birth"
+                                               value="">
+                                    </div>
+                                </div>
 
+                                <div class="row mb-3">
+                                    <label for="gender" class="col-md-4 col-lg-3 col-form-label">성별</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="gender" type="radio" value="0" id="gender">암컷
+                                        <input name="gender" type="radio" value="1" >수컷
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="neutering" class="col-md-4 col-lg-3 col-form-label">중성화</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="neutering" type="radio" id="neutering" value="0">안했음
+                                        <input name="neutering" type="radio" value="1">했음
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label for="feature" class="col-md-4 col-lg-3 col-form-label">특이사항</label>
+                                    <div class="col-md-8 col-lg-9">
+                                        <input name="feature" type="text" class="form-control" id="feature"
+                                               value="">
+                                    </div>
+                                </div>
+                                <div class=" text-center">
+                                    <button type="submit" class="btn btn-primary">추가</button>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </form>
     </main>
-
-</form>
 </body>
 </html>
 

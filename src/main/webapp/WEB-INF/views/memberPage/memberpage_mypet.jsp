@@ -14,37 +14,6 @@
 <head>
     <title>Title</title>
 
-
-    <style>
-        /* 모달 스타일링을 위한 CSS */
-        .modal {
-            display: none; /* 초기에는 모달을 숨깁니다. */
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.5); /* 배경에 어둡게 보이도록 설정합니다. */
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 1000px;
-        }
-    </style>
-
-
-
-
-
-
-
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -59,6 +28,8 @@
 
 </head>
 <body>
+
+
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -210,18 +181,17 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="memberMain">
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberMain">
+                <a class="nav-link collapsed" href="memberpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="memberPet">
+                <a class="nav-link" href="memberpage_mypet">
                     <i class="bi bi-balloon"></i><span>동물페이지</span>
                 </a>
             </li>
@@ -276,17 +246,12 @@
                             <div class="col-sm-3">
                                 <div>
                                     <div class="card">
-                                        <td>${pet.p_id}</td>
-                                        <td>${pet.g_id}</td>
-                                        <td>${pet.animal}</td>
-                                        <td>${pet.birth}</td>
-                                        <td>${pet.kind}</td>
-                                        <td>${pet.breed}</td>
+                                        <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
+                                            <img class="card-img-top" src="images/yang.jpg">
+                                        </a>
                                         <td>${pet.profile}</td>
-                                        <td>${pet.feature}</td>
-                                        <td>${pet.gender}</td>
-                                        <td>${pet.neutering}</td>
-                                        <td>${pet.state}</td>
+                                        <br>
+                                        <td>${pet.animal}</td>
                                     </div>
                                 </div>
                             </div>
@@ -294,7 +259,7 @@
                 </c:if>
             </div>
 
-            <a href="#">
+            <a href="memberpage_petadd">
                 <img src="images/add.png" width="50" id="modal-image">
             </a>
 
@@ -380,34 +345,10 @@
                 </div>
             </div>
 
-            <script>
-                // 이미지 클릭 시 모달 열기
-                var modalImage = document.getElementById("modal-image");
-                var modal = document.getElementById("modal");
-                var closeBtn = document.getElementsByClassName("close")[0];
-
-                modalImage.addEventListener("click", function() {
-                    modal.style.display = "block";
-                });
-
-                // 모달 닫기 버튼 클릭 시 모달 닫기
-                closeBtn.addEventListener("click", function() {
-                    modal.style.display = "none";
-                });
-
-                // 모달 외부 영역 클릭 시 모달 닫기
-                window.addEventListener("click", function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                });
-            </script>
-
 
         </div>
 
     </main>
 
-</form>
 </body>
 </html>

@@ -1,0 +1,29 @@
+package com.pet.sseudam.model;
+
+import lombok.Data;
+import org.apache.ibatis.type.Alias;
+import java.util.Date;
+import java.util.List;
+
+@Data
+@Alias("pet")
+public class PetBean {
+    private int p_id;
+    private int g_id;
+    private String animal;
+    private String birth;
+    private String kind;
+    private String breed;
+    private String profile;
+    private String feature;
+    private int gender;
+    private int neutering;
+    private int state;
+    private int profile_num;
+
+    // 페이징처리
+    private int startRow;
+    private int endRow;
+    private int total;
+
+}

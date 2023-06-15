@@ -1,8 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 82108
-  Date: 2023-06-11
-  Time: 오후 5:13
+  Date: 2023-06-13
+  Time: 오후 7:58
   To change this template use File | Settings | File Templates.
 --%>
 
@@ -18,8 +19,15 @@
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
+    <link href="css/tab" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <link href="css/member.css" rel="stylesheet">
+
+
+
+
+
 
 </head>
 <body>
@@ -112,7 +120,6 @@
             </li><!-- End Notification Nav -->
 
 
-
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -174,7 +181,7 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="memberMain">
+<form>
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -185,39 +192,39 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberpage_mypet">
+                <a class="nav-link" href="memberpage_mypet">
                     <i class="bi bi-balloon"></i><span>동물페이지</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                     <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
                 </a>
                 <ul id="components-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberpage_mypost" >
+                        <a href="memberPost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberpage_myreply" >
+                        <a href="memberReply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberpage_mylike" class="active">
+                        <a href="memberLike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberpage_mypaper">
+                        <a href="memberPaper">
                             <i class="bi bi-circle"></i><span>상담신청내역</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberpage_mycounselor">
+                <a class="nav-link collapsed" href="memberCounselor">
                     <i class="bi bi-grid"></i>
                     <span>즐겨찾는 상담사</span>
                 </a>
@@ -226,12 +233,90 @@
         </ul>
     </aside>
     <main id="main" class="main">
-        <div>
-            <h1>내가 좋아요한 글</h1>
+        <div class="pagetitle">
+            <h1>내 반려동물</h1>
+            <br>
+        </div><!-- End Page Title -->
+        <section class="section profile">
+            <input type=hidden value="${pet.p_id }" id="p_id">
+            <input type=hidden value="${pageNum }" id="pageNum">
+            <div class="row">
+                <div class="col-xl-4">
+                    <div class="card">
+                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                            <img src="images/yang.jpg" alt="Profile" class="rounded-circle">
+                            <h2>${pet.animal}</h2>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="col-xl-8">
+                    <div class="card">
+                        <div class="card-body pt-3">
+                            <div class="tab-content pt-2">
+                                <div class="tab-pane fade show active profile-overview" id="pet-overview">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label ">이름</div>
+                                        <div class="col-lg-9 col-md-8">${pet.animal}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">종류</div>
+                                        <div class="col-lg-9 col-md-8">
+                                            <c:if test="${pet.kind == 'd'}">
+                                                강아지
+                                            </c:if>
+                                            <c:if test="${pet.kind == 'c'}">
+                                                고양이
+                                            </c:if>
 
-        </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">품종</div>
+                                        <div class="col-lg-9 col-md-8">${pet.breed}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">생일</div>
+                                        <div class="col-lg-9 col-md-8">${pet.birth}</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">성별</div>
+                                        <div class="col-lg-9 col-md-8">
+                                            <c:if test="${pet.gender == 0}">
+                                                암컷
+                                            </c:if>
+                                            <c:if test="${pet.gender == 1}">
+                                                수컷
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">중성화</div>
+                                        <div class="col-lg-9 col-md-8">
+                                            <c:if test="${pet.neutering == 0}">
+                                                안했음
+                                            </c:if>
+                                            <c:if test="${pet.neutering == 1}">
+                                                했음
+                                            </c:if>
+                                        </div>
+                                    </div>
 
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-4 label">특이사항</div>
+                                        <div class="col-lg-9 col-md-8">${pet.feature}</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-primary rounded-pill" onclick="location.href='/memberpage_petupdate.do?p_id=${pet.p_id}&pageNum=${pageNum}'">수정</button>
+                                    </div>
+                                </div>
+                            </div><!-- End Bordered Tabs -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
 </form>

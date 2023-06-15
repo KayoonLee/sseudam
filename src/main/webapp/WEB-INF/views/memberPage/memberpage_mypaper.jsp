@@ -179,13 +179,13 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="memberMain">
+        <a class="nav-link collapsed" href="memberpage_main">
           <i class="bi bi-person"></i>
           <span>나의 프로필</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="memberPet">
+        <a class="nav-link collapsed" href="memberpage_mypet">
           <i class="bi bi-balloon"></i><span>동물페이지</span>
         </a>
       </li>
@@ -195,29 +195,29 @@
         </a>
         <ul id="components-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
           <li>
-            <a href="memberPost" >
+            <a href="memberpage_mypost" >
               <i class="bi bi-circle"></i><span>내가 쓴 글</span>
             </a>
           </li>
           <li>
-            <a href="memberReply" >
+            <a href="memberpage_myreply" >
               <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
             </a>
           </li>
           <li>
-            <a href="memberLike" >
+            <a href="memberpage_mylike" >
               <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
             </a>
           </li>
           <li>
-            <a href="memberPaper" class="active">
+            <a href="memberpage_mypaper" class="active">
               <i class="bi bi-circle"></i><span>상담신청내역</span>
             </a>
           </li>
         </ul>
       </li><!-- End Components Nav -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="memberCounselor">
+        <a class="nav-link collapsed" href="memberpage_mycounselor">
           <i class="bi bi-grid"></i>
           <span>즐겨찾는 상담사</span>
         </a>

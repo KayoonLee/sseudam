@@ -15,4 +15,10 @@ public interface PetPageService {
     void setStartRow(int startRow);
 
     void setEndRow(int endRow);
+
+    PetBean p_select(Integer p_id);
+
+    int p_update(PetBean pet);
+
+    int p_insert(PetBean pet);
 }

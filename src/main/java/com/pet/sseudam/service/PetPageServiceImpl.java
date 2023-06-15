@@ -33,4 +33,21 @@ public class PetPageServiceImpl implements PetPageService{
     public void setEndRow(int endRow) {
 
     }
+
+    @Override
+    public PetBean p_select(Integer p_id) {
+        return dao.p_select(p_id);
+    }
+
+    @Override
+    public int p_update(PetBean pet) {
+        return dao.p_update(pet);
+    }
+
+    @Override
+    public int p_insert(PetBean pet) {
+        return dao.p_insert(pet);
+    }
+
+
 }
