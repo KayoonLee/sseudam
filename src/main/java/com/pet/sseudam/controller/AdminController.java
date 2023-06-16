@@ -89,16 +89,21 @@ public class AdminController {
     // 관리자 테스트 페이지(나중에 지우기)
     @GetMapping("adminTest")
     public String adminTest() {
-        System.out.println("관리자 등록페이지로 이동");
+        System.out.println("토스트ui 테스트 페이지로 이동");
         return "adminPage/admin_test";
     }
 
     @GetMapping("adminTest2")
     public String adminTest2() {
-        System.out.println("관리자 등록페이지로 이동");
+        System.out.println("캘린더 예시1로 이동");
         return "adminPage/admin_test2";
     }
 
+    @GetMapping("adminTest3")
+    public String adminTest3() {
+        System.out.println("캘린더 예시2로 이동");
+        return "adminPage/admin_test3";
+    }
 /* ------------------------------------------------------------------------------------------------------------------ */
 
     // 회원수, 상담자수, 관리자수, 오늘 방문자 통계cnt(메인페이지 접속 횟수)로 가져오기

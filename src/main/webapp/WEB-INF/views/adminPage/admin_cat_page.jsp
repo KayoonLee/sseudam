@@ -13,10 +13,13 @@
 </head>
 <body>
 
-<!-- ======= Header ======= -->
-<!-- ======= Sidebar ======= -->
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/admin_navigator.jsp" %>
 
-<%--<main id="main" class="main">--%>
+<!-- ======= Sidebar ======= -->
+<%@ include file="../navigator_footer/admin_sidebar.jsp" %>
+
+<main id="main" class="main">
 
     <div class="pagetitle">
         <h1>고양이</h1>
@@ -113,9 +116,10 @@
         </tfoot>
     </table>
 
-<%--</main>--%><!-- End #main -->
+</main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/admin_footer.jsp" %>
 
 </body>
 </html>

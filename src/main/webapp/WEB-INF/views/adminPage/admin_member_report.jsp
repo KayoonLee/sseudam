@@ -12,10 +12,13 @@
 </head>
 <body>
 
-<!-- ======= Header ======= -->
-<!-- ======= Sidebar ======= -->
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/admin_navigator.jsp" %>
 
-<%--<main id="main" class="main">--%>
+<!-- ======= Sidebar ======= -->
+<%@ include file="../navigator_footer/admin_sidebar.jsp" %>
+
+<main id="main" class="main">
 
     <div class="pagetitle">
         <h1>신고받은 회원관리</h1>
@@ -100,9 +103,11 @@
         </tr>
         </tfoot>
     </table>
-<%--</main>--%><!-- End #main -->
+
+</main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/admin_footer.jsp" %>
 
 </body>
 </html>
