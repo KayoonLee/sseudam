@@ -76,8 +76,8 @@
                         if (data == '') {
                             alert("다시 시도해주세요");
                         } else {
-                            document.getElementById("re_content").value = '';
-                            document.getElementsByName("files").value = '';
+                            $("#re_content").val("");
+                            $("#files").val("");
                             document.getElementById("previewContainer").innerHTML = '';
                             loadReplies(); // 댓글 목록 다시 로드
                         }

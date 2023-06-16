@@ -87,10 +87,10 @@
         $(function () {
             $('.r_update_check').click(function () {
                 var id = $(this).attr('id');
-                var content = $('#content_' + id).text(); // replytext / id:td_태그의 내용을 추출
+                var content = $('#content_' + id).text();
                 $('#content_' + id).html(
                     "<textarea rows='3' cols='30' name='re_content' id='content_" + id + "'>" + content + "</textarea>"
-                    +"<input type='file' name='files' onchange='re_previewImage(this)'>"
+                    +"<input type='file' name='files' onchange='re_previewImage(this, id)'>"
                 );
 
                 $('#btn_' + id).html(
@@ -102,8 +102,8 @@
             });
         });
         //사진 미리보기
-        function re_previewImage(input) {
-            var re_preview = document.getElementById("re_preview");
+        function re_previewImage(input, id) {
+            var re_preview = $("#re_preview_"+ id);
             re_preview.innerHTML = ""; // 기존의 미리보기 이미지 초기화
 
             if (input.files && input.files.length > 0) {
@@ -125,21 +125,6 @@
             $('#listRe').load("FreeReList?num=${num}&board_num=${board_num}");
         }
 
-        // 댓글 수정
-        /*function update(id) {
-            var text = "댓글을 수정하시겠습니까?";
-            if (confirm(text)) {
-                var formData = $("#frm" + id).serialize();
-                $.ajax({
-                    type: 'POST',
-                    url: 'FreeReUpdate',
-                    data: formData,
-                    success: function (data) {
-                        $('#listRe').html(data);
-                    }
-                });
-            }
-        }*/
         function update(id) {
             var text = "댓글을 수정하시겠습니까?";
             if (confirm(text)) {
@@ -198,14 +183,13 @@
                 <c:if test="${reBoard.re_state != 0}">
                     <form id="frm${reBoard.board_renum }" name="frm" enctype="multipart/form-data">
                         <div>
-                            <input type="hidden" name="board_renum" value="${reBoard.board_renum }">
                             <input type="hidden" name="num" value="${reBoard.num }">
                             <input type="hidden" name="board_num" value="${reBoard.board_num }">
                             <input type="hidden" name="file_num" value="${reBoard.file_num }">
                             <input type="hidden" name="ref" value="${reBoard.ref }">
                             <input type="hidden" name="re_seq" value="${reBoard.re_seq }">
 
-                            <div id="re_preview"><img src="./img/${reBoard.file_name}" class="re_image"></div>
+                            <div id="re_preview_${reBoard.board_renum}"><img src="./img/${reBoard.file_name}" class="re_image"></div>
                             <div id="content_${reBoard.board_renum }">${reBoard.re_content }</div>
                             <div><fmt:formatDate value="${reBoard.re_reg_date }" pattern="yyyy년 MM월 dd일"/></div>
                             <c:if test="${not empty m_id}">
