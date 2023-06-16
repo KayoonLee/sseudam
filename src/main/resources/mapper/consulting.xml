@@ -3,8 +3,86 @@
 
 <mapper namespace="com.pet.sseudam.dao.ConsultingDao">
 
-    <select id="find_counselor"  resultType="String">
-        select name from member where identifier = 2;
+    <!-- 상담원 전체 찾기 -->
+    <select id="find_counselor_name" resultType="Member">
+        select *
+        from member
+        where identifier = 2;
     </select>
+
+    <!-- 해당 id 상담원 dto 구하기 -->
+    <select id="find_counselor" resultType="Member">
+        select *
+        from member
+        where identifier = 2
+          AND m_id = #{m_id};
+    </select>
+
+
+    <!-- 상담원과 회원의 예약시간 조회 -->
+    <select id="find_reservation_time" resultType="java.util.Date">
+        SELECT request_time
+        FROM counsel_paper
+        WHERE m_id = #{g_id}
+          AND c_id = #{con_id}
+
+    </select>
+
+    <!-- 해당 상담예약서의 동물 id로 동물 조회 -->
+    <select id="select_pet" resultType="Pet">
+        SELECT *
+        FROM pet
+        WHERE p_id = #{g_id}
+    </select>
+
+    <!-- 해당회원의 동물 전체 조회 -->
+    <select id="find_pet" resultType="Pet">
+        SELECT *
+        FROM pet
+        WHERE g_id = #{g_id}
+    </select>
+    <!-- 작성폼 동물이름 -> 동물dto로-->
+    <select id="change_to_pet_id" resultType="Pet">
+        SELECT *
+        FROM pet
+        WHERE g_id = #{g_id}
+          AND animal = #{animal}
+    </select>
+
+    <!-- 해당 회원 id와 일치하는 회원 데이터 찾기 -->
+    <select id="find_general" resultType="Member">
+        SELECT *
+        FROM member
+        WHERE m_id = #{g_id}
+    </select>
+
+    <!-- insert consult -->
+    <insert id="insert_consult" parameterType="CounselPaper">
+        INSERT INTO counsel_paper (p_id, m_id, c_id, purpose, reason, request_time, wish_list)
+        VALUES (#{p_id}, #{m_id}, #{c_id}, #{purpose}, #{reason}, #{request_time}, #{wish_list})
+    </insert>
+
+    <!-- find_consult -->
+    <select id="find_consult" resultType="CounselPaper">
+        SELECT *
+        FROM counsel_paper
+        WHERE paper_num = #{paper_num}
+
+
+    </select>
+
+    <update id="update_consult" parameterType="CounselPaper">
+        UPDATE counsel_paper
+        SET paper_num = #{title},
+            p_id = #{p_id},
+            purpose = #{purpose},
+            reason = #{reason},
+            request_time = #{request_time},
+            wish_list = #{wish_list}
+
+
+        WHERE paper_num = #{paper_num}
+    </update>
+
 
 </mapper>

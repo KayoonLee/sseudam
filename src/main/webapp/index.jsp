@@ -54,6 +54,7 @@
     </div>
 </div>
 
+
 <!-- Contact Modal -->
 <div id="contact" class="w3-modal">
     <div class="w3-modal-content w3-animate-zoom">
@@ -83,6 +84,10 @@
 <%-- 세욱이 추가한거 --%>
 
 <div><a href="freeList">자유게시판 이동.</a></div>
+
+<%-- 찬근 추가한거 --%>
+<div><a href="hasAnimal">상담예약서 작성</a></div>
+
 
 
 <%-- 은희 추가한거 --%>
