@@ -182,7 +182,7 @@ public class ConsultingController {
         counselPaper.setM_id(g_id);
         con.update_consult(counselPaper);
         System.out.println("닥치고 들어옴?");
-
+        // 후....
         return  " redirect:/get_Consult_Details";
     }
 
