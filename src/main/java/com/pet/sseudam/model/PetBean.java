@@ -14,16 +14,19 @@ public class PetBean {
     private String birth;
     private String kind;
     private String breed;
-    private String profile;
+    private int profile_num;
     private String feature;
     private int gender;
     private int neutering;
     private int state;
-    private int profile_num;
 
     // 페이징처리
     private int startRow;
     private int endRow;
     private int total;
+
+    //펫사진정보
+    private String profile_origin;
+    private String profile_name;
 
 }

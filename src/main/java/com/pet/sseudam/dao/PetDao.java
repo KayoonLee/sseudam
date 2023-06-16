@@ -1,8 +1,8 @@
 package com.pet.sseudam.dao;
 
 import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.ProfileBean;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -16,4 +16,16 @@ public interface PetDao {
     int p_update(PetBean pet);
 
     int p_insert(PetBean pet);
+
+    int getMaxnum();
+
+    List<ProfileBean> profileView(int profileNum);
+
+    List<ProfileBean> profileList(ProfileBean profileBoard);
+
+    int profileAdd(ProfileBean profileBoard);
+
+    int profileDelete(int profileNum);
+
+    int profileUpdate(ProfileBean profileBoard);
 }

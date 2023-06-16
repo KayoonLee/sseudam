@@ -27,7 +27,6 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
-<body>
 
 
 <!-- ======= Header ======= -->
@@ -233,6 +232,7 @@
     </aside>
 
     <!-- 레시피 조의 레시피 리스트 형식-->
+<form method="post" enctype="multipart/form-data" attribute>
     <main id="main" class="main">
         <div class="container" align="center">
             <div class="row">
@@ -247,108 +247,22 @@
                                 <div>
                                     <div class="card">
                                         <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
-                                            <img class="card-img-top" src="images/yang.jpg">
+                                            <img class="card-img-top" src="./petimg/${pet.profile_name}">
                                         </a>
-                                        <td>${pet.profile}</td>
-                                        <br>
                                         <td>${pet.animal}</td>
                                     </div>
                                 </div>
                             </div>
                     </c:forEach>
                 </c:if>
+                <br>
+
+                <a href="memberpage_petadd">
+                    <img src="images/add.png" width="50" >
+                </a>
             </div>
-
-            <a href="memberpage_petadd">
-                <img src="images/add.png" width="50" id="modal-image">
-            </a>
-
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>반려동물추가폼</h2>
-                    <form>
-                        <div class="row mb-3">
-                            <label for="profile" class="col-md-4 col-lg-3 col-form-label">반려동물 사진</label>
-                            <div class="col-md-8 col-lg-9">
-                                <img src="assets/img/profile-img.jpg" alt="Profile">
-                                <div class="pt-2">
-                                    <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="petName" class="col-md-4 col-lg-3 col-form-label">이름</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="petName" type="text" class="form-control" id="petName" value="">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="birth" class="col-md-4 col-lg-3 col-form-label">생일</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="birth" type="text" class="form-control" id="birth" value="">
-                            </div>
-                        </div>
-
-                        <!-- 강아지 고양이 라디오 버튼-->
-                        <div><input type="radio" name="kind" value="dog">강아지</div>
-                        <div><input type="radio" name="kind" value="cat">고양이</div>
-
-                        <div class="row mb-3">
-                            <label for="about" class="col-md-4 col-lg-3 col-form-label">특이사항</label>
-                            <div class="col-md-8 col-lg-9">
-                                <textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
-                            </div>
-                        </div>
-
-                        <!-- 성별 구분 라디오 버튼 -->
-                        <div><input type="radio" name="sex" value="female">암컷</div>
-                        <div><input type="radio" name="sex" value="male">수컷</div>
-
-
-                        <!-- 중성화 체크 박스-->
-                        <div><input type="checkbox" name="neutering" value="done">중성화</div>
-
-                        <div class="row mb-3">
-                            <label for="breed" class="col-md-4 col-lg-3 col-form-label">품종</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="breed" type="text" class="form-control" id="breed" value="">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="country" type="text" class="form-control" id="Country" value="">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="address" type="text" class="form-control" id="Address" value="">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="phone" type="text" class="form-control" id="Phone" value="">
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">저장</button>
-                        </div>
-                        <!-- 글 작성 폼 요소들을 추가합니다. -->
-                    </form>
-                </div>
-            </div>
-
-
         </div>
-
     </main>
-
+</form>
 </body>
 </html>

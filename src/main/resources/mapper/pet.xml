@@ -4,13 +4,15 @@
 
 <mapper namespace="com.pet.sseudam.dao.PetDao">
     <!--반려동물 목록-->
-    <select id="p_list" parameterType="pet" >
-        select * from pet
+    <select id="p_list" parameterType="pet" resultType="pet">
+<!--        <if test="profile_num == 0 ">
+            select * from pet
+        </if>
+        <if test="profile_num != 0 ">-->
+            select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num
+        <!--</if>-->
 
     </select>
-
-    <!--반려동물 인서트-->
-
 
     <!-- 반려동물 몇 마리-->
     <select id="getTotal" resultType="int">
@@ -19,8 +21,17 @@
 
     <!-- 반려동물 상세정보 -->
     <select id="p_select" parameterType="int" resultType="pet">
-        select * from pet where p_id=#{p_id}
+--         select * from pet where p_id=#{p_id}
+        select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num where p_id=#{p_id}
     </select>
+
+    <!-- 반려동물 추가 -->
+    <insert id="p_insert" parameterType="pet">
+        insert into pet (p_id, g_id, animal, birth, kind, breed, profile_num, feature, gender, neutering, state )
+        values
+            ( #{p_id},#{g_id}, #{animal}, #{birth}, #{kind}, #{breed}, #{profile_num}, #{feature}, #{gender}, #{neutering}, #{state})
+    </insert>
+
 
     <!-- 반려동물 정보수정 -->
     <update id="p_update" parameterType="pet">
@@ -28,11 +39,29 @@
         where p_id=#{p_id}
     </update>
 
-    <!-- 반려동물 추가 -->
-    <insert id="p_insert" parameterType="pet">
-        insert into pet (p_id, g_id, animal, birth, kind, breed, profile, feature, gender, neutering, state, profile_num )
-                values
-       ( #{p_id},#{g_id}, #{animal}, #{birth}, #{kind}, #{breed}, '사진아직', #{feature}, #{gender}, #{neutering}, #{state}, #{profile_num} )
+
+    <!-- 프로필사진 관련-->
+    <select id="getMaxnum" resultType="int">
+        select ifnull(max(profile_num), 0) from img_profile
+     </select>
+
+    <insert id="profileAdd" parameterType="profile_board">
+        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">
+            select ifnull(max(profile_num),0) + 1 from img_profile
+        </selectKey>
+        insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
     </insert>
+
+    <select id="profileView" parameterType="int">
+        select * from img_profile where profile_num=#{profile_num}
+    </select>
+
+    <select id="profileList" parameterType="profile_board" resultType="profile_board">
+        select profile_name from img_profile where profile_num=#{profile_num}
+    </select>
+
+    <delete id="profileDelete" parameterType="int">
+        delete from img_profile where profile_num=#{profile_num}
+    </delete>
 
 </mapper>

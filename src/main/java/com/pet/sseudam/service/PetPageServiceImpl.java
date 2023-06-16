@@ -2,6 +2,7 @@ package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.PetDao;
 import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.ProfileBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,38 @@ public class PetPageServiceImpl implements PetPageService{
     @Override
     public int p_insert(PetBean pet) {
         return dao.p_insert(pet);
+    }
+
+    @Override
+    public int getMaxnum() {
+        return dao.getMaxnum();
+    }
+
+
+
+    @Override
+    public int profileDelete(int profileNum) {
+        return dao.profileDelete(profileNum);
+    }
+
+    @Override
+    public int profileAdd(ProfileBean profileBean) {
+        return dao.profileAdd(profileBean);
+    }
+
+    @Override
+    public List<ProfileBean> profileList(ProfileBean profileBoard) {
+        return dao.profileList(profileBoard);
+    }
+
+    @Override
+    public int profileUpdate(ProfileBean profileBoard) {
+        return dao.profileUpdate(profileBoard);
+    }
+
+    @Override
+    public List<ProfileBean> profileView(int profileNum) {
+        return dao.profileView(profileNum);
     }
 
 

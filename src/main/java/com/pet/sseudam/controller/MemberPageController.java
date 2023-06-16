@@ -1,5 +1,6 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.model.FreeBean;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.service.MemberPageService;
@@ -47,22 +48,47 @@ public class MemberPageController {
 
     // 내가 쓴 글
     @GetMapping("memberpage_mypost")
-    public String memberPagePost(){
+    public String memberPagePost(HttpSession session, Model model, PagingPgm pp1, String pageNum, FreeBean fboard){
         System.out.println("내가 쓴 글로 진입성공");
+//        String g_id = (String)session.getAttribute("g_id");
+//
+//        final int rowPerPage = 10; // 한 페이지 당 출력할 개수
+//
+//        if(pageNum==null || pageNum.equals("")) {
+//            pageNum="1";
+//        }
+//        int currentPage = Integer.parseInt(pageNum); // 현재 페이지
+//
+//        int total=mps.getCount(fboard); // 총 개수 구하기
+//        System.out.println("total:"+total);
+//
+//        int startRow=(currentPage-1)*rowPerPage+1;
+//        int endRow = startRow + rowPerPage-1;
+//        PagingPgm pp = new PagingPgm(total, rowPerPage, currentPage);
+//        fboard.setStartRow(startRow);
+//        fboard.setEndRow(endRow);
+//
+//        model.addAttribute("list", mps.getMyPostList(pp));
+//        model.addAttribute("pp",pp);
+
+
         return "memberPage/memberpage_mypost";
     }
 
     // 내가 쓴 댓글
     @GetMapping("memberpage_myreply")
-    public String memberPageReply(){
+    public String memberPageReply(HttpSession session, Model model, PagingPgm pp){
         System.out.println("내가 쓴 댓글로 진입성공");
+        String g_id = (String)session.getAttribute("g_id");
+
         return "memberPage/memberpage_myreply";
     }
 
     // 내가 좋아요 한 글
     @GetMapping("memberpage_mylike")
-    public String memberPageLike(){
+    public String memberPageLike(HttpSession session, Model model){
         System.out.println("내가 좋아요 한 글로 진입성공");
+        String g_id = (String)session.getAttribute("g_id");
         return "memberPage/memberpage_mylike";
     }
 
@@ -78,7 +104,7 @@ public class MemberPageController {
     public String memberPageCounselor(){
         System.out.println("즐겨찾는 상담사로 진입성공");
         return "memberPage/memberpage_mycounselor";
-    }
+    };
 
 
 }

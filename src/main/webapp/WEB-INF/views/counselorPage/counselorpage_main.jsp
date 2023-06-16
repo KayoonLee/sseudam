@@ -174,17 +174,16 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="counselorMain">
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link " href="#">
+                <a class="nav-link " href="counselorpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link collapsed" href="counselorRequest">
+                <a class="nav-link collapsed" href="counselorpage_request">
                     <i class="bi bi-balloon"></i><span>상담요청목록</span>
                 </a>
             </li>
@@ -194,17 +193,17 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="counselorPost">
+                        <a href="counselorpage_mypost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="counselorReply">
+                        <a href="counselorpage_myreply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="counselorLike">
+                        <a href="counselorpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
@@ -392,6 +391,5 @@
 
     </main><!-- End #main -->
 
-</form>
 </body>
 </html>

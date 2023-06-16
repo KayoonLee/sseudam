@@ -181,7 +181,6 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form>
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -232,6 +231,7 @@
 
         </ul>
     </aside>
+<form method="post" enctype="multipart/form-data" attribute>
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>내 반려동물</h1>
@@ -241,14 +241,14 @@
             <input type=hidden value="${pet.p_id }" id="p_id">
             <input type=hidden value="${pageNum }" id="pageNum">
             <div class="row">
-                <div class="col-xl-4">
+               <%-- <div class="col-xl-4">
                     <div class="card">
                         <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            <img src="images/yang.jpg" alt="Profile" class="rounded-circle">
+                            <img src="./petimg/${pet.profile_origin}" alt="Profile" class="rounded-circle">
                             <h2>${pet.animal}</h2>
                         </div>
                     </div>
-                </div>
+                </div>--%>
 
                 <div class="col-xl-8">
                     <div class="card">
@@ -256,6 +256,10 @@
                             <div class="tab-content pt-2">
                                 <div class="tab-pane fade show active profile-overview" id="pet-overview">
                                     <br>
+                                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                                        <img src="./petimg/${pet.profile_name}" alt="Profile" class="rounded-circle">
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">이름</div>
                                         <div class="col-lg-9 col-md-8">${pet.animal}</div>
@@ -318,7 +322,6 @@
             </div>
         </section>
     </main>
-
 </form>
 </body>
 </html>
