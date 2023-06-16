@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: E470
@@ -13,38 +14,33 @@
 <body>
 <!-- ===============수정중=================== -->
 <table id="example" class="table is-striped" style="width:100%">
-    <input type = "hidden" name="m_id" value="${memberDto.m_id}">
-    <input type = "hidden" name="g_id" value="${pet.g_id}">
-
-    <thead>
     <tr>
-        <pre><th>회원번호</th>     <td>${memberDto.m_id}</td></pre>
+        <th>회원이름</th>   <td colspan="3">${memberDto.name}</td> <td rowspan="4">${pet.profile}</td>
     </tr>
     <tr>
-        <th>이름</th>
-        <th>이메일</th>
-        <th>비밀번호</th>
+        <th>동물이름</th><td>${pet.animal}</td>
+        <th>강아지/고양이</th><td>${pet.kind}</td>
     </tr>
-        <th>닉네임</th>
-        <th>생일</th>
-        <th>전화번호</th>
-        <th>회원</th>
-        <th>상태</th>
-        <th>가입날짜</th>
+    <tr>
+    <th>품종</th>   <td>${pet.breed}</td>
+        <c:if test="${pet.neutering ==0}">
+            <th>중성화여부</th><td>NOT</td>
+        </c:if>
+        <c:if test="${pet.neutering ==1}">
+            <th>중성화여부</th><td>YES</td>
+        </c:if>
     </tr>
-    </thead>
-    <tbody>
 
-    <td>이름</td>
-    <td>이메일</td>
-    <td>비밀번호</td>
-    <td>닉네임</td>
-    <td>생일</td>
-    <td>전화번호</td>
-    <td>회원</td>
-    <td>상태</td>
-    <td>가입날짜</td>
-    </tbody>
+    <tr>
+        <th>생일</th><td>${pet.birth}</td>
+        <c:if test="${pet.gender==0}">
+        <th>성별</th><td>남자</td>
+        </c:if>
+        <c:if test="${pet.gender==1}">
+        <th>성별</th><td>여자</td>
+        </c:if>
+    </tr>
+
 </table>
 <!-- ===============수정중=================== -->
 

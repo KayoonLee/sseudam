@@ -2,17 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pet.sseudam.dao.TempAdminDao">
+
+    <!--일반회원정보 리스트 정렬 출력 -->
     <select id="admin_list" resultType="Member">
-        select * from member
+        select (ROW_NUMBER() OVER()) as row_num, m.* from member m where identifier = 1 order by row_num desc;
     </select>
 
+    <!--일반회원정보 가져오기 -->
     <select id="adminSelect" resultType="member">
         select member.*, pet.* from member join pet ON member.m_id = #{m_id}
             and pet.g_id = #{m_id}
-    </select>
 
+        </select>
+
+    <!--상세회원정보(동물) 가져오기 -->
     <select id="petSelect" resultType="pet">
-        select member.*, pet.* from member join pet ON member.m_id = #{m_id}
+        select member.m_id, pet.* from member join pet ON member.m_id = #{m_id}
             and pet.g_id = #{m_id}
     </select>
 

@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.ibatis.type.Alias;
-
 import java.sql.Date;
 @Getter
 @Setter
@@ -23,4 +22,6 @@ public class Member {
     private int state;
     private Date join_date;
     private String reset;
+    //정렬용 추가
+    private long row_num;
 }

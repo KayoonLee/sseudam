@@ -15,7 +15,7 @@
 <!-- ======= Header ======= -->
 <!-- ======= Sidebar ======= -->
 
-<%--<main id="main" class="main">--%>
+<%--<main id="main" class="main">
 
     <div class="pagetitle">
         <h1>강아지</h1>
