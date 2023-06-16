@@ -70,9 +70,8 @@ public class FreeController {
 
         int currentPage = Integer.parseInt(pageNum);
         int total = service.getTotal(fboard); // 검색
-        System.out.println("total:" + total);
 
-        System.out.println(total);
+        System.out.println("total:" + total);
         System.out.println("rowPerPage" + rowPerPage);
         System.out.println("currentPage" + currentPage);
 
@@ -82,9 +81,9 @@ public class FreeController {
 
         fboard.setSort(fboard.getSort());
         fboard.setStartRow(startRow);
-  //      fboard.setEndRow(endRow);
         System.out.println("startRow" + startRow);
-  //      System.out.println("endRow" + endRow);
+        //      fboard.setEndRow(endRow);
+        //      System.out.println("endRow" + endRow);
         int number = total - startRow;
 
         List<FreeBean> list = service.f_list(fboard);
