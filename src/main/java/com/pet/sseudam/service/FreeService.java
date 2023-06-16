@@ -99,4 +99,8 @@ public class FreeService {
     public int imgDelete(int file_Num) {
         return dao.imgDelete(file_Num);
     }
+
+    public int imgUpdate(ImgBean imgBoard) {
+        return dao.imgUpdate(imgBoard);
+    }
 }
