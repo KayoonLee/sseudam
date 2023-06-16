@@ -101,7 +101,7 @@
                 );
             });
         });
-        //사진 미리보기
+        //사진 미리보기 //
         function re_previewImage(input) {
             var re_preview = document.getElementById("re_preview");
             re_preview.innerHTML = ""; // 기존의 미리보기 이미지 초기화
