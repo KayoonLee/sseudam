@@ -10,4 +10,6 @@ public interface CounselorDao {
     Counselor emailChk(String email);
 
     Counselor nickChk(String nick);
+
+
 }

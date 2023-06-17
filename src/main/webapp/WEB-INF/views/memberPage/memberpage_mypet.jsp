@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 82108
@@ -17,18 +16,13 @@
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
-
-
+<body>
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -180,17 +174,17 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
+
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberpage_main">
+                <a class="nav-link " href="memberpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="memberpage_mypet">
+                <a class="nav-link collapsed" href="memberpage_mypet">
                     <i class="bi bi-balloon"></i><span>동물페이지</span>
                 </a>
             </li>
@@ -200,7 +194,7 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberpage_mylike">
+                        <a href="memberpage_mypost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
@@ -216,6 +210,7 @@
                     </li>
                     <li>
                         <a href="memberpage_mypaper">
+                            <i class="bi bi-circle"></i><span>상담신청내역</span>
                         </a>
                     </li>
                 </ul>
@@ -231,7 +226,6 @@
     </aside>
 
     <!-- 레시피 조의 레시피 리스트 형식-->
-<form method="post" enctype="multipart/form-data" attribute>
     <main id="main" class="main">
         <div class="container" align="center">
             <div class="row">
@@ -241,27 +235,34 @@
                     </div>
                 </c:if>
                 <c:if test="${not empty list}">
-                    <c:forEach var="pet" items="${list }">
+                    <c:forEach var="board" items="${list }">
+                        <c:if test="${board.state != 'n' }">
                             <div class="col-sm-3">
                                 <div>
                                     <div class="card">
-                                        <a href="memberpage_petview?p_id=${pet.p_id}&pageNum=${pageNum}">
-                                            <img class="card-img-top" src="./petimg/${pet.profile_name}">
+                                        <a href="r_view?rnum=${board.rnum }&pageNum=${pageNum}">
+                                            <img class="card-img-top" src="./t_images/${board.thumbnail }">
                                         </a>
-                                        <td>${pet.animal}</td>
+                                        <div class="card-body">
+                                            <h4 class="card-title">${board.subject }</h4>
+                                            <c:if test="${not empty board.profile }">
+                                                <img src ="./upload/${board.profile }" width=30 height=30>
+                                            </c:if>
+                                            <c:if test="${empty board.profile }">
+                                                <img src ="./upload/pepe.jpg" width=30 height=30>
+                                            </c:if>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+                        </c:if>
                     </c:forEach>
                 </c:if>
-                <br>
-
-                <a href="memberpage_petadd">
-                    <img src="images/add.png" width="50" >
-                </a>
             </div>
         </div>
+
     </main>
-</form>
+
+
 </body>
 </html>

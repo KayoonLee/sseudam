@@ -12,4 +12,6 @@ public interface CounselorService {
     int nickChk(String nick);
 
     int getNumber(Member member);
+
+
 }

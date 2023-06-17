@@ -15,15 +15,15 @@
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z
+    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.esm.js"></script>
-
-
-
-
 
 
 </head>
@@ -32,7 +32,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.jsp" class="logo d-flex align-items-center"><!--편의상 무직타이거로 가게 해놨음(임시)-->
+        <a href="index.html" class="logo d-flex align-items-center">
             <img src="images/muzik5.jpg" alt="">
             <span class="d-none d-lg-block">쓰담</span>
         </a>
@@ -123,7 +123,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">홍은희</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">${myModel.nick}</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -181,6 +181,7 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
+
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
@@ -244,148 +245,75 @@
         </div><!-- End Page Title -->
 
         <section class="section profile">
-            <div class="row">
-                <div class="col-xl-4">
-
-                    <div class="card">
-                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-                            <img src="images/muzik5.jpg" alt="Profile" class="rounded-circle">
-                            <h2>삭제예정</h2>
-                            <h3>삭제예정</h3>
-                            <div class="social-links mt-2">
-                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row" align="center">
                 <div class="col-xl-8">
                     <div class="card">
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
+                            <ul class="nav nav-tabs nav-tabs-bordered">
+                                <li class="nav-item">
+                                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"
+                                    location.href="'memberpage_main'">프로필</button>
+                                </li>
 
+                                <li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">비밀번호 변경</button>
+                                </li>
+
+                            </ul>
                             <div class="tab-content pt-2">
 
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                     <br>
+                                   <div class="card">
+                                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+
+                                       <img src="./memberImg/${member.profile_name}" alt="Profile" class="rounded-circle">
+                                       <h2>펫 이름</h2>
+                                       <h3>귀여움</h3>
+                                         <div class="social-links mt-2">
+                                          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                                          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                                         </div>
+                                     </div>
+                                   </div>
+
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">이름</div>
-                                        <div class="col-lg-9 col-md-8">홍은희</div>
+                                        <div class="col-lg-9 col-md-8">${myModel.name}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">닉네임</div>
-                                        <div class="col-lg-9 col-md-8">heh</div>
+                                        <div class="col-lg-9 col-md-8">${myModel.nick}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">이메일</div>
-                                        <div class="col-lg-9 col-md-8">heh9007@gmail.com</div>
+                                        <div class="col-lg-9 col-md-8">${myModel.email}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">생년월일</div>
-                                        <div class="col-lg-9 col-md-8">2023-06-11</div>
+                                        <div class="col-lg-9 col-md-8">${myModel.birth}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">휴대폰</div>
-                                        <div class="col-lg-9 col-md-8">1234567890</div>
+                                        <div class="col-lg-9 col-md-8">${myModel.tel}</div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">가입일</div>
-                                        <div class="col-lg-9 col-md-8">2023-06-11</div>
+                                        <div class="col-lg-9 col-md-8">${myModel.join_date}</div>
                                     </div>
                                 </div>
+                             <div class="text-center">
+                                 <button type="submit" class="btn btn-primary" onclick="location.href='memberpage_updateform'">수정하러 가기</button>
+                             </div>
 
-                                <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
-                                    <!-- Profile Edit Form -->
-                                    <form>
-                                        <div class="row mb-3">
-                                            <label for="fullName" class="col-md-4 col-lg-3 col-form-label">이름</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="fullName" type="text" class="form-control" id="fullName" value="홍은희">
-                                            </div>
-                                        </div>
-                                        <div class="row mb-3">
-                                            <label for="company" class="col-md-4 col-lg-3 col-form-label">닉네임</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="company" type="text" class="form-control" id="company" value="heh">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">이메일</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="job" type="text" class="form-control" id="Job" value="heh9007@gmail.com">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Country" class="col-md-4 col-lg-3 col-form-label">생년월일</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="country" type="text" class="form-control" id="Country" value="2023-06-11">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Address" class="col-md-4 col-lg-3 col-form-label">휴대폰</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="address" type="text" class="form-control" id="Address" value="1234567890">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="Email" class="col-md-4 col-lg-3 col-form-label">가입일</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="email" type="email" class="form-control" id="Email" value="2023-06-11">
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">수정</button>
-                                        </div>
-                                    </form><!-- End Profile Edit Form -->
-
-                                </div>
-
-
-                                <div class="tab-pane fade pt-3" id="profile-change-password">
-                                    <!-- Change Password Form -->
-                                    <form>
-
-                                        <div class="row mb-3">
-                                            <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">현재 비밀번호</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="password" type="password" class="form-control" id="currentPassword">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새로운 비밀번호</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="newpassword" type="password" class="form-control" id="newPassword">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-3">
-                                            <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
-                                            <div class="col-md-8 col-lg-9">
-                                                <input name="renewpassword" type="password" class="form-control" id="renewPassword">
-                                            </div>
-                                        </div>
-
-                                        <div class="text-center">
-                                            <button type="submit" class="btn btn-primary">변경</button>
-                                        </div>
-                                    </form><!-- End Change Password Form -->
-
-                                </div>
 
                             </div><!-- End Bordered Tabs -->
 
@@ -398,7 +326,6 @@
 
     </main><!-- End #main -->
 
-</form>
 
 </body>
 </html>

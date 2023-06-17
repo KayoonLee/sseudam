@@ -42,4 +42,6 @@ public class CounselorServiceImpl implements CounselorService{
     public int getNumber(Member member) {
         return md.getNumber(member);
     }
+
+
 }

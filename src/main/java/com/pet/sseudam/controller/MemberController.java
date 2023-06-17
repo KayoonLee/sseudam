@@ -1,8 +1,10 @@
 package com.pet.sseudam.controller;
 
 
+import com.pet.sseudam.model.Counselor;
 import com.pet.sseudam.model.Member;
 
+import com.pet.sseudam.service.CounselorService;
 import com.pet.sseudam.service.MemberService;
 import com.pet.sseudam.service.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.UUID;
 public class MemberController {
     @Autowired
     private MemberService ms;
+
+    @Autowired
+    private CounselorService cs;
 
     @Resource(name = "SendEmailService")
     private SendEmailService emailService;
@@ -41,6 +46,7 @@ public class MemberController {
         int result = 0;
         Member member = ms.userCheck(email);
 
+
         if (member == null) {//등록되지 않은 회원일 때
             result = 1;
             model.addAttribute("result", result);
@@ -56,6 +62,7 @@ public class MemberController {
                 } else if (member.getIdentifier().equals("2")) { //상담사 회원일 때
 
                     session.setAttribute("member", member);
+                    
                     String nick = member.getNick();
                     model.addAttribute("nick", nick);
                     return "mainPage/main_page";
@@ -116,9 +123,6 @@ public class MemberController {
         System.out.println(result);
         return auth;
     }
-
-
-
 
 
 

@@ -1,46 +1,101 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.model.Counselor;
+import com.pet.sseudam.model.Member;
+import com.pet.sseudam.service.CounselorPageService;
+import com.pet.sseudam.service.CounselorService;
+import com.pet.sseudam.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class CounselorPageController {
 
-//    @Autowired
-//    private final CounselorPageService cps;
-//
-//    public CounselorPageController(CounselorPageService cps){this.cps=cps;}
+    @Autowired
+    private final CounselorPageService cps;
 
-    // 메인페이지
-    @GetMapping("counselorpage_main")
-    public String counselorPageMain(){
-        System.out.println("상담사회원 페이지로 진입성공");
+
+    public CounselorPageController(CounselorPageService cps){this.cps=cps;}
+
+    @Autowired
+    private MemberService ms;
+
+    @Autowired
+    private CounselorService cs;
+    //main
+    @RequestMapping("counselorpage_main")
+    public String memberPageMain(HttpSession session, Model model) {
+        System.out.println("상담사 마이 페이지로 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        int c_id = member.getM_id(); // 상담사 번호 구하기
+
+        Member myModel = ms.userCheck(member.getEmail());
+        Counselor counsel = cps.counselChk(c_id);
+        System.out.println("career"+counsel.getCareer());
+        System.out.println("license"+counsel.getLicense());
+        model.addAttribute("myModel", myModel);
+        model.addAttribute("counsel", counsel);
         return "counselorPage/counselorpage_main";
     }
 
+    // 수정폼 진입
+    @RequestMapping("counselorpage_updateform")
+    public String csUpdateform(HttpSession session, Model model){
+        System.out.println("수정 페이지로 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        int c_id = member.getM_id(); // 상담사 번호 구하기
+
+        Member myModel = ms.userCheck(member.getEmail());
+        Counselor counsel = cps.counselChk(c_id);
+
+        model.addAttribute("myModel", myModel);
+        model.addAttribute("counsel", counsel);
+        return "counselorPage/counselorpage_updateform";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // 상담예약서목록
-    @GetMapping("counselorpage_request")
+    @GetMapping("counselorRequest")
     public String counselorPageRequest(){
         System.out.println("상담예약서 목록으로 진입성공");
         return "counselorPage/counselorpage_request";
     }
 
     // 내가 쓴 글
-    @GetMapping("counselorpage_mypost")
+    @GetMapping("counselorPost")
     public String counselorPagePost(){
         System.out.println("내가 쓴 글로 진입성공");
         return "counselorPage/counselorpage_mypost";
     }
 
     // 내가 쓴 댓글
-    @GetMapping("counselorpage_myreply")
+    @GetMapping("counselorReply")
     public String counselorPageReply(){
         System.out.println("내가 쓴 댓글로 진입성공");
         return "counselorPage/counselorpage_myreply";
     }
 
     // 내가 좋아요 한 글
-    @GetMapping("counselorpage_mylike")
+    @GetMapping("counselorLike")
     public String counselorLikeReply(){
         System.out.println("내가 좋아요 한 글로 진입성공");
         return "counselorPage/counselorpage_mylike";

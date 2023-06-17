@@ -49,4 +49,43 @@
     <update id="updateNewPw" parameterType="member">
         update member set passwd=#{passwd}, reset='n' where email=#{email} and nick=#{nick}
     </update>
+
+<!--일반회원 정보 수정-->
+    <update id="myUpdate" parameterType="member">
+        update member  set
+        name=#{name}, birth=#{birth}, tel=#{tel}
+        where email = #{email}
+
+    </update>
+
+<!--    상담사 회원 정보 수정 (member테이블에 있는 컬럼)-->
+    <update id="csmyUpdate" parameterType="member">
+        update member set
+        name=#{name}, birth=#{birth}, tel=#{tel}
+        where m_id = #{m_id}
+    </update>
+
+    <!--    첨부파일 번호 -->
+    <select id="getMaxnum" resultType="int">
+        select ifnull(max(profile_num), 0) from img_profile
+    </select>
+
+    <!--첨부파일 추가-->
+    <insert id="profileAdd" parameterType="profile_board">
+        insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
+    </insert>
+
+
+
+
+<!--실험용
+    <select id="profileAfter" parameterType="int" resultType="member">
+        SELECT a.*, profile_name, profile_origin
+        FROM
+        (SELECT *
+        FROM member
+        WHERE m_id = #{m_id}) a
+        JOIN img_profile b
+        ON a.profile_num = b.profile_num
+    </select>-->
 </mapper>
