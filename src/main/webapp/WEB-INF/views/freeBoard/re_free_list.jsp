@@ -226,31 +226,36 @@
             </c:forEach>
         </c:if>
     </div>
-    <nav aria-label="Page navigation example">
-        <ul class="pagination">
-            <c:if test="${pp.startPage > pp.pagePerBlk }">
-                <li class="page-item"><a
-                        href="freeView?rpageNum=${pp.startPage - 1}&num=${num}&board_num=${board_num}">이전</a></li>
+
+    <ul>
+        <c:if test="${pp.startPage > pp.pagePerBlk }">
+            <li><a href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${pp.startPage - 1}">이전</a></li>
+        </c:if>
+
+
+        <c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+            <c:if test="${pp.currentPage==i}">
+                <li>
+                    <a href="#">${i}</a>
+                </li>
             </c:if>
 
-            <c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-                <c:if test="${pp.currentPage==i}">
-                    <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="freeView?rpageNum=${i}&num=${num}&board_num=${board_num}">${i}</a>
-                </c:if>
-
-                <c:if test="${pp.currentPage!=i}">
-                    <li class="page-item">
-                        <a class="page-link" href="freeView?rpageNum=${i}&num=${num}&board_num=${board_num}">${i}</a>
-                    </li>
-                </c:if>
-            </c:forEach>
-
-            <c:if test="${pp.endPage < pp.totalPage}">
-                <li><a href="freeView?rpageNum=${pp.endPage + 1}&num=${num}&board_num=${board_num}">다음</a></li>
+            <c:if test="${pp.currentPage!=i}">
+                <li>
+                    <a href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${i}">${i}</a>
+                </li>
             </c:if>
-        </ul>
-    </nav>
+        </c:forEach>
+
+        <c:if test="${pp.endPage < pp.totalPage}">
+            <li>
+                <a href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${pp.startPage + 1}">다음</a>
+            </li>
+        </c:if>
+
+    </ul>
+
+
 </div>
 </body>
 </html>

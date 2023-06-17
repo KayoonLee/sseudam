@@ -176,7 +176,7 @@ public class FreeController {
 
     // 글조회
     @GetMapping("freeView")
-    public String freeView(FreeBean freeboard, String pageNum, Model model) {
+    public String freeView(FreeBean freeboard, String pageNum, String rpageNum, Model model) {
 
         System.out.println("freeView 진입확인");
 
@@ -191,6 +191,7 @@ public class FreeController {
         model.addAttribute("fboard", fboard);
         model.addAttribute("img_list", img_list);
         model.addAttribute("pageNum", pageNum);
+        model.addAttribute("rpageNum", rpageNum);
 
         return "freeBoard/free_view";
     }

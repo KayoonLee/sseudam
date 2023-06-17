@@ -11,8 +11,6 @@ public interface FreeReplyService {
 
     int re_insert(ReFreeBean reBoard);
 
-    void delete(int rno);
-
     void update(ReFreeBean reBoard);
 
     int re_delete(ReFreeBean reBoard);

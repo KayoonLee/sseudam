@@ -12,8 +12,6 @@ public interface FreeReplyDao {
 
 	int re_insert(ReFreeBean reBoard);
 
-	void delete(int rno);
-
 	void update(ReFreeBean reBoard);
 
 	int getTotalRe(ReFreeBean reBoard);

@@ -13,24 +13,6 @@
                                   order by ref desc,re_seq desc limit #{startRow}, 10
     </select>
 
-    <!--<insert id="re_insert" parameterType="re_fboard">
-        insert into board_reply
-        values (#{num},
-                #{board_num},
-                #{m_id},
-                #{re_content},
-                #{file_num,jdbcType=VARCHAR},
-                sysdate(),
-                #{ref},
-                <if test="ref != 0">
-                (SELECT MAX(re_seq) + 1 FROM board_reply WHERE ref = #{ref}),
-                </if>
-                <if test="ref == 0">
-                #{ref},
-                </if>
-                #{re_lev},
-                1)
-    </insert>-->
     <insert id="re_insert" parameterType="re_fboard">
         insert into board_reply (num, board_num, m_id, re_content, file_num, re_reg_date, ref, re_seq, re_lev, re_state)
         values (#{num}, #{board_num}, #{m_id}, #{re_content}, #{file_num, jdbcType=VARCHAR}, sysdate(), #{ref},
@@ -44,66 +26,6 @@
         </choose>,
         #{re_lev}, 1)
     </insert>
-
-
-
-
-    <!--  <insert id="insert" parameterType="re_fboard">
-        <selectKey keyProperty="board_renum" order="BEFORE" resultType="int">
-            select nvl(max(board_renum),0) + 1 from board_reply
-        </selectKey>
-        insert into board_reply values (
-        #{board_renum},
-        #{num},
-        #{board_num},
-        #{m_id},
-        #{re_content},
-        #{file_num},
-        now(),
-        #{ref},
-        #{re_seq},
-        #{re_lev},
-        #{re_state}
-        );
-    </insert>   -->
-
-    <!--<insert id="insert" parameterType="re_fboard">
-        INSERT INTO board_reply (num, board_num, m_id, re_content, file_num, re_reg_date, ref, re_seq,
-        re_lev, re_state)
-        VALUES (
-        #{num},
-        #{board_num},
-        #{m_id},
-        #{re_content},
-        #{file_num},
-        NOW(),
-        #{ref},
-        #{re_seq},
-        #{re_lev},
-        #{re_state}
-        );
-    </insert>-->
-
-
-    <!--  <insert id="insert" parameterType="re_fboard">
-          INSERT INTO board_reply (board_renum, num, board_num, m_id, re_content, file_num,
-          re_reg_date, ref, re_seq, re_lev, re_state )
-          VALUES (
-          (SELECT IFNULL(MAX(board_renum), 0) + 1 FROM board_reply),
-          #{num},
-          #{board_num},
-          #{m_id},
-          #{re_content},
-          #{file_num},
-          NOW(),
-          #{ref},
-          #{re_seq},
-          #{re_lev},
-          #{re_state}
-          );
-      </insert>   -->
-
-
 
     <update id="update" parameterType="re_fboard">
         <!--update board_reply set re_content=#{re_content},

@@ -33,15 +33,15 @@ public class FreeReplyController {
 
     // 댓글 목록 구하기
     @GetMapping("FreeReList")
-    public String FreeReList(@RequestParam(required = false, defaultValue = "1") String rpageNum,
+    public String FreeReList(@RequestParam(value = "rpageNum", required = false, defaultValue = "1") String rpageNum,
+                             String pageNum,
                              ReFreeBean reBoard, Model model) throws Exception {
 
         System.out.println("FreeReList 도착");
+        System.out.println("rpageNum="+rpageNum);
 
         final int rowPerPage = 10;
-        if (rpageNum == null || rpageNum.equals("")) {
-            rpageNum = "1";
-        }
+
         int currentPage = Integer.parseInt(rpageNum);
 
         int total = reService.getTotalRe(reBoard);
@@ -67,6 +67,7 @@ public class FreeReplyController {
         model.addAttribute("num", reBoard.getNum());
         model.addAttribute("board_num", reBoard.getBoard_num());
         model.addAttribute("rpageNum", rpageNum);
+        model.addAttribute("pageNum", pageNum);
         model.addAttribute("total", total);
         model.addAttribute("pp", pp);
 

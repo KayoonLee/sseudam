@@ -11,6 +11,7 @@ import java.util.List;
 @Service
 @Primary
 public class FreeReplyServiceImpl implements FreeReplyService{
+
 	@Autowired
 	private FreeReplyDao reDao;
 
@@ -18,17 +19,11 @@ public class FreeReplyServiceImpl implements FreeReplyService{
 	public int getTotalRe(ReFreeBean reBoard) {
 		return reDao.getTotalRe(reBoard);
 	}
-	public List<ReFreeBean> re_list(ReFreeBean reBoard) {
 
-		return reDao.re_list(reBoard);
-	}
+	public List<ReFreeBean> re_list(ReFreeBean reBoard) { return reDao.re_list(reBoard); }
 
 	public int re_insert(ReFreeBean reBoard) {
 		return reDao.re_insert(reBoard);
-	}
-
-	public void delete(int rno) {
-		reDao.delete(rno);
 	}
 
 	public void update(ReFreeBean reBoard) {
