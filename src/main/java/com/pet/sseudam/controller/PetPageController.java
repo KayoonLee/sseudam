@@ -65,39 +65,42 @@ public class PetPageController {
 
     // 동물 상세페이지
     @RequestMapping("/memberpage_petview")
-    public String petView(Integer p_id, Model model, String pageNum, ProfileBean profile_board, HttpSession session) {
+    public String petView(@RequestParam("p_id")int p_id, Model model, String pageNum, HttpSession session) {
         System.out.println("동물 상세페이지");
 
-           PetBean pet = pps.p_select(p_id);   // 상세정보구하기
+        PetBean pet = pps.p_select(p_id);   // 상세정보구하기
 
-        List<ProfileBean> profile_list = pps.profileView(pet.getProfile_num());
+        System.out.println("상세정보 구하기 성공");
 
-        model.addAttribute("pageNum", pageNum);
+
+        System.out.println("이미지도 구해옴");
+        
         model.addAttribute("pet", pet);
-        model.addAttribute("profile_list", profile_list);
+        model.addAttribute("pageNum", pageNum);
 
-        System.out.println("여기까지");
         return "memberPage/memberpage_petview";
 
     }
 
     // 동물 수정폼
     @RequestMapping("/memberpage_petupdate.do")
-    public String petUpdateForm(Integer p_id, Model model, String pageNum, HttpSession session) {
+    public String petUpdateForm(int p_id, Model model, String pageNum, HttpSession session) {
         System.out.println("동물 수정페이지");
 
         PetBean pet = pps.p_select(p_id);   // 상세정보구하기
 
         model.addAttribute("pet", pet);
         model.addAttribute("pageNum", pageNum);
+
         return "memberPage/memberpage_petupdate";
     }
 
+    // 여기까지 성공
     // 동물 수정
     @RequestMapping("petupdate")
     public String petUpdate(HttpServletRequest request, ProfileBean profile_board, PetBean pet, Model model, MultipartFile mf) {
 
-        System.out.println("동물 수정 성공");
+        System.out.println("동물 수정 진입");
 
         String filename = mf.getOriginalFilename();
         int size = (int)mf.getSize();
@@ -111,14 +114,12 @@ public class PetPageController {
             System.out.println("filename은 " + filename);
 
             //이전 실제 첨부파일 삭제
-            List<ProfileBean> old_filelist = pps.profileList(profile_board);
+            String oldFilename = pps.profileSelect(profile_board);
 
-            for(int j=0; j< old_filelist.size(); j++){
-                String real_name = old_filelist.get(j).getProfile_name();
-                System.out.println("삭제할 파일 경로" + file_path + "/" + real_name);
-                File real_file =new File(file_path + "/" + real_name);
-                real_file.delete();
-            }
+            System.out.println("삭제할 파일 경로" + file_path + "/" + oldFilename);
+            File real_file =new File(file_path + "/" + oldFilename);
+            real_file.delete();
+
 
             String extension = filename.substring(filename.lastIndexOf("."));
             UUID uuid = UUID.randomUUID();
@@ -134,8 +135,8 @@ public class PetPageController {
                 e.getMessage();
             }
 
-            profile_board.setProfile_origin(filename);
-            profile_board.setProfile_name(new_filename);
+            pet.setProfile_origin(filename);
+            pet.setProfile_name(new_filename);
 
 
             int count = pps.profileUpdate(profile_board);
@@ -148,7 +149,7 @@ public class PetPageController {
             if (result == 1) System.out.println("동물 수정 성공");
             model.addAttribute("result", result);
             model.addAttribute("p_id", pet.getP_id());
-
+            model.addAttribute("pet", pet);
 
         }
 

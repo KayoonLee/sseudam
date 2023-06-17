@@ -200,29 +200,28 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberPost">
+                        <a href="memberpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberReply">
+                        <a href="memberpage_myreply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberLike">
+                        <a href="memberpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
-                            <i class="bi bi-circle"></i><span>상담신청내역</span>
+                        <a href="memberpage_mypaper">
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberCounselor">
+                <a class="nav-link collapsed" href="memberpage_mycounselor">
                     <i class="bi bi-grid"></i>
                     <span>즐겨찾는 상담사</span>
                 </a>
@@ -246,7 +245,7 @@
                             <div class="col-sm-3">
                                 <div>
                                     <div class="card">
-                                        <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
+                                        <a href="memberpage_petview?p_id=${pet.p_id}&pageNum=${pageNum}">
                                             <img class="card-img-top" src="./petimg/${pet.profile_name}">
                                         </a>
                                         <td>${pet.animal}</td>

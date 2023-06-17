@@ -266,23 +266,15 @@
   </aside>
   <main id="main" class="main">
     <div class="pagetitle">
-      <h1>내 반려동물</h1>
+      <h 1>내 반려동물</h1>
       <br>
     </div><!-- End Page Title -->
     <form action="petupdate" method="post" enctype="multipart/form-data" attribute>
     <section class="section profile">
       <input type=hidden value="${pet.p_id }" name="p_id">
       <input type=hidden value="${pageNum }" name="pageNum">
+      <input type=hidden value="${pet.profile_num }" name="profile_num">
       <div class="row">
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-              <img src="./petimg/${pet.profile_name}" alt="Profile" class="rounded-circle">
-              <h2>${pet.animal}</h2>
-            </div>
-          </div>
-        </div>
-
         <div class="col-xl-8">
           <div class="card">
             <div class="card-body pt-3">
@@ -295,7 +287,7 @@
                   <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
                   <div class="col-md-8 col-lg-9">
                     <div id="previewContainer">
-                      <img src="./petimg/${pet.profile_num}" alt="Profile" class="thumbnail" >
+                      <img src="./petimg/${pet.profile_name}" alt="Profile" class="thumbnail" >
                     </div>
                     <div class="pt-2">
                       <input type="file" id="imageInput" name="files"

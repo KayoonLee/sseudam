@@ -201,29 +201,29 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberPost">
+                        <a href="memberpage_mypost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberReply">
+                        <a href="memberpage_myreply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberLike">
+                        <a href="memberpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberPaper">
+                        <a href="memberpage_mypaper">
                             <i class="bi bi-circle"></i><span>상담신청내역</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberCounselor">
+                <a class="nav-link collapsed" href="memberpage_mycounselor">
                     <i class="bi bi-grid"></i>
                     <span>즐겨찾는 상담사</span>
                 </a>
@@ -238,18 +238,9 @@
             <br>
         </div><!-- End Page Title -->
         <section class="section profile">
-            <input type=hidden value="${pet.p_id }" id="p_id">
+            <input type=hidden value="${pet.p_id }" id="p_id" name="p_id">
             <input type=hidden value="${pageNum }" id="pageNum">
             <div class="row">
-               <%-- <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            <img src="./petimg/${pet.profile_origin}" alt="Profile" class="rounded-circle">
-                            <h2>${pet.animal}</h2>
-                        </div>
-                    </div>
-                </div>--%>
-
                 <div class="col-xl-8">
                     <div class="card">
                         <div class="card-body pt-3">
@@ -257,9 +248,8 @@
                                 <div class="tab-pane fade show active profile-overview" id="pet-overview">
                                     <br>
                                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                                        <img src="./petimg/${pet.profile_name}" alt="Profile" class="rounded-circle">
+                                        <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle">
                                     </div>
-
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">이름</div>
                                         <div class="col-lg-9 col-md-8">${pet.animal}</div>
@@ -273,7 +263,6 @@
                                             <c:if test="${pet.kind == 'c'}">
                                                 고양이
                                             </c:if>
-
                                         </div>
                                     </div>
                                     <div class="row">

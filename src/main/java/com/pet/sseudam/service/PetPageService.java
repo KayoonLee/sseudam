@@ -17,7 +17,7 @@ public interface PetPageService {
 
     void setEndRow(int endRow);
 
-    PetBean p_select(Integer p_id);
+    PetBean p_select(int p_id);
 
     int p_update(PetBean pet);
 
@@ -30,9 +30,8 @@ public interface PetPageService {
 
     int profileAdd(ProfileBean profileBoard);
 
-    List<ProfileBean> profileList(ProfileBean profileBoard);
 
     int profileUpdate(ProfileBean profileBoard);
 
-    List<ProfileBean> profileView(int profileNum);
+    String profileSelect(ProfileBean profileBoard);
 }

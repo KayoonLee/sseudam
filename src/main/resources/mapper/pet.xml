@@ -21,8 +21,9 @@
 
     <!-- 반려동물 상세정보 -->
     <select id="p_select" parameterType="int" resultType="pet">
---         select * from pet where p_id=#{p_id}
-        select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num where p_id=#{p_id}
+        select p_id, g_id, animal, birth, kind, breed, pet.profile_num, feature, gender, neutering, state,
+                b.profile_name, b.profile_origin
+        from pet inner join img_profile b on pet.profile_num = b.profile_num where p_id=#{p_id}
     </select>
 
     <!-- 반려동물 추가 -->
@@ -31,13 +32,6 @@
         values
             ( #{p_id},#{g_id}, #{animal}, #{birth}, #{kind}, #{breed}, #{profile_num}, #{feature}, #{gender}, #{neutering}, #{state})
     </insert>
-
-
-    <!-- 반려동물 정보수정 -->
-    <update id="p_update" parameterType="pet">
-        update pet set animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed}, feature=#{feature}, gender=#{gender}, neutering=#{neutering}
-        where p_id=#{p_id}
-    </update>
 
 
     <!-- 프로필사진 관련-->
@@ -52,16 +46,25 @@
         insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
     </insert>
 
-    <select id="profileView" parameterType="int">
-        select * from img_profile where profile_num=#{profile_num}
-    </select>
-
-    <select id="profileList" parameterType="profile_board" resultType="profile_board">
+    <select id="profileSelect" parameterType="profile_board" resultType="String">
         select profile_name from img_profile where profile_num=#{profile_num}
     </select>
+
+    <update id="profileUpdate" >
+        update img_profile set profile_name=#{profile_name} profile_origin=#{profile_origin}
+                           where profile_num=#{profile_num}
+    </update>
 
     <delete id="profileDelete" parameterType="int">
         delete from img_profile where profile_num=#{profile_num}
     </delete>
+
+    <update id="p_update" parameterType="pet">
+        update pet a join img_profile b on a.profile_num=b.profile_num
+            set animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
+                feature=#{feature}, gender=#{gender}, neutering=#{neutering},
+                       profile_name=#{profile_name} profile_origin=#{profile_origin}
+        where p_id=#{p_id}
+    </update>
 
 </mapper>

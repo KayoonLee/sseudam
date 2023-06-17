@@ -12,20 +12,18 @@ public interface PetDao {
     // 동물리스트
     int getTotal(PetBean pet);
     List<PetBean> p_list(PetBean pet);
-    PetBean p_select(Integer p_id);
+    PetBean p_select(int p_id);
     int p_update(PetBean pet);
 
     int p_insert(PetBean pet);
 
     int getMaxnum();
 
-    List<ProfileBean> profileView(int profileNum);
-
-    List<ProfileBean> profileList(ProfileBean profileBoard);
-
     int profileAdd(ProfileBean profileBoard);
 
     int profileDelete(int profileNum);
 
     int profileUpdate(ProfileBean profileBoard);
+
+    String profileSelect(ProfileBean profileBoard);
 }

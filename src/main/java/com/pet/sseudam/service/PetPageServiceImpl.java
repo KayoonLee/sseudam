@@ -36,7 +36,8 @@ public class PetPageServiceImpl implements PetPageService{
     }
 
     @Override
-    public PetBean p_select(Integer p_id) {
+    public PetBean p_select(int p_id) {
+        System.out.println("펫상세페이지서비스"+p_id);
         return dao.p_select(p_id);
     }
 
@@ -56,7 +57,8 @@ public class PetPageServiceImpl implements PetPageService{
     }
 
 
-
+    // 프로필사진 관련
+    // 프로필사진은 하나기 때문에 list로 만들 필요없고, p_id로 조인해서 가져오기 때문에 추가, 삭제만 있으면됨
     @Override
     public int profileDelete(int profileNum) {
         return dao.profileDelete(profileNum);
@@ -67,10 +69,6 @@ public class PetPageServiceImpl implements PetPageService{
         return dao.profileAdd(profileBean);
     }
 
-    @Override
-    public List<ProfileBean> profileList(ProfileBean profileBoard) {
-        return dao.profileList(profileBoard);
-    }
 
     @Override
     public int profileUpdate(ProfileBean profileBoard) {
@@ -78,8 +76,8 @@ public class PetPageServiceImpl implements PetPageService{
     }
 
     @Override
-    public List<ProfileBean> profileView(int profileNum) {
-        return dao.profileView(profileNum);
+    public String profileSelect(ProfileBean profileBoard) {
+        return dao.profileSelect(profileBoard);
     }
 
 
