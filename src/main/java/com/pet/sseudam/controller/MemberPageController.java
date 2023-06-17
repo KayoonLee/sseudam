@@ -25,7 +25,7 @@ public class MemberPageController {
         this.mps = mps;
     }
 
-    
+
     // 나의 프로필(마이페이지 default)
     @GetMapping("memberpage_main")
     public String memberPageMain(HttpSession session, Member member, Model model){

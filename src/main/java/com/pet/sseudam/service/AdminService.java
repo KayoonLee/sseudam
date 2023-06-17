@@ -14,10 +14,5 @@ public interface AdminService {
 
     List<PetBean> dog_list(PetBean pet);
     List<PetBean> cat_list(PetBean pet);
-    
-/* 진우님이 적으신 것 TempAdminService
-    List<Member> admin_list(Member member);
-    Member adminSelect(Integer m_id);
-    PetBean petSelect(Integer m_id);
-*/
+
 }
