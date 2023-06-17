@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시판 작성폼</title>
+    <title>게시판 작성하기 폼</title>
 
     <script src="./js/free.js"></script>
 
