@@ -18,4 +18,6 @@
     <select id="nickChk" parameterType="String" resultType="member">
         select * from member where nick = #{nick}
     </select>
+
+
 </mapper>

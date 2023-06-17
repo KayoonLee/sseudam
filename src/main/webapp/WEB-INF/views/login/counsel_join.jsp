@@ -145,7 +145,7 @@
         <h4 class="mb-3">상담사 회원가입</h4>
 
         <form class="validation-form" action="insertCounsel" method="post">
-         <input type="hidden" name="identifier" value="3"><!--상담사 승인대기: 3-->
+         <input type="hidden" name="identifier" value="2"><!--상담사 승인대기: 3-->
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>

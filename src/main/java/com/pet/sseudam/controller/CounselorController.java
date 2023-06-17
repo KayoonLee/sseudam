@@ -79,4 +79,6 @@ public class CounselorController {
 
         return "login/nickCheck";
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.pet.sseudam.dao;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.ProfileBean;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -24,4 +25,20 @@ public interface MemberDao {
     void updatePwd(Member findmember);
 
     int updateNewPw(Member member);
+
+    int myUpdate(Member member);
+
+
+    void csmyUpdate(Member member);
+
+    int getMaxnum();
+
+    int profileAdd(ProfileBean pfb);
+
+//    Member profileAfter(int m_id);
+
+
+
+
+    void fileView(int profile_num);
 }

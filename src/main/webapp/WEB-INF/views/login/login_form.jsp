@@ -84,13 +84,15 @@
              </div>
          </div>
 
-        <div class="row" align="center">
-            <div class="col-md-6 mb-3" align="center">
-                <button type="button" class="btn btn-secondary" id="findEmail">이메일아이디 찾기</button>
 
+         <div class="mb-3" align="center">
+                <button type="button" class="btn btn-secondary" id="findEmail">이메일아이디 찾기</button>
                 <button type="button" class="btn btn-secondary" id="findPasswd">비밀번호 찾기</button>
-              </div>
-        </div>
+                <button type="button" class="btn btn-danger" id="adminLogin">관리자 로그인</button>
+         </div>
+
+
+
 
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">로그인</button>

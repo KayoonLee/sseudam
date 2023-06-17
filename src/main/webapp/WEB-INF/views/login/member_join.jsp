@@ -158,7 +158,7 @@
              <div class="col-md-6 mb-3">
                 <label for="birth">닉네임</label>
                 <input type="text" class="form-control" id="nick" name="nick" placeholder="닉네임을 입력하세요" required>
-
+                <input type="button" id="nickChk" value="중복 확인">
                 <div class="invalid-feedback">
                   닉네임을 입력해주세요.
                  </div>

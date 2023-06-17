@@ -1,6 +1,7 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.ProfileBean;
 
 public interface MemberService{
 
@@ -20,4 +21,18 @@ public interface MemberService{
     void updatePwd(Member findmember);
 
     int updateNewPw(Member member);
+
+    int myUpdate(Member member);
+
+
+    void csmyUpdate(Member member);
+
+    int getMaxnum();
+
+    int profileAdd(ProfileBean pfb);
+
+    void fileView(int profile_num);
+
+
+//    Member profileAfter(int m_id);
 }
