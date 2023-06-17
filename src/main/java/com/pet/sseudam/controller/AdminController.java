@@ -1,17 +1,20 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
-import com.pet.sseudam.service.AdminServiceImpl;
+import com.pet.sseudam.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.*;
+
 @Controller
 public class AdminController {
 
     @Autowired
-    private AdminServiceImpl adminservice;
+    private AdminService adminService;
 
     // 관리자 메인페이지
     @GetMapping("adminMain")
@@ -27,11 +30,32 @@ public class AdminController {
         return "adminPage/admin_dashboard";
     }
 
-//    // 일반회원 페이지
-//    @GetMapping("adminMemberPage")
-//    public String memberPage() {
-//        System.out.println("회원관리 페이지로 이동");
-//        return "adminPage/admin_member_page";
+    // 일반회원 페이지
+    @GetMapping("adminMemberPage")
+    public String memberPage(Member member, Model model) {
+        System.out.println("회원관리 페이지로 이동");
+        List<Member> admin_list = adminService.admin_list(member);
+        System.out.println("admin_list = " + admin_list);
+        model.addAttribute("admin_list", admin_list);
+
+        return "adminPage/admin_member_page";
+    }
+
+    //일반회원 페이지 상세
+    @GetMapping("adminViewPage")
+    public String adminViewPage(Model model, Integer m_id, PetBean petBean){
+        System.out.println("상세페이지 보이기");
+
+        Member memberDto = adminService.adminSelect(m_id);
+        petBean = adminService.petSelect(m_id);
+
+        System.out.println(memberDto);
+        System.out.println(petBean);
+        model.addAttribute("memberDto",memberDto);
+        model.addAttribute("pet",petBean);
+        return "adminPage/admin_member_view";
+    }
+
 
     // 일반회원 신고 페이지
     @GetMapping("adminMemberReport")
@@ -54,10 +78,14 @@ public class AdminController {
         return "adminPage/admin_counselor_apply";
     }
 
-    // 강아지 리스트 페이지
+    // 강아지 리스트 페이지 수정중...
     @GetMapping("adminDogPage")
-    public String adminDogPage() {
+    public String adminDogPage(PetBean pet, Model model) {
         System.out.println("강아지 리스트 페이지 진입");
+
+        List<PetBean> dog_list = adminService.dog_list(pet);
+        model.addAttribute("dog_list", dog_list);
+
         return "adminPage/admin_dog_page";
     }
 
@@ -66,8 +94,8 @@ public class AdminController {
     public String adminCatPage(PetBean pet, Model model) {
         System.out.println("고양이 리스트 페이지 진입");
 
-        //List<Pet> cat_list = adminservice.cat_list(pet);
-        //model.addAttribute("", cat_list);
+        List<PetBean> cat_list = adminService.cat_list(pet);
+        model.addAttribute("cat_list", cat_list);
 
         return "adminPage/admin_cat_page";
     }

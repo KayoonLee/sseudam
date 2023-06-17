@@ -1,5 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -47,15 +47,14 @@
         <tbody>
         <c:if test="${not empty admin_list}">
             <c:forEach var="member" items="${admin_list}">
-                <tr>
-                    <c:set var="m_id" value="${member.m_id}"/>     <!--id = memberView 값 넘겨주기-->
-
+                <tr> <!-- onClick 으로 조회하는거 걸기 -->
+                    <c:set var="m_id" value="${member.m_id}" />     <!--id = memberView 값 넘겨주기-->
+                    <td>${member.row_num}</td>
                     <td>${member.m_id}</td>
                     <td>
                         <button type="button" id="memberView" onclick="loadMemberPage(${m_id})">${member.name}</button>
                     </td>
                     <td>${member.email}</td>
-                    <td>${member.passwd}</td>
                     <td>${member.nick}</td>
                     <td>${member.birth}</td>
                     <td>${member.tel}</td>
@@ -86,10 +85,10 @@
         </tbody>
         <thead>
         <tr>
-            <th>번호</th>
+            <th></th>
+            <th>회원번호</th>
             <th>이름</th>
             <th>이메일</th>
-            <th>비밀번호</th>
             <th>닉네임</th>
             <th>생일</th>
             <th>전화번호</th>
@@ -100,10 +99,10 @@
         </thead>
         <tfoot>
         <tr>
-            <th>번호</th>
+            <th></th>
+            <th>회원번호</th>
             <th>이름</th>
             <th>이메일</th>
-            <th>비밀번호</th>
             <th>닉네임</th>
             <th>생일</th>
             <th>전화번호</th>
@@ -116,11 +115,11 @@
 
     <br><br>
     <hr>
-    <!-- 상세페이지 출력 -->
-    <div id="adminResultView">
-    </div>
 
-    <br><br>
+    <!-- 상세페이지 출력 -->
+    <div id="adminResultView"></div>
+
+    <br>
 
 </main><!-- End #main -->
 
