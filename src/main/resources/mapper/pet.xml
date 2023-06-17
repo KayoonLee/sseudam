@@ -50,10 +50,7 @@
         select profile_name from img_profile where profile_num=#{profile_num}
     </select>
 
-    <update id="profileUpdate" >
-        update img_profile set profile_name=#{profile_name} profile_origin=#{profile_origin}
-                           where profile_num=#{profile_num}
-    </update>
+
 
     <delete id="profileDelete" parameterType="int">
         delete from img_profile where profile_num=#{profile_num}
@@ -63,7 +60,7 @@
         update pet a join img_profile b on a.profile_num=b.profile_num
             set animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
                 feature=#{feature}, gender=#{gender}, neutering=#{neutering},
-                       profile_name=#{profile_name} profile_origin=#{profile_origin}
+                       profile_name=#{profile_name}, profile_origin=#{profile_origin}
         where p_id=#{p_id}
     </update>
 

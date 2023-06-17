@@ -12,6 +12,8 @@
     <title>Title</title>
 </head>
 <body>
+여기들어왓음
+console.log(${p_id})
 <c:if test="${result > 0 }">
     <script type="text/javascript">
         alert("수정 완료");

@@ -98,12 +98,14 @@ public class PetPageController {
     // 여기까지 성공
     // 동물 수정
     @RequestMapping("petupdate")
-    public String petUpdate(HttpServletRequest request, ProfileBean profile_board, PetBean pet, Model model, MultipartFile mf) {
+    public String petUpdate(HttpServletRequest request, ProfileBean profile_board, PetBean pet, Model model, @RequestParam("files") MultipartFile mf) {
 
         System.out.println("동물 수정 진입");
 
         String filename = mf.getOriginalFilename();
         int size = (int)mf.getSize();
+
+        System.out.println("여보세요나야");
 
         //파일 첨부 관련
         if (size > 0) {
@@ -139,17 +141,28 @@ public class PetPageController {
             pet.setProfile_name(new_filename);
 
 
-            int count = pps.profileUpdate(profile_board);
+            //int count = pps.profileUpdate(profile_board);
 
-            if(count==1){
-                System.out.println("첨부파일 수정 성공");
-            }
+
+            // 수정
+            //int count = pps.p_update(pet);
+
+//            if(count==1){
+//                System.out.println("첨부파일 수정 성공");
+//            }
+
+            System.out.println("여기");
 
             int result = pps.p_update(pet);
+
+            System.out.println("result: " + result);
+
             if (result == 1) System.out.println("동물 수정 성공");
+
             model.addAttribute("result", result);
             model.addAttribute("p_id", pet.getP_id());
             model.addAttribute("pet", pet);
+            model.addAttribute("profile_board", profile_board);
 
         }
 
