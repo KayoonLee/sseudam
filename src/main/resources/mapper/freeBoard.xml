@@ -177,5 +177,12 @@
         delete from img_file where file_num=#{file_num}
     </delete>
 
+    <update id="imgUpdate" parameterType="image_board">
+        update img_file set file_origin=#{file_origin}, file_name=#{file_name}
+        where file_num = #{file_num}
+    </update>
+
+
+
 
 </mapper>
