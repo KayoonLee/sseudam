@@ -169,7 +169,7 @@
 
 
         <div>
-            <div>추천클릭!</div>
+            <div>추천버튼!</div>
             <img id="recom_image" src="images/muzik2.jpg" width="50" height="50"/>
             <div id="recom_block">${fboard.recom}</div>
         </div>
