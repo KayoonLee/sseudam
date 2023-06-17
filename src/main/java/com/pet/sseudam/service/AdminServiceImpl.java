@@ -40,21 +40,4 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<PetBean> cat_list(PetBean pet) { return adminDao.cat_list(pet); }
 
-
-/* 진우님이 작업하신 내용 TempAdminServiceImpl
-    @Override
-    public List<Member> admin_list(Member member) {
-        return admindao.admin_list(member);
-    }
-
-    @Override
-    public Member adminSelect(Integer m_id) {
-        return admindao.adminSelect(m_id);
-    }
-
-    @Override
-    public PetBean petSelect(Integer m_id) {
-        return admindao.petSelect(m_id);
-    }
-*/
 }
