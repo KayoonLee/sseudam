@@ -2,7 +2,7 @@ package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.CounselPaper;
 import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.Pet;
+import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.service.ConsultingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +27,7 @@ public class ConsultingController {
         // 나중에삭제해야함@@@@@@@@@@@@@@@@@@@@@@22
         session.setAttribute("g_id", 10);
         int g_id = (Integer) session.getAttribute("g_id");
-        List<Pet> pet_list = con.find_pet(g_id);
+        List<PetBean> pet_list = con.find_pet(g_id);
         if (pet_list.isEmpty()) {
             //동물 생성으로 return or 동물 생성 칸으로 가야합니다.jsp 보내고 jsp에서 동물 생성칸???
             return "consulting/go_pet";
@@ -69,7 +69,7 @@ public class ConsultingController {
         member = con.find_general(g_id);
         model.addAttribute("g_id", g_id);
         model.addAttribute("gen_name", member.getName());
-        List<Pet> pet_list = con.find_pet(g_id);
+        List<PetBean> pet_list = con.find_pet(g_id);
         model.addAttribute("pet_list", pet_list);
 
 
@@ -130,7 +130,7 @@ public class ConsultingController {
         Member counselor = con.find_general(counselpaper.getC_id());
 
         //해당 펫 조회
-        Pet pet = con.select_pet(counselpaper.getP_id());
+        PetBean pet = con.select_pet(counselpaper.getP_id());
         if (member.getIdentifier().equals("1")) {  //일반 회원
             model.addAttribute("paper_num", paper_num);
             model.addAttribute("r_num", r_num);
@@ -164,8 +164,8 @@ public class ConsultingController {
 
         Member member = con.find_general(counselpaper.getM_id());
         Member counselor = con.find_general(counselpaper.getC_id());
-        Pet pet = con.select_pet(counselpaper.getP_id());
-        List<Pet> pet_list = con.find_pet(member.getM_id());
+        PetBean pet = con.select_pet(counselpaper.getP_id());
+        List<PetBean> pet_list = con.find_pet(member.getM_id());
 
 
         model.addAttribute("member", member);

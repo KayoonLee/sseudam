@@ -1,12 +1,20 @@
 package com.pet.sseudam.dao;
 
-import lombok.Data;
+import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.PetBean;
 import org.apache.ibatis.annotations.Mapper;
-//@Data
+import java.util.*;
+
 @Mapper
 public interface AdminDao {
-    //String a_id;
-    //String passwd;
-    //String name;
-    //String nick;
+    /* 진우님 멤버 */
+    List<Member> admin_list(Member member);
+    Member adminSelect(Integer m_id);
+    List<PetBean> petSelect(Integer m_id);
+    void adminDelete(Member member);            //회원탈퇴
+
+    // 가윤
+    List<PetBean> dog_list(PetBean pet);
+
+    List<PetBean> cat_list(PetBean pet);
 }

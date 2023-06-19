@@ -3,7 +3,7 @@ package com.pet.sseudam.service;
 import com.pet.sseudam.dao.ConsultingDao;
 import com.pet.sseudam.model.CounselPaper;
 import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.Pet;
+import com.pet.sseudam.model.PetBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -29,12 +29,12 @@ public class ConsultingServiceImpl implements ConsultingService{
     }
 
     @Override
-    public List<Pet> find_pet(int g_id) {
+    public List<PetBean> find_pet(int g_id) {
         return dao.find_pet(g_id);
     }
 
     @Override
-    public Pet change_to_pet_id(int g_id, String animal) {
+    public PetBean change_to_pet_id(int g_id, String animal) {
         return dao.change_to_pet_id(g_id,animal);
     }
 
@@ -58,7 +58,7 @@ public class ConsultingServiceImpl implements ConsultingService{
     }
 
     @Override
-    public Pet select_pet(int g_id) {
+    public PetBean select_pet(int g_id) {
         return dao.select_pet(g_id);
     }
 
