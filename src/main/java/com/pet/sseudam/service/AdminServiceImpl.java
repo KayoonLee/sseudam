@@ -17,7 +17,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminDao adminDao;
-    // 진우님
+// 진우님
     @Override
     public List<Member> admin_list(Member member) {
         return adminDao.admin_list(member);
@@ -33,11 +33,25 @@ public class AdminServiceImpl implements AdminService {
         return adminDao.petSelect(m_id);
     }
 
-    // 가윤
+// 가윤
+    // 강아지 리스트
     @Override
     public List<PetBean> dog_list(PetBean pet) { return adminDao.dog_list(pet); }
 
+    // 강아지 상세페이지
+    @Override
+    public PetBean adminDogSelect(int p_id) { return adminDao.adminDogSelect(p_id); }
+
+    // 강아지+사람 상세페이지
+    @Override
+    public Member adminAnimalSelect(/*int g_id, */int p_id) { return adminDao.adminAnimalSelect(/*g_id,*/ p_id); }
+
+    // 고양이 리스트
     @Override
     public List<PetBean> cat_list(PetBean pet) { return adminDao.cat_list(pet); }
+    
+    // 고양이 상세페이지
+    @Override
+    public PetBean adminCatSelect(int p_id) { return adminDao.adminCatSelect(p_id); }
 
 }

@@ -57,7 +57,6 @@ public class AdminController {
         return "adminPage/admin_member_view";
     }
 
-
     // 일반회원 신고 페이지
     @GetMapping("adminMemberReport")
     public String adminMemberReport() {
@@ -79,9 +78,9 @@ public class AdminController {
         return "adminPage/admin_counselor_apply";
     }
 
-    // 강아지 리스트 페이지 수정중...
+    // 강아지 리스트 페이지
     @GetMapping("adminDogPage")
-    public String adminDogPage(PetBean pet, Model model) {
+    public String adminDogPage(Model model, PetBean pet) {
         System.out.println("강아지 리스트 페이지 진입");
 
         List<PetBean> dog_list = adminService.dog_list(pet);
@@ -90,7 +89,24 @@ public class AdminController {
         return "adminPage/admin_dog_page";
     }
 
-    // 고양이 리스트 페이지 수정중...
+    // 강아지 상세페이지
+    @GetMapping("adminDogViewPage")
+    public String adminDogViewPage(Model model, int p_id/*, int g_id*/) {
+        System.out.println("강아지 상세페이지 보기");
+
+        //System.out.println("p_id: "  + p_id + ", g_id: " + g_id);
+        PetBean pet = adminService.adminDogSelect(p_id);
+        Member memberDto = adminService.adminAnimalSelect(/*g_id,*/ p_id);
+        System.out.println(pet);
+        System.out.println(memberDto);
+
+        model.addAttribute("pet", pet);
+        model.addAttribute("memberDto", memberDto);
+
+        return "adminPage/admin_dog_view";
+    }
+
+    // 고양이 리스트 페이지
     @GetMapping("adminCatPage")
     public String adminCatPage(PetBean pet, Model model) {
         System.out.println("고양이 리스트 페이지 진입");
@@ -101,6 +117,19 @@ public class AdminController {
         return "adminPage/admin_cat_page";
     }
     
+    // 고양이 상세페이지
+    @GetMapping("adminCatViewPage")
+    public String adminCatViewPage(Model model, int p_id) {
+        System.out.println("고양이 상세페이지 보기");
+
+        PetBean pet = adminService.adminCatSelect(p_id);
+        System.out.println(pet);
+
+        model.addAttribute("pet", pet);
+
+        return "adminPage/admin_cat_view";
+    }
+
     // 관리자 프로필/마이페이지
     @GetMapping("adminProfile")
     public String adminProfile() {
