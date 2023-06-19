@@ -95,7 +95,7 @@
                                             aria-expanded="false">
                                             My Page
                                         </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_1" href="#">
                                             <a class="dropdown-item" href="memberpage_main">일반회원 마이페이지</a>
                                             <a class="dropdown-item" href="counselorpage_main">상담사 전용 마이페이지</a>
                                             <a class="dropdown-item" href="adminMain">관리자 페이지</a>

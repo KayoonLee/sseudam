@@ -266,7 +266,7 @@
   </aside>
   <main id="main" class="main">
     <div class="pagetitle">
-      <h 1>내 반려동물</h1>
+      <h1>내 반려동물</h1>
       <br>
     </div><!-- End Page Title -->
     <form action="petupdate" method="post" enctype="multipart/form-data" attribute>
@@ -387,7 +387,7 @@
       </div>
     </section>
 
-    </form><!-- End Profile Edit Form -->>
+    </form><!-- End Profile Edit Form -->
   </main>
 </body>
 </html>

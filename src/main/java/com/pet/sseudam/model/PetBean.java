@@ -13,7 +13,7 @@ public class PetBean {
     private String birth;
     private String kind;
     private String breed;
-    private int profile_num;
+    private Integer profile_num;
     private String feature;
     private int gender;
     private int neutering;

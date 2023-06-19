@@ -231,8 +231,8 @@
 
     </ul>
 </aside>
-    <main id="main" class="main">
 
+    <main id="main" class="main">
         <div class="pagetitle">
             <h1>Profile</h1>
             <nav>
@@ -325,7 +325,6 @@
         </section>
 
     </main><!-- End #main -->
-
 
 </body>
 </html>

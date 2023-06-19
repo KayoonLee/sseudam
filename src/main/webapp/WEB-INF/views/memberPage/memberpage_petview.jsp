@@ -248,7 +248,12 @@
                                 <div class="tab-pane fade show active profile-overview" id="pet-overview">
                                     <br>
                                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                                        <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle">
+                                        <c:if test="${empty pet.profile_num}">
+                                            <img src="/images/petdefault.png">
+                                        </c:if>
+                                        <c:if test="${!empty pet.profile_num}">
+                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle">
+                                        </c:if>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">이름</div>

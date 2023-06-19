@@ -5,14 +5,20 @@
 <mapper namespace="com.pet.sseudam.dao.PetDao">
     <!--반려동물 목록-->
     <select id="p_list" parameterType="pet" resultType="pet">
-<!--        <if test="profile_num == 0 ">
-            select * from pet
-        </if>
-        <if test="profile_num != 0 ">-->
-            select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num
-        <!--</if>-->
-
+        <choose>
+            <when test="profile_num == null">
+                select * from pet
+            </when>
+            <otherwise>
+                select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num
+            </otherwise>
+        </choose>
     </select>
+
+    <!--select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num-->
+    <!--select p_id, g_id, animal, birth, kind, breed, pet.profile_num, feature, gender, neutering, state from pet;-->
+
+
 
     <!-- 반려동물 몇 마리-->
     <select id="getTotal" resultType="int">
@@ -22,23 +28,34 @@
     <!-- 반려동물 상세정보 -->
     <select id="p_select" parameterType="int" resultType="pet">
         select p_id, g_id, animal, birth, kind, breed, pet.profile_num, feature, gender, neutering, state,
-                b.profile_name, b.profile_origin
+               b.profile_name, b.profile_origin
         from pet inner join img_profile b on pet.profile_num = b.profile_num where p_id=#{p_id}
     </select>
 
-    <!-- 반려동물 추가 -->
+    <!--반려동물 추가 -->
     <insert id="p_insert" parameterType="pet">
-        insert into pet (p_id, g_id, animal, birth, kind, breed, profile_num, feature, gender, neutering, state )
-        values
-            ( #{p_id},#{g_id}, #{animal}, #{birth}, #{kind}, #{breed}, #{profile_num}, #{feature}, #{gender}, #{neutering}, #{state})
+        insert into pet (p_id, g_id, animal, birth, kind, breed, profile_num, feature, gender, neutering, state)
+        values (#{p_id}, #{g_id}, #{animal}, #{birth}, #{kind}, #{breed}, #{profile_num}, #{feature}, #{gender}, #{neutering}, #{state})
     </insert>
 
+
+    <update id="p_update" parameterType="pet">
+        update pet a
+            join
+            img_profile b on a.profile_num=b.profile_num
+
+            set animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
+                feature=#{feature}, gender=#{gender}, neutering=#{neutering}
+                    ,profile_name=#{profile_name}, profile_origin=#{profile_origin}
+        where p_id=#{p_id}
+    </update>
 
     <!-- 프로필사진 관련-->
     <select id="getMaxnum" resultType="int">
         select ifnull(max(profile_num), 0) from img_profile
-     </select>
+    </select>
 
+    <!-- 프로필사진 추가 -->
     <insert id="profileAdd" parameterType="profile_board">
         <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">
             select ifnull(max(profile_num),0) + 1 from img_profile
@@ -46,22 +63,20 @@
         insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
     </insert>
 
+
     <select id="profileSelect" parameterType="profile_board" resultType="String">
         select profile_name from img_profile where profile_num=#{profile_num}
     </select>
-
 
 
     <delete id="profileDelete" parameterType="int">
         delete from img_profile where profile_num=#{profile_num}
     </delete>
 
-    <update id="p_update" parameterType="pet">
+    <update id="profileUpdate" parameterType="int">
         update pet a join img_profile b on a.profile_num=b.profile_num
-            set animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
-                feature=#{feature}, gender=#{gender}, neutering=#{neutering},
-                       profile_name=#{profile_name}, profile_origin=#{profile_origin}
-        where p_id=#{p_id}
+            set profile_name=#{profile_name}, profile_origin=#{profile_origin}
+        where p_id=#{p_id}, g_id=#{g_id}
     </update>
 
 </mapper>
