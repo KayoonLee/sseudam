@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${result > 0 }">
+<c:if test="${result > 0 || res > 0}">
       <script type="text/javascript">
          alert("수정 완료");
          location.href = "counselorpage_main";

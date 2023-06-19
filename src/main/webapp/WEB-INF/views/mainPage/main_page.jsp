@@ -1,5 +1,6 @@
 <!doctype html><%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
@@ -39,16 +40,23 @@
                 <div class="row">
                     <div class="col-lg-6 col-sm-12 col-md-6">
                         <div class="sub_menu_right_content">
-                            <span>Welcome To SSEUDAM</span>
-                            <!--<a href="#">Asia</a>
-                            <a href="#">Europe</a>
-                            <a href="#">America</a>-->
+
+                        <span>Welcome To SSEUDAM</span>
+
+
                         </div>
                     </div>
                     <div class="col-lg-6 col-sm-12 col-md-6">
                         <div class="sub_menu_social_icon">
+
+                        <c:if test="${empty member.m_id and empty admin.a_email}">
                             <a href="separate_join">회원가입</a>
                             <a href="login_form">로그인</a>
+                        </c:if>
+
+                        <c:if test="${!empty member.m_id or !empty admin.a_email}">
+                            <a href="logout">로그아웃</a>
+                        </c:if>
                         </div>
                     </div>
                 </div>
@@ -75,9 +83,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="about.html">상담신청</a>
                                     </li>
-                                    <!--<li class="nav-item">
-                                        <a class="nav-link" href="packages.html"></a>
-                                    </li>-->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="counselor_list">상담사 소개</a>
+                                    </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -90,15 +98,18 @@
                                         </div>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                             My Page
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                             <a class="dropdown-item" href="memberpage_main">일반회원 마이페이지</a>
-                                            <a class="dropdown-item" href="counselorpage_main">상담사 전용 마이페이지</a>
-                                            <a class="dropdown-item" href="adminMain">관리자 페이지</a>
+                                            <a class="dropdown-item" href="counselorpage_main">상담사 마이페이지</a>
+
+                                            <c:if test="${!empty admin.a_email}">
+                                                <a class="dropdown-item" href="adminMain">관리자 페이지</a>
+                                            </c:if>
                                         </div>
                                     </li>
                                     <!--<li class="nav-item">
@@ -106,7 +117,9 @@
                                     </li>-->
                                 </ul>
                             </div>
-                            <a href="#" class="btn_1 d-none d-lg-block">book now</a>
+                            <c:if test="${!empty member.m_id or !empty admin.a_email}">
+                            <a href="#" class="btn_1 d-none d-lg-block">${member.nick} 님</a>
+                            </c:if>
                         </nav>
                     </div>
                 </div>
@@ -144,6 +157,7 @@
                     <div class="section_tittle text-center">
                         <h2>우리 멍냥이가 달라졌어요!</h2>
                         <p>보다 더 나은 상담으로 반려동물을 이해할 수 있습니다.</p>
+                        <p>행복한 반려동물을 위한 행동 상담의 시작</p>
                     </div>
                 </div>
             </div>
@@ -240,7 +254,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#" class="btn_1 text-cnter">Discover more</a>
+                <a href="#" class="btn_1 text-cnter">더 알아보기</a>
             </div>
         </div>
     </section>
@@ -342,29 +356,26 @@
     <section class="client_review section_padding">
         <div class="container">
             <div class="row ">
-                <div class="col-xl-6">
+                <div class="col-xl-8">
                     <div class="section_tittle">
                         <h2>What they said</h2>
-                        <h2>(고객 후기 or 상담사의 한 마디)</h2>
+                        <h2>쓰담쓰담의 상담사들의 한 마디</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-10">
                     <div>
                         <div>
-
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
+                            <p>"나의 진심과 지식으로 반려동물과 주인을 위해 노력하자"</p>
                             <h5> - Allen Miller</h5>
                         </div>
                         <div>
-
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
+                            <p>"모든 동물들에게 인간다운 존중과 애정을 보여주는 일에 최선을 다하자."</p>
                             <h5> - Allen Miller</h5>
                         </div>
                         <div>
-
-                            <p>Waters make fish every without firmament saw had. Morning air subdue. Our Air very one whales grass is fish whales winged night yielding land creeping that seed </p>
+                            <p>"상담의 순간, 동물들과 주인들의 심장을 한껏 들여다보자."</p>
                             <h5> - Allen Miller</h5>
                         </div>
                     </div>
@@ -380,8 +391,8 @@
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="section_tittle text-center">
-                        <h2>최고의 서비스 제공</h2>
-                        <p>Waters make fish every without firmament saw had. Morning air subdue. Our. Air very one. Whales grass is fish whales winged.</p>
+                        <h2>함께 성장하는 당신과 반려동물을 위한 행동 상담</h2>
+                        <p>맞춤형 행동 상담으로 반려동물과의 소중한 순간을 만들어주세요.</p>
                     </div>
                 </div>
             </div>
@@ -389,29 +400,29 @@
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_ihotel_list">
                         <img src="images/bbanhee.jpg" alt="">
-                        <h3> <a href="#"> Transportation</a></h3>
-                        <p>All transportation cost we bear</p>
+                        <h3><strong>이해</strong></h3>
+                        <p>가장 사랑스러운 반려동물을 위한 전문 행동 상담</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_ihotel_list">
                         <img src="images/happydog1.jpg" alt="">
-                        <h3> <a href="#"> Guidence</a></h3>
-                        <p>We offer the best guidence for you</p>
+                        <h3><b>유대</b></h3>
+                        <p>애착과 신뢰를 바탕으로하는 반려동물 행동 상담</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_ihotel_list">
                         <img src="images/tang1.jpg" alt="">
-                        <h3> <a href="#"> Accomodation</a></h3>
-                        <p>Luxarious and comfortable</p>
+                        <h3><strong>건강</strong></h3>
+                        <p>반려동물의 건강과 행복을 위한 전문적인 행동 상담</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_ihotel_list">
                         <img src="images/seol1.jpg" alt="">
-                        <h3> <a href="#"> Discover world</a></h3>
-                        <p>Best tour plan for your next tour</p>
+                        <h3><b>소통</b></h3>
+                        <p>당신과 반려동물의 더 나은 행복을 위한 상담 서비스</p>
                     </div>
                 </div>
             </div>
@@ -450,14 +461,15 @@
                 </div>
                 <div class="col-sm-6 col-md-4">
                     <div class="single-footer-widget">
-                        <h4>Subscribe Newsletter</h4>
+                        <h4>SEARCH!</h4>
+
                         <div class="form-wrap" id="mc_embed_signup">
                             <form target="_blank"
                                 action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
                                 method="get" class="form-inline">
-                                <input class="form-control" name="EMAIL" placeholder="Your Email Address"
-                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
-                                    required="" type="email">
+                                <input class="form-control" name="EMAIL" placeholder="검색해보세요!"
+                                    onfocus="this.placeholder = '검색해보세요!'" onblur="this.placeholder = '검색해보세요! '"
+                                   type="email">
                                 <button class="click-btn btn btn-default text-uppercase"> <i class="far fa-paper-plane"></i>
                                 </button>
                                 <div style="position: absolute; left: -5000px;">
@@ -468,21 +480,14 @@
                                 <div class="info"></div>
                             </form>
                         </div>
-                        <p>Subscribe our newsletter to get update news and offers</p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-3">
                     <div class="single-footer-widget footer_icon">
                         <h4>Contact Us</h4>
-                        <p>4156, New garden, New York, USA
-                                +880 362 352 783</p>
+                        <p>서울특별시 마포구 신촌로 176</p>
                         <span>sseudam@gmail.com</span>
-                        <div class="social-icons">
-                            <a href="#"><i class="ti-facebook"></i></a>
-                            <a href="#"><i class="ti-twitter-alt"></i></a>
-                            <a href="#"><i class="ti-pinterest"></i></a>
-                            <a href="#"><i class="ti-instagram"></i></a>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -491,7 +496,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="copyright_part_text text-center">
-                        <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <p class="footer-text m-0">
 Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>

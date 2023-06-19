@@ -28,7 +28,7 @@ public class Member {
     private Date join_date;
     private String reset;
     private int profile_num;
-//    private int row_num;
+    private int row_num;
 
 //사진정보
     private String profile_origin;

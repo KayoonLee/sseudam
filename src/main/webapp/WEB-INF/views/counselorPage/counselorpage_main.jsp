@@ -185,50 +185,45 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link " href="counselorpage_main">
-                <i class="bi bi-person"></i>
-                <span>나의 프로필</span>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberPet">
-                <i class="bi bi-balloon"></i><span>동물페이지</span>
-            </a>
-        </li>
+                    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="counselorpage_main">
+                        <i class="bi bi-menu-button-wide"></i>
+                        <span>나의 프로필</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                      <li>
+                          <a href="counselorpage_PwUpdateForm">
+                          <i class="bi bi-circle"></i><span>비밀번호 변경</span></i>
+                          </a>
+                      </li>
+                    </ul>
+                </li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="memberPost">
+                    <a href="counselorpage_mypost">
                         <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="memberReply">
+                    <a href="counselorpage_myreply">
                         <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="memberLike">
+                    <a href="counselorpage_mylike">
                         <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="memberPaper">
+                    <a href="counselorpage_request">
                         <i class="bi bi-circle"></i><span>상담신청내역</span>
                     </a>
                 </li>
             </ul>
         </li><!-- End Components Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberCounselor">
-                <i class="bi bi-grid"></i>
-                <span>즐겨찾는 상담사</span>
-            </a>
-        </li>
-
     </ul>
 </aside>
     <main id="main" class="main">
@@ -243,7 +238,7 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-
+<form action="counselorpage_updateform" method="post" enctype="multipart/form-data" attribute>
         <section class="section profile">
             <div class="row" align="center">
                 <div class="col-xl-8">
@@ -256,9 +251,7 @@
                                     location.href="'conselorpage_main">프로필</button>
                                 </li>
 
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">비밀번호 변경</button>
-                                </li>
+
 
                             </ul>
                             <div class="tab-content pt-2">
@@ -321,7 +314,7 @@
                                     </div>
                                 </div>
                              <div class="text-center">
-                                 <button type="submit" class="btn btn-primary" onclick="location.href='memberpage_updateform'">수정하러 가기</button>
+                                 <button type="submit" class="btn btn-primary">수정하러 가기</button>
                              </div>
 
 
@@ -333,7 +326,7 @@
                 </div>
             </div>
         </section>
-
+</form>
     </main><!-- End #main -->
 
 

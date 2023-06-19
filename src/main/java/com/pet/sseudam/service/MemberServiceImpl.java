@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Primary
 public class MemberServiceImpl implements MemberService{
@@ -62,10 +64,6 @@ public class MemberServiceImpl implements MemberService{
         return md.myUpdate(member);
     }
 
-    @Override
-    public void csmyUpdate(Member member) {
-        md.csmyUpdate(member);
-    }
 
     @Override
     public int getMaxnum() {
@@ -80,6 +78,31 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public void fileView(int profile_num) {
         md.fileView(profile_num);
+    }
+
+    @Override
+    public int csMyUpdate(Member member) {
+        return md.csMyUpdate(member);
+    }
+
+    @Override
+    public int myPwUpdate(Member member) {
+        return md.myPwUpdate(member);
+    }
+
+    @Override
+    public int csMyPwUpdate(Member member) {
+        return md.csMyPwUpdate(member);
+    }
+
+    @Override
+    public int myPicUpdate(Member member) {
+        return md.myPicUpdate(member);
+    }
+
+    @Override
+    public List<Member> counselorList() {
+        return md.counselor();
     }
 
 

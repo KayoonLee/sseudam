@@ -185,18 +185,26 @@
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-            <a class="nav-link " href="memberpage_main">
-                <i class="bi bi-person"></i>
-                <span>나의 프로필</span>
+            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="memberpage_main">
+                <i class="bi bi-menu-button-wide"></i>
+                <span>나의 프로필</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
+            <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+               <li>
+                    <a href="memberpage_pwUpdateForm">
+                       <i class="bi bi-circle"></i><span>비밀번호 변경</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+               </li>
+            </ul>
         </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="memberpage_mypet">
                 <i class="bi bi-balloon"></i><span>동물페이지</span>
             </a>
+
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
@@ -243,7 +251,9 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
+<form action="memberpage_updateform" enctype="multipart/form-data" method="post" attribute>
 
+ <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
         <section class="section profile">
             <div class="row" align="center">
                 <div class="col-xl-8">
@@ -253,12 +263,13 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"
-                                    location.href="'memberpage_main'">프로필</button>
+                                    onClick="location.href='memberpage_main'">프로필</button>
                                 </li>
 
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">비밀번호 변경</button>
-                                </li>
+                                <!--<li class="nav-item">
+                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password"
+                                    onClick="location.href='memberpage_pwUpdateForm'">비밀번호 변경</button>
+                                </li>-->
 
                             </ul>
                             <div class="tab-content pt-2">
@@ -268,7 +279,7 @@
                                    <div class="card">
                                      <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                                       <img src="./memberImg/${member.profile_name}" alt="Profile" class="rounded-circle">
+                                       <img src="./memberImg/${myModel.profile_name}" alt="Profile" class="rounded-circle">
                                        <h2>펫 이름</h2>
                                        <h3>귀여움</h3>
                                          <div class="social-links mt-2">
@@ -311,7 +322,8 @@
                                     </div>
                                 </div>
                              <div class="text-center">
-                                 <button type="submit" class="btn btn-primary" onclick="location.href='memberpage_updateform'">수정하러 가기</button>
+                                 <button type="submit" class="btn btn-primary">개인정보 수정</button>
+
                              </div>
 
 
@@ -323,7 +335,7 @@
                 </div>
             </div>
         </section>
-
+</form>
     </main><!-- End #main -->
 
 
