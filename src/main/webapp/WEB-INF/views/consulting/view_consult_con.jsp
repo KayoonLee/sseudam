@@ -35,8 +35,8 @@
   <label for="wish_list">요청사항:</label>
   <textarea id="wish_list" name="wish_list" rows="5" cols="50" maxlength="2000" required>${counselpaper.wish_list}</textarea>
   <br>
-  <a href="confirm_Consult"><button>상담 신청 수락하기</button></a>  &nbsp
-  <a href="delete"><button>상담 취소하기</button></a>
+  <input type="submit" value="상담 수락하기" onclick="javascript: form.action='accept_Consult';">
+  <input type="submit" value="상담 취소하기" onclick="javascript: form.action='delete_Consult';">
 </form>
 </body>
 </html>

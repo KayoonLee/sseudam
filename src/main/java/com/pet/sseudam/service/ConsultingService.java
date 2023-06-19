@@ -25,5 +25,8 @@ public interface ConsultingService {
     CounselPaper find_consult (int Paper_num);
 
     Pet select_pet (int g_id);
-    CounselPaper update_consult (CounselPaper counselPaper);
+    void update_consult (CounselPaper counselPaper);
+    void delete_consult (int paper_num);
+
+    void accept_consult (int paper_num);
 }

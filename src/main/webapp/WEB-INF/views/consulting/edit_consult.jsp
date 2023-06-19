@@ -12,7 +12,7 @@
 
 <form action="update_Consult" method="POST">
     <!--수정하고 상세페이지 보여주기 위한 paper_num hidden  -->
-    <input type="hidden" name="old_counselpaper" value="${counselpaper}">
+    <input type="hidden" name="old_paper_num" value="${counselpaper.paper_num}">
     <label for="con_name">상담사이름:</label>
     <input type="text" id="con_name" name="con_name" value = "${counselor.name}" readonly>
     <input type="hidden" name="c_id" value="${counselor.m_id}">

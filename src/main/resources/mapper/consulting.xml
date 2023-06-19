@@ -71,9 +71,9 @@
 
     </select>
 
-    <update id="update_consult" parameterType="CounselPaper">
+    <update id="update_consult" parameterType="CounselPaper" >
         UPDATE counsel_paper
-        SET paper_num = #{title},
+        SET paper_num = #{paper_num},
             p_id = #{p_id},
             purpose = #{purpose},
             reason = #{reason},
@@ -81,6 +81,19 @@
             wish_list = #{wish_list}
 
 
+        WHERE paper_num = #{paper_num}
+    </update>
+    <!-- 상담예약서 삭제 -->
+    <update id="delete_consult" >
+        UPDATE counsel_paper
+        SET confirmed = 3
+        WHERE paper_num = #{paper_num}
+    </update>
+
+    <!-- 상담예약서 수락 -->
+    <update id="accept_consult" >
+        UPDATE counsel_paper
+        SET confirmed = 1
         WHERE paper_num = #{paper_num}
     </update>
 

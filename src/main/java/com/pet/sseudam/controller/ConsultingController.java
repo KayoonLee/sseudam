@@ -25,7 +25,7 @@ public class ConsultingController {
     @RequestMapping("hasAnimal")
     public String hasAnimal(HttpSession session) {
         // 나중에삭제해야함@@@@@@@@@@@@@@@@@@@@@@22
-        session.setAttribute("g_id", 3);
+        session.setAttribute("g_id", 10);
         int g_id = (Integer) session.getAttribute("g_id");
         List<Pet> pet_list = con.find_pet(g_id);
         if (pet_list.isEmpty()) {
@@ -117,7 +117,9 @@ public class ConsultingController {
                                   //    @RequestParam("paper_num") int paper_num,
                                 //      @RequestParam("r_num") int r_num)
     {
-           int paper_num = 1;
+
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 임의값 나중에 삭제해야함.
+           int paper_num = 18;
            int r_num = 4;
 
         //해당 일반 회원 검색
@@ -129,7 +131,7 @@ public class ConsultingController {
 
         //해당 펫 조회
         Pet pet = con.select_pet(counselpaper.getP_id());
-        if (member.getIdentifier() == 1) {  //일반 회원
+        if (member.getIdentifier().equals("1")) {  //일반 회원
             model.addAttribute("paper_num", paper_num);
             model.addAttribute("r_num", r_num);
             model.addAttribute("member", member);
@@ -137,7 +139,7 @@ public class ConsultingController {
             model.addAttribute("counselpaper", counselpaper);
             model.addAttribute("pet",pet);
             return "consulting/view_consult_gen";
-        } else if (member.getIdentifier() == 2) {  //상담회원
+        } else if (member.getIdentifier().equals("2")) {  //상담회원
             model.addAttribute("paper_num", paper_num);
             model.addAttribute("r_num", r_num);
             model.addAttribute("member", member);
@@ -157,11 +159,14 @@ public class ConsultingController {
     public String edit_Consult(@RequestParam("paper_num") int paper_num,
                                Model model) {
 
+
         CounselPaper counselpaper = con.find_consult(paper_num);
+
         Member member = con.find_general(counselpaper.getM_id());
         Member counselor = con.find_general(counselpaper.getC_id());
         Pet pet = con.select_pet(counselpaper.getP_id());
         List<Pet> pet_list = con.find_pet(member.getM_id());
+
 
         model.addAttribute("member", member);
         model.addAttribute("counselor", counselor);
@@ -175,15 +180,36 @@ public class ConsultingController {
 
     /* 수정페이지 업데이트 */
     @RequestMapping("update_Consult")
-    public String update_Consult(@RequestParam("old_counselpaper") CounselPaper old_counselpaper,
+    public String update_Consult(@RequestParam("old_paper_num") int old_paper_num,
                                  @RequestParam("g_id")int g_id,
-                                 CounselPaper counselPaper) {
-        counselPaper.setPaper_num(old_counselpaper.getPaper_num());
-        counselPaper.setM_id(g_id);
-        con.update_consult(counselPaper);
-        System.out.println("닥치고 들어옴?");
-        // 후....
-        return  " redirect:/get_Consult_Details";
+                                 @RequestParam("request_times") String request_time,
+                                 CounselPaper counselpaper) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        Date date = null;
+        try {
+            date = inputFormat.parse(request_time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        counselpaper.setPaper_num(old_paper_num);
+        counselpaper.setM_id(g_id);
+        counselpaper.setRequest_time(date);
+        con.update_consult(counselpaper);
+
+
+        return  "redirect:/get_Consult_Details";
+    }
+
+    @RequestMapping("delete_Consult")
+    public String delete_Consult(@RequestParam("paper_num") int paper_num){
+        con.delete_consult(paper_num);
+        return "consulting/complete_delete_consult";
+    }
+
+    @RequestMapping("accept_Consult")
+    public String accept_Consult(@RequestParam("paper_num") int paper_num) {
+        con.accept_consult(paper_num);
+        return "consulting/complete_accept_consult";
     }
 
 

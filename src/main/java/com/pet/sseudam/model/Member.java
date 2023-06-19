@@ -15,7 +15,7 @@ public class Member {
     private String nick;
     private String birth;
     private String tel;
-    private int identifier;
+    private String identifier;
     private int state;
     private Date join_date;
     private String reset;

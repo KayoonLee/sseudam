@@ -39,7 +39,7 @@
     <br>
 
     <input type="submit" value="상담 수정하기" onclick="javascript: form.action='edit_Consult';">
-    <input type="submit" value="상담 취소하기" onclick=''>
+    <input type="submit" value="상담 취소하기" onclick="javascript: form.action='delete_Consult';">
 </form>
 </body>
 </html>

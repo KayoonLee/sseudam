@@ -25,6 +25,8 @@ public interface ConsultingDao {
 
      CounselPaper find_consult (int paper_num);
      Pet select_pet(int g_id);
+     void update_consult (CounselPaper counselPaper);
+     void delete_consult (int paper_num);
 
-     CounselPaper update_consult (CounselPaper counselPaper);
+     void accept_consult (int paper_num);
 }

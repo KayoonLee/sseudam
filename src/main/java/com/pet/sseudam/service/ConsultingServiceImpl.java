@@ -63,8 +63,18 @@ public class ConsultingServiceImpl implements ConsultingService{
     }
 
     @Override
-    public CounselPaper update_consult(CounselPaper counselPaper) {
-        return dao.update_consult(counselPaper);
+    public void update_consult(CounselPaper counselPaper) {
+        dao.update_consult(counselPaper);
+    }
+
+    @Override
+    public void delete_consult(int paper_num) {
+        dao.delete_consult(paper_num);
+    }
+
+    @Override
+    public void accept_consult(int paper_num) {
+        dao.accept_consult(paper_num);
     }
 
 }
