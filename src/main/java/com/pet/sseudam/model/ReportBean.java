@@ -14,4 +14,10 @@ public class ReportBean {
     private String report_issue;
     private String report_content;
 	private Date report_date;
+
+    //관리자 신고테이블용
+    private String subject;
+    private String nick;
+    private String profile_name;
+    private String profile_origin;
 }

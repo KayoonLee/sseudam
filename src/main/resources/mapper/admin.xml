@@ -6,14 +6,18 @@
     <!-- 진우님 xml -->
     <!--일반회원정보 리스트 정렬 출력 -->
     <select id="admin_list" resultType="member">
-        select (ROW_NUMBER() OVER()) as row_num, m.* from member m where identifier = 1 order by row_num desc;
+        select (ROW_NUMBER() OVER ()) as row_num, m.*
+        from member m
+        where identifier = 1
+        order by row_num desc;
     </select>
 
     <!--일반회원정보 가져오기 -->
     <select id="adminSelect" resultType="member">
         select member.*
              , pet.*
-        from member join pet ON member.m_id = #{m_id}
+        from member
+                 join pet ON member.m_id = #{m_id}
             and pet.g_id = #{m_id}
     </select>
 
@@ -21,15 +25,68 @@
     <select id="petSelect" resultType="pet">
         select member.m_id
              , pet.*
-        from member join pet ON member.m_id = #{m_id}
+        from member
+                 join pet ON member.m_id = #{m_id}
             and pet.g_id = #{m_id}
     </select>
 
     <!-- 가윤 xml -->
     <select id="dog_list" resultType="pet">
-        select * from pet where kind='d'
+        select *
+        from pet
+        where kind = 'd'
     </select>
     <select id="cat_list" resultType="pet">
-        select * from pet where kind='c'
+        select *
+        from pet
+        where kind = 'c'
     </select>
+
+    <!-- 세욱 신고테이블 -->
+    <select id="admin_report_list" resultType="report_board">
+        select t1.board_num,
+               t1.num,
+               t1.m_id,
+               t1.report_issue,
+               t1.report_content,
+               t1.report_date,
+               t2.subject,
+               t3.nick,
+               t4.profile_name
+        from report t1
+                 join board t2 on (t1.board_num = t2.board_num
+            and t1.num = t2.num)
+                 join member t3 on (t1.m_id = t3.m_id)
+                 join img_profile t4 on
+            (t3.profile_num = t4.profile_num)
+    </select>
+
+    <select id="admin_report_view" parameterType="report_board" resultType="report_board">
+        select m_id, num, board_num, report_content from report t1
+        where m_id = #{m_id} and board_num=#{board_num} and num=#{num}
+    </select>
+
+    <!-- 세욱 상담사 테이블 -->
+    <select id="admin_counsel_list" resultType="member">
+        select * from member where
+        <if test="identifier == 3">
+            identifier = #{identifier}
+        </if>
+        <if test="identifier != 3">
+            identifier ='2'
+        </if>
+    </select>
+
+    <select id="admin_counsel_select" resultType="counselor" parameterType="counselor">
+        select * from counselor where c_id=#{c_id}
+    </select>
+
+    <update id="admin_counsel_accept" parameterType="member">
+        update member set identifier=#{identifier} where m_id=#{m_id}
+    </update>
+
+    <delete id="admin_counsel_decline" parameterType="member">
+        delete from member where m_id=#{m_id}
+    </delete>
+
 </mapper>

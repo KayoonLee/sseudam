@@ -1,8 +1,10 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.AdminDao;
+import com.pet.sseudam.model.Counselor;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.ReportBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -39,5 +41,35 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<PetBean> cat_list(PetBean pet) { return adminDao.cat_list(pet); }
+
+    @Override
+    public List<ReportBean> admin_report_list() {
+        return adminDao.admin_report_list();
+    }
+
+    @Override
+    public ReportBean admin_report_view(ReportBean reportBoard) {
+         return adminDao.admin_report_view(reportBoard);
+    }
+
+    @Override
+    public List<Member> admin_counsel_list(Member member) {
+        return adminDao.admin_counsel_list(member);
+    }
+
+    @Override
+    public Counselor admin_counsel_select(Counselor counselor) {
+        return adminDao.admin_counsel_select(counselor);
+    }
+
+    @Override
+    public int admin_counsel_accept(Member member) {
+        return adminDao.admin_counsel_accept(member);
+    }
+
+    @Override
+    public int admin_counsel_decline(Member member) {
+        return adminDao.admin_counsel_decline(member);
+    }
 
 }

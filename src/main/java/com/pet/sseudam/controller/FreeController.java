@@ -180,17 +180,24 @@ public class FreeController {
     public String freeView(FreeBean freeboard, String pageNum, Model model) {
 
         System.out.println("freeView 진입확인");
+        System.out.println("board_num은 " +freeboard.getBoard_num());
+        System.out.println("num은 " +freeboard.getNum());
 
         service.fUpdateReadcount(freeboard);
 
         FreeBean fboard = service.fView(freeboard);
+        System.out.println("filenum은 " +fboard.getFile_num());
 
-        List<ImgBean> img_list = service.imgView(fboard.getFile_num());
+        if(fboard.getFile_num()!=0){
+            List<ImgBean> img_list = service.imgView(fboard.getFile_num());
+
+            model.addAttribute("img_list", img_list);
+        }
+
 
         System.out.println("fboard :" + fboard);
 
         model.addAttribute("fboard", fboard);
-        model.addAttribute("img_list", img_list);
         model.addAttribute("pageNum", pageNum);
 
         return "freeBoard/free_view";
