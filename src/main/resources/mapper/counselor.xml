@@ -19,5 +19,17 @@
         select * from member where nick = #{nick}
     </select>
 
+    <!--    상담사 확인-->
+    <select id="counselChk" parameterType="int" resultType="counselor">
+        select * from counselor where c_id=#{c_id}
+    </select>
+
+    <!--    상담사 정보 수정-->
+    <update id="csUpdate" parameterType="counselor">
+        update counselor set
+        license=#{license}, career=#{career}
+        where c_id=#{c_id}
+    </update>
+
 
 </mapper>

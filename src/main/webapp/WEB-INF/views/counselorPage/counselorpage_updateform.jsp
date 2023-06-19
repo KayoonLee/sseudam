@@ -213,62 +213,51 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="memberpage_main">
-          <i class="bi bi-person"></i>
-          <span>나의 프로필</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="memberpage_mypet">
-          <i class="bi bi-balloon"></i><span>동물페이지</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="memberpage_mypost">
-              <i class="bi bi-circle"></i><span>내가 쓴 글</span>
-            </a>
-          </li>
-          <li>
-            <a href="memberpage_myreply">
-              <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
-            </a>
-          </li>
-          <li>
-            <a href="memberpage_mylike">
-              <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
-            </a>
-          </li>
-          <li>
-            <a href="memberpage_mylike">
-              <i class="bi bi-circle"></i><span>상담신청내역</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Components Nav -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="memberpage_mycounselor">
-          <i class="bi bi-grid"></i>
-          <span>즐겨찾는 상담사</span>
-        </a>
-      </li>
-
-    </ul>
-  </aside>
+ <aside id="sidebar" class="sidebar">
+     <ul class="sidebar-nav" id="sidebar-nav">
+         <li class="nav-item">
+             <a class="nav-link " href="counselorpage_main">
+                 <i class="bi bi-person"></i>
+                 <span>나의 프로필</span>
+             </a>
+         </li>
+         <li class="nav-item">
+             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                 <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
+             </a>
+             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                 <li>
+                     <a href="counselorpage_mypost">
+                         <i class="bi bi-circle"></i><span>내가 쓴 글</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="counselorpage_myreply">
+                         <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="counselorpage_mylike">
+                         <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="counselorpage_request">
+                         <i class="bi bi-circle"></i><span>상담신청내역</span>
+                     </a>
+                 </li>
+             </ul>
+         </li><!-- End Components Nav -->
+     </ul>
+ </aside>
   <main id="main" class="main">
     <div class="pagetitle">
       <h1>내 정보 수정</h1>
       <br>
     </div><!-- End Page Title -->
-    <form action="counselorpage_update" method="post" enctype="multipart/form-data" attribute>
+    <form action="counselor_update" method="post" enctype="multipart/form-data" attribute>
+
+
     <section class="section profile">
     <input type="hidden" name="c_id" value="${counsel.c_id}">
         <div class="col-xl-8">
@@ -310,30 +299,42 @@
 
                      <div class="row mb-3">
                        <label for="company" class="col-md-4 col-lg-3 col-form-label">닉네임</label>
-                           <div class="col-md-8 col-lg-9">
+                          <div class="col-md-8 col-lg-9">
                             <input name="nick" type="text" class="form-control" id="nick" value="${myModel.nick}">
-                           </div>
+                            <input type="button" id="nickChk" value="중복 확인">
+                                 <div class="invalid-feedback">
+                                     닉네임을 입력해주세요.
+                                 </div>
+                          </div>
                      </div>
 
                      <div class="row mb-3">
                        <label for="Email" class="col-md-4 col-lg-3 col-form-label">이메일</label>
                             <div class="col-md-8 col-lg-9">
-                             <input name="email" type="text" class="form-control" id="email" value="${myModel.email}">
+                             <input name="email" type="text" class="form-control" id="email" value="${myModel.email}" readonly>
                             </div>
                     </div>
 
                     <div class="row mb-3">
                         <label for="Country" class="col-md-4 col-lg-3 col-form-label">생년월일</label>
-                            <div class="col-md-8 col-lg-9">
+                         <div class="col-md-8 col-lg-9">
                             <input name="birth" type="text" class="form-control" id="birth" value="${myModel.birth}">
+                            <div class="invalid-feedback">
+                                 생년월일을 입력해주세요.
                             </div>
+                            <p id="checkBirth"></p>
+                         </div>
                     </div>
 
                     <div class="row mb-3">
                        <label for="Address" class="col-md-4 col-lg-3 col-form-label">휴대폰</label>
-                           <div class="col-md-8 col-lg-9">
-                           <input name="tel" type="text" class="form-control" id="tel" value="${myModel.tel}">
-                           </div>
+                        <div class="col-md-8 col-lg-9">
+                          <input name="tel" type="text" class="form-control" id="tel" value="${myModel.tel}">
+                          <div class="invalid-feedback">
+                             전화번호를 입력해주세요.
+                          </div>
+                          <p id="checkTel"></p>
+                        </div>
                     </div>
                     <div class="row mb-3">
                        <label for="Address" class="col-md-4 col-lg-3 col-form-label">경력사항</label>
@@ -371,5 +372,74 @@
 
     </form><!-- End Profile Edit Form -->>
   </main>
+  <script>
+     window.addEventListener('load', () => {
+           const forms = document.getElementsByClassName('validation-form');
+
+           Array.prototype.filter.call(forms, (form) => {
+             form.addEventListener('submit', function (event) {
+               if (form.checkValidity() === false) {
+                 event.preventDefault();
+                 event.stopPropagation();
+               }
+
+               form.classList.add('was-validated');
+             }, false);
+           });
+     }, false);
+
+         $( '#tel' ).on( 'focus keyup', function() {
+             var brn = document.getElementById( "tel" ).value;
+                 if ( /^010[0-9]{4}[0-9]{4}$/.test( brn ) ) {
+                   document.getElementById( "checkTel" ).innerText = "유효한 휴대전화번호입니다.";
+                   } else {
+                   document.getElementById( "checkTel" ).innerText = "유효하지 않은 휴대전화번호입니다.";
+                   document.getElementById('checkTel').style.color = 'red';
+                 }
+          } );
+
+
+          $( '#birth' ).on( 'focus keyup', function() {
+             var brn = document.getElementById( "birth" ).value;
+                 if ( /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/.test( brn ) ) {
+                   document.getElementById( "checkBirth" ).innerText = "올바른 형식입니다.";
+                   } else {
+                   document.getElementById( "checkBirth" ).innerText = "올바르지 않은 형식입니다.";
+                   document.getElementById('checkBirth').style.color = 'red';
+                 }
+          } );
+
+
+      // 닉네임 중복검사 (닉네임 변경 안 한 경우에는 중복검사하라고 하면 안됨)
+         var nick_chk = false;
+
+
+              $('#nickChk').click(function(){
+                 var nick = $("#nick").val();
+
+                       if($("#nick").val() == "") {
+                         alert("닉네임을 입력해주세요");
+                         $("#nick").focus();
+                         return false;
+                       }
+
+                       $.ajax({
+                       type : 'POST',
+                         data : {"nick": nick},
+                         url : "counselEmailChk.do",
+                         success : function (cnt){
+                            if(cnt != 1){
+                               alert("사용가능한 닉네임 입니다.")
+                               nick_chk = true;
+
+                            } else{
+                               alert("중복된 닉네임 입니다.")
+                               $('#nick').focus();
+                               $('#nick').val("");
+                            }
+                         }
+                       }); //ajax end
+              });
+
 </body>
 </html>

@@ -4,6 +4,8 @@ import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.ProfileBean;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface MemberDao {
 
@@ -29,8 +31,6 @@ public interface MemberDao {
     int myUpdate(Member member);
 
 
-    void csmyUpdate(Member member);
-
     int getMaxnum();
 
     int profileAdd(ProfileBean pfb);
@@ -41,4 +41,15 @@ public interface MemberDao {
 
 
     void fileView(int profile_num);
+
+
+    int csMyUpdate(Member member);
+
+    int myPwUpdate(Member member);
+
+    int csMyPwUpdate(Member member);
+
+    int myPicUpdate(Member member);
+
+    List<Member> counselor();
 }
