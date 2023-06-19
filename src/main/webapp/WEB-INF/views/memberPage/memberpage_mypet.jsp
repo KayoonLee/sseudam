@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 82108
@@ -116,7 +117,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">홍은희</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">${member.name}</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -174,18 +175,17 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="memberMain">
+
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberMain">
+                <a class="nav-link " href="memberpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="memberPet">
+                <a class="nav-link collapsed" href="memberpage_mypet">
                     <i class="bi bi-balloon"></i><span>동물페이지</span>
                 </a>
             </li>
@@ -195,29 +195,29 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberPost">
+                        <a href="memberpage_mypost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberReply">
+                        <a href="memberpage_myreply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberLike">
+                        <a href="memberpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="memberpage_mypaper">
                             <i class="bi bi-circle"></i><span>상담신청내역</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberCounselor">
+                <a class="nav-link collapsed" href="memberpage_mycounselor">
                     <i class="bi bi-grid"></i>
                     <span>즐겨찾는 상담사</span>
                 </a>
@@ -226,7 +226,6 @@
         </ul>
     </aside>
 
-    <!-- 레시피 조의 레시피 리스트 형식-->
     <main id="main" class="main">
         <div class="container" align="center">
             <div class="row">
@@ -236,34 +235,36 @@
                     </div>
                 </c:if>
                 <c:if test="${not empty list}">
-                    <c:forEach var="board" items="${list }">
-                        <c:if test="${board.state != 'n' }">
+                    <c:forEach var="pet" items="${list }">
                             <div class="col-sm-3">
                                 <div>
                                     <div class="card">
-                                        <a href="r_view?rnum=${board.rnum }&pageNum=${pageNum}">
-                                            <img class="card-img-top" src="./t_images/${board.thumbnail }">
-                                        </a>
+                                        <c:if test="${!empty pet.profile_num}">
+                                            <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
+                                                <img class="card-img-top" src="./petimg/${pet.profile_name}">
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${empty pet.profile_num}">
+                                            <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
+                                                <img src="/images/petdefault.png" width="250" height="250">
+                                            </a>
+                                        </c:if>
+
+
                                         <div class="card-body">
-                                            <h4 class="card-title">${board.subject }</h4>
-                                            <c:if test="${not empty board.profile }">
-                                                <img src ="./upload/${board.profile }" width=30 height=30>
-                                            </c:if>
-                                            <c:if test="${empty board.profile }">
-                                                <img src ="./upload/pepe.jpg" width=30 height=30>
-                                            </c:if>
+                                            <h4 class="card-title">${pet.animal }</h4>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </c:if>
                     </c:forEach>
                 </c:if>
+                <a href="memberpage_petadd">
+                    <img src="./images/add.png" width="50" height="50">
+                </a>
             </div>
         </div>
-
     </main>
 
-</form>
 </body>
 </html>

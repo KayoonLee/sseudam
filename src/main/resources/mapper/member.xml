@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.sseudam.dao.MemberDao">
+
+<!-- 상담사 회원 가입 시, 해당하는 회원번호 찾기 -->
+    <select id="getNumber" parameterType="member" resultType="int">
+        select m_id from member where nick = #{nick}
+    </select>
+
+<!--(공통요소)회원가입-->
+    <insert id="insert" parameterType="member">
+        insert into member (name, email, passwd, nick, birth, tel, identifier, state, join_date, reset, profile_num) values
+        (#{name}, #{email}, #{passwd}, #{nick}, #{birth}, #{tel}, #{identifier}, 1 , sysdate(), 'n', null)
+    </insert>
+
+<!--    email 중복검사-->
+    <select id="emailChk" parameterType="String" resultType="member">
+        select * from member where email = #{email} and state=1
+    </select>
+
+<!--    nick 중복검사-->
+    <select id="nickChk" parameterType="String" resultType="member">
+        select * from member where nick = #{nick} and state=1
+    </select>
+
+<!-- 로그인 -->
+    <select id="userCheck" parameterType="String" resultType="member">
+        select * from member where email=#{email} and state=1
+    </select>
+
+<!-- 아이디 찾기 -->
+    <select id="searchEmail" parameterType="member" resultType="member">
+        select * from member where nick=#{nick} and state=1
+    </select>
+
+<!--비번찾기: 아이디와 이메일이 DB에 존재하는지 먼저 검사 -->
+    <select id="searchPwd" parameterType="member" resultType="member">
+        select * from member where email=#{email} and nick=#{nick} and state=1
+    </select>
+
+<!-- 임시비번으로 비번 업뎃, reset컬럼 y로 변경-->
+    <update id="updatePwd" parameterType="member">
+        update member set passwd=#{passwd}, reset='y' where email=#{email} and nick=#{nick}
+        and state=1
+    </update>
+
+<!--임시비번에서 원하는 비번으로 수정, reset 컬럼 'n' 수정-->
+    <update id="updateNewPw" parameterType="member">
+        update member set passwd=#{passwd}, reset='n' where email=#{email} and nick=#{nick}
+    </update>
+
+<!--일반회원 정보 수정-->
+    <update id="myUpdate" parameterType="member">
+        update member  set
+        name=#{name}, birth=#{birth}, tel=#{tel}
+        where email = #{email}
+
+    </update>
+
+<!--    상담사 회원 정보 수정 (member테이블에 있는 컬럼)-->
+    <update id="csmyUpdate" parameterType="member">
+        update member set
+        name=#{name}, birth=#{birth}, tel=#{tel}
+        where m_id = #{m_id}
+    </update>
+
+    <!--    첨부파일 번호 -->
+    <select id="getMaxnum" resultType="int">
+        select ifnull(max(profile_num), 0) from img_profile
+    </select>
+
+    <!--첨부파일 추가-->
+    <insert id="profileAdd" parameterType="profile_board">
+        insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
+    </insert>
+
+
+
+
+<!--실험용
+    <select id="profileAfter" parameterType="int" resultType="member">
+        SELECT a.*, profile_name, profile_origin
+        FROM
+        (SELECT *
+        FROM member
+        WHERE m_id = #{m_id}) a
+        JOIN img_profile b
+        ON a.profile_num = b.profile_num
+    </select>-->
+</mapper>
