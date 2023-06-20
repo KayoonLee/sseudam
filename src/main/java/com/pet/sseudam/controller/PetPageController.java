@@ -70,7 +70,7 @@ public class PetPageController {
 
     // 동물 상세페이지
     @RequestMapping("/memberpage_petview")
-    public String petView(@RequestParam("p_id")int p_id, Model model, String pageNum, HttpSession session) {
+    public String petView(@RequestParam("p_id")int p_id, Model model, String pageNum, HttpSession session, ProfileBean profile_board) {
         System.out.println("동물 상세페이지");
 
         PetBean pet = pps.p_select(p_id);   // 상세정보구하기
@@ -80,6 +80,12 @@ public class PetPageController {
 
 
         System.out.println("이미지도 구해옴");
+        
+        // 이거 추가, ProfileBean profile_board 추가
+        pet.setProfile_num(profile_board.getProfile_num());
+        pet.setProfile_origin(profile_board.getProfile_origin());
+        pet.setProfile_name(profile_board.getProfile_name());
+
         model.addAttribute("pet", pet);
         model.addAttribute("pageNum", pageNum);
 
@@ -110,8 +116,6 @@ public class PetPageController {
 
         System.out.println("동물 수정 진입");
 
-
-
         String filename = mf.getOriginalFilename();
         int size = (int)mf.getSize();
         System.out.println("size:" + size);
@@ -119,7 +123,7 @@ public class PetPageController {
 
         //파일 첨부 관련
         if (pet.getProfile_num() != null) {
-            System.out.println("수정할 파일이 있습니다");
+            System.out.println("profile_num이 null이 아니면 수정할 파일이 있습니다");
 
             String file_path = request.getRealPath("petimg");
             System.out.println("file_path는 " + file_path);
@@ -159,20 +163,13 @@ public class PetPageController {
             System.out.println("size: " + size);
 
         }else {
-            System.out.println("수정할 파일이 있습니다");
+            System.out.println("profile_num이 null이며 수정할 파일이 있습니다");
+            int max_num = pps.getMaxnum() + 1;
+            System.out.println("수정후 max_num: " + max_num);
 
             String file_path = request.getRealPath("petimg");
             System.out.println("file_path는 " + file_path);
             System.out.println("filename은 " + filename);
-
-
-            //이전 실제 첨부파일 삭제
-            String oldFilename = pps.profileSelect(profile_board);
-
-            System.out.println("삭제할 파일 경로" + file_path + "/" + oldFilename);
-            File real_file =new File(file_path + "/" + oldFilename);
-            real_file.delete();
-
 
             String extension = filename.substring(filename.lastIndexOf("."));
             UUID uuid = UUID.randomUUID();
@@ -188,19 +185,24 @@ public class PetPageController {
                 e.getMessage();
             }
 
+            profile_board.setProfile_num(max_num);
+            profile_board.setProfile_origin(filename);
+            profile_board.setProfile_name(new_filename);
 
-            int count= pps.profileAdd(profile_board);
-            if(count == 1){
-                System.out.println("프로필사진이 추가되었습니다");
+            int count = pps.profileAdd(profile_board);
+
+            System.out.println("pet.setProfile_num: " + pet.getProfile_num());
+            System.out.println("pet.setProfile_origin: " + pet.getProfile_origin());
+            System.out.println("pet.setProfile_name: " + pet.getProfile_name());
+
+
+            if(count==1){
+                System.out.println("업로드 성공");
+
             }
+            pet.setProfile_num(max_num);
 
-            pet.setProfile_origin(filename);
-            pet.setProfile_name(new_filename);
-            System.out.println("size: " + size);
-            
         }
-
-
 
         int result = pps.p_update(pet);
         System.out.println("animal:" + pet.getAnimal());

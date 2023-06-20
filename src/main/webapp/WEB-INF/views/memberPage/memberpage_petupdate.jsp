@@ -284,10 +284,10 @@
 
                   <!-- 프로필사진 수정하는 코드 들어가야됨-->
                 <div class="row mb-3">
-                  <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
+                  <label for="profile_num" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
                   <div class="col-md-8 col-lg-9">
                     <div id="previewContainer">
-                      <img src="./petimg/${pet.profile_name}" alt="Profile" class="thumbnail" >
+                      <img src="./images/petdefault.png" width="250" height="250" alt="Profile" class="thumbnail" >
                     </div>
                     <div class="pt-2">
                       <input type="file" id="imageInput" name="files"

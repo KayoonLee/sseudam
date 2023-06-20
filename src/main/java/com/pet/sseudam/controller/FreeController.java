@@ -228,7 +228,7 @@ public class FreeController {
 
         List<MultipartFile> file_list = mhr.getFiles("files");
         String multi_path = request.getRealPath("img");
-        System.out.println("multi_path는 " + multi_path);
+        System.out.println("Smulti_path는 " + multi_path);
         System.out.println("file_list는 " + file_list);
 
         //첨부파일이 있을경우

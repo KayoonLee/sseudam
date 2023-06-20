@@ -241,9 +241,6 @@
                                 <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
                                 <div class="col-md-8 col-lg-9">
                                     <div id="previewContainer">
-<%--                                        <c:forEach var="list" items="${profile_list}">--%>
-<%--                                            <p><img src="./petimg/${list.file_name}" class="thumbnail"></p>--%>
-<%--                                        </c:forEach>--%>
                                         <img src="./images/petdefault.png" width="250" height="250">
                                     </div>
                                     <div class="pt-2">

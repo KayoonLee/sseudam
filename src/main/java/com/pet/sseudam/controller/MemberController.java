@@ -199,6 +199,12 @@ public class MemberController {
         return "login/logout";
     }
 
+    // user_heh가 임시로 추가, 일반회원 마이페이지 진입
+    @RequestMapping("memberpage_main")
+    public String memberpage(){
+        return "memberPage/memberpage_main";
+    }
+
 
 
 }
