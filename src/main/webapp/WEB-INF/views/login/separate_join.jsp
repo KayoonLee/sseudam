@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href ="counsel_join">  상담사 회원가입  </a> <br>
-<a href ="member_join">  일반회원 가입  </a>
+<a href ="counsel_join">  상담사 회원가입  </a> <br><br><br>
 
+<a href ="member_join">  일반회원 가입  </a> <br><br><br>
 
 </body>

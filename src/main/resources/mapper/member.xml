@@ -16,6 +16,7 @@
 
 <!--    email 중복검사-->
     <select id="emailChk" parameterType="String" resultType="member">
+
         select * from member where email = #{email} and state=1
     </select>
 
@@ -28,6 +29,7 @@
     <select id="userCheck" parameterType="String" resultType="member">
         select * from member where email=#{email} and state=1
     </select>
+
 
 <!-- 아이디 찾기 -->
     <select id="searchEmail" parameterType="member" resultType="member">
@@ -45,25 +47,46 @@
         and state=1
     </update>
 
-<!--임시비번에서 원하는 비번으로 수정, reset 컬럼 'n' 수정-->
-    <update id="updateNewPw" parameterType="member">
-        update member set passwd=#{passwd}, reset='n' where email=#{email} and nick=#{nick}
-    </update>
 
-<!--일반회원 정보 수정-->
+
+    <!--일반회원 정보 수정-->
     <update id="myUpdate" parameterType="member">
         update member  set
-        name=#{name}, birth=#{birth}, tel=#{tel}
+        name=#{name}, nick=#{nick}, birth=#{birth}, tel=#{tel}
         where email = #{email}
 
     </update>
 
-<!--    상담사 회원 정보 수정 (member테이블에 있는 컬럼)-->
-    <update id="csmyUpdate" parameterType="member">
-        update member set
-        name=#{name}, birth=#{birth}, tel=#{tel}
-        where m_id = #{m_id}
+    <!--   사진 포함  정보 수정-->
+    <update id="myPicUpdate" parameterType="member">
+        update member m inner join img_profile p on m.profile_num = p.profile_num
+        set name=#{name}, nick=#{nick}, birth=#{birth}, tel=#{tel}, profile_origin = #{profile_origin},
+        profile_name =#{profile_name}
+        where email = #{email}
     </update>
+
+
+
+
+    <!--일반회원: 비번 변경, reset 컬럼 'n' 수정-->
+    <update id="myPwUpdate" parameterType="member">
+        update member set passwd=#{passwd}, reset='n' where email=#{email}
+    </update>
+
+    <!--    상담사 정보수정 - member 테이블 컬럼 변경-->
+    <update id="csMyUpdate" parameterType="member">
+
+        UPDATE member m INNER JOIN counselor c ON m.m_id = c.c_id
+        SET m.name = #{name}, m.nick = #{nick}, m.birth = #{birth}, m.tel = #{tel}
+        WHERE m.m_id = #{m_id}
+    </update>
+
+    <!--    상담사: 비번 변경, reset 'n'으로 수정-->
+    <update id="csMyPwUpdate" parameterType="member">
+        update member set passwd=#{passwd}, reset='n' where email=#{email}
+    </update>
+
+
 
     <!--    첨부파일 번호 -->
     <select id="getMaxnum" resultType="int">
@@ -72,20 +95,26 @@
 
     <!--첨부파일 추가-->
     <insert id="profileAdd" parameterType="profile_board">
+        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">
+            select ifnull(max(profile_num),0) + 1 from img_profile
+        </selectKey>
         insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
     </insert>
 
+    <!--member의 profile_num 업데이트-->
+<!--    <update id="profileNumUp" parameterType="profile_board">-->
+<!--        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">-->
+<!--            select ifnull(max(profile_num),0) + 1 from img_profile-->
+<!--        </selectKey>-->
+<!--        update member set profile_num = #{profile_num}-->
+<!--    </update>-->
+
+    <select id="counselorList" parameterType="member" resultType="member">
+        SELECT m_id, name, license, career
+        FROM member m
+        INNER JOIN counselor c ON c.c_id = m.m_id
+    </select>
 
 
 
-<!--실험용
-    <select id="profileAfter" parameterType="int" resultType="member">
-        SELECT a.*, profile_name, profile_origin
-        FROM
-        (SELECT *
-        FROM member
-        WHERE m_id = #{m_id}) a
-        JOIN img_profile b
-        ON a.profile_num = b.profile_num
-    </select>-->
 </mapper>

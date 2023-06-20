@@ -47,6 +47,7 @@ public class MemberController {
         Member member = ms.userCheck(email);
 
 
+
         if (member == null) {//등록되지 않은 회원일 때
             result = 1;
             model.addAttribute("result", result);
@@ -58,11 +59,10 @@ public class MemberController {
                         String nick = member.getNick(); // 화면에 닉네임 보여주기
                         model.addAttribute("nick", nick);
                         return "mainPage/main_page";
-                        //!@!나중에 일반회원, 상담회원 메인 분리해서 링크 걸기!!!
+
                 } else if (member.getIdentifier().equals("2")) { //상담사 회원일 때
 
                     session.setAttribute("member", member);
-                    
                     String nick = member.getNick();
                     model.addAttribute("nick", nick);
                     return "mainPage/main_page";

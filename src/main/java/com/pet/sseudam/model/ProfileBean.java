@@ -2,6 +2,7 @@ package com.pet.sseudam.model;
 
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
 @Data
 @Alias("profile_board")
