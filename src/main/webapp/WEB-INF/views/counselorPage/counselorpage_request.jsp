@@ -22,7 +22,12 @@
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z
+    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
@@ -181,18 +186,17 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form action="counselorMain">
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
 
             <li class="nav-item">
-                <a class="nav-link collapsed" href="counselorMain">
+                <a class="nav-link collapsed" href="counselorpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="counselorRequest">
+                <a class="nav-link " href="counselorpage_request">
                     <i class="bi bi-balloon"></i><span>상담요청목록</span>
                 </a>
             </li>
@@ -202,17 +206,17 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="counselorPost" >
+                        <a href="counselorpage_mypost" >
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="counselorReply" >
+                        <a href="counselorpage_myreply" >
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="counselorLike" >
+                        <a href="counselorpage_mylike" >
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
@@ -220,16 +224,8 @@
             </li><!-- End Components Nav -->
         </ul>
     </aside>
-    <main id="main" class="main">
-        <div>
-            <h1>상담요청목록</h1>
 
 
-        </div>
-
-    </main>
-
-</form>
 </body>
 </html>
 
