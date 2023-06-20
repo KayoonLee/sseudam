@@ -46,7 +46,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="card-title" align="center">일반회원 리스트</div>
+            <div class="card-title" align="center">고양이 리스트</div>
             <table id="example" class="table is-striped" style="width:100%">
                 <thead>
                 <tr>

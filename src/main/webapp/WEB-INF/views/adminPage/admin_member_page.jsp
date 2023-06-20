@@ -63,10 +63,7 @@
                             <td>${member.row_num}</td>
                             <td>${member.m_id}</td>
                             <td>${member.name}</td>
-                            <td>${member.email}</td>
                             <td>${member.nick}</td>
-                            <td>${member.birth}</td>
-                            <td>${member.tel}</td>
                             <!-- identifier 회원 구분코드 -->
                             <c:if test="${member.identifier == '1'}">
                                 <td>일반회원</td>
@@ -97,10 +94,7 @@
                     <td></td>
                     <th>회원번호</th>
                     <th>이름</th>
-                    <th>이메일</th>
                     <th>닉네임</th>
-                    <th>생일</th>
-                    <th>전화번호</th>
                     <th>회원</th>
                     <th>상태</th>
                     <th>가입날짜</th>
@@ -111,10 +105,7 @@
                     <td></td>
                     <th>회원번호</th>
                     <th>이름</th>
-                    <th>이메일</th>
                     <th>닉네임</th>
-                    <th>생일</th>
-                    <th>전화번호</th>
                     <th>회원</th>
                     <th>상태</th>
                     <th>가입날짜</th>

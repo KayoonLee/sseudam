@@ -2,6 +2,7 @@ package com.pet.sseudam.service;
 
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.ReportBean;
 
 import java.util.*;
 
@@ -15,6 +16,23 @@ public interface AdminService {
     List<PetBean> petSelect(Integer m_id);
 
     int adminDelete(Member member);
+
+// 세욱
+    List<ReportBean> admin_report_list();
+
+    ReportBean admin_report_view(ReportBean reportBoard);
+
+    List<Member> admin_counsel_list(Member member);
+
+    Member admin_counsel_select(Member member);
+
+    int admin_counsel_accept(Member member);
+
+    int admin_counsel_decline(Member member);
+
+    int admin_state_change(Member member);
+
+    int admin_nick_change(Member member);
 
 // 가윤
     // 일반회원 total

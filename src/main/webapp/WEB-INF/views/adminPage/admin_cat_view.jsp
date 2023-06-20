@@ -16,7 +16,7 @@
             <li class="breadcrumb-item">하위페이지</li>
         </ol>
     </nav>
-</div><!-- End Page Title -->
+</div><%-- End Page Title --%>
 
 <div class="card">
     <div class="card-body">

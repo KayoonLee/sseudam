@@ -27,6 +27,10 @@ public class Member {
     private String profile_origin;
     private String profile_name;
 
+    // 상담사 테이블
+    private String career;
+    private String license;
+
 }
 
 

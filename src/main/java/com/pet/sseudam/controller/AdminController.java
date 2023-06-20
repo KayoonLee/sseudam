@@ -2,11 +2,13 @@ package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.ReportBean;
 import com.pet.sseudam.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -107,23 +109,134 @@ public class AdminController {
 // 세욱
     // 일반회원 신고 페이지
     @GetMapping("adminMemberReport")
-    public String adminMemberReport() {
+    public String adminMemberReport(Model model) {
+
         System.out.println("신고받은 회원 페이지로 이동");
+
+        List<ReportBean> report_list = adminService.admin_report_list();
+        System.out.println("report_list" + report_list);
+
+        model.addAttribute("report_list", report_list);
+
         return "adminPage/admin_member_report";
+    }
+
+    // 신고 자세한 페이지
+    @GetMapping("adminReportView")
+    public String adminReportView(ReportBean report_board, Model model) {
+
+        System.out.println("신고받은 회원 페이지로 이동");
+        System.out.println("m_id = " + report_board.getM_id());
+        System.out.println("num = " + report_board.getNum());
+        System.out.println("board_num = " + report_board.getBoard_num());
+
+        report_board = adminService.admin_report_view(report_board);
+        System.out.println("report_board : " + report_board);
+
+        model.addAttribute("report_board", report_board);
+
+        return "adminPage/admin_member_report_view";
     }
 
     // 상담사 관리 페이지
     @GetMapping("adminCounselorPage")
-    public String adminCounselorPage() {
+    public String adminCounselorPage(Member member, Model model) {
         System.out.println("상담사 관리 페이지로 이동");
+        System.out.println(member.getIdentifier());
+
+        List<Member> counsel_list = adminService.admin_counsel_list(member);
+
+        model.addAttribute("counsel_list", counsel_list);
+
         return "adminPage/admin_counselor_page";
     }
 
-    // 상담사 신청 페이지
+    // 상담사 신청관리 페이지
     @GetMapping("adminCounselorApply")
-    public String adminCounselorApply() {
+    public String adminCounselorApply(Member member, Model model) {
         System.out.println("상담사 신청 페이지로 이동");
+
+        member.setIdentifier("3");
+
+        List<Member> apply_list = adminService.admin_counsel_list(member);
+        System.out.println("apply_list : " + apply_list);
+
+        model.addAttribute("apply_list", apply_list);
+
         return "adminPage/admin_counselor_apply";
+    }
+
+    //상담사 자세한 정보
+    @GetMapping("adminCounselorView")
+    public String adminCounselorView(Member member, Model model) {
+        System.out.println("상담사 정보 페이지로 이동");
+        System.out.println("getM_id : " + member.getM_id());
+
+        member = adminService.admin_counsel_select(member);
+        System.out.println("member : " + member);
+
+
+        model.addAttribute("member", member);
+
+        return "adminPage/admin_counselor_view";
+    }
+
+    // 상담사 승인
+    @ResponseBody
+    @GetMapping("adminCounselorAccept")
+    public int adminCounselorAccept(Member member, Model model) {
+        System.out.println("상담사 승인 페이지로 이동");
+
+        System.out.println("getM_id : " + member.getM_id());
+        System.out.println("getIdentifier : " + member.getIdentifier());
+        int result = adminService.admin_counsel_accept(member);
+        System.out.println("counselor : " + result);
+
+        return result;
+    }
+
+    // 상담사 승인 거부/삭제
+    @ResponseBody
+    @GetMapping("adminCounselorDecline")
+    public int adminCounselorDecline(Member member, Model model) {
+        System.out.println("상담사 거부 페이지로 이동");
+
+        System.out.println("getM_id : " + member.getM_id());
+        int result = adminService.admin_counsel_decline(member);
+        System.out.println("counselor : " + result);
+
+        return result;
+    }
+
+    // 상담사 상태값 변경
+    @ResponseBody
+    @GetMapping("adminStateChange")
+    public int adminStateChange(Member member) {
+        System.out.println("상담사 상태값 변경 페이지로 이동");
+
+        if (member.getState() == 1) {
+            member.setState(0);
+        } else if (member.getState() == 0) {
+            member.setState(1);
+        }
+
+        int result = adminService.admin_state_change(member);
+
+        return result;
+    }
+
+    // 관리자페이지 닉네임 변경
+    @ResponseBody
+    @PostMapping("AdminNickChange")
+    public int AdminNickChange(Member member) {
+        System.out.println("관리자전용 닉네임 변경 페이지로 이동");
+
+        System.out.println("getM_id" + member.getM_id());
+        System.out.println("getNick" + member.getNick());
+
+        int result = adminService.admin_nick_change(member);
+
+        return result;
     }
 
 // 가윤
