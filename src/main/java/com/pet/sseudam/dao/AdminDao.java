@@ -24,10 +24,13 @@ public interface AdminDao {
 
     List<Member> admin_counsel_list(Member member);
 
-    Counselor admin_counsel_select(Counselor counselor);
+    Member admin_counsel_select(Member member);
 
     int admin_counsel_accept(Member member);
 
     int admin_counsel_decline(Member member);
 
+    int admin_state_change(Member member);
+
+    int admin_nick_change(Member member);
 }

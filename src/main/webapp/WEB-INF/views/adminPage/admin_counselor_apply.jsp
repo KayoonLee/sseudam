@@ -12,10 +12,10 @@
     <!-- ======= Table ======= -->
     <%@ include file="../navigator_footer/admin_table.jsp" %>
     <script>
-        function loadCounselorPage(c_id) {
+        function loadCounselorPage(m_id) {
             $.ajax({
                 url: "adminCounselorView",
-                data: {c_id: c_id},
+                data: {m_id: m_id},
                 success: function (response) {
                     $("#adminResultView").html(response);
                 }
@@ -58,8 +58,6 @@
                     <td>${counselor.name}</td>
                     <td>${counselor.email}</td>
                     <td>${counselor.nick}</td>
-                    <td>${counselor.birth}</td>
-                    <td>${counselor.tel}</td>
                     <!-- identifier 회원 구분코드 -->
                     <c:if test="${counselor.identifier == '1'}">
                         <td>일반회원</td>
@@ -88,8 +86,6 @@
             <th>이름</th>
             <th>이메일</th>
             <th>닉네임</th>
-            <th>생일</th>
-            <th>전화번호</th>
             <th>회원</th>
             <th>가입날짜</th>
         </tr>
@@ -101,8 +97,6 @@
             <th>이름</th>
             <th>이메일</th>
             <th>닉네임</th>
-            <th>생일</th>
-            <th>전화번호</th>
             <th>회원</th>
             <th>가입날짜</th>
         </tr>

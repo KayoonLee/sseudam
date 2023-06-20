@@ -20,4 +20,7 @@ public class Member {
     private String reset;
     //정렬용 추가
     private int row_num;
+    //상담사 테이블
+    private String career;
+    private String license;
 }

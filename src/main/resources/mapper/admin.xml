@@ -57,7 +57,7 @@
                  join board t2 on (t1.board_num = t2.board_num
             and t1.num = t2.num)
                  join member t3 on (t1.m_id = t3.m_id)
-                 join img_profile t4 on
+                 left join img_profile t4 on
             (t3.profile_num = t4.profile_num)
     </select>
 
@@ -77,8 +77,11 @@
         </if>
     </select>
 
-    <select id="admin_counsel_select" resultType="counselor" parameterType="counselor">
-        select * from counselor where c_id=#{c_id}
+    <select id="admin_counsel_select" resultType="member" parameterType="counselor">
+        select t1.*, career, license, profile_name, profile_origin
+        from member t1 join counselor t2 on t1.m_id=t2.c_id
+                       left join img_profile t3 on t1.profile_num=t3.profile_num
+        where m_id=#{m_id};
     </select>
 
     <update id="admin_counsel_accept" parameterType="member">
@@ -88,5 +91,13 @@
     <delete id="admin_counsel_decline" parameterType="member">
         delete from member where m_id=#{m_id}
     </delete>
+
+    <update id="admin_state_change" parameterType="member">
+        update member set state=#{state} where m_id=#{m_id}
+    </update>
+    <!-- 회원 닉네임 변경 -->
+    <update id="admin_nick_change" parameterType="member">
+        update member set nick=#{nick} where m_id=#{m_id}
+    </update>
 
 </mapper>

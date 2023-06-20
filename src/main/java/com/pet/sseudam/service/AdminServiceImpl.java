@@ -58,8 +58,8 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Counselor admin_counsel_select(Counselor counselor) {
-        return adminDao.admin_counsel_select(counselor);
+    public Member admin_counsel_select(Member member) {
+        return adminDao.admin_counsel_select(member);
     }
 
     @Override
@@ -70,6 +70,16 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int admin_counsel_decline(Member member) {
         return adminDao.admin_counsel_decline(member);
+    }
+
+    @Override
+    public int admin_state_change(Member member) {
+        return adminDao.admin_state_change(member);
+    }
+
+    @Override
+    public int admin_nick_change(Member member) {
+        return adminDao.admin_nick_change(member);
     }
 
 }

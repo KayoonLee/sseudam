@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
@@ -96,6 +97,7 @@ public class AdminController {
     @GetMapping("adminCounselorPage")
     public String adminCounselorPage(Member member, Model model) {
         System.out.println("상담사 관리 페이지로 이동");
+        System.out.println(member.getIdentifier());
 
         List<Member> counsel_list = adminService.admin_counsel_list(member);
 
@@ -104,7 +106,7 @@ public class AdminController {
         return "adminPage/admin_counselor_page";
     }
 
-    // 상담사 신청 페이지
+    // 상담사 신청관리 페이지
     @GetMapping("adminCounselorApply")
     public String adminCounselorApply(Member member, Model model) {
         System.out.println("상담사 신청 페이지로 이동");
@@ -121,13 +123,15 @@ public class AdminController {
 
     //상담사 자세한 정보
     @GetMapping("adminCounselorView")
-    public String adminCounselorView(Counselor counselor, Model model) {
+    public String adminCounselorView(Member member, Model model) {
         System.out.println("상담사 정보 페이지로 이동");
+        System.out.println("getM_id : " + member.getM_id());
 
-        counselor = adminService.admin_counsel_select(counselor);
-        System.out.println("counselor : "+counselor);
+        member = adminService.admin_counsel_select(member);
+        System.out.println("member : "+ member);
 
-        model.addAttribute("counselor", counselor);
+
+        model.addAttribute("member", member);
 
         return "adminPage/admin_counselor_view";
     }
@@ -158,6 +162,38 @@ public class AdminController {
 
         return result;
     }
+
+    // 상담사 상태값 변경
+    @ResponseBody
+    @GetMapping("adminStateChange")
+    public int adminStateChange(Member member){
+        System.out.println("상담사 상태값 변경 페이지로 이동");
+
+        if(member.getState() == 1){
+            member.setState(0);
+        }else if(member.getState() == 0){
+            member.setState(1);
+        }
+
+        int result = adminService.admin_state_change(member);
+
+        return result;
+    }
+
+    // 관리자페이지 닉네임 변경
+    @ResponseBody
+    @PostMapping("AdminNickChange")
+    public int AdminNickChange(Member member){
+        System.out.println("관리자전용 닉네임 변경 페이지로 이동");
+
+        System.out.println("getM_id"+ member.getM_id());
+        System.out.println("getNick"+ member.getNick());
+
+        int result = adminService.admin_nick_change(member);
+
+        return result;
+    }
+
 
     // 강아지 리스트 페이지 수정중...
     @GetMapping("adminDogPage")

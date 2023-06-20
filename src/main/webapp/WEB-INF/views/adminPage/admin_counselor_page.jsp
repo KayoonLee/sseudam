@@ -11,9 +11,9 @@
     <!-- ======= Table ======= -->
     <%@ include file="../navigator_footer/admin_table.jsp" %>
     <script>
-        function loadMemberPage(m_id) {
+        function loadCounselorPage(m_id) {
             $.ajax({
-                url: "adminViewPage",
+                url: "adminCounselorView",
                 data: {m_id: m_id},
                 success: function (response) {
                     $("#adminResultView").html(response);
@@ -38,29 +38,27 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="adminMemberPage">상담회원</a></li>
-                <%--<li class="breadcrumb-item active">하위페이지</li>--%>
+                <li class="breadcrumb-item active">상담사 관리</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
     <table id="example" class="table is-striped" style="width:100%">
         <tbody>
-            <tr> <!-- onClick 으로 조회하는거 걸기 -->
         <c:if test="${empty counsel_list}">
+            <tr>
             <td colspan="9">가입한 상담사가 존재하지 않습니다.</td>
+            </tr>
         </c:if>
         <c:if test="${not empty counsel_list}">
             <c:forEach var="member" items="${counsel_list}">
                     <c:set var="m_id" value="${member.m_id}" />     <!--id = memberView 값 넘겨주기-->
+                    <tr onclick="loadCounselorPage(${m_id})">
                     <td>${member.row_num}</td>
                     <td>${member.m_id}</td>
-                    <td>
-                        <button type="button" id="memberView" onclick="loadMemberPage(${m_id})">${member.name}</button>
-                    </td>
+                    <td>${member.name}</td>
                     <td>${member.email}</td>
                     <td>${member.nick}</td>
-                    <td>${member.birth}</td>
-                    <td>${member.tel}</td>
                     <!-- identifier 회원 구분코드 -->
                     <c:if test="${member.identifier == '1'}">
                         <td>일반회원</td>
@@ -93,8 +91,6 @@
             <th>이름</th>
             <th>이메일</th>
             <th>닉네임</th>
-            <th>생일</th>
-            <th>전화번호</th>
             <th>회원</th>
             <th>상태</th>
             <th>가입날짜</th>
@@ -107,8 +103,6 @@
             <th>이름</th>
             <th>이메일</th>
             <th>닉네임</th>
-            <th>생일</th>
-            <th>전화번호</th>
             <th>회원</th>
             <th>상태</th>
             <th>가입날짜</th>
