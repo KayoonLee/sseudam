@@ -44,55 +44,61 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <table id="example" class="table is-striped" style="width:100%">
-        <thead>
-        <tr>
-            <th>회원번호</th>
-            <th>동물번호</th>
-            <th>동물이름</th>
-            <th>생일</th>
-            <th>성별</th>
-            <th>중성화여부</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:if test="${not empty cat_list}">
-            <c:forEach var="cat" items="${cat_list}">
-                <c:set var="p_id" value="${cat.p_id}"/>
-                <%--<c:set var="g_id" value="${cat.g_id}"/>--%>
-                <tr id="catView" onclick="loadCatPage(${p_id})"> <%-- onClick 으로 조회하는 방법으로 하기(<a>태그로 감싸도 되고 안감싸도 됨) --%>
-                    <td>${cat.g_id}</td>
-                    <td>${cat.p_id}</td>
-                    <td>${cat.animal}</td>
-                    <td>${cat.birth}</td>
-                    <c:if test="${cat.gender == 0}">
-                        <td>Male</td>
-                    </c:if>
-                    <c:if test="${cat.gender == 1}">
-                        <td>Female</td>
-                    </c:if>
-                        <%-- neutering(중성화) --%>
-                    <c:if test="${cat.neutering == 0}">
-                        <td>중성화x</td>
-                    </c:if>
-                    <c:if test="${cat.neutering == 1}">
-                        <td>중성화o</td>
-                    </c:if>
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title" align="center">일반회원 리스트</div>
+            <table id="example" class="table is-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th>회원번호</th>
+                    <th>동물번호</th>
+                    <th>동물이름</th>
+                    <th>생일</th>
+                    <th>성별</th>
+                    <th>중성화여부</th>
                 </tr>
-            </c:forEach>
-        </c:if>
-        </tbody>
-        <tfoot>
-        <tr>
-            <th>회원번호</th>
-            <th>동물번호</th>
-            <th>동물이름</th>
-            <th>생일</th>
-            <th>성별</th>
-            <th>중성화여부</th>
-        </tr>
-        </tfoot>
-    </table>
+                </thead>
+                <tbody>
+                <c:if test="${not empty cat_list}">
+                    <c:forEach var="cat" items="${cat_list}">
+                        <c:set var="p_id" value="${cat.p_id}"/>
+                        <%--<c:set var="g_id" value="${cat.g_id}"/>--%>
+                        <tr id="catView"
+                            onclick="loadCatPage(${p_id})"> <%-- onClick 으로 조회하는 방법으로 하기(<a>태그로 감싸도 되고 안감싸도 됨) --%>
+                            <td>${cat.g_id}</td>
+                            <td>${cat.p_id}</td>
+                            <td>${cat.animal}</td>
+                            <td>${cat.birth}</td>
+                            <c:if test="${cat.gender == 0}">
+                                <td>Male</td>
+                            </c:if>
+                            <c:if test="${cat.gender == 1}">
+                                <td>Female</td>
+                            </c:if>
+                                <%-- neutering(중성화) --%>
+                            <c:if test="${cat.neutering == 0}">
+                                <td>중성화x</td>
+                            </c:if>
+                            <c:if test="${cat.neutering == 1}">
+                                <td>중성화o</td>
+                            </c:if>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>회원번호</th>
+                    <th>동물번호</th>
+                    <th>동물이름</th>
+                    <th>생일</th>
+                    <th>성별</th>
+                    <th>중성화여부</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 
     <br><br>
     <hr>

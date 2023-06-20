@@ -9,8 +9,12 @@ public interface AdminService {
 
 // 진우
     List<Member> admin_list(Member member);
+
     Member adminSelect(Integer m_id);
-    PetBean petSelect(Integer m_id);
+
+    List<PetBean> petSelect(Integer m_id);
+
+    int adminDelete(Member member);
 
 // 가윤
     // 일반회원 total

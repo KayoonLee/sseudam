@@ -3,15 +3,26 @@ package com.pet.sseudam.dao;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import org.apache.ibatis.annotations.Mapper;
+
 import java.util.*;
 
 @Mapper
 public interface AdminDao {
 
-// 진우님 멤버
+// 진우
+    // 회원목록
     List<Member> admin_list(Member member);
+
+    // 일반회원 선택
     Member adminSelect(Integer m_id);
-    PetBean petSelect(Integer m_id);
+
+    // 일반회원 선택 + 동물 출력
+    List<PetBean> petSelect(Integer m_id);
+
+    // 일반회원 탈퇴
+    int adminDelete(Member member); 
+    
+    // 일반회원 조회 작업중...
 
 // 가윤
     // 일반회원 수 total
