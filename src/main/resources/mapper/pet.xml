@@ -5,20 +5,16 @@
 <mapper namespace="com.pet.sseudam.dao.PetDao">
     <!--반려동물 목록-->
     <select id="p_list" parameterType="pet" resultType="pet">
-        <choose>
-            <when test="profile_num == null">
-                select * from pet
-            </when>
-            <otherwise>
-                select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num
-            </otherwise>
-        </choose>
+        SELECT *
+        FROM pet
+                 LEFT JOIN img_profile ON pet.profile_num = img_profile.profile_num
+        UNION
+        SELECT *
+        FROM pet
+                 RIGHT JOIN img_profile ON pet.profile_num = img_profile.profile_num
+        WHERE pet.profile_num IS NULL
+
     </select>
-
-    <!--select pet.*, profile_origin, profile_name from pet inner join img_profile on pet.profile_num = img_profile.profile_num-->
-    <!--select p_id, g_id, animal, birth, kind, breed, pet.profile_num, feature, gender, neutering, state from pet;-->
-
-
 
     <!-- 반려동물 몇 마리-->
     <select id="getTotal" resultType="int">
@@ -27,10 +23,18 @@
 
     <!-- 반려동물 상세정보 -->
     <select id="p_select" parameterType="int" resultType="pet">
-        select p_id, g_id, animal, birth, kind, breed, pet.profile_num, feature, gender, neutering, state,
-               b.profile_name, b.profile_origin
-        from pet inner join img_profile b on pet.profile_num = b.profile_num where p_id=#{p_id}
+        SELECT *
+        FROM pet
+                 LEFT JOIN img_profile ON pet.profile_num = img_profile.profile_num
+        WHERE pet.p_id = #{p_id}
+        UNION
+        SELECT *
+        FROM pet
+                 RIGHT JOIN img_profile ON pet.profile_num = img_profile.profile_num
+        WHERE pet.profile_num IS NULL
+
     </select>
+
 
     <!--반려동물 추가 -->
     <insert id="p_insert" parameterType="pet">
@@ -39,16 +43,15 @@
     </insert>
 
 
+    <!-- 반려동물 수정-->
     <update id="p_update" parameterType="pet">
-        update pet a
-            join
-            img_profile b on a.profile_num=b.profile_num
-
-            set animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
-                feature=#{feature}, gender=#{gender}, neutering=#{neutering}
-                    ,profile_name=#{profile_name}, profile_origin=#{profile_origin}
-        where p_id=#{p_id}
+        UPDATE pet
+            SET pet.animal=#{animal}, pet.birth=#{birth}, pet.kind=#{kind}, pet.breed=#{breed},
+                pet.feature=#{feature}, pet.gender=#{gender}, pet.neutering=#{neutering}
+        WHERE
+            p_id=#{p_id}
     </update>
+
 
     <!-- 프로필사진 관련-->
     <select id="getMaxnum" resultType="int">
@@ -69,14 +72,25 @@
     </select>
 
 
+    <!-- 프로필사진 삭제-->
     <delete id="profileDelete" parameterType="int">
         delete from img_profile where profile_num=#{profile_num}
     </delete>
 
+    <!--프로필사진 수정-->
     <update id="profileUpdate" parameterType="int">
-        update pet a join img_profile b on a.profile_num=b.profile_num
-            set profile_name=#{profile_name}, profile_origin=#{profile_origin}
-        where p_id=#{p_id}, g_id=#{g_id}
+        UPDATE pet
+            LEFT JOIN img_profile ON pet.profile_num = img_profile.profile_num
+            SET img_profile.profile_name = CASE
+                WHEN pet.profile_num IS NOT NULL THEN #{profile_name}
+                ELSE img_profile.profile_name
+        END,
+img_profile.profile_origin = CASE
+    WHEN pet.profile_num IS NOT NULL THEN #{profile_origin}
+        ELSE img_profile.profile_origin
+        END
+
+
     </update>
 
 </mapper>

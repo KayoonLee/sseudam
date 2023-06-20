@@ -54,8 +54,6 @@ public class PetPageController {
         //해당 회원의 동물을 리스트에 넣는다
         List<PetBean> list = pps.p_list(pet);
 
-
-
         System.out.println("list "+list);
 
         model.addAttribute("total", total);
@@ -167,6 +165,7 @@ public class PetPageController {
 
         int result = pps.p_update(pet);
         System.out.println("animal:" + pet.getAnimal());
+        System.out.println("result:" + result);
 
         if (result == 1) System.out.println("동물 수정 성공");
 
