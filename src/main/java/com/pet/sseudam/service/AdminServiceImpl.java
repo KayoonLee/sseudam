@@ -1,7 +1,6 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.AdminDao;
-import com.pet.sseudam.model.Counselor;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
@@ -19,7 +18,8 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminDao adminDao;
-    // 진우님
+
+// 진우님
     @Override
     public List<Member> admin_list(Member member) {
         return adminDao.admin_list(member);
@@ -31,17 +31,17 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public PetBean petSelect(Integer m_id) {
+    public List<PetBean> petSelect(Integer m_id) {
         return adminDao.petSelect(m_id);
     }
 
-    // 가윤
+    //삭제, 복구 메소드
     @Override
-    public List<PetBean> dog_list(PetBean pet) { return adminDao.dog_list(pet); }
+    public int adminDelete(Member member) {
+        return adminDao.adminDelete(member);
+    }
 
-    @Override
-    public List<PetBean> cat_list(PetBean pet) { return adminDao.cat_list(pet); }
-
+// 세욱
     @Override
     public List<ReportBean> admin_report_list() {
         return adminDao.admin_report_list();
@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public ReportBean admin_report_view(ReportBean reportBoard) {
-         return adminDao.admin_report_view(reportBoard);
+        return adminDao.admin_report_view(reportBoard);
     }
 
     @Override
@@ -82,4 +82,52 @@ public class AdminServiceImpl implements AdminService {
         return adminDao.admin_nick_change(member);
     }
 
+// 가윤
+    // 일반회원 total
+    @Override
+    public Integer getTotalMember() {
+        return adminDao.getTotalMember();
+    }
+
+    // 상담사 total
+    @Override
+    public Integer getTotalCounselor() {
+        return adminDao.getTotalCounselor();
+    }
+
+    // 강아지 리스트
+    @Override
+    public List<PetBean> dog_list(PetBean pet) {
+        return adminDao.dog_list(pet);
+    }
+
+    // 강아지 상세페이지
+    @Override
+    public PetBean adminDogSelect(int p_id) {
+        return adminDao.adminDogSelect(p_id);
+    }
+
+    // 강아지+사람 상세페이지
+    @Override
+    public Member adminAnimalSelect(/*int g_id, */int p_id) {
+        return adminDao.adminAnimalSelect(/*g_id,*/p_id);
+    }
+
+    // 고양이 리스트
+    @Override
+    public List<PetBean> cat_list(PetBean pet) {
+        return adminDao.cat_list(pet);
+    }
+
+    // 고양이 상세페이지
+    @Override
+    public PetBean adminCatSelect(int p_id) {
+        return adminDao.adminCatSelect(p_id);
+    }
+
+    // 고양이+사람 상세페이지
+    @Override
+    public Member adminAnimalSelect_cat(int p_id) {
+        return adminDao.adminAnimalSelect_cat(p_id);
+    }
 }

@@ -47,34 +47,40 @@
         </nav>
     </div><!-- End Page Title -->
 
-    <table id="example" class="table is-striped" style="width:100%">
-        <thead>
-        <tr>
-            <th>신고한 유저</th>
-            <th>글 제목</th>
-            <th>신고사유</th>
-            <th>신고일</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="list" items="${report_list}">
-            <c:set var="m_id" value="${list.m_id}"/>
-            <tr onclick="reportView(${m_id}, ${list.num}, ${list.board_num})">
-                <td><img src="${list.profile_name}" alt="프로필">${list.nick}</td>
-                <td>${list.subject}</td>
-                <td>${list.report_issue}</td>
-                <td><fmt:formatDate value="${list.report_date}"
-                                    pattern="yyyy년 MM월 dd일"/></td>
-            </tr>
-        </c:forEach>
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title" align="center">신고받은 회원 리스트</div>
+            <table id="example" class="table is-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th>신고한 유저</th>
+                    <th>글 제목</th>
+                    <th>신고사유</th>
+                    <th>신고일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="list" items="${report_list}">
+                    <c:set var="m_id" value="${list.m_id}"/>
+                    <tr onclick="reportView(${m_id}, ${list.num}, ${list.board_num})">
+                        <td><img src="${list.profile_name}" alt="프로필">${list.nick}</td>
+                        <td>${list.subject}</td>
+                        <td>${list.report_issue}</td>
+                        <td><fmt:formatDate value="${list.report_date}"
+                                            pattern="yyyy년 MM월 dd일"/></td>
+                    </tr>
+                </c:forEach>
 
-        </tbody>
-    </table>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
     <br><br>
     <hr>
-    <div id="adminReportView"></div>
+    <br><br>
 
+    <div id="adminReportView"></div>
 
 </main><!-- End #main -->
 

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <meta charset="UTF-8">
@@ -114,21 +115,19 @@
             <div class="col-lg-8">
                 <div class="row">
 
-                    <!-- Customers Card -->
+                    <!-- 일반회원 Card -->
                     <div class="col-xxl-4 col-xl-12">
 
                         <div class="card info-card customers-card">
                             <div class="card-body">
 
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
+                                <h5 class="card-title">일반회원 <span>| This Year</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">decrease</span>
+                                        <h6>${totalMember}명</h6>
                                     </div>
                                 </div>
 
@@ -137,21 +136,19 @@
 
                     </div><!-- End Customers Card -->
 
-                    <!-- Customers Card -->
+                    <!-- 상담사 Card -->
                     <div class="col-xxl-4 col-xl-12">
 
                         <div class="card info-card customers-card">
                             <div class="card-body">
 
-                                <h5 class="card-title">Customers <span>| This Year</span></h5>
+                                <h5 class="card-title">상담사 <span>| This Year</span></h5>
                                 <div class="d-flex align-items-center">
                                     <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>1244</h6>
-                                        <span class="text-danger small pt-1 fw-bold">12%</span> <span
-                                            class="text-muted small pt-2 ps-1">decrease</span>
+                                        <h6>${totalCounselor}명</h6>
                                     </div>
                                 </div>
 
@@ -165,6 +162,51 @@
 
         </div>
     </section>
+
+    <%-- 오늘자 방문수 통계 --%>
+    <%--<section class="section">--%>
+    <%--<div class="row">--%>
+    <%--<div class="col-lg-6">--%>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Line Chart</h5>
+
+            <!-- Line Chart -->
+            <canvas id="lineChart" style="max-height: 400px;"></canvas>
+            <script>
+                document.addEventListener("DOMContentLoaded", () => {
+                    new Chart(document.querySelector('#lineChart'), {
+                        type: 'line',
+                        data: {
+                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                            datasets: [{
+                                label: 'Line Chart',
+                                data: [65, 59, 80, 81, 56, 55, 40],
+                                fill: false,
+                                borderColor: 'rgb(75, 192, 192)',
+                                tension: 0.1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                });
+            </script>
+            <!-- End Line CHart -->
+
+        </div>
+    </div>
+
+    <%--</div>--%>
+    <%--</div>--%>
+    <%--</section>--%>
+
 
 </main><!-- End #main -->
 
