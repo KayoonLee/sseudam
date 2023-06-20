@@ -54,7 +54,9 @@ public class PetPageController {
         //해당 회원의 동물을 리스트에 넣는다
         List<PetBean> list = pps.p_list(pet);
 
+        System.out.println("pet.getProfile_num():" + pet.getProfile_num());
         System.out.println("list "+list);
+        System.out.println("pet.getProfile_num():" + pet.getProfile_num());
 
         model.addAttribute("total", total);
         model.addAttribute("pageNum", pageNum);
@@ -75,16 +77,9 @@ public class PetPageController {
 
         PetBean pet = pps.p_select(p_id);   // 상세정보구하기
 
-
+        System.out.println("pet:" + pet);
         System.out.println("상세정보 구하기 성공");
-
-
         System.out.println("이미지도 구해옴");
-        
-        // 이거 추가, ProfileBean profile_board 추가
-        pet.setProfile_num(profile_board.getProfile_num());
-        pet.setProfile_origin(profile_board.getProfile_origin());
-        pet.setProfile_name(profile_board.getProfile_name());
 
         model.addAttribute("pet", pet);
         model.addAttribute("pageNum", pageNum);
@@ -101,6 +96,7 @@ public class PetPageController {
         System.out.println("동물 수정페이지");
 
         PetBean pet = pps.p_select(p_id);   // 상세정보구하기
+        System.out.println("pet:" + pet);
 
         model.addAttribute("pet", pet);
         model.addAttribute("pageNum", pageNum);
@@ -120,9 +116,10 @@ public class PetPageController {
         int size = (int)mf.getSize();
         System.out.println("size:" + size);
         System.out.println("profile_num:" + pet.getProfile_num());
+        int result = 0;
 
         //파일 첨부 관련
-        if (pet.getProfile_num() != null) {
+        if (size > 0) {
             System.out.println("profile_num이 null이 아니면 수정할 파일이 있습니다");
 
             String file_path = request.getRealPath("petimg");
@@ -152,68 +149,28 @@ public class PetPageController {
                 e.getMessage();
             }
 
-
-            int count= pps.profileUpdate(profile_board);
-            if(count == 1){
-                System.out.println("첨부파일이 수정되었습니다");
-            }
-
             pet.setProfile_origin(filename);
             pet.setProfile_name(new_filename);
-            System.out.println("size: " + size);
+
+            int cnt = pps.profileInsert(pet);
+            if(cnt == 1)   System.out.println("부모테이블에 insert 되었습니다!");
+
+            // 첨부파일이 포함된 자식 테이블수정
+            result = pps.p_update(pet);
+            if(result == 1) System.out.println("자식테이블 수정되었습니다!" );
+
 
         }else {
-            System.out.println("profile_num이 null이며 수정할 파일이 있습니다");
-            int max_num = pps.getMaxnum() + 1;
-            System.out.println("수정후 max_num: " + max_num);
-
-            String file_path = request.getRealPath("petimg");
-            System.out.println("file_path는 " + file_path);
-            System.out.println("filename은 " + filename);
-
-            String extension = filename.substring(filename.lastIndexOf("."));
-            UUID uuid = UUID.randomUUID();
-
-            String new_filename = uuid.toString().replace("-", "") + extension;
-
-            System.out.println("filename: " + filename);
-            System.out.println("new_filename: " + new_filename);
-
-            try {
-                mf.transferTo(new File(file_path + "/" + new_filename));
-            } catch (Exception e) {
-                e.getMessage();
+             result = pps.p_modify(pet);
+            if(result==1){
+                System.out.println("동물 수정 성공");
             }
-
-            profile_board.setProfile_num(max_num);
-            profile_board.setProfile_origin(filename);
-            profile_board.setProfile_name(new_filename);
-
-            int count = pps.profileAdd(profile_board);
-
-            System.out.println("pet.setProfile_num: " + pet.getProfile_num());
-            System.out.println("pet.setProfile_origin: " + pet.getProfile_origin());
-            System.out.println("pet.setProfile_name: " + pet.getProfile_name());
-
-
-            if(count==1){
-                System.out.println("업로드 성공");
-
-            }
-            pet.setProfile_num(max_num);
 
         }
 
-        int result = pps.p_update(pet);
-        System.out.println("animal:" + pet.getAnimal());
-        System.out.println("result:" + result);
-
-        if (result == 1) System.out.println("동물 수정 성공");
 
         model.addAttribute("result", result);
-        model.addAttribute("p_id", pet.getP_id());
-        model.addAttribute("pet", pet);
-        model.addAttribute("profile_board", profile_board);
+
 
         return "memberPage/petupdate";
     }
@@ -232,7 +189,6 @@ public class PetPageController {
         // 세션 확인
         Member member1 = (Member) session.getAttribute("member");
 //        int m_id = (int)session.getAttribute("m_id");
-//        System.out.println("m_id:" + m_id);
         System.out.println("member1:" + member1);
         System.out.println("m_id:" + member1.getM_id());
 

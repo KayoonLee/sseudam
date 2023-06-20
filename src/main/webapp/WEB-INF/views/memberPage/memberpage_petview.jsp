@@ -231,6 +231,7 @@
 
         </ul>
     </aside>
+
 <form method="post" enctype="multipart/form-data" attribute>
     <main id="main" class="main">
         <div class="pagetitle">
@@ -252,7 +253,7 @@
                                             <img src="/images/petdefault.png">
                                         </c:if>
                                         <c:if test="${!empty pet.profile_num}">
-                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle">
+                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle" width="250" >
                                         </c:if>
                                     </div>
                                     <div class="row">

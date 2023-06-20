@@ -34,4 +34,8 @@ public interface PetPageService {
     int profileUpdate(ProfileBean profileBoard);
 
     String profileSelect(ProfileBean profileBoard);
+
+    int profileInsert(PetBean pet);
+
+    int p_modify(PetBean pet);
 }
