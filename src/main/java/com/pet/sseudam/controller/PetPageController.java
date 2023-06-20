@@ -115,9 +115,10 @@ public class PetPageController {
         String filename = mf.getOriginalFilename();
         int size = (int)mf.getSize();
         System.out.println("size:" + size);
+        System.out.println("profile_num:" + pet.getProfile_num());
 
         //파일 첨부 관련
-        if (size > 0) {
+        if (pet.getProfile_num() != null) {
             System.out.println("수정할 파일이 있습니다");
 
             String file_path = request.getRealPath("petimg");
@@ -157,8 +158,46 @@ public class PetPageController {
             pet.setProfile_name(new_filename);
             System.out.println("size: " + size);
 
-        }else{
-            System.out.println("수정할 파일이 없습니다");
+        }else {
+            System.out.println("수정할 파일이 있습니다");
+
+            String file_path = request.getRealPath("petimg");
+            System.out.println("file_path는 " + file_path);
+            System.out.println("filename은 " + filename);
+
+
+            //이전 실제 첨부파일 삭제
+            String oldFilename = pps.profileSelect(profile_board);
+
+            System.out.println("삭제할 파일 경로" + file_path + "/" + oldFilename);
+            File real_file =new File(file_path + "/" + oldFilename);
+            real_file.delete();
+
+
+            String extension = filename.substring(filename.lastIndexOf("."));
+            UUID uuid = UUID.randomUUID();
+
+            String new_filename = uuid.toString().replace("-", "") + extension;
+
+            System.out.println("filename: " + filename);
+            System.out.println("new_filename: " + new_filename);
+
+            try {
+                mf.transferTo(new File(file_path + "/" + new_filename));
+            } catch (Exception e) {
+                e.getMessage();
+            }
+
+
+            int count= pps.profileAdd(profile_board);
+            if(count == 1){
+                System.out.println("프로필사진이 추가되었습니다");
+            }
+
+            pet.setProfile_origin(filename);
+            pet.setProfile_name(new_filename);
+            System.out.println("size: " + size);
+            
         }
 
 

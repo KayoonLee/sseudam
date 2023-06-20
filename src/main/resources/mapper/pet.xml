@@ -85,9 +85,9 @@
                 WHEN pet.profile_num IS NOT NULL THEN #{profile_name}
                 ELSE img_profile.profile_name
         END,
-img_profile.profile_origin = CASE
-    WHEN pet.profile_num IS NOT NULL THEN #{profile_origin}
-        ELSE img_profile.profile_origin
+                img_profile.profile_origin = CASE
+                WHEN pet.profile_num IS NOT NULL THEN #{profile_origin}
+                ELSE img_profile.profile_origin
         END
 
 
