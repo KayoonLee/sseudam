@@ -4,12 +4,11 @@
 <html>
 <head>
     <title>admin_member_view</title>
-
-
 </head>
 <body>
 
-<table id="example" class="table is-striped" style="width:100%">
+<table id="example2" class="table is-striped" style="width:100%">
+
     <tr>
         <h3> ${memberDto.name} 님의 동물목록</h3>
     </tr>
@@ -48,8 +47,6 @@
         </tr>
     </c:forEach>
 </table>
-
-<!-- ===============수정중=================== -->
 
 <!-- ===============수정중=================== -->
 

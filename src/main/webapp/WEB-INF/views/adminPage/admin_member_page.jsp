@@ -50,66 +50,86 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-    <table id="example" class="table is-striped" style="width:100%">
-        <tbody>
-        <c:if test="${not empty admin_list}">
-            <c:forEach var="member" items="${admin_list}">
-                <tr id="memberView" onclick="loadMemberPage(${member.m_id})"> <!-- onClick 으로 조회하는거 걸기 -->
-                    <td>${member.row_num}</td>
-                    <td>${member.m_id}</td>
-                    <td>${member.name}</td>
-                    <td>${member.nick}</td>
-                    <!-- identifier 회원 구분코드 -->
-                    <c:if test="${member.identifier == '1'}">
-                        <td>일반회원</td>
-                    </c:if>
-                    <c:if test="${member.identifier == '2'}">
-                        <td>상담사</td>
-                    </c:if>
-                    <c:if test="${member.identifier == '3'}">
-                        <td>승인 대기</td>
-                    </c:if>
-                    <c:if test="${member.identifier != '1' and  member.identifier != '2' and member.identifier != '3'}">
-                        <td>Bug</td>
-                    </c:if>
-                    <!-- 탈퇴회원 구분여부-->
-                    <c:if test="${member.state == 1}">
-                        <td>활동</td>
-                    </c:if>
-                    <c:if test="${member.state == 0}">
-                        <td>탈퇴</td>
-                    </c:if>
-                    <td>${member.join_date}</td>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title" align="center">일반회원 리스트</div>
+            <table id="example" class="table is-striped" style="width:100%">
+                <tbody>
+                <c:if test="${not empty admin_list}">
+                    <c:forEach var="member" items="${admin_list}">
+                        <input type="hidden" name="m_id" value="${m_id}">
+                        <tr id="memberView" onclick="loadMemberPage(${member.m_id})"> <!-- onClick 으로 조회하는거 걸기 -->
+                            <td>${member.row_num}</td>
+                            <td>${member.m_id}</td>
+                            <td>${member.name}</td>
+                            <td>${member.nick}</td>
+                            <!-- identifier 회원 구분코드 -->
+                            <c:if test="${member.identifier == '1'}">
+                                <td>일반회원</td>
+                            </c:if>
+                            <c:if test="${member.identifier == '2'}">
+                                <td>상담사</td>
+                            </c:if>
+                            <c:if test="${member.identifier == '3'}">
+                                <td>승인 대기</td>
+                            </c:if>
+                            <c:if test="${member.identifier != '1' and  member.identifier != '2' and member.identifier != '3'}">
+                                <td>Bug</td>
+                            </c:if>
+                            <!-- 탈퇴회원 구분여부-->
+                            <c:if test="${member.state == 1}">
+                                <td>활동</td>
+                            </c:if>
+                            <c:if test="${member.state == 0}">
+                                <td>탈퇴</td>
+                            </c:if>
+                            <td>${member.join_date}</td>
+                        </tr>
+                    </c:forEach>
+                </c:if>
+                </tbody>
+                <thead>
+                <tr>
+                    <td></td>
+                    <th>회원번호</th>
+                    <th>이름</th>
+                    <th>닉네임</th>
+                    <th>회원</th>
+                    <th>상태</th>
+                    <th>가입날짜</th>
                 </tr>
-            </c:forEach>
-        </c:if>
-        </tbody>
-        <thead>
-        <tr>
-            <td></td>
-            <th>회원번호</th>
-            <th>이름</th>
-            <th>닉네임</th>
-            <th>회원</th>
-            <th>상태</th>
-            <th>가입날짜</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <td></td>
-            <th>회원번호</th>
-            <th>이름</th>
-            <th>닉네임</th>
-            <th>회원</th>
-            <th>상태</th>
-            <th>가입날짜</th>
-        </tr>
-        </tfoot>
-    </table>
+                </thead>
+                <tfoot>
+                <tr>
+                    <td></td>
+                    <th>회원번호</th>
+                    <th>이름</th>
+                    <th>닉네임</th>
+                    <th>회원</th>
+                    <th>상태</th>
+                    <th>가입날짜</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 
     <br><br>
     <hr>
+    <br><br>
+
+    <div class="pagetitle">
+        <h1>일반회원</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">일반회원</a></li>
+                <%-- adminDogPage --%>
+                <%--<li class="breadcrumb-item">하위페이지</li>--%>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
     <%--<div class="row">--%>
     <%--<div class="col-lg-6">--%>
     <div class="card">
@@ -142,6 +162,7 @@
 
         </div>
     </div>
+
     <%--</div>--%>
     <%--</div>--%>
     <!-- 상세페이지 출력 -->
