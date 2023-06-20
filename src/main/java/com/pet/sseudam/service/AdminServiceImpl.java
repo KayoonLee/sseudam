@@ -29,11 +29,16 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public PetBean petSelect(Integer m_id) {
+    public List<PetBean> petSelect(Integer m_id) {
         return adminDao.petSelect(m_id);
     }
-
+    //삭제, 복구 메소드
+    @Override
+    public int adminDelete(Member member) {
+        return adminDao.adminDelete(member);
+    }
     // 가윤
+
     @Override
     public List<PetBean> dog_list(PetBean pet) { return adminDao.dog_list(pet); }
 

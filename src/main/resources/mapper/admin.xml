@@ -9,21 +9,24 @@
         select (ROW_NUMBER() OVER()) as row_num, m.* from member m where identifier = 1 order by row_num desc;
     </select>
 
-    <!--일반회원정보 가져오기 -->
+    <!--상세회원정보 이름 가져오기 -->
     <select id="adminSelect" resultType="member">
-        select member.*
-             , pet.*
-        from member join pet ON member.m_id = #{m_id}
-            and pet.g_id = #{m_id}
+        select *
+        from member where m_id = #{m_id}
     </select>
 
     <!--상세회원정보(동물) 가져오기 -->
     <select id="petSelect" resultType="pet">
-        select member.m_id
+        select member.name
              , pet.*
         from member join pet ON member.m_id = #{m_id}
             and pet.g_id = #{m_id}
     </select>
+    <!-- 회원탈퇴/복구 -->
+    <update id="adminDelete" parameterType="member">
+        update member set state=#{state} where m_id=#{m_id}
+    </update>
+
 
     <!-- 가윤 xml -->
     <select id="dog_list" resultType="pet">

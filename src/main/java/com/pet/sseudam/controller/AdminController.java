@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
@@ -19,7 +21,7 @@ public class AdminController {
 
     // 관리자 메인페이지
     @GetMapping("adminMain")
-    public String adminMain() {
+    public String adminMain(HttpSession session) {
         System.out.println("관리자 페이지로 진입성공");
         return "adminPage/adminpage_main";
     }
@@ -33,8 +35,10 @@ public class AdminController {
 
     // 일반회원 페이지
     @GetMapping("adminMemberPage")
-    public String memberPage(Member member, Model model) {
+    public String memberPage(Member member, Model model, HttpSession session) {
         System.out.println("회원관리 페이지로 이동");
+        session.removeAttribute("m_id");
+
         List<Member> admin_list = adminService.admin_list(member);
         System.out.println("admin_list = " + admin_list);
         model.addAttribute("admin_list", admin_list);
@@ -42,19 +46,51 @@ public class AdminController {
         return "adminPage/admin_member_page";
     }
 
-    //일반회원 페이지 상세
+    //일반회원 페이지 상세(동물)           -- Model 객체 List에 담아서
     @GetMapping("adminViewPage")
-    public String adminViewPage(Model model, Integer m_id, PetBean petBean){
-        System.out.println("상세페이지 보이기");
+    public String adminViewPage(Model model, Integer m_id, HttpSession session){
+        System.out.println("상세페이지(동물) 보이기");
 
         Member memberDto = adminService.adminSelect(m_id);
-        petBean = adminService.petSelect(m_id);
+
+        List<PetBean> petBean = adminService.petSelect(m_id);
+        session.setAttribute("m_id", memberDto.getM_id());
 
         System.out.println(memberDto);
         System.out.println(petBean);
         model.addAttribute("memberDto",memberDto);
         model.addAttribute("pet",petBean);
         return "adminPage/admin_member_view";
+    }
+    //
+
+    // 일반회원 페이지 상세/탈퇴페이지
+    @GetMapping("adminDelete")
+    public String adminDeleteForm(Model model, Integer m_id, HttpSession session){
+        System.out.println("삭제 버튼 및 조회 이동");
+        Member memberDto = adminService.adminSelect(m_id);
+
+        session.setAttribute("m_id", memberDto.getM_id());
+        model.addAttribute("memberDto",memberDto);
+
+        return "adminPage/admin_member_del_view";
+    }
+    // 일반회원 회원탈퇴
+    @ResponseBody
+    @GetMapping("adminDeleteBtn")
+    public int adminStateChange(Integer m_id){
+        System.out.println("회원 상태값 변경 페이지로 이동");
+        Member member = adminService.adminSelect(m_id);
+
+        if(member.getState() == 1){
+            member.setState(0);
+        }else if(member.getState() == 0){
+            member.setState(1);
+        }
+
+        int result = adminService.adminDelete(member);
+
+        return result;
     }
 
 

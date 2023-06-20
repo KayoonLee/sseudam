@@ -4,39 +4,53 @@
 <html>
 <head>
     <title>admin_member_view</title>
+
+
 </head>
 <body>
-<!-- ===============수정중=================== -->
+
 <table id="example" class="table is-striped" style="width:100%">
-
     <tr>
-        <th>회원이름</th>   <td colspan="3">${memberDto.name}</td> <td rowspan="4">${pet.profile}</td>
+        <h3> ${memberDto.name} 님의 동물목록</h3>
     </tr>
     <tr>
-        <th>동물이름</th><td>${pet.animal}</td>
-        <th>강아지/고양이</th><td>${pet.kind}</td>
+        <th>동물이름</th>
+        <th>강아지/고양이</th>
+        <th>품종</th>
+        <th>중성화여부</th>
+        <th>생일</th>
+        <th>성별</th>
     </tr>
-    <tr>
-        <th>품종</th>   <td>${pet.breed}</td>
-        <c:if test="${pet.neutering ==0}">
-            <th>중성화여부</th><td>NOT</td>
-        </c:if>
-        <c:if test="${pet.neutering ==1}">
-            <th>중성화여부</th><td>YES</td>
-        </c:if>
-    </tr>
-
-    <tr>
-        <th>생일</th><td>${pet.birth}</td>
-        <c:if test="${pet.gender==0}">
-            <th>성별</th><td>남자</td>
-        </c:if>
-        <c:if test="${pet.gender==1}">
-            <th>성별</th><td>여자</td>
-        </c:if>
-    </tr>
-
+    <c:forEach var="pet" items="${pet}">
+        <tr>
+            <td>${pet.animal}</td>
+            <c:if test="${pet.kind == 'c'}">
+                <td>고양이</td>
+            </c:if>
+            <c:if test="${pet.kind == 'd'}">
+                <td>강아지</td>
+            </c:if>
+            <td>${pet.breed}</td>
+            <c:if test="${pet.neutering ==0}">
+                <td>NOT</td>
+            </c:if>
+            <c:if test="${pet.neutering ==1}">
+                <td>YES</td>
+            </c:if>
+            <td>${pet.birth}</td>
+            <c:if test="${pet.gender==0}">
+                <td>암컷</td>
+            </c:if>
+            <c:if test="${pet.gender==1}">
+                <td>수컷</td>
+            </c:if>
+                <%--<td rowspan="4">${pet.profile}</td>--%>         <!--동물리스트를 띄우는건데 필요?-->
+        </tr>
+    </c:forEach>
 </table>
+
+<!-- ===============수정중=================== -->
+
 <!-- ===============수정중=================== -->
 
 </body>
