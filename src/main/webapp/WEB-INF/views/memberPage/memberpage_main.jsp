@@ -279,7 +279,14 @@
                                    <div class="card">
                                      <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                                       <img src="./memberImg/${myModel.profile_name}" alt="Profile" class="rounded-circle">
+                                        <c:if test="${!empty myModel.profile_num}">
+                                            <img src="./memberImg/${myModel.profile_name}" alt="Profile" class="rounded-circle">
+                                           </a>
+                                        </c:if>
+                                        <c:if test="${empty myModel.profile_num}">
+                                             <img src="/images/memberdefault.png" width="250" height="250">
+                                           </a>
+                                        </c:if>
                                        <h2>펫 이름</h2>
                                        <h3>귀여움</h3>
                                          <div class="social-links mt-2">

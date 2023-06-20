@@ -43,7 +43,7 @@ public interface MemberService{
 
     int myPicUpdate(Member member);
 
-    List<Member> counselorList();
+    List<Member> counselorList(Member member);
 
 
 //    Member profileAfter(int m_id);

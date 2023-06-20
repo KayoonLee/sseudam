@@ -51,5 +51,5 @@ public interface MemberDao {
 
     int myPicUpdate(Member member);
 
-    List<Member> counselor();
+    List<Member> counselor(Member member);
 }

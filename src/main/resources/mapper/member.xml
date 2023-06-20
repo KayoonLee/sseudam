@@ -109,7 +109,7 @@
 <!--        update member set profile_num = #{profile_num}-->
 <!--    </update>-->
 
-    <select id="counselorList" resultType="member">
+    <select id="counselorList" parameterType="member" resultType="member">
         SELECT m_id, name, license, career
         FROM member m
         INNER JOIN counselor c ON c.c_id = m.m_id

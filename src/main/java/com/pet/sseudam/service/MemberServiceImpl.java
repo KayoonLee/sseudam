@@ -101,8 +101,8 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public List<Member> counselorList() {
-        return md.counselor();
+    public List<Member> counselorList(Member member) {
+        return md.counselor(member);
     }
 
 

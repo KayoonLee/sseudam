@@ -84,10 +84,10 @@ public class CounselorController {
 
     //상담사 목록 페이지--내일
     @RequestMapping("counselor_list")
-    public String counselor_list( Model model){
+    public String counselor_list(Member member, Model model){
         System.out.println("상담사 목록 진입");
 
-        List<Member> counselorList = ms.counselorList();
+        List<Member> counselorList = ms.counselorList(member);
         System.out.println("counselor list:"+counselorList);
 
         model.addAttribute("counselorList", counselorList);
