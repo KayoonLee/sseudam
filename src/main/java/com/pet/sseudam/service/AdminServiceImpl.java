@@ -44,7 +44,7 @@ public class AdminServiceImpl implements AdminService {
 
     // 강아지+사람 상세페이지
     @Override
-    public Member adminAnimalSelect(/*int g_id, */int p_id) { return adminDao.adminAnimalSelect(/*g_id,*/ p_id); }
+    public Member adminAnimalSelect(/*int g_id, */int p_id) { return adminDao.adminAnimalSelect(/*g_id,*/p_id); }
 
     // 고양이 리스트
     @Override
@@ -54,4 +54,7 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public PetBean adminCatSelect(int p_id) { return adminDao.adminCatSelect(p_id); }
 
+    // 고양이+사람 상세페이지
+    @Override
+    public Member adminAnimalSelect_cat(int p_id) { return adminDao.adminAnimalSelect_cat(p_id); }
 }

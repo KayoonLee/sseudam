@@ -3,6 +3,7 @@
 
 <!-- id="Controller 에서 만든 List 객체 이름" -->
 <mapper namespace="com.pet.sseudam.dao.AdminDao">
+
 <!-- 진우 xml -->
     <!--일반회원정보 리스트 정렬 출력 -->
     <select id="admin_list" resultType="member">
@@ -50,13 +51,17 @@
         select g_id, p_id, animal, birth, gender, neutering from pet where kind='c'
     </select>
 
-    <!-- 반려동물+사람: 고양이 상세페이지 -->
-    <!--
-    <select id="adminCatSelect" resultType="mem">
-        select member.m_id, pet.p_id
-        from member join pet
-            on member.m_id = #{m_id}
-            and pet.p_id = #{p_id}
+    <!-- 반려동물: 고양이 상세페이지 -->
+    <select id="adminCatSelect" resultType="pet">
+        select * from pet where p_id = #{p_id}
     </select>
-    -->
+
+    <!-- 반려동물+사람: 고양이 상세페이지 -->
+    <select id="adminAnimalSelect_cat" resultType="member">
+        SELECT member.name
+        FROM member
+                 JOIN pet ON member.m_id = pet.g_id
+        WHERE pet.p_id = #{p_id}
+    </select>
+
 </mapper>

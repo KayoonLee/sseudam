@@ -96,7 +96,7 @@ public class AdminController {
 
         //System.out.println("p_id: "  + p_id + ", g_id: " + g_id);
         PetBean pet = adminService.adminDogSelect(p_id);
-        Member memberDto = adminService.adminAnimalSelect(/*g_id,*/ p_id);
+        Member memberDto = adminService.adminAnimalSelect(/*g_id,*/p_id);
         System.out.println(pet);
         System.out.println(memberDto);
 
@@ -122,10 +122,16 @@ public class AdminController {
     public String adminCatViewPage(Model model, int p_id) {
         System.out.println("고양이 상세페이지 보기");
 
+        System.out.println("p_id: " + p_id);
         PetBean pet = adminService.adminCatSelect(p_id);
+        System.out.println("1");
+        Member memberDto = adminService.adminAnimalSelect_cat(p_id);
+        System.out.println("2");
         System.out.println(pet);
+        System.out.println(memberDto);
 
         model.addAttribute("pet", pet);
+        model.addAttribute("memberDto", memberDto);
 
         return "adminPage/admin_cat_view";
     }

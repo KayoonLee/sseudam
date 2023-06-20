@@ -21,7 +21,7 @@ public interface AdminDao {
     PetBean adminDogSelect(int p_id);
 
     // 강아지+사람 상세페이지
-    Member adminAnimalSelect(/*int g_id,*/ int p_id);
+    Member adminAnimalSelect(/*int g_id,*/int p_id);
 
     // 고양이 리스트
     List<PetBean> cat_list(PetBean pet);
@@ -29,4 +29,6 @@ public interface AdminDao {
     // 고양이 상세페이지
     PetBean adminCatSelect(int p_id);
 
+    // 고양이+사람 상세페이지
+    Member adminAnimalSelect_cat(int p_id);
 }

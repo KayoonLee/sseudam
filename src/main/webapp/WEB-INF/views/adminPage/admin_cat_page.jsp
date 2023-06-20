@@ -13,9 +13,10 @@
 
     <script>
         function loadCatPage(p_id) {
+            alert("왜 안들어가니ㅠ");
             $.ajax({
                 url: "adminCatViewPage",
-                data: {p_id: p_id},
+                data: {p_id: p_id/*, g_id: g_id*/},
                 success: function (response) {
                     $("#adminCatResultView").html(response);
                 }
@@ -37,13 +38,13 @@
         <h1>고양이</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">반려동물</a></li> <%-- adminCatPage --%>
+                <li class="breadcrumb-item"><a href="#">반려동물</a></li>
+                <%-- adminCatPage --%>
                 <li class="breadcrumb-item">고양이</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
 
-<%-- 품종/동물프사/특이사항 --%>
     <table id="example" class="table is-striped" style="width:100%">
         <thead>
         <tr>
@@ -56,11 +57,11 @@
         </tr>
         </thead>
         <tbody>
-        <%-- 고양이일 경우 출력 --%>
         <c:if test="${not empty cat_list}">
-            <c:forEach var="cat" items="${cat_list}"> <%-- Controller 의 List 에서 수정할 것 --%>
-                <c:set var="p_id" value="${pet.p_id}" />
-                <tr id="catView" onclick="loadCatPage(${p_id})" > <%-- onClick 으로 조회하는 방법으로 하기 --%>
+            <c:forEach var="cat" items="${cat_list}">
+                <c:set var="p_id" value="${cat.p_id}"/>
+                <%--<c:set var="g_id" value="${cat.g_id}"/>--%>
+                <tr id="catView" onclick="loadCatPage(${p_id})"> <%-- onClick 으로 조회하는 방법으로 하기(<a>태그로 감싸도 되고 안감싸도 됨) --%>
                     <td>${cat.g_id}</td>
                     <td>${cat.p_id}</td>
                     <td>${cat.animal}</td>
@@ -71,6 +72,7 @@
                     <c:if test="${cat.gender == 1}">
                         <td>Female</td>
                     </c:if>
+                        <%-- neutering(중성화) --%>
                     <c:if test="${cat.neutering == 0}">
                         <td>중성화x</td>
                     </c:if>

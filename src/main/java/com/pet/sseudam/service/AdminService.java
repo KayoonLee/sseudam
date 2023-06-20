@@ -28,5 +28,6 @@ public interface AdminService {
     // 고양이 상세페이지
     PetBean adminCatSelect(int p_id);
 
-
+    // 고양이+사람 상세페이지
+    Member adminAnimalSelect_cat(int p_id);
 }

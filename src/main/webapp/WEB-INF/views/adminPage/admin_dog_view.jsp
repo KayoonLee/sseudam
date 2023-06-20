@@ -21,8 +21,7 @@
     </div><!-- End Page Title -->
 
     <tr>
-        <h3>회원 ${pet.g_id} 번의 동물</h3> <%-- me --%>
-        <h3>${memberDto.name}의 동물</h3>
+        <h3>회원 ${pet.g_id} 번의 ${memberDto.name}님의 동물</h3> <%-- me --%>
     </tr>
     <tr>
         <th>품종</th>
@@ -87,6 +86,21 @@
 </div>
 <%--</div>--%>
 <%--</div>--%>
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Outline Buttons</h5>
+
+        <button type="button" class="btn btn-outline-primary">Primary</button>
+        <button type="button" class="btn btn-outline-secondary">Secondary</button>
+        <button type="button" class="btn btn-outline-success">Success</button>
+        <button type="button" class="btn btn-outline-danger">Danger</button>
+        <button type="button" class="btn btn-outline-warning">Warning</button>
+        <button type="button" class="btn btn-outline-info">Info</button>
+        <button type="button" class="btn btn-outline-light">Light</button>
+        <button type="button" class="btn btn-outline-dark">Dark</button>
+    </div>
+</div>
 
 </body>
 </html>

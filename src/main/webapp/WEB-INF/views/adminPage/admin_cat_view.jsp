@@ -7,48 +7,37 @@
 </head>
 <body>
 
-<div class="pagetitle">
-    <h1>고양이</h1>
-    <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">반려동물</a></li>
-            <%-- adminCatPage --%>
-            <li class="breadcrumb-item">하위페이지</li>
-        </ol>
-    </nav>
-</div><!-- End Page Title -->
-
 <table id="example2" class="table is-striped" style="width:100%">
-    <thead>
+
+    <div class="pagetitle">
+        <h1>고양이</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">반려동물</a></li>
+                <%-- adminCatPage --%>
+                <li class="breadcrumb-item">하위페이지</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
     <tr>
-        <th>회원번호</th>
-        <th>동물번호</th>
-        <th>동물이름</th>
-        <th>생일</th>
-        <th>성별</th>
-        <th>중성화여부</th>
+        <h3>회원 ${pet.g_id} 번의님의 동물</h3>
     </tr>
-    </thead>
-    <tbody>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <th>품종</th>
+        <th>특이사항</th>
+        <th>상태값</th>
     </tr>
-    </tbody>
-    <tfoot>
     <tr>
-        <th>회원번호</th>
-        <th>동물번호</th>
-        <th>동물이름</th>
-        <th>생일</th>
-        <th>성별</th>
-        <th>중성화여부</th>
+        <td>${pet.breed}</td>
+        <td>${pet.feature}</td>
+        <c:if test="${pet.state == 1}">
+            <td>탈퇴</td>
+        </c:if>
+        <c:if test="${pet.state == 0}">
+            <td>활동중</td>
+        </c:if>
     </tr>
-    </tfoot>
 </table>
 
 </body>
