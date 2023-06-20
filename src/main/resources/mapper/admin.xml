@@ -28,6 +28,16 @@
     </select>
 
 <!-- 가윤 xml -->
+    <!-- total 회원수 조회 작업중... -->
+    <select id="getTotalMember" resultType="Integer">
+        SELECT COUNT(*) FROM member where state = 1
+    </select>
+
+    <!-- total 상담사 조회 작업중... -->
+    <select id="getTotalCounselor" resultType="Integer">
+        SELECT COUNT(*) FROM member where state = 2
+    </select>
+
     <!-- 반려동물-강아지 -->
     <select id="dog_list" resultType="pet">
         select g_id, p_id, animal, birth, gender, neutering from pet where kind='d'

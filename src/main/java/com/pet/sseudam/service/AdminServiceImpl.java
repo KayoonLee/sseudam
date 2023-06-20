@@ -34,6 +34,14 @@ public class AdminServiceImpl implements AdminService {
     }
 
 // 가윤
+    // 일반회원 total
+    @Override
+    public Integer getTotalMember() { return adminDao.getTotalMember(); }
+
+    // 상담사 total
+    @Override
+    public Integer getTotalCounselor() { return adminDao.getTotalCounselor(); }
+
     // 강아지 리스트
     @Override
     public List<PetBean> dog_list(PetBean pet) { return adminDao.dog_list(pet); }

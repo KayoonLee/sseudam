@@ -13,7 +13,6 @@
 
     <script>
         function loadCatPage(p_id) {
-            alert("왜 안들어가니ㅠ");
             $.ajax({
                 url: "adminCatViewPage",
                 data: {p_id: p_id/*, g_id: g_id*/},

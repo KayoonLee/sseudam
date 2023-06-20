@@ -46,7 +46,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="card-title"><%-- 타이틀 적어도 되고 안 적어도 되고 --%></div>
+            <div class="card-title" align="center">강아지 리스트</div>
             <div class="datatable-top"></div>
             <table id="example" class="table is-striped" style="width:100%">
                 <thead>

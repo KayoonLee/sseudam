@@ -14,6 +14,12 @@ public interface AdminDao {
     PetBean petSelect(Integer m_id);
 
 // 가윤
+    // 일반회원 수 total
+    Integer getTotalMember();
+
+    // 상담사 수 total
+    Integer getTotalCounselor();
+
     // 강아지 리스트
     List<PetBean> dog_list(PetBean pet);
 
@@ -31,4 +37,5 @@ public interface AdminDao {
 
     // 고양이+사람 상세페이지
     Member adminAnimalSelect_cat(int p_id);
+
 }

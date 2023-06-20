@@ -13,23 +13,34 @@ import java.util.*;
 @Controller
 public class AdminController {
 
-    // test // test // test
     @Autowired
     private AdminService adminService;
 
-    // 관리자 메인페이지
+    // 관리자 메인페이지 + 일반회원 회원수 + 상담사 회원수
     @GetMapping("adminMain")
-    public String adminMain() {
+    public String adminMain(Model model) {
         System.out.println("관리자 페이지로 진입성공");
+
+        Integer totalMember = adminService.getTotalMember();
+        Integer totalCounselor = adminService.getTotalCounselor();
+        model.addAttribute("totalMember", totalMember);
+        model.addAttribute("totalCounselor", totalCounselor);
+        System.out.println("totalMember: " + totalMember);
+        System.out.println("totalCounselor: " + totalCounselor);
+
+
         return "adminPage/adminpage_main";
     }
 
     // 대시보드(회원수 통계) 페이지
+    // 현재 adminpage_main에서 바로 띄워지는 중이라 이 부분은 사용x
+/*
     @GetMapping("adminDashboard")
     public String adminDashboard() {
         System.out.println("대시보드 페이지로 이동");
         return "adminPage/admin_dashboard";
     }
+*/
 
     // 일반회원 페이지
     @GetMapping("adminMemberPage")
@@ -76,6 +87,17 @@ public class AdminController {
     public String adminCounselorApply() {
         System.out.println("상담사 신청 페이지로 이동");
         return "adminPage/admin_counselor_apply";
+    }
+
+// 가윤
+    // 대시보드 일반회원수 조회
+    @GetMapping("getTotalMember")
+    public String getTotalMember() {
+        System.out.println("메인페이지 회원수 테스트");
+
+
+
+        return "adminPage/adminpage_main";
     }
 
     // 강아지 리스트 페이지

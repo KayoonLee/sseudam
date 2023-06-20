@@ -13,6 +13,12 @@ public interface AdminService {
     PetBean petSelect(Integer m_id);
 
 // 가윤
+    // 일반회원 total
+    Integer getTotalMember();
+
+    // 상담사 total
+    Integer getTotalCounselor();
+
     // 강아지 리스트
     List<PetBean> dog_list(PetBean pet);
 
