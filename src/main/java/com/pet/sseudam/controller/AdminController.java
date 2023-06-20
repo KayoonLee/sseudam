@@ -21,7 +21,7 @@ public class AdminController {
 
     // 관리자 메인페이지
     @GetMapping("adminMain")
-    public String adminMain(HttpSession session) {
+    public String adminMain() {
         System.out.println("관리자 페이지로 진입성공");
         return "adminPage/adminpage_main";
     }
