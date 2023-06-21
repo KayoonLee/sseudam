@@ -1,16 +1,166 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+<!-- id="Controller 에서 만든 List 객체 이름" -->
 <mapper namespace="com.pet.sseudam.dao.AdminDao">
-<!--    <select id=""> /* id="Controller 에서 만든 List 객체 이름" */-->
 
-<!--    </select>-->
-<!--    <select id="cat_list">-->
-<!--        select * from pet where kind="C"-->
-<!--    </select>-->
+    <!--    <select id=""> /* id="Controller 에서 만든 List 객체 이름" */-->
+
+    <!--    </select>-->
+    <!--    <select id="cat_list">-->
+    <!--        select * from pet where kind="C"-->
+    <!--    </select>-->
 
     <!--관리자로그인-->
     <select id="adminCheck" parameterType="String" resultType="admin">
         select * from admin where a_email = #{a_email}
     </select>
+
+<!-- 진우 xml -->
+    <!--일반회원정보 리스트 정렬 출력 -->
+    <select id="admin_list" resultType="member">
+        select (ROW_NUMBER() OVER()) as row_num, m.* from member m where identifier = 1 order by row_num desc;
+    </select>
+
+    <!--상세회원정보 가져오기 -->
+    <select id="adminSelect" resultType="member">
+        select *
+        from member where m_id = #{m_id}
+    </select>
+
+    <!--상세회원정보(동물) 가져오기 -->
+    <select id="petSelect" resultType="pet">
+        select member.name
+             , pet.*
+        from member join pet ON member.m_id = #{m_id}
+            and pet.g_id = #{m_id}
+    </select>
+
+    <!-- 회원탈퇴/복구 -->
+    <update id="adminDelete" parameterType="member">
+        update member set state=#{state} where m_id=#{m_id}
+    </update>
+
+<!-- 세욱 xml -->
+    <!-- 신고테이블 -->
+    <select id="admin_report_list" resultType="report_board">
+        select t1.board_num,
+               t1.num,
+               t1.m_id,
+               t1.report_issue,
+               t1.report_content,
+               t1.report_date,
+               t2.subject,
+               t3.nick,
+               t4.profile_name
+        from report t1
+                 join board t2 on (t1.board_num = t2.board_num
+            and t1.num = t2.num)
+                 join member t3 on (t1.m_id = t3.m_id)
+                 left join img_profile t4 on
+            (t3.profile_num = t4.profile_num)
+    </select>
+
+    <select id="admin_report_view" parameterType="report_board" resultType="report_board">
+        select m_id, num, board_num, report_content from report t1
+        where m_id = #{m_id} and board_num=#{board_num} and num=#{num}
+    </select>
+
+    <!-- 상담사 테이블 -->
+    <select id="admin_counsel_list" resultType="member">
+        select * from member where
+        <if test="identifier == 3">
+            identifier = #{identifier}
+        </if>
+        <if test="identifier != 3">
+            identifier ='2'
+        </if>
+    </select>
+
+    <select id="admin_counsel_select" resultType="member" parameterType="counselor">
+        select t1.*, career, license, profile_name, profile_origin
+        from member t1 join counselor t2 on t1.m_id=t2.c_id
+                       left join img_profile t3 on t1.profile_num=t3.profile_num
+        where m_id=#{m_id}
+    </select>
+
+    <update id="admin_counsel_accept" parameterType="member">
+        update member set identifier=#{identifier} where m_id=#{m_id}
+    </update>
+
+    <delete id="admin_counsel_decline" parameterType="member">
+        delete from member where m_id=#{m_id}
+    </delete>
+
+    <update id="admin_state_change" parameterType="member">
+        update member set state=#{state} where m_id=#{m_id}
+    </update>
+
+    <!-- 회원 닉네임 변경 -->
+    <update id="admin_nick_change" parameterType="member">
+        update member set nick=#{nick} where m_id=#{m_id}
+    </update>
+
+<!-- 가윤 xml -->
+    <!-- total 회원수 조회 -->
+    <select id="getTotalMember" resultType="Integer">
+        SELECT COUNT(*) FROM member where identifier = 1
+    </select>
+
+    <!-- total 상담사 조회 -->
+    <select id="getTotalCounselor" resultType="Integer">
+        SELECT COUNT(*) FROM member where identifier = 2
+    </select>
+
+    <!-- total 관리자 조회 -->
+    <select id="getTotalAdmin" resultType="Integer">
+        SELECT COUNT(*) FROM admin
+    </select>
+
+    <!-- 반려동물-강아지 -->
+    <select id="dog_list" resultType="pet">
+        select g_id, p_id, animal, birth, gender, neutering from pet where kind='d'
+    </select>
+
+    <!-- 반려동물: 강아지 상세페이지 -->
+    <select id="adminDogSelect" resultType="pet">
+        select * from pet where p_id = #{p_id}
+    </select>
+
+    <!-- 반려동물+사람: 강아지 상세페이지 -->
+    <select id="adminAnimalSelect" resultType="member">
+        SELECT member.name
+        FROM member
+            JOIN pet ON member.m_id = pet.g_id
+        WHERE pet.p_id = #{p_id}
+    </select>
+
+    <!-- 강아지 탈퇴/복구 상태값 변화 -->
+    <update id="adminDogState" parameterType="pet">
+        update pet set state = #{state} where p_id = #{p_id}
+    </update>
+
+    <!-- 반려동물: 고양이 -->
+    <select id="cat_list" resultType="pet">
+        SELECT g_id, p_id, animal, birth, gender, neutering FROM pet WHERE kind='c'
+    </select>
+
+    <!-- 반려동물: 고양이 상세페이지 -->
+    <select id="adminCatSelect" resultType="pet">
+        SELECT * FROM pet WHERE p_id = #{p_id}
+    </select>
+
+    <!-- 반려동물+사람: 고양이 상세페이지 -->
+    <select id="adminAnimalSelect_cat" resultType="member">
+        SELECT member.name
+        FROM member
+            JOIN pet ON member.m_id = pet.g_id
+        WHERE pet.p_id = #{p_id}
+    </select>
+
+    <!-- 고양이 탈퇴/복구 상태값 변화 -->
+    <update id="adminCatState" parameterType="pet">
+        UPDATE pet SET state = #{state} WHERE p_id = #{p_id}
+    </update>
+    
 </mapper>

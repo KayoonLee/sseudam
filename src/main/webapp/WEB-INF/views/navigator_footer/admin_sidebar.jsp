@@ -3,7 +3,8 @@
 <html>
 <head>
     <title>Admin_Sidebar</title>
-<%--    <style>
+<%--
+    <style>
         .active {
             background-color: mediumpurple;
         }
@@ -19,7 +20,7 @@
 
         <%-- 대시보드: 총 일반회원수, 상담자수, 방문자수 통계 페이지 --%>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#"> <%-- adminDashboard --%>
+            <a class="nav-link collapsed" href="adminMain"> <%-- adminMain || adminDashboard --%>
                 <i class="bi bi-grid"></i>
                 <span id="ad_dashboard">회원수 통계(Dashboard)</span>
             </a>
@@ -28,7 +29,7 @@
 
         <%-- 일반회원 --%>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#"> <%-- adminMemberPage --%>
+            <a class="nav-link collapsed" href="adminMemberPage"> <%-- adminMemberPage --%>
                 <i class="bi bi-menu-button-wide"></i>
                 <span id="ad_member_page">일반회원</span>
             </a>
@@ -36,7 +37,7 @@
 
         <%-- 신고받은 일반회원 --%>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#"> <%-- adminMemberReport --%>
+            <a class="nav-link collapsed" href="adminMemberReport"> <%-- adminMemberReport --%>
                 <i class="bi bi-menu-button-wide"></i>
                 <span id="ad_member_report">신고받은 회원관리</span>
             </a>
@@ -50,13 +51,13 @@
             </a>
             <ul id="tables-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#"> <%-- adminDogPage --%>
+                    <a href="adminDogPage"> <%-- adminDogPage --%>
                         <%--<i class="bi bi-circle active"></i>--%>
                         <span id="ad_dog_page">강아지</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#"> <%-- adminCatPage --%>
+                    <a href="adminCatPage"> <%-- adminCatPage --%>
                         <%--<i class="bi bi-circle"></i>--%>
                         <span id="ad_cat_page">고양이</span>
                     </a>
@@ -71,13 +72,13 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#"> <%-- adminCounselorPage --%>
+                    <a href="adminCounselorPage"> <%-- adminCounselorPage --%>
                         <%--<i class="bi bi-circle"></i>--%>
                         <span id="ad_counselor_page">상담사 정보</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#"> <%-- adminCounselorApply --%>
+                    <a href="adminCounselorApply"> <%-- adminCounselorApply --%>
                         <%--<i class="bi bi-circle"></i>--%>
                         <span id="ad_counselor_apply">상담사 신청관리</span>
                     </a>
@@ -90,14 +91,14 @@
 
         <%-- 관리자 마이페이지/프로파일 --%>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#"> <%-- adminProfile --%>
+            <a class="nav-link collapsed" href="adminProfile"> <%-- adminProfile --%>
                 <i class="bi bi-person"></i><span id="ad_profile">관리자 프로필</span>
             </a>
         </li><!-- End Profile Page Nav -->
 
         <%-- 관리자 등록 --%>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="#"> <%-- adminRegister --%>
+            <a class="nav-link collapsed" href="adminRegister"> <%-- adminRegister --%>
                 <i class="bi bi-card-list"></i><span id="ad_register">관리자 등록</span>
             </a>
         </li><!-- End Register Page Nav -->

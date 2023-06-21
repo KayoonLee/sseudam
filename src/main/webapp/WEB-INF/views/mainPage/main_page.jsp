@@ -97,7 +97,7 @@
                                             <a class="dropdown-item" href="single-blog.html">고객 후기</a>
                                         </div>
                                     </li>
-                                   <c:if test="${!empty member.m_id}">
+                                   <c:if test="${!empty member.m_id or !empty admin.a_email}">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
