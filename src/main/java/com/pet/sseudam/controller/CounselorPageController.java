@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class CounselorPageController {
@@ -55,7 +56,17 @@ public class CounselorPageController {
         return "counselorPage/counselorpage_updateform";
     }
 
+    //상담사 목록 페이지--내일
+    @RequestMapping("counselor_list")
+    public String counselor_list(Member member, Model model){
+        System.out.println("상담사 목록 진입");
 
+        List<Member> counselorList = ms.counselorList(member);
+        System.out.println("counselor list:"+counselorList);
+
+        model.addAttribute("counselorList", counselorList);
+        return "counselorPage/counselor_list";
+    }
 
 
 
@@ -69,7 +80,7 @@ public class CounselorPageController {
 
     
     // 상담예약서목록
-    @GetMapping("counselorpage_request")
+    @RequestMapping("counselorpage_request")
     public String counselorPageRequest(){
         System.out.println("상담예약서 목록으로 진입성공");
         return "counselorPage/counselorpage_request";
