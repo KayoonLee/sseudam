@@ -274,10 +274,10 @@ public class AdminController {
     // 강아지 탈퇴/복구 상태값 변화
     @ResponseBody
     @GetMapping("adminDogState")
-    public int adminDogState(int p_id) {
+    public int adminDogState(PetBean pet) {
         System.out.println("강아지 회원 상태값 변경");
 
-        PetBean pet = adminService.adminDogSelect(p_id);
+        //PetBean pet = adminService.adminDogSelect(p_id);
 
         if(pet.getState() == 1) {
             pet.setState(0);
