@@ -117,6 +117,7 @@
     where board_num=#{board_num} and num=#{num}
 </update>
 
+
 <update id="fDelete" parameterType="fboard">
     update board set state=0 where board_num=#{board_num} and num=#{num}
 </update>

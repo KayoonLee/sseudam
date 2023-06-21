@@ -114,9 +114,7 @@
         </div>
     </div>
 
-    <br><br>
     <hr>
-    <br><br>
 
     <!-- 상세페이지 출력 -->
     <div id="adminResultView"></div>

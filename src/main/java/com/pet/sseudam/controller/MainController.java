@@ -42,38 +42,30 @@ public class MainController {
     }
 
     // 회원가입 창 분리
-    @GetMapping("separate_join")
+    @RequestMapping("separate_join")
     public String separateLogin() {
         return "login/separate_join";
     }
 
     //일반회원 회원가입 폼
-    @GetMapping("member_join")
+    @RequestMapping("member_join")
     public String member_join(){
         return "login/member_join";
     }
 
     //상담사 회원가입 폼
-    @GetMapping("counsel_join")
+    @RequestMapping("counsel_join")
     public String counsel_join(){
         return "login/counsel_join";
     }
 
     // 로그인 폼
-    @GetMapping("login_form")
+    @RequestMapping("login_form")
     public String login_form(){
         return "login/login_form";
     }
 
 
-    @RequestMapping("test")
-    public String test(){
-        return "login/test";
-    }
-    // 로그아웃
-    @RequestMapping("/logout_form")
-    public String logout(HttpSession session) {
-        session.invalidate();
-        return "login/logout";
-    		}
+
+
 }

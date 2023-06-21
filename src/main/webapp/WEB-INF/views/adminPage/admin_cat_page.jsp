@@ -15,7 +15,7 @@
         function loadCatPage(p_id) {
             $.ajax({
                 url: "adminCatViewPage",
-                data: {p_id: p_id/*, g_id: g_id*/},
+                data: {p_id: p_id},
                 success: function (response) {
                     $("#adminCatResultView").html(response);
                 }
@@ -100,9 +100,7 @@
         </div>
     </div>
 
-    <br><br>
     <hr>
-    <br><br>
 
     <%-- Cat 상세페이지 출력 --%>
     <div id="adminCatResultView"></div>

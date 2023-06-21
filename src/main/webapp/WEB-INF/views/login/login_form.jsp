@@ -67,7 +67,6 @@
         <h4 class="mb-3">로그인</h4>
         <form class="validation-form" novalidate method="post" action="login">
 
-
           <div class="mb-3">
             <label for="email">이메일</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
@@ -84,17 +83,14 @@
              </div>
          </div>
 
-        <div class="row" align="center">
-            <div class="col-md-6 mb-3" align="center">
-                <button type="button" class="btn btn-secondary" id="findEmail">이메일아이디 찾기</button>
-
-                <button type="button" class="btn btn-secondary" id="findPasswd">비밀번호 찾기</button>
-              </div>
-        </div>
-
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">로그인</button>
-
+          <br><br>
+         <div class="mb-3" align="center">
+                <button type="button" class="btn btn-secondary" id="findEmail">ID 찾기</button>
+                <button type="button" class="btn btn-secondary" id="findPasswd">비밀번호 찾기</button>
+                <button type="button" class="btn btn-info" onclick="location.href='admin_login'">관리자 로그인</button>
+         </div>
         </form>
      <footer class="my-3 text-center text-small">
             <p class="mb-1">&copy; 2023 SSEUDAM</p>

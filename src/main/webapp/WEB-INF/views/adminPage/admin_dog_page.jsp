@@ -101,9 +101,7 @@
         </div><%-- End Card --%>
     </div><%-- End CardBody --%>
 
-    <br><br>
     <hr>
-    <br><br>
 
     <%-- Dog 상세페이지 출력 --%>
     <div id="adminDogResultView"></div>
