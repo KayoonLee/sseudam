@@ -37,10 +37,8 @@ public class AdminController {
                                @RequestParam("passwd") String passwd,
                                HttpSession session,
                                Model model) {
-
         int result = 0;
         AdminBean admin = adminService.adminCheck(a_email);
-
 
         if (admin == null) { //관리자 아닌 경우
             result = 1;
