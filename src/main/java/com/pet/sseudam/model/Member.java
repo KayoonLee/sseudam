@@ -1,19 +1,12 @@
 package com.pet.sseudam.model;
 
-
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.apache.ibatis.type.Alias;
 
-
 import java.sql.Date;
+
 @Data
-@Getter
-@Setter
-
 @Alias("member")
-
 public class Member {
 
     private int m_id;
@@ -30,7 +23,15 @@ public class Member {
     private int profile_num;
     private int row_num;
 
-//사진정보
+    //사진정보
     private String profile_origin;
     private String profile_name;
+
+    // 상담사 테이블
+    private String career;
+    private String license;
+
 }
+
+
+

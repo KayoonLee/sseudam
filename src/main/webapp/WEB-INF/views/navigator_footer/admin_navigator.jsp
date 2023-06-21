@@ -21,18 +21,21 @@
     <div class="d-flex align-items-center justify-content-between">
         <a href="adminMain" class="logo d-flex align-items-center">
             <img src="images/muzik5.jpg" alt="">
-            <span class="d-none d-lg-block">쓰담</span>
+            <span class="d-none d-lg-block">쓰담쓰담</span>
         </a>
-        <i class="bi bi-list toggle-sidebar-btn"></i>
+        <%-- 닫는창 --%>
+        <%--<i class="bi bi-list toggle-sidebar-btn"></i>--%>
     </div><!-- End Logo -->
 
     <%-- 검색창 --%>
+<%--
     <div class="search-bar">
         <form class="search-form d-flex align-items-center" method="POST" action="#">
             <input type="text" name="query" placeholder="Search" title="Enter search keyword">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
         </form>
-    </div><!-- End Search Bar -->
+    </div>
+--%><!-- End Search Bar -->
 
     <%-- 헤더의 오른쪽 알림창 --%>
     <nav class="header-nav ms-auto">
