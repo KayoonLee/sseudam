@@ -1,6 +1,7 @@
 package com.pet.sseudam.dao;
 
 import com.pet.sseudam.model.CounselPaper;
+import com.pet.sseudam.model.CounselRecord;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import org.apache.ibatis.annotations.Mapper;
@@ -27,6 +28,7 @@ public interface ConsultingDao {
      PetBean select_pet(int g_id);
      void update_consult (CounselPaper counselPaper);
      void delete_consult (int paper_num);
-
      void accept_consult (int paper_num);
+     String now_time();
+     void insert_consulting(CounselRecord counselrecord);
 }

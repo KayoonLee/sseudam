@@ -19,7 +19,7 @@ public class CounselRecord {
     private String subject; //상담제목
     private String topic;   //상담주제
     private String content; //상담기록
-    private String condition;   //상담현황
+    private String consult_status;   //상담현황
     private String etc; //특이사항
 
 }

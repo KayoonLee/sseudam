@@ -40,7 +40,7 @@ public class AdminController {
                                Model model) {
 
         int result = 0;
-        AdminBean admin = adminservice.adminCheck(a_email);
+        AdminBean admin = adminService.adminCheck(a_email);
 
 
         if(admin == null) { //관리자 아닌 경우

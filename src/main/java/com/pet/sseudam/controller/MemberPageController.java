@@ -1,19 +1,18 @@
 package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.PetBean;
+
 import com.pet.sseudam.service.MemberPageService;
-import com.pet.sseudam.service.PagingPgm;
-import com.pet.sseudam.service.PetPageService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.servlet.ServletOutputStream;
+
 import javax.servlet.http.HttpSession;
-import java.util.List;
+
 
 @Controller
 public class MemberPageController {

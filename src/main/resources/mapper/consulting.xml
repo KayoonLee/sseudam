@@ -97,5 +97,16 @@
         WHERE paper_num = #{paper_num}
     </update>
 
+    <!-- 현재 시간 조회 -->
+    <select id="now_time" resultType="String">
+        SELECT DATE_FORMAT(now(), '%Y-%m-%d %H:%i');
+    </select>
+
+    <!-- 상담기록서 작성 -->
+    <insert id="insert_consulting" parameterType="CounselRecord">
+        INSERT INTO counsel_record (paper_num, p_id, m_id, c_id, consulting_date, subject, topic, content, consult_status, etc)
+        VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{consult_status},#{etc})
+    </insert>
+
 
 </mapper>

@@ -17,7 +17,7 @@
     if (!checkPetRegistration()) {
       alert("먼저 반려동물을 등록해주세요.");
       // 메인 페이지로 이동하는 로직
-      window.location.href = "mainPage/main_page";
+      window.location.href = history.back(-1);
     }
   }
 

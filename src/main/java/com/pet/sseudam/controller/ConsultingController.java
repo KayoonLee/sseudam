@@ -1,6 +1,7 @@
 package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.CounselPaper;
+import com.pet.sseudam.model.CounselRecord;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.service.ConsultingService;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -143,7 +145,7 @@ public class ConsultingController {
             model.addAttribute("counselor", counselor);
             model.addAttribute("counselpaper", counselpaper);
             model.addAttribute("pet", pet);
-            return "consulting/view_consult_con";
+            return "view_consult_contemp";
         }
 
 
@@ -172,7 +174,7 @@ public class ConsultingController {
         model.addAttribute("pet_list", pet_list);
 
 
-        return "consulting/edit_consult";
+        return "edit_consulttemp";
     }
 
     /* 수정페이지 업데이트 */
@@ -215,14 +217,47 @@ public class ConsultingController {
         상담사 이름, 상담제목 상담주제, 상담기록, 상담현황, 특이사항*/
 
         CounselPaper counselpaper = con.find_consult(paper_num);
+        Member counselor = con.find_counselor(counselpaper.getC_id());
         Member member = con.find_general(counselpaper.getM_id());
         PetBean pet = con.select_pet(counselpaper.getP_id());
+        String time = con.now_time();
 
+        model.addAttribute("time", time);
+        model.addAttribute("counselor", counselor);
         model.addAttribute("counselpaper", counselpaper);
         model.addAttribute("member", member);
         model.addAttribute("pet", pet);
 
         return "consulting/write_consulting";
+    }
+
+    @RequestMapping("insert_Consulting")
+    public String insert_Consulting(@RequestParam("consulting_dates") String consulting_dates,
+                                    @RequestParam("old_paper_num") int old_paper_num,
+                                    @RequestParam("old_p_id") int old_p_id,
+                                    @RequestParam("old_m_id") int old_m_id,
+                                    @RequestParam("old_c_id") int old_c_id,
+                                    CounselRecord counselrecord) {
+        System.out.println(consulting_dates);
+        counselrecord.setPaper_num(old_paper_num);
+        counselrecord.setP_id(old_p_id);
+        counselrecord.setM_id(old_m_id);
+        counselrecord.setC_id(old_c_id);
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date consulting_date;
+        try {
+            consulting_date = dateFormat.parse(consulting_dates);
+            System.out.println("Consulting Date: " + consulting_date);
+            counselrecord.setConsulting_date(consulting_date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        con.insert_consulting(counselrecord);
+
+
+        return "";
     }
 
 

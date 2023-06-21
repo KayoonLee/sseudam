@@ -3,6 +3,7 @@ package com.pet.sseudam.dao;
 import com.pet.sseudam.model.AdminBean;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.ReportBean;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.*;

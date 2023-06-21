@@ -2,6 +2,7 @@ package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.ConsultingDao;
 import com.pet.sseudam.model.CounselPaper;
+import com.pet.sseudam.model.CounselRecord;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ import java.util.List;
 
 @Service
 @Primary
-public class ConsultingServiceImpl implements ConsultingService{
+public class ConsultingServiceImpl implements ConsultingService {
 
     @Autowired
     private ConsultingDao dao;
@@ -24,8 +25,8 @@ public class ConsultingServiceImpl implements ConsultingService{
     }
 
     @Override
-    public List<Date> find_reservation_time(int g_id , int con_id) {
-        return dao.find_reservation_time(g_id,con_id);
+    public List<Date> find_reservation_time(int g_id, int con_id) {
+        return dao.find_reservation_time(g_id, con_id);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class ConsultingServiceImpl implements ConsultingService{
 
     @Override
     public PetBean change_to_pet_id(int g_id, String animal) {
-        return dao.change_to_pet_id(g_id,animal);
+        return dao.change_to_pet_id(g_id, animal);
     }
 
     @Override
@@ -48,7 +49,7 @@ public class ConsultingServiceImpl implements ConsultingService{
         return dao.find_counselor(con_id);
     }
 
-    public void insert_consult(CounselPaper counselPaper){
+    public void insert_consult(CounselPaper counselPaper) {
         dao.insert_consult(counselPaper);
     }
 
@@ -75,6 +76,16 @@ public class ConsultingServiceImpl implements ConsultingService{
     @Override
     public void accept_consult(int paper_num) {
         dao.accept_consult(paper_num);
+    }
+
+    @Override
+    public String now_time() {
+        return dao.now_time();
+    }
+
+    @Override
+    public void insert_consulting(CounselRecord counselrecord) {
+        dao.insert_consulting(counselrecord);
     }
 
 }

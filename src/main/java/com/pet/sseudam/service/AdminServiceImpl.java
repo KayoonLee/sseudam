@@ -142,4 +142,11 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int adminCatState(PetBean pet) { return adminDao.adminCatState(pet); }
 
+    
+    //찬근 임의수정 혹시라도 머지할 때 오류나면 확인
+    @Override
+    public AdminBean adminCheck(String a_email) {
+        return adminDao.adminCheck(a_email);
+    }
+
 }

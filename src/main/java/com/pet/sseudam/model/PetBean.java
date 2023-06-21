@@ -18,7 +18,7 @@ public class PetBean {
     private int gender;
     private int neutering;
     private int state;
-    private int profile_num;
+
 
     // 페이징처리
     private int startRow;
