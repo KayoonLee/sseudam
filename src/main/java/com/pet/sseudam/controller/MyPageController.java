@@ -2,6 +2,7 @@ package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.Counselor;
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ProfileBean;
 import com.pet.sseudam.service.CounselorService;
 import com.pet.sseudam.service.MemberService;
@@ -288,7 +289,7 @@ public class MyPageController {
 
     // 나의 반려동물
     @RequestMapping("memberpage_mypet")
-    public String memberPagePet(){
+    public String memberPagePet(HttpSession session, Model model){
         System.out.println("동물페이지로 진입성공");
         return "memberPage/memberpage_mypet";
     }

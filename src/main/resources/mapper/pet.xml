@@ -8,6 +8,7 @@
         SELECT *
         FROM pet
                  LEFT JOIN img_profile ON pet.profile_num = img_profile.profile_num
+                 WHERE  g_id=#{g_id}
         UNION
         SELECT *
         FROM pet
