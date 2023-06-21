@@ -58,4 +58,12 @@ public interface AdminService {
 
     // 고양이+사람 상세페이지
     Member adminAnimalSelect_cat(int p_id);
+
+    int getVisitToday();
+
+    int getVisitTotal();
+
+    List<Integer> getVisitWeek();
+
+    List<String> getVisitDays();
 }

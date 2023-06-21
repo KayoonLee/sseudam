@@ -1,6 +1,7 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.Visitor;
 
 public interface MemberService{
 
@@ -20,4 +21,8 @@ public interface MemberService{
     void updatePwd(Member findmember);
 
     int updateNewPw(Member member);
+
+    int visitCheck(Visitor visitor);
+
+    int visitInsert(Visitor visitor);
 }

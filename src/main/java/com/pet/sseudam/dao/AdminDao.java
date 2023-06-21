@@ -3,6 +3,7 @@ package com.pet.sseudam.dao;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.Visitor;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.*;
@@ -67,4 +68,11 @@ public interface AdminDao {
     // 고양이+사람 상세페이지
     Member adminAnimalSelect_cat(int p_id);
 
+    int getVisitToday();
+
+    int getVisitTotal();
+
+    List<Integer> getVisitWeek();
+
+    List<String> getVisitDays();
 }

@@ -1,6 +1,7 @@
 package com.pet.sseudam.dao;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.Visitor;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -24,4 +25,8 @@ public interface MemberDao {
     void updatePwd(Member findmember);
 
     int updateNewPw(Member member);
+
+    int visitCheck(Visitor visitor);
+
+    int visitInsert(Visitor visitor);
 }

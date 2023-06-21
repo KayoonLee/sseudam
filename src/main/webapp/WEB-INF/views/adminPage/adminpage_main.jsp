@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header/header.jsp" %>
 
 <html>
 <meta charset="UTF-8">
@@ -68,6 +68,7 @@
             });
         </script>
     --%>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -167,22 +168,30 @@
     <%--<section class="section">--%>
     <%--<div class="row">--%>
     <%--<div class="col-lg-6">--%>
+        </script>
 
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Line Chart</h5>
+            <h5 class="card-title">주간 방문자추이</h5>
 
             <!-- Line Chart -->
             <canvas id="lineChart" style="max-height: 400px;"></canvas>
             <script>
+                const weekDays = [
+                    <c:forEach var="date" items="${weekDays}">
+                    '${fn:substring(date, 0, 4)}${fn:substring(date, 5, 7)}${fn:substring(date, 8, 10)}',
+                    </c:forEach>
+                ];
+
                 document.addEventListener("DOMContentLoaded", () => {
                     new Chart(document.querySelector('#lineChart'), {
                         type: 'line',
                         data: {
-                            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                            labels: weekDays,
                             datasets: [{
                                 label: 'Line Chart',
-                                data: [65, 59, 80, 81, 56, 55, 40],
+                                data: [${weekCount.get(0)},${weekCount.get(1)},${weekCount.get(2)},${weekCount.get(3)},
+                                    ${weekCount.get(4)},${weekCount.get(5)},${weekCount.get(6)}],
                                 fill: false,
                                 borderColor: 'rgb(75, 192, 192)',
                                 tension: 0.1
@@ -203,9 +212,9 @@
         </div>
     </div>
 
-    <%--</div>--%>
-    <%--</div>--%>
-    <%--</section>--%>
+    </div>
+    </div>
+    </section>
 
 
 </main><!-- End #main -->

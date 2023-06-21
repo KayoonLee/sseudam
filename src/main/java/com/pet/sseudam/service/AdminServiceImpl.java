@@ -130,4 +130,25 @@ public class AdminServiceImpl implements AdminService {
     public Member adminAnimalSelect_cat(int p_id) {
         return adminDao.adminAnimalSelect_cat(p_id);
     }
+
+    @Override
+    public int getVisitToday() {
+        return adminDao.getVisitToday();
+    }
+
+    @Override
+    public int getVisitTotal() {
+        return adminDao.getVisitTotal();
+    }
+
+    @Override
+    public List<Integer> getVisitWeek() {
+        return adminDao.getVisitWeek();
+    }
+
+    @Override
+    public List<String> getVisitDays() {
+        return adminDao.getVisitDays();
+    }
+
 }

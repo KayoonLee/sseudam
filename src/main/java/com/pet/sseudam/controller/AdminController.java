@@ -3,6 +3,7 @@ package com.pet.sseudam.controller;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -31,6 +33,24 @@ public class AdminController {
         model.addAttribute("totalCounselor", totalCounselor);
         System.out.println("totalMember: " + totalMember);
         System.out.println("totalCounselor: " + totalCounselor);
+
+
+        int todayCount = adminService.getVisitToday();
+        List<Integer> weekCount = adminService.getVisitWeek();
+        int totalCount = adminService.getVisitTotal();
+
+        List<String> weekDays  = adminService.getVisitDays();
+
+        model.addAttribute("weekDays", weekDays);
+
+        System.out.println(weekCount);
+        System.out.println(weekDays);
+
+
+        model.addAttribute("todayCount", todayCount);
+        model.addAttribute("weekDays", weekDays);
+        model.addAttribute("weekCount", weekCount);
+        model.addAttribute("totalCount", totalCount);
 
         return "adminPage/adminpage_main";
     }
@@ -297,6 +317,9 @@ public class AdminController {
 
         return "adminPage/admin_cat_view";
     }
+
+
+
 
     // 관리자 프로필/마이페이지
     @GetMapping("adminProfile")
