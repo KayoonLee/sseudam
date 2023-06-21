@@ -5,6 +5,7 @@ import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
 import com.pet.sseudam.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,8 +52,8 @@ public class AdminController {
     public String memberPage(Member member, Model model, HttpSession session) {
         System.out.println("회원관리 페이지로 이동");
         session.removeAttribute("m_id");
-
         List<Member> admin_list = adminService.admin_list(member);
+
         System.out.println("admin_list = " + admin_list);
         model.addAttribute("admin_list", admin_list);
 
@@ -67,7 +68,18 @@ public class AdminController {
         Member memberDto = adminService.adminSelect(m_id);
 
         List<PetBean> petBean = adminService.petSelect(m_id);
-        session.setAttribute("m_id", memberDto.getM_id());
+
+        if(session.getAttribute("m_id") == null) {
+            session.setAttribute("m_id", memberDto.getM_id());
+            memberDto = adminService.adminSelect((Integer)session.getAttribute("m_id"));
+            petBean = adminService.petSelect((Integer)session.getAttribute("m_id"));
+        }else{
+            session.setAttribute("m_id", (Integer)(session.getAttribute("m_id")));
+            memberDto = adminService.adminSelect((Integer)session.getAttribute("m_id"));
+            petBean = adminService.petSelect((Integer)session.getAttribute("m_id"));
+        }
+
+        System.out.println("session m_id값" + session.getAttribute("m_id"));
 
         System.out.println(memberDto);
         System.out.println(petBean);
@@ -82,9 +94,17 @@ public class AdminController {
         System.out.println("삭제 버튼 및 조회 이동");
         Member memberDto = adminService.adminSelect(m_id);
 
-        session.setAttribute("m_id", memberDto.getM_id());
-        model.addAttribute("memberDto", memberDto);
+        if(session.getAttribute("m_id") == null) {
+            session.setAttribute("m_id", memberDto.getM_id());
+            memberDto = adminService.adminSelect(m_id);
+        }else{
+            session.setAttribute("m_id",(Integer)session.getAttribute("m_id"));
+            memberDto = adminService.adminSelect((Integer)session.getAttribute("m_id"));
+        }
 
+        System.out.println("session m_id값" + session.getAttribute("m_id"));
+        System.out.println("memberDTO 상세탈퇴" + memberDto);
+        model.addAttribute("memberDto", memberDto);
         return "adminPage/admin_member_del_view";
     }
 
@@ -105,6 +125,7 @@ public class AdminController {
 
         return result;
     }
+
 
 // 세욱
     // 일반회원 신고 페이지

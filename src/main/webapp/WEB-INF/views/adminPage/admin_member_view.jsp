@@ -23,13 +23,19 @@
     <c:forEach var="pet" items="${pet}">
         <tr>
             <td>${pet.animal}</td>
+            <!-- pet.kind -->
             <c:if test="${pet.kind == 'c'}">
                 <td>고양이</td>
             </c:if>
             <c:if test="${pet.kind == 'd'}">
                 <td>강아지</td>
             </c:if>
+            <c:if test="${pet.kind != 'c' and pet.kind != 'd'}">
+                <td></td>
+            </c:if>
+
             <td>${pet.breed}</td>
+
             <c:if test="${pet.neutering ==0}">
                 <td>NOT</td>
             </c:if>

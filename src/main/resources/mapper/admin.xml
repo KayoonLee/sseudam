@@ -28,12 +28,6 @@
         update member set state=#{state} where m_id=#{m_id}
     </update>
 
-
-    <!-- 회원탈퇴/복구 -->
-    <update id="adminDelete" parameterType="member">
-        update member set state=#{state} where m_id=#{m_id}
-    </update>
-
 <!-- 세욱 xml -->
     <!-- 신고테이블 -->
     <select id="admin_report_list" resultType="report_board">
