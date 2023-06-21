@@ -31,9 +31,11 @@ public class PetPageController {
     public String memberPagePet(String pageNum, PetBean pet, Model model, HttpSession session, Member member) throws Exception {
         System.out.println("동물페이지로 진입성공");
 
+        Member mem = (Member) session.getAttribute("member");
+        pet.setG_id(mem.getM_id());
+        System.out.println("G_id:"+ pet.getG_id());
 
         // 회원정보 가져오기
-//        String g_id = (String) session.getAttribute("g_id");
 
 
         // 동물 목록 불러오기
@@ -64,6 +66,7 @@ public class PetPageController {
         model.addAttribute("number", number);
         model.addAttribute("pp", pp);
         model.addAttribute("pet", pet);
+        model.addAttribute("member", member);
 
         System.out.println("동물 목록출력 성공");
         return "memberPage/memberpage_mypet";
