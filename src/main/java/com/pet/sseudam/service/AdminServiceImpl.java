@@ -1,6 +1,7 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.AdminDao;
+import com.pet.sseudam.model.AdminBean;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public List<PetBean> cat_list(PetBean pet) { return adminDao.cat_list(pet); }
+
+    @Override
+    public AdminBean adminCheck(String a_email) {
+        return adminDao.adminCheck(a_email);
+    }
 
     @Override
     public void adminDelete(Member member) {

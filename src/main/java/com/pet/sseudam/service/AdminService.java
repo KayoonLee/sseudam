@@ -1,5 +1,6 @@
 package com.pet.sseudam.service;
 
+import com.pet.sseudam.model.AdminBean;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 
@@ -15,4 +16,6 @@ public interface AdminService {
     List<PetBean> dog_list(PetBean pet);
 
     List<PetBean> cat_list(PetBean pet);
+
+    AdminBean adminCheck(String a_email);
 }

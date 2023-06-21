@@ -1,45 +1,100 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: channy1942
+  Date: 2023-06-20
+  Time: 오후 4:04
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>상담 예약서</title>
+    <title>Title</title>
+    <!-- Vendor CSS Files -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="css/member.css" rel="stylesheet">
+    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 </head>
-
-
 <body>
-<h1>상담 예약확인서</h1>
+<%--<section class="section">--%>
+<%--<div class="row">--%>
+<%--<div class="col-lg-6">--%>
 
-<form  method="POST">
-    <input type="hidden" name="paper_num" value="${counselpaper.paper_num}">
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">상담예약서 상세페이지(회원)</h5>
 
-    <label for="name">상담사이름:</label>
-    <input type="text" id="con_name" name="con_name" value = "${counselor.name}" readonly>
-    <input type="hidden" name="c_id" value="${counselor.m_id}">
-    <br>
-    <label for="name">이름:</label>
-    <input type="text" id="name" name="name" value="${member.name}" readonly>
-    <input type="hidden" name="g_id" value="${member.m_id}">
-    <br>
-    <br>
-    <label for="p_id">동물이름:</label>
-    <input type="text" id="p_id" name="p_id" value="${pet.animal}" readonly>
+        <!-- General Form Elements -->
+        <form method="POST">
+            <input type="hidden" name="paper_num" value="${counselpaper.paper_num}">
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">상담사이름</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="con_name" name="con_name" value="${counselor.name}" disabled>
+                    <input type="hidden" name="c_id" value="${counselor.m_id}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">회원이름</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="name" name="name" value="${member.name}" disabled>
+                    <input type="hidden" name="g_id" value="${member.m_id}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">동물 이름</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="p_id" name="p_id" value="${pet.animal}" disabled>
+                    <input type="hidden" name="p_id" value="${pet.p_id}">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">예약 시간</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value="${counselpaper.request_time}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label  class="col-sm-2 col-form-label">상담 목적</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" value="${counselpaper.purpose}" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">상담 사유</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="reason" name="reason" style="height: 150px" maxlength="2000" disabled>${counselpaper.reason}</textarea>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">요청 사항</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="wish_list" name="wish_list" style="height: 50px" maxlength="900" disabled>${counselpaper.wish_list}</textarea>
+                </div>
+            </div>
 
-    <br>
-    <label for="request_times">날짜 및 시간 선택:</label>
-    <input type="datetime-local" id="request_times" name="request_times" value="${counselpaper.request_time}" required><br>
-    <label for="purpose">상담목적:</label>
-    <input type="text" id="purpose" name="purpose" value="${counselpaper.purpose}" readonly>
-    <br>
-    <label for="reason">상담 사유:</label>
 
-    <textarea id="reason" name="reason" rows="5" cols="50" maxlength="2000" readonly required>${counselpaper.reason}</textarea>
-    <br>
-    <label for="wish_list">요청사항:</label>
-    <textarea id="wish_list" name="wish_list" rows="5" cols="50" maxlength="2000" readonly required>${counselpaper.wish_list}</textarea>
-    <br>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="상담 수정하기" onclick="javascript: form.action='edit_Consult';">
+                    <input type="submit" class="btn btn-primary" value="상담 취소하기" onclick="javascript: form.action='delete_Consult';">
 
-    <input type="submit" value="상담 수정하기" onclick="javascript: form.action='edit_Consult';">
-    <input type="submit" value="상담 취소하기" onclick="javascript: form.action='delete_Consult';">
-</form>
+                </div>
+            </div>
+
+
+        </form><!-- End General Form Elements -->
+
+    </div>
+</div>
+
+<%--</div>--%>
+<%--</div>--%>
+<%--</section>--%>
+
 </body>
 </html>

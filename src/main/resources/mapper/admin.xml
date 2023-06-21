@@ -35,4 +35,10 @@
     <select id="cat_list" resultType="pet">
         select * from pet where kind='c'
     </select>
+
+
+    <!--관리자로그인-->
+    <select id="adminCheck" parameterType="String" resultType="admin">
+        select * from admin where a_email = #{a_email}
+    </select>
 </mapper>

@@ -1,30 +1,62 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Title</title>
+    <!-- Vendor CSS Files -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="css/member.css" rel="stylesheet">
+    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
 </head>
-
-
 <body>
-<div style="background-color: white; padding: 20px;">
-  <h3>상담사 선택</h3>
 
-  <form action="choose_Consult_Time" method="POST">
-    <p>상담사 선택:</p>
-    <select name = "con_names">
+<%--<main id="main" class="main">--%>
+<%--<section class="section">--%>
+<%--<div class="row">--%>
 
-      <option value="">상담사</option>
-      <c:forEach var="counselor" items="${con_names}">
-        <option value="${counselor.m_id}">${counselor.name}</option>
+    <div style="margin-top: 250px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">
+        <div class="col-lg-auto">
 
-      </c:forEach>
-    </select>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">상담사 목록</h5>
 
-    <button type="submit">상담신청서 작성하기</button>
-  </form>
-</div>
+                    <!-- General Form Elements -->
+                    <form action="choose_Consult_Time" method="POST">
+                        <div class="row mb-3">
+                            <div class="col-sm-10">
+
+                                <select name="con_names">
+                                    <option value="">상담사</option>
+                                    <c:forEach var="counselor" items="${con_names}">
+                                        <option value="${counselor.m_id}">${counselor.name}</option>
+                                    </c:forEach>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">상담사 선택</button>
+                            </div>
+                        </div>
+
+                    </form><!-- End General Form Elements -->
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<%--</div>--%>
+<%--</section>--%>
+<%--</main>--%>
 
 
 </body>
