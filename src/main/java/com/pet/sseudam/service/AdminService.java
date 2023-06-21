@@ -3,10 +3,9 @@ package com.pet.sseudam.service;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.AdminBean;
 
 import java.util.*;
-
-import com.pet.sseudam.model.AdminBean;
 
 public interface AdminService {
 

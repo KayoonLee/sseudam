@@ -5,18 +5,17 @@ import com.pet.sseudam.model.AdminBean;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
 import com.pet.sseudam.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.servlet.http.HttpSession;
-import java.util.*;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.*;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -27,7 +26,7 @@ public class AdminController {
 
     //관리자 로그인 창
     @RequestMapping("admin_login")
-    public String adminLogin(){
+    public String adminLogin() {
         System.out.println("관리자 로그인 창 진입");
         return "adminPage/admin_login";
     }
@@ -43,20 +42,20 @@ public class AdminController {
         AdminBean admin = adminService.adminCheck(a_email);
 
 
-        if(admin == null) { //관리자 아닌 경우
+        if (admin == null) { //관리자 아닌 경우
             result = 1;
             model.addAttribute("result", result);
             return "adminPage/admin_logRes";
 
-        } else {	 //관리자인 경우
-            if(admin.getPasswd().equals(passwd)) {	// 비번이 같은 경우
+        } else {     //관리자인 경우
+            if (admin.getPasswd().equals(passwd)) {    // 비번이 같은 경우
 
                 session.setAttribute("admin", admin);
                 String name = admin.getName(); //관리자 이름 화면 출력용
                 model.addAttribute("name", name);
                 return "mainPage/main_page";
 
-            } else {	// 비밀번호가 다른 경우
+            } else {    // 비밀번호가 다른 경우
                 result = 2;
                 model.addAttribute("result", result);
                 return "admin/admin_logRes";
@@ -64,9 +63,7 @@ public class AdminController {
         }
     }
 
-
     // 관리자 메인페이지 + 일반회원 회원수 + 상담사 회원수
-    // 관리자 메인페이지
     @GetMapping("adminMain")
     public String adminMain(Model model) {
         System.out.println("관리자 페이지로 진입성공");
@@ -74,9 +71,11 @@ public class AdminController {
         Integer totalMember = adminService.getTotalMember();
         Integer totalCounselor = adminService.getTotalCounselor();
         Integer totalAdmin = adminService.getTotalAdmin();
+
         model.addAttribute("totalMember", totalMember);
         model.addAttribute("totalCounselor", totalCounselor);
         model.addAttribute("totalAdmin", totalAdmin);
+
         System.out.println("totalMember: " + totalMember);
         System.out.println("totalCounselor: " + totalCounselor);
         System.out.println("totalAdmin" + totalAdmin);
@@ -94,7 +93,7 @@ public class AdminController {
     }
 */
 
-// 진우
+    // 진우
     // 일반회원 페이지
     @GetMapping("adminMemberPage")
     public String memberPage(Member member, Model model, HttpSession session) {
@@ -155,7 +154,7 @@ public class AdminController {
         return result;
     }
 
-// 세욱
+    // 세욱
     // 일반회원 신고 페이지
     @GetMapping("adminMemberReport")
     public String adminMemberReport(Model model) {
@@ -288,7 +287,7 @@ public class AdminController {
         return result;
     }
 
-// 가윤
+    // 가윤
     // 강아지 리스트 페이지
     @GetMapping("adminDogPage")
     public String adminDogPage(Model model, PetBean pet) {
@@ -325,16 +324,16 @@ public class AdminController {
 
         //PetBean pet = adminService.adminDogSelect(p_id);
 
-        if(pet.getState() == 1) {
+        if (pet.getState() == 1) {
             pet.setState(0);
-        } else if(pet.getState() == 0) {
+        } else if (pet.getState() == 0) {
             pet.setState(1);
         }
 
         int result = adminService.adminDogState(pet);
         return result;
     }
-    
+
     // 고양이 리스트 페이지
     @GetMapping("adminCatPage")
     public String adminCatPage(PetBean pet, Model model) {
@@ -370,9 +369,9 @@ public class AdminController {
         System.out.println("고양이 상태값 변경");
         PetBean pet = adminService.adminCatSelect(p_id);
 
-        if(pet.getState() == 1) {
+        if (pet.getState() == 1) {
             pet.setState(0);
-        } else if(pet.getState() == 0) {
+        } else if (pet.getState() == 0) {
             pet.setState(1);
         }
 
@@ -412,24 +411,5 @@ public class AdminController {
         System.out.println("캘린더 예시2로 이동");
         return "adminPage/admin_test3";
     }
-    /* ------------------------------------------------------------------------------------------------------------------ */
-
-    // 회원수, 상담자수, 관리자수, 오늘 방문자 통계cnt(메인페이지 접속 횟수)로 가져오기
-
-    // 일반회원 리스트 불러오기
-
-    // 강아지 리스트 불러오기
-
-    // 고양이 리스트 불러오기
-
-    // 상담사 리스트 불러오기
-
-    // 상담사 신청관리 리스트 불러오기
-
-    // 상담사 신청 3(보류) ->2 (확정) update (String형으로 되어 있음)
-
-    // 관리자 프로필
-
-    // 관리자 등록 (Admin table) // 시간 나면 하기
 
 }
