@@ -52,11 +52,13 @@
             <tr>
                 <th>품종</th>
                 <th>특이사항</th>
+                <th>중성화여부</th>
                 <th>상태값</th>
             </tr>
             <tr>
                 <td>${pet.breed}</td>
                 <td>${pet.feature}</td>
+                <td>${pet.neutering}</td>
                 <c:if test="${pet.state == 1}">
                     <td>탈퇴</td>
                 </c:if>

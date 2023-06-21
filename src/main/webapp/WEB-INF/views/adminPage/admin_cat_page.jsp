@@ -75,7 +75,7 @@
                             <c:if test="${cat.gender == 1}">
                                 <td>Female</td>
                             </c:if>
-                                <%-- neutering(중성화) --%>
+                            <%-- neutering(중성화) --%>
                             <c:if test="${cat.neutering == 0}">
                                 <td>중성화x</td>
                             </c:if>
