@@ -55,7 +55,7 @@
                     <th>동물이름</th>
                     <th>생일</th>
                     <th>성별</th>
-                    <th>중성화여부</th>
+                    <%--<th>중성화여부</th>--%>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,12 +76,14 @@
                                 <td>Female</td>
                             </c:if>
                             <%-- neutering(중성화) --%>
+<%--
                             <c:if test="${cat.neutering == 0}">
                                 <td>중성화x</td>
                             </c:if>
                             <c:if test="${cat.neutering == 1}">
                                 <td>중성화o</td>
                             </c:if>
+--%>
                         </tr>
                     </c:forEach>
                 </c:if>
@@ -93,7 +95,7 @@
                     <th>동물이름</th>
                     <th>생일</th>
                     <th>성별</th>
-                    <th>중성화여부</th>
+                    <%--<th>중성화여부</th>--%>
                 </tr>
                 </tfoot>
             </table>

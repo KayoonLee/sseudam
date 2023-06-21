@@ -99,12 +99,12 @@
     <a href="adminTest3">calendar test2</a>
 
     <div class="pagetitle">
-        <h1>Dashboard</h1>
+        <h1>회원수 통계</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
                 <%-- adminMain/adminDashboard --%>
-                <li class="breadcrumb-item">Dashboard</li>
+                <li class="breadcrumb-item">회원수 통계</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -127,7 +127,13 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>${totalMember}명</h6>
+                                        <%--<h6>${totalMember}명</h6>--%>
+                                        <c:if test="${totalMember == 0}">
+                                            <h6>0명</h6>
+                                        </c:if>
+                                        <c:if test="${totalMember > 0}">
+                                            <h6>${totalMember}명</h6>
+                                        </c:if>
                                     </div>
                                 </div>
 
@@ -149,7 +155,13 @@
                                         <i class="bi bi-people"></i>
                                     </div>
                                     <div class="ps-3">
-                                        <h6>${totalCounselor}명</h6>
+                                        <%--<h6>${totalCounselor}명</h6>--%>
+                                        <c:if test="${totalCounselor == 0}">
+                                            <h6>0명</h6>
+                                        </c:if>
+                                        <c:if test="${totalCounselor > 0}">
+                                            <h6>${totalCounselor}명</h6>
+                                        </c:if>
                                     </div>
                                 </div>
 
@@ -200,119 +212,146 @@
     <div class="pagetitle">
         <h1>방문자 추이</h1>
         <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item">Dashboard</li>
-            </ol>
-                <div style="display: flex; justify-content: center;">
-                    <canvas id="Today" style="max-height: 400px; max-width: 400px;"></canvas>
-                    <canvas id="Total" style="max-height: 400px; max-width: 400px;"></canvas>
-                </div>
-                <script>
-                    const gtx = document.getElementById('Today');
-                    const ctx = document.getElementById('Total');
 
-                    new Chart(gtx, {
-                        type: 'bar',
-                        data: {
-                            labels: ['오늘 방문자수'],
-                            datasets: [{
-                                label: '방문자',
-                                data: [${todayCount}],
-                                borderWidth: 2,
-                                backgroundColor: [
-                                    'rgba(153, 102, 255, 0.2)'
-                                ]
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
-                                }
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item">방문자 추이</li>
+            </ol>
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title" align="center">오늘 방문자 수</div>
+                            <div style="display: flex; justify-content: center;">
+                                <canvas id="Today" style="max-height: 400px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-title" align="center">누적 방문자 수</div>
+                            <div style="display: flex; justify-content: center;">
+                                <canvas id="Total" style="max-height: 250px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <script>
+                const gtx = document.getElementById('Today');
+                const ctx = document.getElementById('Total');
+
+                new Chart(gtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['오늘 방문자수'],
+                        datasets: [{
+                            label: '방문자',
+                            data: [${todayCount}],
+                            borderWidth: 2,
+                            backgroundColor: [
+                                'rgba(153, 102, 255, 0.2)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
                             }
                         }
-                    });
+                    }
+                });
 
-                    new Chart(ctx, {
-                        type: 'pie',
-                        data: {
-                            labels: ['누적 방문자'],
-                            datasets: [{
-                                label: '방문방문',
-                                data: [${totalCount}],
-                                backgroundColor: [
-                                    'rgb(255, 205, 86)'
-                                ],
-                                hoverOffset: 4
-                            }]
-                        },
-                    });
+                new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: ['누적 방문자'],
+                        datasets: [{
+                            label: '방문방문',
+                            data: [${totalCount}],
+                            backgroundColor: [
+                                'rgb(255, 205, 86)'
+                            ],
+                            hoverOffset: 4
+                        }]
+                    },
+                });
 
-                </script>
+            </script>
+        </nav>
+    </div>
+    <%-- End Page Title --%>
+
+    <hr>
+
+    <div class="pagetitle">
+        <h1>주간 방문자 추이</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <%-- adminMain/adminDashboard --%>
+                <li class="breadcrumb-item">주간 방문자 추이</li>
+            </ol>
         </nav>
     </div><!-- End Page Title -->
-        <hr>
-        <div class="pagetitle">
-            <h1>주간 방문자 추이</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <%-- adminMain/adminDashboard --%>
-                    <li class="breadcrumb-item">Dashboard</li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
 
     <%-- 오늘자 방문수 통계 --%>
     <%--<section class="section">--%>
     <%--<div class="row">--%>
     <%--<div class="col-lg-6">--%>
-        </script>
+    </script>
 
-        <div class="pagetitle">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">주간 방문자추이</h5>
+    <div class="pagetitle">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title" align="center">주간 방문자 추이</div>
 
-            <!-- Line Chart -->
-            <canvas id="lineChart" style="max-height: 400px;"></canvas>
-            <script>
-                const weekDays = [
-                    <c:forEach var="date" items="${weekDays}">
-                    '${fn:substring(date, 0, 4)}${fn:substring(date, 5, 7)}${fn:substring(date, 8, 10)}',
-                    </c:forEach>
-                ];
+                <!-- Line Chart -->
+                <canvas id="lineChart" style="max-height: 400px;"></canvas>
+                <script>
+                    const weekDays = [
+                        <c:forEach var="date" items="${weekDays}">
+                        '${fn:substring(date, 0, 4)}${fn:substring(date, 5, 7)}${fn:substring(date, 8, 10)}',
+                        </c:forEach>
+                    ];
 
-                document.addEventListener("DOMContentLoaded", () => {
-                    new Chart(document.querySelector('#lineChart'), {
-                        type: 'line',
-                        data: {
-                            labels: weekDays,
-                            datasets: [{
-                                label: 'Line Chart',
-                                data: [${weekCount.get(0)},${weekCount.get(1)},${weekCount.get(2)},${weekCount.get(3)},
-                                    ${weekCount.get(4)},${weekCount.get(5)},${weekCount.get(6)}],
-                                fill: false,
-                                borderColor: 'rgb(75, 192, 192)',
-                                tension: 0.1
-                            }]
-                        },
-                        options: {
-                            scales: {
-                                y: {
-                                    beginAtZero: true
+                    document.addEventListener("DOMContentLoaded", () => {
+                        new Chart(document.querySelector('#lineChart'), {
+                            type: 'line',
+                            data: {
+                                labels: weekDays,
+                                datasets: [{
+                                    label: 'Line Chart',
+                                    data: [${weekCount.get(0)}, ${weekCount.get(1)}, ${weekCount.get(2)}, ${weekCount.get(3)},
+                                        ${weekCount.get(4)}, ${weekCount.get(5)}, ${weekCount.get(6)}],
+                                    fill: false,
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    tension: 0.1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
                                 }
                             }
-                        }
+                        });
                     });
-                });
-            </script>
-            <!-- End Line CHart -->
+                </script>
+                <!-- End Line CHart -->
 
+            </div>
         </div>
     </div>
-        </div>
     </div>
     </div>
     </section>

@@ -58,7 +58,14 @@
             <tr>
                 <td>${pet.breed}</td>
                 <td>${pet.feature}</td>
-                <td>${pet.neutering}</td>
+                <%--<td>${pet.neutering}</td>--%>
+                <%-- neutering(중성화) --%>
+                <c:if test="${pet.neutering == 0}">
+                    <td>중성화x</td>
+                </c:if>
+                <c:if test="${pet.neutering == 1}">
+                    <td>중성화o</td>
+                </c:if>
                 <c:if test="${pet.state == 1}">
                     <td>탈퇴</td>
                 </c:if>
