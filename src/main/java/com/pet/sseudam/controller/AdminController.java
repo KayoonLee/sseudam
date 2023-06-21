@@ -1,6 +1,7 @@
 package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.AdminBean;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
 import com.pet.sseudam.service.AdminService;
@@ -13,6 +14,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class AdminController {
@@ -20,7 +25,48 @@ public class AdminController {
     @Autowired
     private AdminService adminService;
 
+    //관리자 로그인 창
+    @RequestMapping("admin_login")
+    public String adminLogin(){
+        System.out.println("관리자 로그인 창 진입");
+        return "adminPage/admin_login";
+    }
+
+    // 관리자 로그인
+    @RequestMapping("goAdmin")
+    public String member_login(@RequestParam("a_email") String a_email,
+                               @RequestParam("passwd") String passwd,
+                               HttpSession session,
+                               Model model) {
+
+        int result = 0;
+        AdminBean admin = adminService.adminCheck(a_email);
+
+
+        if(admin == null) { //관리자 아닌 경우
+            result = 1;
+            model.addAttribute("result", result);
+            return "adminPage/admin_logRes";
+
+        } else {	 //관리자인 경우
+            if(admin.getPasswd().equals(passwd)) {	// 비번이 같은 경우
+
+                session.setAttribute("admin", admin);
+                String name = admin.getName(); //관리자 이름 화면 출력용
+                model.addAttribute("name", name);
+                return "mainPage/main_page";
+
+            } else {	// 비밀번호가 다른 경우
+                result = 2;
+                model.addAttribute("result", result);
+                return "admin/admin_logRes";
+            }
+        }
+    }
+
+
     // 관리자 메인페이지 + 일반회원 회원수 + 상담사 회원수
+    // 관리자 메인페이지
     @GetMapping("adminMain")
     public String adminMain(Model model) {
         System.out.println("관리자 페이지로 진입성공");

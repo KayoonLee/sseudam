@@ -6,6 +6,8 @@ import com.pet.sseudam.model.ReportBean;
 
 import java.util.*;
 
+import com.pet.sseudam.model.AdminBean;
+
 public interface AdminService {
 
 // 진우
@@ -68,4 +70,6 @@ public interface AdminService {
     // 고양이 탈퇴/복구 상태값 변화
     int adminCatState(PetBean pet);
 
+    // 관리자 로그인
+    AdminBean adminCheck(String a_email);
 }

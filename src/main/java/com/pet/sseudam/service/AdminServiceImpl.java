@@ -4,6 +4,7 @@ import com.pet.sseudam.dao.AdminDao;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.AdminBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -141,4 +142,9 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int adminCatState(PetBean pet) { return adminDao.adminCatState(pet); }
 
+    // 관리자 로그인
+    @Override
+    public AdminBean adminCheck(String a_email) {
+        return adminDao.adminCheck(a_email);
+    }
 }

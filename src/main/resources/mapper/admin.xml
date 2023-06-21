@@ -151,4 +151,17 @@
         UPDATE pet SET state=#{state} WHERE p_id=#{p_id}
     </update>
 
+
+<!--    <select id=""> /* id="Controller 에서 만든 List 객체 이름" */-->
+
+<!--    </select>-->
+<!--    <select id="cat_list">-->
+<!--        select * from pet where kind="C"-->
+<!--    </select>-->
+
+    <!--관리자로그인-->
+    <select id="adminCheck" parameterType="String" resultType="admin">
+        select * from admin where a_email = #{a_email}
+    </select>
+
 </mapper>
