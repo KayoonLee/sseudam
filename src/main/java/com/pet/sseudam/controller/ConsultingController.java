@@ -73,7 +73,6 @@ public class ConsultingController {
         List<PetBean> pet_list = con.find_pet(member.getM_id());
         model.addAttribute("pet_list", pet_list);
         System.out.println(pet_list);
-
         List<Date> reservation_time;
         reservation_time = con.find_reservation_time(member.getM_id(), con_id);
         for (Date c : reservation_time) {
