@@ -30,6 +30,12 @@
         select * from member where email=#{email} and state=1
     </select>
 
+<!--ㅅ파일추가 후 다시 메인으로 돌아왔을 때의 메소드  -->
+    <select id="checkFilenum" parameterType="String" resultType="member">
+        select m.*, profile_name, profile_origin from member m join img_profile p
+        on m.profile_num = p.profile_num
+        where email = #{email} and state = 1
+    </select>
 
 <!-- 아이디 찾기 -->
     <select id="searchEmail" parameterType="member" resultType="member">
@@ -57,15 +63,23 @@
 
     </update>
 
-    <!--   사진 포함  정보 수정-->
+    <!--   사진과 다른 개인 정보 같이 수정-->
     <update id="myPicUpdate" parameterType="member">
-        update member m inner join img_profile p on m.profile_num = p.profile_num
+        update img_profile p inner join member m on m.profile_num = p.profile_num
         set name=#{name}, nick=#{nick}, birth=#{birth}, tel=#{tel}, profile_origin = #{profile_origin},
         profile_name =#{profile_name}
         where email = #{email}
     </update>
 
+<!--    <update id="">-->
+<!--        update img_profile p inner join member m on m.profile_num = p.profile_num set-->
+<!--        profile_origin = #{profile_origin},-->
+<!--        profile_name =#{profile_name}-->
+<!--    </update>-->
 
+    <update id="myUpfilenum" parameterType="member">
+        update member set profile_num=#{profile_num} where email=#{email}
+    </update>
 
 
     <!--일반회원: 비번 변경, reset 컬럼 'n' 수정-->
@@ -95,25 +109,33 @@
 
     <!--첨부파일 추가-->
     <insert id="profileAdd" parameterType="profile_board">
-        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">
-            select ifnull(max(profile_num),0) + 1 from img_profile
-        </selectKey>
         insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
     </insert>
 
-    <!--member의 profile_num 업데이트-->
-<!--    <update id="profileNumUp" parameterType="profile_board">-->
-<!--        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">-->
-<!--            select ifnull(max(profile_num),0) + 1 from img_profile-->
-<!--        </selectKey>-->
-<!--        update member set profile_num = #{profile_num}-->
-<!--    </update>-->
+<!--    profile_num null->업데이트-->
+    <update id="memProfileAdd" parameterType="member">
+        UPDATE member m
+        JOIN img_profile p ON m.profile_num = p.profile_num
+        SET m.profile_num = p.profile_num
+        WHERE m.m_id = #{m_id}
+    </update>
 
-    <select id="counselorList" parameterType="member" resultType="member">
-        SELECT m_id, name, license, career
-        FROM member m
-        INNER JOIN counselor c ON c.c_id = m.m_id
-    </select>
+
+    <!--마이페이지에서 일반회원 조회-->
+   <select id="checkMem" parameterType="int" resultType="member">
+
+       SELECT *
+       FROM member
+       LEFT JOIN img_profile ON member.profile_num = img_profile.profile_num
+       WHERE member.m_id = #{m_id}
+       UNION
+       SELECT *
+       FROM member
+       RIGHT JOIN img_profile ON member.profile_num = img_profile.profile_num
+       WHERE member.profile_num IS NULL
+   </select>
+
+
 
 
 

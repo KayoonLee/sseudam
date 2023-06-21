@@ -105,11 +105,25 @@ public class MemberServiceImpl implements MemberService{
         return md.counselor(member);
     }
 
+    @Override
+    public Member checkMem(int m_id) {
+        return md.checkMem(m_id);
+    }
 
-//    @Override
-//    public Member profileAfter(int m_id) {
-//        return md.profileAfter(m_id);
-//    }
+    @Override
+    public int memProfileAdd(Member member) {
+        return md.memProfileAdd(member);
+    }
+
+    @Override
+    public void myUpfilenum(Member member) {
+        md.myUpfilenum(member);
+    }
+
+    @Override
+    public Member checkFilenum(String email) {
+        return md.checkFilenum(email);
+    }
 
 
 }

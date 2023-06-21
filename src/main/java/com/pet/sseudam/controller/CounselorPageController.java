@@ -76,21 +76,21 @@ public class CounselorPageController {
     }
 
     // 내가 쓴 글
-    @GetMapping("counselorpage_mypost")
+    @RequestMapping("counselorpage_mypost")
     public String counselorPagePost(){
         System.out.println("내가 쓴 글로 진입성공");
         return "counselorPage/counselorpage_mypost";
     }
 
     // 내가 쓴 댓글
-    @GetMapping("counselorpage_myreply")
+    @RequestMapping("counselorpage_myreply")
     public String counselorPageReply(){
         System.out.println("내가 쓴 댓글로 진입성공");
         return "counselorPage/counselorpage_myreply";
     }
 
     // 내가 좋아요 한 글
-    @GetMapping("counselorpage_mylike")
+    @RequestMapping("counselorpage_mylike")
     public String counselorLikeReply(){
         System.out.println("내가 좋아요 한 글로 진입성공");
         return "counselorPage/counselorpage_mylike";

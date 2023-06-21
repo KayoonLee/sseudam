@@ -52,4 +52,12 @@ public interface MemberDao {
     int myPicUpdate(Member member);
 
     List<Member> counselor(Member member);
+
+    Member checkMem(int m_id);
+
+    int memProfileAdd(Member member);
+
+    void myUpfilenum(Member member);
+
+    Member checkFilenum(String email);
 }
