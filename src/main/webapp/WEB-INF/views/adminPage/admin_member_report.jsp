@@ -76,9 +76,7 @@
         </div>
     </div>
 
-    <br><br>
     <hr>
-    <br><br>
 
     <div id="adminReportView"></div>
 

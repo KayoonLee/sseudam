@@ -115,9 +115,7 @@
         </div>
     </div>
 
-    <br><br>
     <hr>
-    <br><br>
 
     <div class="pagetitle">
         <h1>일반회원</h1>
