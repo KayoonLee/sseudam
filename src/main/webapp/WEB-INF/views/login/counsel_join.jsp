@@ -145,7 +145,7 @@
         <h4 class="mb-3">상담사 회원가입</h4>
 
         <form class="validation-form" action="insertCounsel" method="post">
-         <input type="hidden" name="identifier" value="3"><!--상담사 승인대기: 3, 상담사: 2-->
+         <input type="hidden" name="identifier" value="2"><!--상담사 승인대기: 3, 상담사: 2-->
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
@@ -188,7 +188,7 @@
 
             <div class="col-md-6 mb-3">
                  <label for="auth">이메일 인증</label>
-                 <input type="text" class="form-control" id="auth" name="auth" placeholder="인증문자를 입력하세요" required>
+                 <input type="text" class="form-control" id="auth" name="auth" placeholder="인증번호를 입력하세요" required>
                  <input type="button" id="auth_btn" value="인증 메일 받기" onClick="authEmail()">
                  <div class="invalid-feedback">
                  인증번호를 입력해주세요.
@@ -231,7 +231,7 @@
       </div>
     </div>
     <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2021 YD</p>
+      <p class="mb-1">&copy; 2023 SSEUDAM </p>
     </footer>
   </div>
   <script>

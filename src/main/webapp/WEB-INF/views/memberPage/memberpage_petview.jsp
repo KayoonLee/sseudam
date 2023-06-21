@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 82108
-  Date: 2023-06-13
-  Time: 오후 7:58
-  To change this template use File | Settings | File Templates.
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -231,6 +224,7 @@
 
         </ul>
     </aside>
+
 <form method="post" enctype="multipart/form-data" attribute>
     <main id="main" class="main">
         <div class="pagetitle">
@@ -252,7 +246,7 @@
                                             <img src="/images/petdefault.png">
                                         </c:if>
                                         <c:if test="${!empty pet.profile_num}">
-                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle">
+                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle" width="250" >
                                         </c:if>
                                     </div>
                                     <div class="row">

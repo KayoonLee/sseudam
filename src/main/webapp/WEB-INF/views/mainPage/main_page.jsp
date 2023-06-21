@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SSEUDAM</title>
-    <link rel="icon" href="images/logo.png">
+    <link rel="icon" href="main_page">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -67,7 +67,7 @@
                 <div class="row align-items-center ">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="index.html"> <img src="images/.png" alt="logo"> </a>
+                            <a class="navbar-brand" href="main_page"> <img src="images/.png" alt="logo"> </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
@@ -97,6 +97,7 @@
                                             <a class="dropdown-item" href="single-blog.html">고객 후기</a>
                                         </div>
                                     </li>
+                                   <c:if test="${!empty member.m_id or !empty admin.a_email}">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -104,22 +105,27 @@
                                             My Page
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_1" href="#">
-                                            <a class="dropdown-item" href="memberpage_main">일반회원 마이페이지</a>
-                                            <a class="dropdown-item" href="counselorpage_main">상담사 마이페이지</a>
 
-                                            <c:if test="${!empty admin.a_email}">
-                                                <a class="dropdown-item" href="adminMain">관리자 페이지</a>
-                                            </c:if>
+                                        <c:if test="${member.identifier == 1}">
+                                            <a class="dropdown-item" href="memberpage_main">일반회원 마이페이지</a>
+                                        </c:if>
+                                        <c:if test="${member.identifier == 2}">
+                                            <a class="dropdown-item" href="counselorpage_main">상담사 마이페이지</a>
+                                        </c:if>
+                                        <c:if test="${!empty admin.a_email}">
+                                            <a class="dropdown-item" href="adminMain">관리자 페이지</a>
+                                        </c:if>
                                         </div>
                                     </li>
-                                    <!--<li class="nav-item">
-                                        <a class="nav-link" href="contact.html">마이페이지</a>
-                                    </li>-->
+                                  </c:if>
                                 </ul>
                             </div>
-                            <c:if test="${!empty member.m_id or !empty admin.a_email}">
+                            <c:if test="${!empty member.m_id}">
                             <a href="#" class="btn_1 d-none d-lg-block">${member.nick} 님</a>
                             </c:if>
+                            <c:if test="${!empty admin.a_email}">
+                            <a href="#" class="btn_1 d-none d-lg-block">${admin.name} 님</a>
+                             </c:if>
                         </nav>
                     </div>
                 </div>
@@ -164,20 +170,13 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="single_place">
-                        <img src="images/index_dog.jpg" alt="">
+                        <img src="images/dog3.jpg" alt="">
                         <div class="hover_Text d-flex align-items-end justify-content-between">
                             <div class="hover_text_iner">
-                                <a href="#" class="place_btn">travel</a>
-                                <h3>Saintmartine Iceland</h3>
-                                <p>Technaf, Bangladesh</p>
-                                <div class="place_review">
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <span>(210 review)</span>
-                                </div>
+                                <a href="#" class="place_btn">더보기</a>
+                                <h3>강아지의 넘치는 활력</h3>
+                                <p>어떻게 놀아주면 될까?</p>
+
                             </div>
                             <div class="details_icon text-right">
                                 <i class="ti-share"></i>
@@ -190,17 +189,10 @@
                         <img src="images/catcat.jpg" alt="">
                         <div class="hover_Text d-flex align-items-end justify-content-between">
                             <div class="hover_text_iner">
-                                <a href="#" class="place_btn">travel</a>
-                                <h3>Saintmartine Iceland</h3>
-                                <p>Technaf, Bangladesh</p>
-                                <div class="place_review">
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <span>(210 review)</span>
-                                </div>
+                                <a href="#" class="place_btn">더보기</a>
+                                <h3>고양이가 창 밖을 내다보는 이유</h3>
+                                <p>궁금하면 더보기</p>
+
                             </div>
                             <div class="details_icon text-right">
                                 <i class="ti-share"></i>
@@ -210,18 +202,14 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="single_place">
-                        <img src="images/Nelm.jpg" alt="">
+                        <img src="images/gooddog.jpg" alt="">
                         <div class="hover_Text d-flex align-items-end justify-content-between">
                             <div class="hover_text_iner">
-                                <a href="#" class="place_btn">travel</a>
-                                <h3>Saintmartine Iceland</h3>
-                                <p>Technaf, Bangladesh</p>
+                                <a href="#" class="place_btn">더보기</a>
+                                <h3>강아지에게 적절한 훈련법</h3>
+                                <p>궁금하다면?</p>
                                 <div class="place_review">
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
+
                                     <span>(210 review)</span>
                                 </div>
                             </div>
@@ -236,15 +224,11 @@
                         <img src="images/chunha.jpg" alt="">
                         <div class="hover_Text d-flex align-items-end justify-content-between">
                             <div class="hover_text_iner">
-                                <a href="#" class="place_btn">travel</a>
-                                <h3>Saintmartine Iceland</h3>
-                                <p>Technaf, Bangladesh</p>
+                                <a href="#" class="place_btn">더보기</a>
+                                <h3>고양이가 살이 안 빠진다면?</h3>
+                                <p>다이어트 성공신화!</p>
                                 <div class="place_review">
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
-                                    <a href="#"><i class="fas fa-star"></i></a>
+
                                     <span>(210 review)</span>
                                 </div>
                             </div>
@@ -359,7 +343,7 @@
                 <div class="col-xl-8">
                     <div class="section_tittle">
                         <h2>What they said</h2>
-                        <h2>쓰담쓰담의 상담사들의 한 마디</h2>
+                        <h2>쓰담쓰담 상담사들의 한 마디</h2>
                     </div>
                 </div>
             </div>
@@ -367,9 +351,17 @@
                 <div class="col-lg-10">
                     <div>
                         <div>
+                        <img src="./images/counsel1.jpg" width="250" height="250">
+                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                        <img src="./images/counsel2.jpg" width="250" height="250">
+                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                        <img src="./images/counsel3.jpg" width="250" height="250">
+
+                        </div>
+                        <br>
+                        <br>
                             <p>"나의 진심과 지식으로 반려동물과 주인을 위해 노력하자"</p>
                             <h5> - Allen Miller</h5>
-                        </div>
                         <div>
                             <p>"모든 동물들에게 인간다운 존중과 애정을 보여주는 일에 최선을 다하자."</p>
                             <h5> - Allen Miller</h5>
@@ -406,7 +398,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_ihotel_list">
-                        <img src="images/happydog1.jpg" alt="">
+                        <img src="images/rundog.jpg" alt="">
                         <h3><b>유대</b></h3>
                         <p>애착과 신뢰를 바탕으로하는 반려동물 행동 상담</p>
                     </div>
@@ -486,7 +478,7 @@
                     <div class="single-footer-widget footer_icon">
                         <h4>Contact Us</h4>
                         <p>서울특별시 마포구 신촌로 176</p>
-                        <span>sseudam@gmail.com</span>
+                        <span>sseudam@sseudam.com</span>
 
                     </div>
                 </div>
@@ -497,7 +489,7 @@
                 <div class="col-lg-12">
                     <div class="copyright_part_text text-center">
                         <p class="footer-text m-0">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> SSEUDAM
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                     </div>
                 </div>

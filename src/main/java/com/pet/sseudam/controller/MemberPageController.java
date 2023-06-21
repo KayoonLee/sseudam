@@ -1,27 +1,21 @@
 package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.Member;
-
-import com.pet.sseudam.service.MemberPageService;
-
+import com.pet.sseudam.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-
 import javax.servlet.http.HttpSession;
-
 
 @Controller
 public class MemberPageController {
 
     @Autowired
-    private MemberPageService mps;
+    private MemberService ms;
 
-    public MemberPageController(MemberPageService mps) {
-        this.mps = mps;
+    public MemberPageController(MemberService ms) {
+        this.ms = ms;
     }
 
 

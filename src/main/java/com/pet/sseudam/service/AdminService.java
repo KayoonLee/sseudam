@@ -9,6 +9,9 @@ import java.util.*;
 
 public interface AdminService {
 
+    // 관리자 로그인
+    AdminBean adminCheck(String a_email);
+
 // 진우
     List<Member> admin_list(Member member);
 
@@ -69,5 +72,4 @@ public interface AdminService {
     // 고양이 탈퇴/복구 상태값 변화
     int adminCatState(PetBean pet);
 
-    AdminBean adminCheck(String a_email);
 }

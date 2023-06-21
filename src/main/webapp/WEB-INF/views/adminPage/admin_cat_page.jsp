@@ -15,7 +15,7 @@
         function loadCatPage(p_id) {
             $.ajax({
                 url: "adminCatViewPage",
-                data: {p_id: p_id/*, g_id: g_id*/},
+                data: {p_id: p_id},
                 success: function (response) {
                     $("#adminCatResultView").html(response);
                 }

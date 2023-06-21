@@ -5,6 +5,7 @@ import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
 import com.pet.sseudam.model.AdminBean;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminDao adminDao;
+
+    // 관리자 로그인
+    @Override
+    public AdminBean adminCheck(String a_email) {
+        return adminDao.adminCheck(a_email);
+    }
 
 // 진우님
     @Override
@@ -141,12 +148,5 @@ public class AdminServiceImpl implements AdminService {
     // 고양이 탈퇴/복구 상태값 변화
     @Override
     public int adminCatState(PetBean pet) { return adminDao.adminCatState(pet); }
-
-    
-    //찬근 임의수정 혹시라도 머지할 때 오류나면 확인
-    @Override
-    public AdminBean adminCheck(String a_email) {
-        return adminDao.adminCheck(a_email);
-    }
 
 }

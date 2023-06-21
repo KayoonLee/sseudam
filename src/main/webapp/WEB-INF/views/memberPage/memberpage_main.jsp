@@ -1,11 +1,6 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 82108
-  Date: 2023-06-10
-  Time: 오후 8:43
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -33,7 +28,7 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <a href="index.html" class="logo d-flex align-items-center">
-            <img src="images/muzik5.jpg" alt="">
+            <img src="images/muzik5.jpg">
             <span class="d-none d-lg-block">쓰담</span>
         </a>
 
@@ -279,16 +274,23 @@
                                    <div class="card">
                                      <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                                       <img src="./memberImg/${myModel.profile_name}" alt="Profile" class="rounded-circle">
-                                       <h2>펫 이름</h2>
-                                       <h3>귀여움</h3>
+                                        <c:if test="${!empty myModel.profile_num}">
+                                            <img src="./memberImg/${myModel.profile_name}" class="rounded-circle">
+                                        </c:if>
+
+                                        <c:if test="${empty myModel.profile_num}">
+                                             <img src="./images/memberdefault.png" class="rounded-circle">
+                                        </c:if>
+
+                                       <h2>${myModel.name}</h2>
+                                       <h3>ㅎㅅㅎ</h3>
                                          <div class="social-links mt-2">
                                           <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                                           <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                                           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
                                          </div>
-                                     </div>
+                                        </div>
                                    </div>
 
                                     <div class="row">

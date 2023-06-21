@@ -19,7 +19,6 @@ public class PetBean {
     private int neutering;
     private int state;
 
-
     // 페이징처리
     private int startRow;
     private int endRow;

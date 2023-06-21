@@ -9,10 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<c:if test="${result > 0 }">
+
+<c:if test="${result > 0 || result2 > 0}">
       <script type="text/javascript">
          alert("수정 완료");
-         location.href = "memberpage_main";
+         location.href = "memberpage_main?profile_num=${profile_num}";
       </script>
    </c:if>
    <c:if test="${result <= 0 }">
