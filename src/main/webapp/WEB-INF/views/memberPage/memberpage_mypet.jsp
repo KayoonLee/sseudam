@@ -17,19 +17,13 @@
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
 </head>
 <body>
-
-
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top d-flex align-items-center">
 
@@ -123,7 +117,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">홍은희</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">${member.name}</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -181,17 +175,17 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
+
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
-
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberpage_main">
+                <a class="nav-link " href="memberpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="memberpage_mypet">
+                <a class="nav-link collapsed" href="memberpage_mypet">
                     <i class="bi bi-balloon"></i><span>동물페이지</span>
                 </a>
             </li>
@@ -201,29 +195,29 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberPost">
+                        <a href="memberpage_mypost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberReply">
+                        <a href="memberpage_myreply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberLike">
+                        <a href="memberpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="memberpage_mypaper">
                             <i class="bi bi-circle"></i><span>상담신청내역</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberCounselor">
+                <a class="nav-link collapsed" href="memberpage_mycounselor">
                     <i class="bi bi-grid"></i>
                     <span>즐겨찾는 상담사</span>
                 </a>
@@ -232,7 +226,6 @@
         </ul>
     </aside>
 
-    <!-- 레시피 조의 레시피 리스트 형식-->
     <main id="main" class="main">
         <div class="container" align="center">
             <div class="row">
@@ -246,108 +239,31 @@
                             <div class="col-sm-3">
                                 <div>
                                     <div class="card">
-                                        <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
-                                            <img class="card-img-top" src="images/yang.jpg">
-                                        </a>
-                                        <td>${pet.profile}</td>
-                                        <br>
-                                        <td>${pet.animal}</td>
+                                        <c:if test="${!empty pet.profile_num}">
+                                            <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
+                                                <img class="card-img-top" src="./petimg/${pet.profile_name}">
+                                            </a>
+                                        </c:if>
+                                        <c:if test="${empty pet.profile_num}">
+                                            <a href="memberpage_petview?p_id=${pet.p_id }&pageNum=${pageNum}">
+                                                <img src="/images/petdefault.png" width="250" height="250">
+                                            </a>
+                                        </c:if>
+
+
+                                        <div class="card-body">
+                                            <h4 class="card-title">${pet.animal }</h4>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                     </c:forEach>
                 </c:if>
+                <a href="memberpage_petadd">
+                    <img src="./images/add.png" width="50" height="50">
+                </a>
             </div>
-
-            <a href="memberpage_petadd">
-                <img src="images/add.png" width="50" id="modal-image">
-            </a>
-
-            <div id="modal" class="modal">
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <h2>반려동물추가폼</h2>
-                    <form>
-                        <div class="row mb-3">
-                            <label for="profile" class="col-md-4 col-lg-3 col-form-label">반려동물 사진</label>
-                            <div class="col-md-8 col-lg-9">
-                                <img src="assets/img/profile-img.jpg" alt="Profile">
-                                <div class="pt-2">
-                                    <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="petName" class="col-md-4 col-lg-3 col-form-label">이름</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="petName" type="text" class="form-control" id="petName" value="">
-                            </div>
-                        </div>
-                        <div class="row mb-3">
-                            <label for="birth" class="col-md-4 col-lg-3 col-form-label">생일</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="birth" type="text" class="form-control" id="birth" value="">
-                            </div>
-                        </div>
-
-                        <!-- 강아지 고양이 라디오 버튼-->
-                        <div><input type="radio" name="kind" value="dog">강아지</div>
-                        <div><input type="radio" name="kind" value="cat">고양이</div>
-
-                        <div class="row mb-3">
-                            <label for="about" class="col-md-4 col-lg-3 col-form-label">특이사항</label>
-                            <div class="col-md-8 col-lg-9">
-                                <textarea name="about" class="form-control" id="about" style="height: 100px"></textarea>
-                            </div>
-                        </div>
-
-                        <!-- 성별 구분 라디오 버튼 -->
-                        <div><input type="radio" name="sex" value="female">암컷</div>
-                        <div><input type="radio" name="sex" value="male">수컷</div>
-
-
-                        <!-- 중성화 체크 박스-->
-                        <div><input type="checkbox" name="neutering" value="done">중성화</div>
-
-                        <div class="row mb-3">
-                            <label for="breed" class="col-md-4 col-lg-3 col-form-label">품종</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="breed" type="text" class="form-control" id="breed" value="">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="country" type="text" class="form-control" id="Country" value="">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="address" type="text" class="form-control" id="Address" value="">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
-                            <div class="col-md-8 col-lg-9">
-                                <input name="phone" type="text" class="form-control" id="Phone" value="">
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary">저장</button>
-                        </div>
-                        <!-- 글 작성 폼 요소들을 추가합니다. -->
-                    </form>
-                </div>
-            </div>
-
-
         </div>
-
     </main>
 
 </body>

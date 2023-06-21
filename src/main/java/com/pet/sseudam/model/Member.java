@@ -3,6 +3,8 @@ package com.pet.sseudam.model;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+
+import java.net.Inet4Address;
 import java.sql.Date;
 
 @Data
@@ -20,7 +22,7 @@ public class Member {
     private int state;
     private Date join_date;
     private String reset;
-    private int profile_num;
+    private Integer profile_num;
     private int row_num;
 
     //사진정보

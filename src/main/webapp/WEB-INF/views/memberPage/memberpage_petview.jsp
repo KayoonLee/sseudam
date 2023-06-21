@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 82108
-  Date: 2023-06-13
-  Time: 오후 7:58
-  To change this template use File | Settings | File Templates.
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -181,7 +174,6 @@
 </header><!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-<form>
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
 
@@ -202,29 +194,29 @@
                 </a>
                 <ul id="components-nav" class="nav-content collapse show " data-bs-parent="#sidebar-nav">
                     <li>
-                        <a href="memberPost">
+                        <a href="memberpage_mypost">
                             <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberReply">
+                        <a href="memberpage_myreply">
                             <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberLike">
+                        <a href="memberpage_mylike">
                             <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                         </a>
                     </li>
                     <li>
-                        <a href="memberPaper">
+                        <a href="memberpage_mypaper">
                             <i class="bi bi-circle"></i><span>상담신청내역</span>
                         </a>
                     </li>
                 </ul>
             </li><!-- End Components Nav -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="memberCounselor">
+                <a class="nav-link collapsed" href="memberpage_mycounselor">
                     <i class="bi bi-grid"></i>
                     <span>즐겨찾는 상담사</span>
                 </a>
@@ -232,30 +224,31 @@
 
         </ul>
     </aside>
+
+<form method="post" enctype="multipart/form-data" attribute>
     <main id="main" class="main">
         <div class="pagetitle">
             <h1>내 반려동물</h1>
             <br>
         </div><!-- End Page Title -->
         <section class="section profile">
-            <input type=hidden value="${pet.p_id }" id="p_id">
+            <input type=hidden value="${pet.p_id }" id="p_id" name="p_id">
             <input type=hidden value="${pageNum }" id="pageNum">
             <div class="row">
-                <div class="col-xl-4">
-                    <div class="card">
-                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                            <img src="images/yang.jpg" alt="Profile" class="rounded-circle">
-                            <h2>${pet.animal}</h2>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="col-xl-8">
                     <div class="card">
                         <div class="card-body pt-3">
                             <div class="tab-content pt-2">
                                 <div class="tab-pane fade show active profile-overview" id="pet-overview">
                                     <br>
+                                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                                        <c:if test="${empty pet.profile_num}">
+                                            <img src="/images/petdefault.png">
+                                        </c:if>
+                                        <c:if test="${!empty pet.profile_num}">
+                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle" width="250" >
+                                        </c:if>
+                                    </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">이름</div>
                                         <div class="col-lg-9 col-md-8">${pet.animal}</div>
@@ -269,7 +262,6 @@
                                             <c:if test="${pet.kind == 'c'}">
                                                 고양이
                                             </c:if>
-
                                         </div>
                                     </div>
                                     <div class="row">
@@ -318,7 +310,6 @@
             </div>
         </section>
     </main>
-
 </form>
 </body>
 </html>

@@ -4,6 +4,18 @@
 <!-- id="Controller 에서 만든 List 객체 이름" -->
 <mapper namespace="com.pet.sseudam.dao.AdminDao">
 
+    <!--    <select id=""> /* id="Controller 에서 만든 List 객체 이름" */-->
+
+    <!--    </select>-->
+    <!--    <select id="cat_list">-->
+    <!--        select * from pet where kind="C"-->
+    <!--    </select>-->
+
+    <!--관리자로그인-->
+    <select id="adminCheck" parameterType="String" resultType="admin">
+        select * from admin where a_email = #{a_email}
+    </select>
+
 <!-- 진우 xml -->
     <!--일반회원정보 리스트 정렬 출력 -->
     <select id="admin_list" resultType="member">
@@ -68,7 +80,7 @@
         select t1.*, career, license, profile_name, profile_origin
         from member t1 join counselor t2 on t1.m_id=t2.c_id
                        left join img_profile t3 on t1.profile_num=t3.profile_num
-        where m_id=#{m_id};
+        where m_id=#{m_id}
     </select>
 
     <update id="admin_counsel_accept" parameterType="member">
@@ -89,14 +101,19 @@
     </update>
 
 <!-- 가윤 xml -->
-    <!-- total 회원수 조회 작업중... -->
+    <!-- total 회원수 조회 -->
     <select id="getTotalMember" resultType="Integer">
         SELECT COUNT(*) FROM member where identifier = 1
     </select>
 
-    <!-- total 상담사 조회 작업중... -->
+    <!-- total 상담사 조회 -->
     <select id="getTotalCounselor" resultType="Integer">
         SELECT COUNT(*) FROM member where identifier = 2
+    </select>
+
+    <!-- total 관리자 조회 -->
+    <select id="getTotalAdmin" resultType="Integer">
+        SELECT COUNT(*) FROM admin
     </select>
 
     <!-- 반려동물-강아지 -->
@@ -117,6 +134,11 @@
         WHERE pet.p_id = #{p_id}
     </select>
 
+    <!-- 강아지 탈퇴/복구 상태값 변화 -->
+    <update id="adminDogState" parameterType="pet">
+        update member set state=#{state} where m_id=#{m_id}
+    </update>
+
     <!-- 반려동물: 고양이 -->
     <select id="cat_list" resultType="pet">
         SELECT g_id, p_id, animal, birth, gender, neutering FROM pet WHERE kind='c'
@@ -134,5 +156,10 @@
             JOIN pet ON member.m_id = pet.g_id
         WHERE pet.p_id = #{p_id}
     </select>
+
+    <!-- 고양이 탈퇴/복구 상태값 변화 -->
+    <update id="adminCatDelete" parameterType="pet">
+        UPDATE pet SET state=#{state} WHERE p_id=#{p_id}
+    </update>
 
 </mapper>

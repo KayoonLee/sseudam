@@ -4,6 +4,8 @@ import com.pet.sseudam.dao.AdminDao;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.AdminBean;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,12 @@ public class AdminServiceImpl implements AdminService {
 
     @Autowired
     private AdminDao adminDao;
+
+    // 관리자 로그인
+    @Override
+    public AdminBean adminCheck(String a_email) {
+        return adminDao.adminCheck(a_email);
+    }
 
 // 진우님
     @Override
@@ -73,9 +81,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public int admin_state_change(Member member) {
-        return adminDao.admin_state_change(member);
-    }
+    public int admin_state_change(Member member) { return adminDao.admin_state_change(member); }
 
     @Override
     public int admin_nick_change(Member member) {
@@ -95,6 +101,10 @@ public class AdminServiceImpl implements AdminService {
         return adminDao.getTotalCounselor();
     }
 
+    // 관리자 total
+    @Override
+    public Integer getTotalAdmin() { return adminDao.getTotalAdmin(); }
+
     // 강아지 리스트
     @Override
     public List<PetBean> dog_list(PetBean pet) {
@@ -113,6 +123,10 @@ public class AdminServiceImpl implements AdminService {
         return adminDao.adminAnimalSelect(/*g_id,*/p_id);
     }
 
+    // 강아지 탈퇴/복구 상태값 변화
+    @Override
+    public int adminDogState(PetBean pet) { return adminDao.adminDogState(pet); }
+
     // 고양이 리스트
     @Override
     public List<PetBean> cat_list(PetBean pet) {
@@ -130,4 +144,9 @@ public class AdminServiceImpl implements AdminService {
     public Member adminAnimalSelect_cat(int p_id) {
         return adminDao.adminAnimalSelect_cat(p_id);
     }
+
+    // 고양이 탈퇴/복구 상태값 변화
+    @Override
+    public int adminCatState(PetBean pet) { return adminDao.adminCatState(pet); }
+
 }

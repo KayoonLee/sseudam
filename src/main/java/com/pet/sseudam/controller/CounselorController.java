@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -29,7 +31,7 @@ public class CounselorController {
     @PostMapping("insertCounsel")
     public String counsel_join(Member member, Counselor counselor, HttpSession session){
         ms.insert(member);
-        int c_name = cs.getNumber(member); //nick에 해당하는 회원번호 갖고 오기
+        int c_name = cs.getNumber(member); //nick에 해당하는 상담사 회원번호 갖고 오기
         counselor.setC_id(c_name);
 
         cs.insert_counsel(counselor);
@@ -79,4 +81,14 @@ public class CounselorController {
 
         return "login/nickCheck";
     }
+
+
+
+
+
+
+
+
+
+
 }
