@@ -11,6 +11,9 @@ import java.util.*;
 @Mapper
 public interface AdminDao {
 
+    // 관리자 로그인
+    AdminBean adminCheck(String a_email);
+
 // 진우
     // 회원목록
     List<Member> admin_list(Member member);
@@ -76,8 +79,5 @@ public interface AdminDao {
 
     // 고양이 탈퇴/복구 상태값 변화
     int adminCatState(PetBean pet);
-
-    // 관리자 로그인
-    AdminBean adminCheck(String a_email);
 
 }

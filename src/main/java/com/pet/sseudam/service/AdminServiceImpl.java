@@ -21,6 +21,12 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminDao adminDao;
 
+    // 관리자 로그인
+    @Override
+    public AdminBean adminCheck(String a_email) {
+        return adminDao.adminCheck(a_email);
+    }
+
 // 진우님
     @Override
     public List<Member> admin_list(Member member) {
@@ -143,9 +149,4 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int adminCatState(PetBean pet) { return adminDao.adminCatState(pet); }
 
-    // 관리자 로그인
-    @Override
-    public AdminBean adminCheck(String a_email) {
-        return adminDao.adminCheck(a_email);
-    }
 }
