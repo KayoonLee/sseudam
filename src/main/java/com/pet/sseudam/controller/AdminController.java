@@ -317,14 +317,13 @@ public class AdminController {
     // 강아지 탈퇴/복구 상태값 변화
     @ResponseBody
     @GetMapping("adminDogState")
-    public int adminDogState(PetBean pet) {
+    public int adminDogState(int p_id) {
         System.out.println("강아지 회원 상태값 변경");
+        PetBean pet = adminService.adminDogSelect(p_id);
 
-        //PetBean pet = adminService.adminDogSelect(p_id);
-
-        if (pet.getState() == 1) {
+        if(pet.getState() == 1) {
             pet.setState(0);
-        } else if (pet.getState() == 0) {
+        } else if(pet.getState() == 0) {
             pet.setState(1);
         }
 
@@ -364,12 +363,12 @@ public class AdminController {
     @ResponseBody
     @GetMapping("adminCatState")
     public int adminCatState(int p_id) {
-        System.out.println("고양이 상태값 변경");
+        System.out.println("고양이 회원 상태값 변경");
         PetBean pet = adminService.adminCatSelect(p_id);
 
-        if (pet.getState() == 1) {
+        if(pet.getState() == 1) {
             pet.setState(0);
-        } else if (pet.getState() == 0) {
+        } else if(pet.getState() == 0) {
             pet.setState(1);
         }
 

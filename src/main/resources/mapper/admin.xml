@@ -137,7 +137,7 @@
 
     <!-- 강아지 탈퇴/복구 상태값 변화 -->
     <update id="adminDogState" parameterType="pet">
-        update member set state=#{state} where m_id=#{m_id}
+        update pet set state = #{state} where p_id = #{p_id}
     </update>
 
     <!-- 반려동물: 고양이 -->
@@ -159,8 +159,8 @@
     </select>
 
     <!-- 고양이 탈퇴/복구 상태값 변화 -->
-    <update id="adminCatDelete" parameterType="pet">
-        UPDATE pet SET state=#{state} WHERE p_id=#{p_id}
+    <update id="adminCatState" parameterType="pet">
+        UPDATE pet SET state = #{state} WHERE p_id = #{p_id}
     </update>
-
+    
 </mapper>

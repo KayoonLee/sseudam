@@ -6,8 +6,8 @@
     <title>Admin_Dog_View</title>
 
     <script>
-        // 동물회원 상태값 변경
-        function adminDogState(p_id, state) {
+        // 강아지 상태값 변경
+        function adminDogStateChange(p_id, state) {
             if (state == '1') {
                 var text = "이 강아지를 삭제하시겠습니까?";
             } else if (state == '0') {
@@ -16,12 +16,12 @@
             if (confirm(text)) {
                 $.ajax({
                     url: "adminDogState",
-                    date: {p_id: p_id, state: state},
+                    data: {p_id: p_id, state: state},
                     success: function (response) {
                         if (response == 1) {
-                            alert("동물회원의 상태값이 변경되었습니다.");
+                            alert("강아지 회원의 상태값이 변경되었습니다.");
                         } else {
-                            alert("오류 발생. 다시 시도해주세요.");
+                            alert("오류 발생! 다시 시도해주세요.");
                         }
                     }
                 });
@@ -67,15 +67,15 @@
             </tr>
         </table>
 
-        <!-- 동물회원 삭제/복구-->
+        <!-- 강아지 삭제/복구-->
         <c:if test="${pet.state == 0}">
             <button type="button" class="btn btn-outline-primary"
-                    onclick="adminDogState(${pet.p_id}, ${pet.state})">강아지 복원</button>
+                    onclick="adminDogStateChange(${pet.p_id}, ${pet.state})">강아지 복원</button>
         </c:if>
 
         <c:if test="${pet.state == 1}">
             <button type="button" class="btn btn-outline-warning"
-                    onclick="adminDogState(${pet.p_id}, ${pet.state})">강아지 삭제</button>
+                    onclick="adminDogStateChange(${pet.p_id}, ${pet.state})">강아지 삭제</button>
         </c:if>
 <%--
         <button onclick="location.href='adminDeleteBtn?m_id=${memberDto.m_id}'">활동</button>
