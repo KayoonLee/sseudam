@@ -31,5 +31,5 @@ public class FreeBean {
     private String sort;
     // 추천수
     private String recom;
-}
 
+}

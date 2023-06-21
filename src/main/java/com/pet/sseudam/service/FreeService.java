@@ -1,102 +1,54 @@
 package com.pet.sseudam.service;
 
-import com.pet.sseudam.dao.FreeDao;
 import com.pet.sseudam.model.FreeBean;
 import com.pet.sseudam.model.ImgBean;
 import com.pet.sseudam.model.RecomBean;
 import com.pet.sseudam.model.ReportBean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class FreeService {
+public interface FreeService {
 
-    @Autowired
-    private final FreeDao dao;
+    int getTotal(FreeBean fboard);
 
-    public FreeService(FreeDao dao) {
-        this.dao = dao;
-    }
+    List<FreeBean> f_list(FreeBean fboard);
 
-    public int getTotal(FreeBean fboard) {
-        return dao.getTotal(fboard);
-    }
+    int fInsert(FreeBean fboard);
 
-    public List<FreeBean> f_list(FreeBean fboard) {
-        return dao.f_list(fboard);
-    }
+    FreeBean fView(FreeBean freeboard);
 
-    public int fInsert(FreeBean fboard) {
-        return dao.fInsert(fboard);
-    }
+    void fUpdateReadcount(FreeBean freeboard);
 
-    public FreeBean fView(FreeBean freeboard) {
-        return dao.fView(freeboard);
-    }
+    int fUpdate(FreeBean fboard);
 
-    public void fUpdateReadcount(FreeBean freeboard) {
-        dao.fUpdateReadcount(freeboard);
-    }
+    int fDelete(FreeBean fboard);
 
-    public int fUpdate(FreeBean fboard) {
-        return dao.fUpdate(fboard);
-    }
+    int recomCheck(RecomBean recomb);
 
-    public int fDelete(FreeBean fboard) {
-        return dao.fDelete(fboard);
-    }
+    int recomAdd(RecomBean recomb);
 
-    public int recomCheck(RecomBean recomb) {
-        return dao.recomCheck(recomb);
-    }
+    int recomRemove(RecomBean recomb);
 
-    public int recomAdd(RecomBean recomb) {
-        return dao.recomAdd(recomb);
-    }
+    int recomCount(RecomBean recomb);
 
-    public int recomRemove(RecomBean recomb) {
-        return dao.recomRemove(recomb);
-    }
+    int reportCheck(ReportBean reportboard);
 
-    public int recomCount(RecomBean recomb) {
-        return dao.recomCount(recomb);
-    }
+    int reportPlus(ReportBean reportboard);
 
-    public int reportCheck(ReportBean reportboard) {
-        return dao.reportCheck(reportboard);
-    }
+    int recomPlus(RecomBean recomb);
 
-    public int reportPlus(ReportBean reportboard) {
-        return dao.reportPlus(reportboard);
-    }
+    int recomMinus(RecomBean recomb);
 
-    public int recomPlus(RecomBean recomb) {
-        return dao.recomPlus(recomb);
-    }
+    int getMaxnum();
 
-    public int recomMinus(RecomBean recomb) {
-        return dao.recomMinus(recomb);
-    }
+    int imgAdd(ImgBean imgBoard);
 
-    public int getMaxnum() {
-        return dao.getMaxnum();
-    }
+    List<ImgBean> imgView(int fileNum);
 
-    public int imgAdd(ImgBean imgBoard) {
-        return dao.imgAdd(imgBoard);
-    }
+    List<ImgBean> imgList(ImgBean imgBoard);
 
-    public List<ImgBean> imgView(int fileNum) {
-        return dao.imgView(fileNum);
-    }
+    int imgDelete(int file_Num);
 
-    public List<ImgBean> imgList(ImgBean imgBoard) {
-        return dao.imgList(imgBoard);
-    }
+    int imgUpdate(ImgBean imgBoard);
 
-    public int imgDelete(int file_Num) {
-        return dao.imgDelete(file_Num);
-    }
 }

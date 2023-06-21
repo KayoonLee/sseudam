@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.sseudam.dao.FreeReplyDao">
+
+    <select id="getTotalRe">
+        select count(*) from board_reply where
+            num=#{num} and board_num=#{board_num}
+    </select>
+
+    <select id="re_list" parameterType="re_fboard" resultType="re_fboard">
+        SELECT a.*, file_origin, file_name FROM board_reply a left join img_file b on a.file_num = b.file_num WHERE a.num=#{num} and a.board_num=#{board_num}
+        order by ref desc,re_seq desc limit #{startRow}, 10
+    </select>
+
+    <insert id="re_insert" parameterType="re_fboard">
+        insert into board_reply (num, board_num, m_id, re_content, file_num, re_reg_date, ref, re_seq, re_lev, re_state)
+        values (#{num}, #{board_num}, #{m_id}, #{re_content}, #{file_num, jdbcType=VARCHAR}, sysdate(), #{ref},
+        <choose>
+            <when test="ref != 0">
+                (SELECT MAX(re_seq) + 1 FROM board_reply WHERE ref = #{ref})
+            </when>
+            <otherwise>
+                0
+            </otherwise>
+        </choose>,
+        #{re_lev}, 1)
+    </insert>
+
+    <update id="update" parameterType="re_fboard">
+        <!--update board_reply set re_content=#{re_content},
+        re_reg_date=sysdate where board_renum=#{board_renum}-->
+        UPDATE board_reply
+        SET re_content = #{re_content},
+        re_reg_date = NOW()
+        WHERE board_renum = #{board_renum};
+    </update>
+
+    <delete id="re_delete" parameterType="re_fboard">
+        <!--delete from board_reply where board_renum=#{rno}-->
+        update board_reply set re_state=0 where board_renum=#{board_renum}
+    </delete>
+
+</mapper>
