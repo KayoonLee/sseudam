@@ -212,7 +212,7 @@
       </div>
     </div>
     <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2021 YD</p>
+      <p class="mb-1">&copy; 2023 SSEUDAM </p>
     </footer>
   </div>
   <script>
