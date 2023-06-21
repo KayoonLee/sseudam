@@ -163,4 +163,32 @@
         UPDATE pet SET state = #{state} WHERE p_id = #{p_id}
     </update>
 
+    <!-- 세욱 -->
+    <!-- 오늘의 방문자 -->
+    <select id="getVisitToday" resultType="int">
+        select count(*) from visitor
+        where VISIT_TIME > DATE_SUB(NOW(), INTERVAL 1 DAY);
+    </select>
+
+    <select id="getVisitWeek" resultType="Integer">
+        SELECT COUNT(DISTINCT session_id) AS visitor_count
+        FROM VISITOR
+        WHERE visit_time > DATE_SUB(NOW(), INTERVAL 7 DAY)
+        GROUP BY (select DATE(visit_time))
+        ORDER BY (select DATE(visit_time));
+    </select>
+
+    <select id="getVisitDays" resultType="String" >
+        SELECT DATE(visit_time) AS visit_date
+        FROM VISITOR
+        WHERE visit_time > DATE_SUB(NOW(), INTERVAL 7 DAY)
+        GROUP BY visit_date
+        ORDER BY visit_date;
+    </select>
+
+    <select id="getVisitTotal" resultType="int">
+        select count(*) from visitor
+        where VISIT_TIME between 20230619 and now()
+    </select>
+
 </mapper>

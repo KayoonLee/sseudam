@@ -1,6 +1,7 @@
 package com.pet.sseudam.dao;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.model.ProfileBean;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,7 +21,6 @@ public interface MemberDao {
     int getNumber(Member member);
 
     Member searchEmail(Member member);
-
 
     Member searchPwd(Member member);
 
@@ -60,4 +60,8 @@ public interface MemberDao {
     void myUpfilenum(Member member);
 
     Member checkFilenum(String email);
+
+    int visitCheck(Visitor visitor);
+
+    int visitInsert(Visitor visitor);
 }

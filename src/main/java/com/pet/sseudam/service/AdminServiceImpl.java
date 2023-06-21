@@ -149,4 +149,25 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public int adminCatState(PetBean pet) { return adminDao.adminCatState(pet); }
 
+
+    @Override
+    public int getVisitToday() {
+        return adminDao.getVisitToday();
+    }
+
+    @Override
+    public int getVisitTotal() {
+        return adminDao.getVisitTotal();
+    }
+
+    @Override
+    public List<Integer> getVisitWeek() {
+        return adminDao.getVisitWeek();
+    }
+
+    @Override
+    public List<String> getVisitDays() {
+        return adminDao.getVisitDays();
+    }
+
 }
