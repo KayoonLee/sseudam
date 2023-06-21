@@ -100,9 +100,7 @@
         </div>
     </div>
 
-    <br><br>
     <hr>
-    <br><br>
 
     <%-- Cat 상세페이지 출력 --%>
     <div id="adminCatResultView"></div>

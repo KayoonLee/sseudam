@@ -27,10 +27,13 @@ public class AdminController {
 
         Integer totalMember = adminService.getTotalMember();
         Integer totalCounselor = adminService.getTotalCounselor();
+        Integer totalAdmin = adminService.getTotalAdmin();
         model.addAttribute("totalMember", totalMember);
         model.addAttribute("totalCounselor", totalCounselor);
+        model.addAttribute("totalAdmin", totalAdmin);
         System.out.println("totalMember: " + totalMember);
         System.out.println("totalCounselor: " + totalCounselor);
+        System.out.println("totalAdmin" + totalAdmin);
 
         return "adminPage/adminpage_main";
     }
@@ -268,6 +271,24 @@ public class AdminController {
         return "adminPage/admin_dog_view";
     }
 
+    // 강아지 탈퇴/복구 상태값 변화
+    @ResponseBody
+    @GetMapping("adminDogState")
+    public int adminDogState(int p_id) {
+        System.out.println("강아지 회원 상태값 변경");
+
+        PetBean pet = adminService.adminDogSelect(p_id);
+
+        if(pet.getState() == 1) {
+            pet.setState(0);
+        } else if(pet.getState() == 0) {
+            pet.setState(1);
+        }
+
+        int result = adminService.adminDogState(pet);
+        return result;
+    }
+    
     // 고양이 리스트 페이지
     @GetMapping("adminCatPage")
     public String adminCatPage(PetBean pet, Model model) {
@@ -286,9 +307,7 @@ public class AdminController {
 
         System.out.println("p_id: " + p_id);
         PetBean pet = adminService.adminCatSelect(p_id);
-        System.out.println("1");
         Member memberDto = adminService.adminAnimalSelect_cat(p_id);
-        System.out.println("2");
         System.out.println(pet);
         System.out.println(memberDto);
 
@@ -296,6 +315,23 @@ public class AdminController {
         model.addAttribute("memberDto", memberDto);
 
         return "adminPage/admin_cat_view";
+    }
+
+    // 고양이 탈퇴/복구 상태값 변화
+    @ResponseBody
+    @GetMapping("adminCatState")
+    public int adminCatState(int p_id) {
+        System.out.println("고양이 상태값 변경");
+        PetBean pet = adminService.adminCatSelect(p_id);
+
+        if(pet.getState() == 1) {
+            pet.setState(0);
+        } else if(pet.getState() == 0) {
+            pet.setState(1);
+        }
+
+        int result = adminService.adminCatState(pet);
+        return result;
     }
 
     // 관리자 프로필/마이페이지

@@ -41,6 +41,9 @@ public interface AdminService {
     // 상담사 total
     Integer getTotalCounselor();
 
+    // 관리자 total
+    Integer getTotalAdmin();
+
     // 강아지 리스트
     List<PetBean> dog_list(PetBean pet);
 
@@ -50,6 +53,9 @@ public interface AdminService {
     // 강아지+사람 상세페이지
     Member adminAnimalSelect(int p_id);
 
+    // 강아지 탈퇴/복구 상태값 변화
+    int adminDogState(PetBean pet);
+
     // 고양이 리스트
     List<PetBean> cat_list(PetBean pet);
 
@@ -58,4 +64,8 @@ public interface AdminService {
 
     // 고양이+사람 상세페이지
     Member adminAnimalSelect_cat(int p_id);
+
+    // 고양이 탈퇴/복구 상태값 변화
+    int adminCatState(PetBean pet);
+
 }
