@@ -22,7 +22,6 @@ public interface MemberDao {
 
     Member searchEmail(Member member);
 
-
     Member searchPwd(Member member);
 
     void updatePwd(Member findmember);

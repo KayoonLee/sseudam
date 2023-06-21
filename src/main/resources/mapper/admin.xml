@@ -177,7 +177,7 @@
         ORDER BY (select DATE(visit_time));
     </select>
 
-    <select id="getVisitDays" resultType="String">
+    <select id="getVisitDays" resultType="String" >
         SELECT DATE(visit_time) AS visit_date
         FROM VISITOR
         WHERE visit_time > DATE_SUB(NOW(), INTERVAL 7 DAY)
