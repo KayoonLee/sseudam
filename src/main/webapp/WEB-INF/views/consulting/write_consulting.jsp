@@ -93,19 +93,19 @@
                     <textarea class="form-control" style="height: 100px" id="content" name="content" maxlength="2000" required></textarea>
                 </div>
             </div>
-
+<%--
             <fieldset class="row mb-3">
                 <legend class="col-form-label col-sm-2 pt-0">상담현황</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="진행중"
                                checked>
                         <label class="form-check-label" for="gridRadios1">
                             진행중
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="진행완료">
                         <label class="form-check-label" for="gridRadios2">
                            진행완료
                         </label>
@@ -113,7 +113,7 @@
 
                 </div>
             </fieldset>
-
+--%>
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">특이사항</label>
                 <div class="col-sm-10">
