@@ -230,7 +230,7 @@
     </aside>
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>상담여청내역</h1>
+        <h1>상담요청내역</h1>
     </div><!-- End Page Title -->
     <br>
     <div class="card">
