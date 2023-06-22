@@ -101,5 +101,10 @@
         VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{consult_status},#{etc})
     </insert>
 
+    <!-- 상당기록서 조회 -->
+    <select id="select_counsel_record" resultType="CounselRecord">
+    SELECT * FROM counsel_record WHERE record_num = #{record_num}
+    </select>
+
 
 </mapper>

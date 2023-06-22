@@ -83,4 +83,9 @@ public class ConsultingServiceImpl implements ConsultingService {
         dao.insert_consulting(counselrecord);
     }
 
+    @Override
+    public CounselRecord select_counsel_record(int record_num) {
+        return dao.select_counsel_record(record_num);
+    }
+
 }

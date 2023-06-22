@@ -30,4 +30,6 @@ public interface ConsultingDao {
      void accept_consult (int paper_num);
      String now_time();
      void insert_consulting(CounselRecord counselrecord);
+
+     CounselRecord select_counsel_record(int record_num);
 }
