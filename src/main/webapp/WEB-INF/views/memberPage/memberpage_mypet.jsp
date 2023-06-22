@@ -179,7 +179,7 @@
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link " href="memberpage_main">
+                <a class="nav-link collapsed" href="memberpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
