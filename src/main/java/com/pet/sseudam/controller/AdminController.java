@@ -61,12 +61,6 @@ public class AdminController {
             }
         }
     }
-    // 관리자 로그아웃
-    @GetMapping("adminLogout")
-    public String adminLogout(HttpSession session){
-        session.removeAttribute("admin");
-        return "mainPage/main_page";
-    }
 
     // 관리자 로그아웃
     @GetMapping("adminLogout")
@@ -451,6 +445,12 @@ public class AdminController {
     public String adminTest4() {
         System.out.println("상담사 예약 페이지 진입");
         return "adminPage/admin_test4";
+    }
+
+    @GetMapping("adminTest5")
+    public String adminTest5() {
+        System.out.println("상담사 예약 페이지 진입");
+        return "adminPage/admin_test5";
     }
 
 }

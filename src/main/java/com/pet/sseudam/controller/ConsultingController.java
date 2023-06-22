@@ -8,6 +8,7 @@ import com.pet.sseudam.service.ConsultingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -288,5 +289,11 @@ public class ConsultingController {
         return null;
     }
 
+// 테스트 페이지 지울 예정
+    @GetMapping("counsultingTest")
+    public String adminTest5() {
+        System.out.println("상담사 예약 페이지");
+        return "counsulting/counsulting_test";
+    }
 
 }

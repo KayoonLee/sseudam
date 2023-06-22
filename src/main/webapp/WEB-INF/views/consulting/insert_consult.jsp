@@ -29,6 +29,9 @@
 <!-- ======= Header ======= -->
 <%--<%@ include file="../navigator_footer/admin_header.jsp" %>--%>
 
+<%-- 나중에 삭제할 부분 --%>
+<a href="counsultingTest">상담사 예약 페이지</a>
+
 <%--
 <section class="section">
 <div class="row">
