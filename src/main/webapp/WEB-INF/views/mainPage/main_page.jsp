@@ -68,7 +68,7 @@
                 <div class="row align-items-center ">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="main_page"> <img src="./images/mainlogo.png" width=100 height=50> </a>
+                            <a class="navbar-brand" href="main_page"> <img src="images/mainlogo.png" width=100 height=50> </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">

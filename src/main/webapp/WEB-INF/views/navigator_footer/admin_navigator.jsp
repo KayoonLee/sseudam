@@ -20,7 +20,7 @@
     <%-- 왼쪽 상단바 로고 --%>
     <div class="d-flex align-items-center justify-content-between">
         <a href="adminMain" class="logo d-flex align-items-center">
-            <img src="images/muzik5.jpg" alt="">
+            <img src="images/logo.png" alt="">
             <span class="d-none d-lg-block">쓰담쓰담</span>
         </a>
         <%-- 닫는창 --%>
@@ -91,18 +91,18 @@
             <li class="nav-item dropdown pe-3">
 
                 <a href="main_page" class="nav-link nav-profile d-flex align-items-center pe-auto">
-                    <img src="images/muzik5.jpg" alt="">
+                    <img src="images/mainlogo.png" alt="">
                     <span class="breadcrumb-item">홈페이지 바로가기&nbsp;&nbsp;&nbsp;</span>
                 </a>
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <img src="images/muzik5.jpg" alt="">
+                    <img src="images/logo.png" alt="">
                     <span class="d-none d-md-block dropdown-toggle ps-2">관리자</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <img src="images/muzik5.jpg" alt="">
+                        <img src="images/logo.png" alt="">
                         <h6>관리자</h6>
                         <span>Administer</span>
                     </li>
@@ -123,7 +123,7 @@
                         <hr class="dropdown-divider">
                     </li>
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="adminLogout">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>로그아웃</span>
                         </a>
