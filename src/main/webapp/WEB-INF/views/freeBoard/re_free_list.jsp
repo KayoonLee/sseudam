@@ -145,12 +145,29 @@
             if (confirm(text)) {
                 var content = $("#content_" + id).val().trim(); // 댓글 내용 가져오기
 
+                var fileInput = document.getElementsByName("files")[0];
+                var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|webp)$/;
+                var maxSize = 1 * 1024 * 1024;
+
+                var files = fileInput.files;
+                if (files.length > 0) {
+                    var file = files[0];
+
+                    if (!file.name.match(fileForm)) {
+                        alert("이미지 파일만 업로드 가능합니다.");
+                        return false;
+                    }
+
+                    if (file.size > maxSize) {
+                        alert("파일 사이즈는 1MB까지 가능합니다.");
+                        return false;
+                    }
+                }
                 /*if (content == "") {
                     alert('댓글을 입력하세요');
                     $("#content_" + id).focus();
                     return false;
                 }*/
-
                 // 수정할 데이터를 FormData에 추가
                 var formData = new FormData($("#frm" + id)[0]);
                 formData.append("re_content", content);
@@ -205,15 +222,17 @@
                             <input type="hidden" name="ref" value="${reBoard.ref }">
                             <input type="hidden" name="re_seq" value="${reBoard.re_seq }">
 
+                            <div><c:if test="${not empty reBoard.profile_num}">
+                                <img src="./memberImg/${reBoard.profile_name}" class="profile_image"></c:if>${reBoard.nick}</div>
+                            <div><fmt:formatDate value="${reBoard.re_reg_date }" pattern="yyyy년 MM월 dd일"/></div>
                             <div id="re_preview_${reBoard.board_renum}">
                                 <c:if test="${reBoard.file_num != 0}"><img src="./img/${reBoard.file_name}" class="re_image"></c:if>
                             </div>
                             <div id="content_${reBoard.board_renum }">${reBoard.re_content }</div>
-                            <div><fmt:formatDate value="${reBoard.re_reg_date }" pattern="yyyy년 MM월 dd일"/></div>
-                            <c:if test="${not empty m_id}">
+                            <c:if test="${not empty member.m_id}">
                                 <button type="button" onclick="r_reply(${reBoard.board_renum})">댓글</button>
                             </c:if>
-                            <c:if test="${!empty m_id and m_id == reBoard.m_id}">
+                            <c:if test="${!empty member.m_id and member.m_id == reBoard.m_id}">
                                 <div id="btn_${reBoard.board_renum }">
                                     <input type="button" id="${reBoard.board_renum }" value="댓글 수정"
                                            class="r_update_check">

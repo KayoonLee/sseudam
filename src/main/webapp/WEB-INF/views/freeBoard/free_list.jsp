@@ -8,6 +8,14 @@
     <meta charset="UTF-8">
     <title>자유게시판 목록</title>
 
+    <!-- Image CSS -->
+    <link rel="stylesheet" href="css/image_image.css">
+    <style>
+        .profile_image {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
 
@@ -64,7 +72,9 @@
                         <td><a href="freeView?num=${board.num}&board_num=${board.board_num}
                            &pageNum=${pageNum}">
                                 ${board.subject}</a></td>
-                        <td>작성자명 출력</td>
+                        <td><c:if test="${not empty board.profile_num}">
+                            <img src="./memberImg/${board.profile_name}" class="profile_image"></c:if>
+                        ${board.nick}</td>
                         <td>${board.readcount}</td>
                         <td>${board.recom}</td>
                         <td><fmt:formatDate value="${board.reg_date }"
@@ -159,7 +169,7 @@
         </nav>
     </c:if>
 
-    <c:if test="${!empty m_id }">
+    <c:if test="${!empty member.m_id }">
         <div align="center">
             <a href="freeInsertForm">글 작성입니다</a>
         </div>

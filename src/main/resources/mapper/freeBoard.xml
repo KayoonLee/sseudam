@@ -35,7 +35,11 @@
             <when test="sort == 'readcount'">readcount</when>
         </choose>
         limit #{startRow}, #{endRow}-->
-        select * from board where state=1 and num=#{num}
+
+        select t1.*, nick, t2.profile_num, profile_name
+        from board t1 join member t2 on t1.m_id = t2.m_id
+        left join img_profile t3 on t2.profile_num = t3.profile_num
+        where t1.state=1 and t1.num=#{num}
         <if test="category != 0">
             and category=#{category}
         </if>
@@ -98,13 +102,18 @@
     </select>
 
     <insert id="fInsert" parameterType="fboard">
-        insert into board (num, subject, category, m_id, content, hashtag, file_num, readcount, reg_date, state) values (
-                                                                                                                            #{num},#{subject},#{category},#{m_id},#{content},#{hashtag,jdbcType=VARCHAR},#{file_num,jdbcType=VARCHAR},
-                                                                                                                            0,sysdate(),1)
+        insert into board
+        (num, subject, category, m_id, content, hashtag, file_num, readcount, reg_date, state)
+        values (#{num}, #{subject}, #{category}, #{m_id}, #{content}, #{hashtag,jdbcType=VARCHAR},
+                #{file_num,jdbcType=VARCHAR},
+                0, sysdate(), 1)
     </insert>
 
     <select id="fView" parameterType="fboard" resultType="fboard">
-        select * from board where board_num=#{board_num} and num=#{num}
+        select t1.*, nick, t2.profile_num, profile_name
+        from board t1 join member t2 on t1.m_id = t2.m_id
+                      left join img_profile t3 on t2.profile_num = t3.profile_num
+        where board_num=#{board_num} and num=#{num}
     </select>
 
     <update id="fUpdateReadcount" parameterType="fboard">
