@@ -22,4 +22,7 @@ public class CounselPaper {
     private int confirmed;
     private String type;
     private String wish_list;
+
+    // 방금 추가함
+    private String nick;
 }

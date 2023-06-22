@@ -120,8 +120,8 @@
         }
 
         .thumbnail {
-            max-width: 500px;
-            max-height: 400px;
+            max-width: 700px;
+            max-height: 550px;
             margin: 5px;
         }
     </style>
@@ -181,7 +181,7 @@
 
                 <input type="submit" value="작성">
                 <input type="reset" value="취소">
-                <a href="freeList">목록</a>
+                <button type="button" onclick="history.go(-1)">본문으로</button>
             </div>
         </form>
     </div>

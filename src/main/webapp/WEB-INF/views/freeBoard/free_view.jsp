@@ -59,12 +59,30 @@
 
             // 댓글 등록 버튼 클릭
             $("#repl_insert").click(function () {
+                var fileInput = document.getElementsByName("files")[0];
+                var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|webp)$/;
+                var maxSize = 1 * 1024 * 1024;
+
                 if ($("#re_content").val() == "") {
                     alert('댓글 입력 후에 클릭하시오');
                     $("#re_content").focus();
                     return false;
                 }
 
+                var files = fileInput.files;
+                if (files.length > 0) {
+                    var file = files[0];
+
+                    if (!file.name.match(fileForm)) {
+                        alert("이미지 파일만 업로드 가능합니다.");
+                        return false;
+                    }
+
+                    if (file.size > maxSize) {
+                        alert("파일 사이즈는 1MB까지 가능합니다.");
+                        return false;
+                    }
+                }
                 var formData = new FormData($('#frm')[0]);
                 $.ajax({
                     type: "post",
@@ -76,14 +94,17 @@
                         if (data == '') {
                             alert("다시 시도해주세요");
                         } else {
-                            document.getElementById("re_content").value = '';
+                            // document.getElementById("re_content").value = '';
+                            $("#re_content").val("");
                             $("#files").val("");
-                            document.getElementById("previewContainer").innerHTML = '';
+                            // $("#previewContainer").innerHTML = '';
+                             document.getElementById("previewContainer").innerHTML = '';
                             loadReplies(); // 댓글 목록 다시 로드
                         }
                     }
                 });
             });
+
 
             // 댓글 삭제 확인
             function delete_check() {
@@ -135,12 +156,23 @@
             }
         }
     </script>
-
+    <link rel="stylesheet" href="css/image_image.css">
     <style>
         .re_thumbnail {
             width: 200px;
             height: 150px;
             margin: 5px;
+        }
+
+        .thumbnail {
+            max-width: 700px;
+            max-height: 550px;
+            margin: 5px;
+        }
+
+        .profile_image {
+            width: 30px;
+            height: 30px;
         }
     </style>
 
@@ -151,10 +183,12 @@
 
         <input type="hidden" id="num" name=num value="${fboard.num }">
         <input type="hidden" id="board_num" name=board_num value="${fboard.board_num }">
-        <input type="hidden" id="m_id" name="m_id" value="${m_id }">
+        <input type="hidden" id="m_id" name="m_id" value="${member.m_id }">
         <div>
             <h1>${fboard.subject }</h1>
             <div>카테고리 : ${fboard.category }</div>
+            <div><c:if test="${not empty fboard.profile_num}">
+                <img src="./memberImg/${fboard.profile_name}" class="profile_image"></c:if>${fboard.nick}</div>
             <div>조회수 ${fboard.readcount }</div>
         </div>
         <div>
@@ -176,7 +210,7 @@
         </div>
 
 
-        <c:if test="${!empty m_id and m_id == fboard.m_id}">
+        <c:if test="${!empty member.m_id and member.m_id == fboard.m_id}">
             <div align="center">
                 <button type="button" onclick="location.href=
                         'freeUpdateForm?num=${fboard.num}&board_num=${fboard.board_num}'">글 수정
@@ -185,21 +219,21 @@
             </div>
         </c:if>
         <div>
-            <c:if test="${!empty m_id}">
+            <c:if test="${!empty member.m_id}">
                 <button type="button" id="report_button">신고하기</button>
             </c:if>
         </div>
         <div>
-            <a href="freeList?&num=${fboard.num}&pageNum=${pageNum }&category=${fboard.category}">목록</a>
+            <a href="freeList?&num=${fboard.num}&pageNum=${pageNum}">목록</a>
         </div>
 
 
-        <c:if test="${!empty m_id}">
+        <c:if test="${!empty member.m_id}">
             <div>
                 <form id="frm" name="frm" enctype="multipart/form-data" onsubmit="return free_check()">
                     <input type="hidden" name=num value="${fboard.num }">
                     <input type="hidden" name=board_num value="${fboard.board_num }">
-                    <input type="hidden" name=m_id value="${m_id }">
+                    <input type="hidden" name=m_id value="${member.m_id }">
                     댓글 :
                     <textarea rows=3 cols=30 id="re_content" name="re_content"></textarea>
                     <div id="previewContainer"></div>

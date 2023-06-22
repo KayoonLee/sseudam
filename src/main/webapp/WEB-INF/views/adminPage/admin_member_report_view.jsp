@@ -42,11 +42,10 @@
     <tr>
         <div class="card-title" align="center">신고내용</div>
     </tr>
-    <tr id="${m_id}" value="${m_id}">
-        <td onclick="reportBoardView(${report_board.num}, ${report_board.board_num})">${report_board.report_content}
-            <button type="button">
-                글조회
-            </button>
+    <tr>
+<%--    <tr id="${m_id}" value="${m_id}">--%>
+        <td onclick="reportBoardView(${report_board.num}, ${report_board.board_num})">
+            ${report_board.report_content}
         </td>
     </tr>
     </tbody>

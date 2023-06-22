@@ -29,8 +29,10 @@ public class ReFreeBean {
     private String file_origin;
     private String file_name;
 
-    // 회원정보
+    //닉네임
     private String nick;
-    private int profile_num;
+    //프로필
+    private Integer profile_num;
+    private String profile_name;
 
 }

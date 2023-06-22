@@ -1,9 +1,6 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.model.Counselor;
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.PetBean;
-import com.pet.sseudam.model.ProfileBean;
+import com.pet.sseudam.model.*;
 import com.pet.sseudam.service.CounselorService;
 import com.pet.sseudam.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspEngineInfo;
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -243,12 +241,6 @@ public class MyPageController {
         return "memberPage/member_out";
     }
 
-
-
-
-
-
-
     // 나의 반려동물
     @RequestMapping("memberpage_mypet")
     public String memberPagePet(HttpSession session, Model model){
@@ -259,22 +251,53 @@ public class MyPageController {
 
     // 내가 쓴 글
     @RequestMapping("memberpage_mypost")
-    public String memberPagePost(){
+    public String memberPagePost(Model model, HttpSession session){
         System.out.println("내가 쓴 글로 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member: " + member);
+
+        List<FreeBean> mypostList = ms.mypostList(member.getM_id());
+        System.out.println("mypostList: " + mypostList);
+
+
+        model.addAttribute("mypostList", mypostList);
+        model.addAttribute("member", member);
+
         return "memberPage/memberpage_mypost";
     }
 
     // 내가 쓴 댓글
     @RequestMapping("memberpage_myreply")
-    public String memberPageReply(){
+    public String memberPageReply(Model model, HttpSession session){
         System.out.println("내가 쓴 댓글로 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member: " + member);
+
+        List<ReFreeBean> myreplyList = ms.myreplyList(member.getM_id());
+        System.out.println("myreplyList: " + myreplyList);
+
+        model.addAttribute("myreplyList", myreplyList);
+        model.addAttribute("member", member);
+
         return "memberPage/memberpage_myreply";
     }
 
     // 내가 좋아요 한 글
     @RequestMapping("memberpage_mylike")
-    public String memberPageLike(){
+    public String memberPageLike(Model model, HttpSession session){
         System.out.println("내가 좋아요 한 글로 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member: " + member);
+
+        List<FreeBean> mylikeList = ms.mylikeList(member.getM_id());
+        System.out.println("mylikeList: " + mylikeList);
+
+        model.addAttribute("mylikeList", mylikeList);
+        model.addAttribute("member", member);
+
         return "memberPage/memberpage_mylike";
     }
 

@@ -65,9 +65,26 @@
                     <tr onclick="reportView(${m_id}, ${list.num}, ${list.board_num})">
                         <td><img src="${list.profile_name}" alt="프로필">${list.nick}</td>
                         <td>${list.subject}</td>
-                        <td>${list.report_issue}</td>
+                        <c:if test="${list.report_issue == 1}">
+                            <td>주제에 맞지 않는 글</td>
+                        </c:if>
+                        <c:if test="${list.report_issue == 2}">
+                            <td>과도한 욕설</td>
+                        </c:if>
+                        <c:if test="${list.report_issue == 3}">
+                            <td>광고성 글</td>
+                        </c:if>
+                        <c:if test="${list.report_issue == 4}">
+                            <td>음란물</td>
+                        </c:if>
+                        <c:if test="${list.report_issue == 5}">
+                            <td>개인정보 노출</td>
+                        </c:if>
+                        <c:if test="${list.report_issue == 6}">
+                            <td>기타</td>
+                        </c:if>
                         <td><fmt:formatDate value="${list.report_date}"
-                                            pattern="yyyy년 MM월 dd일"/></td>
+                                            pattern=""/></td>
                     </tr>
                 </c:forEach>
 

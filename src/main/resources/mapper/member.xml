@@ -71,7 +71,7 @@
         where email = #{email}
     </update>
 
-<!--  사진만 변경  <update id="">-->
+<!--    <update id="">-->
 <!--        update img_profile p inner join member m on m.profile_num = p.profile_num set-->
 <!--        profile_origin = #{profile_origin},-->
 <!--        profile_name =#{profile_name}-->
@@ -112,7 +112,7 @@
         insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
     </insert>
 
-    <!--    profile_num null->업데이트-->
+<!--    profile_num null->업데이트-->
     <update id="memProfileAdd" parameterType="member">
         UPDATE member m
         JOIN img_profile p ON m.profile_num = p.profile_num
@@ -120,18 +120,55 @@
         WHERE m.m_id = #{m_id}
     </update>
 
-    <!--상담사 목록 출력-->
-    <select id="counselorList" parameterType="member" resultType="member">
-        SELECT m.*, c.license, c.career
-        FROM member AS m
-        JOIN counselor AS c ON m.m_id = c.c_id
-        WHERE m.identifier = 2 AND m.state = 1;
+
+    <!--마이페이지에서 일반회원 조회-->
+   <select id="checkMem" parameterType="int" resultType="member">
+
+       SELECT *
+       FROM member
+       LEFT JOIN img_profile ON member.profile_num = img_profile.profile_num
+       WHERE member.m_id = #{m_id}
+       UNION
+       SELECT *
+       FROM member
+       RIGHT JOIN img_profile ON member.profile_num = img_profile.profile_num
+       WHERE member.profile_num IS NULL
+   </select>
+
+    <!-- 상담사의 상담요청리스트-->
+    <select id="requestList" parameterType="int" resultType="CounselPaper">
+        SELECT c.* , m.nick
+        FROM counsel_paper c
+                 JOIN member m ON m.m_id = c.m_id
+        WHERE c.c_id = #{m_id}
     </select>
 
-    <!--탈퇴-->
-    <delete id="deletemember" parameterType="String">
-        update Member set state = 0 where email = #{email}
-    </delete>
+    <!-- 일반회원의 내가 쓴 글-->
+    <select id="mypostList" parameterType="int" resultType="fboard">
+        select b.*, m.nick from board b join member m on m.m_id=b.m_id where b.m_id=#{m_id}
+    </select>
+
+    <!-- 일반회원의 내가 쓴 댓글-->
+    <select id="myreplyList" parameterType="int" resultType="fboard">
+        SELECT distinct board.*
+        FROM board
+                 JOIN board_reply ON board.board_num = board_reply.board_num
+                 JOIN member ON board.m_id = member.m_id
+        where board_reply.m_id =#{m_id}
+    </select>
+
+    <!-- 일반회원의 추천한 글-->
+    <select id="mylikeList" parameterType="int" resultType="fboard">
+        select board.*
+        from board
+            join board_recom on board.board_num = board_recom.board_num
+            join member on board.m_id = member.m_id
+        where board_recom.m_id=#{m_id}
+    </select>
+
+
+
+
 
 
     <!-- 관리자 방문자수 통계용도 -->

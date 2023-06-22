@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <html>
 <head>
     <title>Title</title>
@@ -54,6 +56,7 @@
             <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
+                    <fmt:formatDate value="${counselpaper.request_time}" pattern="yyyy-MM-dd"/>
                     <input type="text" class="form-control" value="${counselpaper.request_time}" disabled>
                 </div>
             </div>

@@ -42,7 +42,7 @@ public class ConsultingController {
     /* 상담사 예약으로 이동*/
     @RequestMapping("choose_Counselor")
     public String choose_Counselor(Model model) {
-        //상담사 이름 modal 주입
+        //상담사 이름 model 주입
 
         List<Member> con_names = con.find_counselor_name();
         model.addAttribute("con_names", con_names);
@@ -73,13 +73,17 @@ public class ConsultingController {
         List<PetBean> pet_list = con.find_pet(member.getM_id());
         model.addAttribute("pet_list", pet_list);
         System.out.println(pet_list);
+        int g_id = member.getM_id();
 
         List<Date> reservation_time;
         reservation_time = con.find_reservation_time(member.getM_id(), con_id);
         for (Date c : reservation_time) {
             System.out.println(c);
         }
+
         model.addAttribute("reservation_time", reservation_time);
+        model.addAttribute("nowtime",con.now_time());
+        System.out.println(con.now_time());
 
 
         return "consulting/insert_consult";
@@ -94,9 +98,14 @@ public class ConsultingController {
 
                                         CounselPaper counselpaper) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:00");
         Date date = null;
         try {
+            /*  yyyy-MM-dd'T'HH:mm ->  yyyy-MM-dd HH:mm -> yyyy-MM-dd HH:00 */
             date = inputFormat.parse(request_time);
+            String formattedDate = outputFormat.format(date);
+            date = outputFormat.parse(formattedDate);
+            System.out.println(formattedDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -119,7 +128,7 @@ public class ConsultingController {
     {
 
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 임의값 나중에 삭제해야함.
-        int paper_num = 23;
+        int paper_num = 36;
         int r_num = 4;
 
         //해당 일반 회원 검색
@@ -145,7 +154,7 @@ public class ConsultingController {
             model.addAttribute("counselor", counselor);
             model.addAttribute("counselpaper", counselpaper);
             model.addAttribute("pet", pet);
-            return "view_consult_contemp";
+            return "consulting/view_consult_con";
         }
 
 
