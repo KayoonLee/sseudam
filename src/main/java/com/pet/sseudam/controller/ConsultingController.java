@@ -80,7 +80,10 @@ public class ConsultingController {
         for (Date c : reservation_time) {
             System.out.println(c);
         }
+
         model.addAttribute("reservation_time", reservation_time);
+        model.addAttribute("nowtime",con.now_time());
+        System.out.println(con.now_time());
 
 
         return "consulting/insert_consult";
