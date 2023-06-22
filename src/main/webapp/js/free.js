@@ -45,3 +45,10 @@ function free_check() {
         }
     }
 }
+
+function report_check(){
+    if($.trim($("#report_content").val()) == ""){
+        alert("신고 사유를 적어주세요!");
+        return false;
+    }
+}

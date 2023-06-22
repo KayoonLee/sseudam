@@ -203,7 +203,7 @@
         </div>
         <c:if test="${empty reList}">
             <div>
-                <b>리뷰를 새로 달아주세요</b>
+                <b>댓글을 새로 달아주세요</b>
             </div>
         </c:if>
         <c:if test="${not empty reList}">
