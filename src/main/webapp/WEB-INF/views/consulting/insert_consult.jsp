@@ -1,15 +1,9 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: channy1942
-  Date: 2023-06-20
-  Time: 오후 3:15
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <title>상담예약서 작성</title>
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -17,7 +11,6 @@
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-
 
     <!-- DATE -->
     <script>
@@ -28,17 +21,21 @@
             var dateTimeString = datetimeInput.value;
             datetimeInput.value = dateTimeWithoutMinutes;
             var dateTime1 = new Date(dateTimeString);
-
         }
     </script>
 </head>
 <body>
 
-<%--<section class="section">--%>
-<%--<div class="row">--%>
-<%--<div class="col-lg-6">--%>
+<!-- ======= Header ======= -->
+<%--<%@ include file="../navigator_footer/admin_header.jsp" %>--%>
 
-<div class="card">
+<%--
+<section class="section">
+<div class="row">
+<div class="col-lg-12">
+--%>
+
+<div class="card" style="margin: 200px">
     <div class="card-body">
         <h5 class="card-title">상담예약서 작성</h5>
 
@@ -99,12 +96,6 @@
                 </div>
             </div>
 
-
-
-
-
-
-
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
@@ -117,9 +108,14 @@
     </div>
 </div>
 
-<%--</div>--%>
-<%--</div>--%>
-<%--</section>--%>
+<%--
+</div>
+</div>
+</section>
+--%>
+
+<!-- ======= Table ======= -->
+<%--<%@ include file="../navigator_footer/admin_table.jsp" %>--%>
 
 </body>
 </html>
