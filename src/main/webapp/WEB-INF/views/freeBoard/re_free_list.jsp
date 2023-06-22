@@ -145,12 +145,29 @@
             if (confirm(text)) {
                 var content = $("#content_" + id).val().trim(); // 댓글 내용 가져오기
 
+                var fileInput = document.getElementsByName("files")[0];
+                var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|webp)$/;
+                var maxSize = 1 * 1024 * 1024;
+
+                var files = fileInput.files;
+                if (files.length > 0) {
+                    var file = files[0];
+
+                    if (!file.name.match(fileForm)) {
+                        alert("이미지 파일만 업로드 가능합니다.");
+                        return false;
+                    }
+
+                    if (file.size > maxSize) {
+                        alert("파일 사이즈는 1MB까지 가능합니다.");
+                        return false;
+                    }
+                }
                 /*if (content == "") {
                     alert('댓글을 입력하세요');
                     $("#content_" + id).focus();
                     return false;
                 }*/
-
                 // 수정할 데이터를 FormData에 추가
                 var formData = new FormData($("#frm" + id)[0]);
                 formData.append("re_content", content);
