@@ -17,7 +17,8 @@
                     data: {m_id: m_id, state: state},
                     success: function (response) {
                         if (response == 1) {
-                            alert("회원의 상태값이 변경되었습니다");
+                            alert("회원의 상태값이 변경되었습니다")
+                            loadMemberPage(m_id);
                         } else {
                             alert("오류 발생. 다시 시도해주세요");
                         }
@@ -110,25 +111,27 @@
 
 
 </table>
-<!-- 회원 삭제/복구-->
 
 
-<c:if test="${memberDto.state == 1}">
-    <button type="button" onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원삭제</button>
-</c:if>
-<c:if test="${memberDto.state == 0}">
-    <button type="button" onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원복원</button>
-</c:if>
-<button type="button" onclick="nickChange()">닉네임 변경</button>
+
+<button type="button" class="btn btn-outline-secondary" onclick="nickChange()">닉네임 변경</button>
 
 <div id="nickTag">
     <form id="nick_frm" method="" action="">
         <input type='hidden' name='m_id' value=${memberDto.m_id}>
         <input type="text" name="nick" id="nick">
-        <button type="button" onclick="nickConfirm()">수정</button>
-        <input type="reset" value="취소"/>
+        <button type="button" class="btn btn-outline-success" onclick="nickConfirm()">수정</button>
+        <input type="reset" class="btn btn-outline-secondary" value="취소"/>
     </form>
 </div>
+
+<!-- 회원 삭제/복구-->
+<c:if test="${memberDto.state == 1}">
+    <button type="button" class="btn btn-outline-danger" onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원삭제</button>
+</c:if>
+<c:if test="${memberDto.state == 0}">
+    <button type="button" class="btn btn-outline-primary" onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원복원</button>
+</c:if>
 
 
 <%--

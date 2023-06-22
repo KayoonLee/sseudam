@@ -15,8 +15,6 @@ public interface ConsultingService {
 
     List<PetBean> find_pet(int g_id);
 
-    PetBean change_to_pet_id(int g_id,String animal);
-
     Member find_general(int g_id);
 
     Member find_counselor(int con_id);

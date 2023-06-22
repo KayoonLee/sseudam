@@ -68,7 +68,7 @@
 
     <!-- 상담사 테이블 -->
     <select id="admin_counsel_list" resultType="member">
-        select * from member where
+        select (ROW_NUMBER() OVER()) as row_num, m.* from member m where
         <if test="identifier == 3">
             identifier = #{identifier}
         </if>
