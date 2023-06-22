@@ -15,11 +15,13 @@
     <script>
         function checkCounselorSelection() {
             var counselorSelect = document.getElementById("con_names_select");
-            if (counselorSelect.value == "") {
+            if (counselorSelect.value === "") {
                 alert("상담사를 선택해주세요.");
-                return false; // 폼 전송을 막기 위해 false 반환
+                return false;
             }
+            return true;
         }
+
     </script>
 
 </head>
@@ -37,7 +39,7 @@
                     <h5 class="card-title">상담사 목록</h5>
 
                     <!-- General Form Elements -->
-                    <form action="choose_Consult_Time" method="POST">
+                    <form action="choose_Consult_Time" method="POST" onsubmit="return checkCounselorSelection()">
                         <div class="row mb-3">
                             <div class="col-sm-10">
 
@@ -53,7 +55,7 @@
                         <div class="row mb-3">
 
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary" onclick="checkCounselorSelection()">상담사 선택</button>
+                                <button type="submit" class="btn btn-primary" >상담사 선택</button>
                             </div>
                         </div>
 
