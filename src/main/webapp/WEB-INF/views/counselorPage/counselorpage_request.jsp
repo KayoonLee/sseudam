@@ -33,6 +33,10 @@
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
+
+    <!-- ======= Table ======= -->
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
+
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -224,6 +228,43 @@
             </li><!-- End Components Nav -->
         </ul>
     </aside>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>상담여청내역</h1>
+    </div><!-- End Page Title -->
+    <br>
+    <div class="card">
+        <div class="card-body">
+            <br>
+            <table id="example" class="table is-striped" style="width:100%">
+                <thead>
+                <tr>
+                    <th>신청자</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                    <th>진행현황</th>
+                </tr>
+                </thead>
+                <tbody>
+                <td>test작성자</td>
+                <td>우리애가이상해요</td>
+                <td>2023-06-21</td>
+                <td>확정</td>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>신청자</th>
+                    <th>제목</th>
+                    <th>작성일</th>
+                    <th>진행현황</th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</main>
+
 
 
 </body>
