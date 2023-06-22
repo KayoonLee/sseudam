@@ -13,7 +13,7 @@ import java.util.List;
 @Mapper
 public interface ConsultingDao {
      List<Member> find_counselor_name();
-     List<Date> find_reservation_time(@Param("g_id") int g_id, @Param("con_id") int con_id);
+     List<Date> find_reservation_time(@Param("g_id") int g_id,@Param("con_id") int con_id);
 
      List<PetBean> find_pet(int g_id);
 

@@ -24,7 +24,7 @@
         SELECT request_time
         FROM counsel_paper
         WHERE m_id = #{g_id}
-           or c_id = #{con_id}
+          or c_id = #{con_id}
 
     </select>
 
@@ -41,20 +41,12 @@
         FROM pet
         WHERE g_id = #{g_id}
     </select>
-    <!-- 작성폼 동물이름 -> 동물dto로-->
-    <select id="change_to_pet_id" resultType="Pet">
-        SELECT *
-        FROM pet
-        WHERE g_id = #{g_id}
-          AND animal = #{animal}
-    </select>
 
     <!-- 해당 회원 id와 일치하는 회원 데이터 찾기 -->
     <select id="find_general" resultType="Member">
-        select t1.*, career, license, profile_name, profile_origin
-        from member t1 join counselor t2 on t1.m_id=t2.c_id
-                       left join img_profile t3 on t1.profile_num=t3.profile_num
-        where m_id=#{m_id}
+        SELECT *
+        FROM member
+        WHERE m_id = #{g_id}
     </select>
 
     <!-- insert consult -->

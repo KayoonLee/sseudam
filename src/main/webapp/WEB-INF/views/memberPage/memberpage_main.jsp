@@ -185,11 +185,11 @@
                 <span>나의 프로필</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-               <li>
+                <li>
                     <a href="memberpage_pwUpdateForm">
-                       <i class="bi bi-circle"></i><span>비밀번호 변경</span><i class="bi bi-chevron-down ms-auto"></i>
+                        <i class="bi bi-circle"></i><span>비밀번호 변경</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-               </li>
+                </li>
             </ul>
         </li>
         <li class="nav-item">
@@ -235,20 +235,20 @@
     </ul>
 </aside>
 
-    <main id="main" class="main">
-        <div class="pagetitle">
-            <h1>Profile</h1>
-            <nav>
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item">Users</li>
-                    <li class="breadcrumb-item active">Profile</li>
-                </ol>
-            </nav>
-        </div><!-- End Page Title -->
-<form action="memberpage_updateform" enctype="multipart/form-data" method="post" attribute>
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Profile</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item">Users</li>
+                <li class="breadcrumb-item active">Profile</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+    <form action="memberpage_updateform" enctype="multipart/form-data" method="post" attribute>
 
- <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
+        <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
         <section class="section profile">
             <div class="row" align="center">
                 <div class="col-xl-8">
@@ -258,7 +258,7 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"
-                                    onClick="location.href='memberpage_main'">프로필</button>
+                                            onClick="location.href='memberpage_main'">프로필</button>
                                 </li>
 
                                 <!--<li class="nav-item">
@@ -271,27 +271,27 @@
 
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                     <br>
-                                   <div class="card">
-                                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                                    <div class="card">
+                                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                                        <c:if test="${!empty myModel.profile_num}">
-                                            <img src="./memberImg/${myModel.profile_name}" class="rounded-circle">
-                                        </c:if>
+                                            <c:if test="${!empty myModel.profile_num}">
+                                                <img src="./memberImg/${myModel.profile_name}" class="rounded-circle">
+                                            </c:if>
 
-                                        <c:if test="${empty myModel.profile_num}">
-                                             <img src="./images/memberdefault.png" class="rounded-circle">
-                                        </c:if>
+                                            <c:if test="${empty myModel.profile_num}">
+                                                <img src="./images/memberdefault.png" class="rounded-circle">
+                                            </c:if>
 
-                                       <h2>${myModel.name}</h2>
-                                       <h3>ㅎㅅㅎ</h3>
-                                         <div class="social-links mt-2">
-                                          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                                          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                                          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                                          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                                         </div>
+                                            <h2>${myModel.name}</h2>
+                                            <h3>ㅎㅅㅎ</h3>
+                                            <div class="social-links mt-2">
+                                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                                            </div>
                                         </div>
-                                   </div>
+                                    </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">이름</div>
@@ -323,10 +323,10 @@
                                         <div class="col-lg-9 col-md-8">${myModel.join_date}</div>
                                     </div>
                                 </div>
-                             <div class="text-center">
-                                 <button type="submit" class="btn btn-primary">개인정보 수정</button>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">개인정보 수정</button>
 
-                             </div>
+                                </div>
 
 
                             </div><!-- End Bordered Tabs -->
@@ -337,8 +337,8 @@
                 </div>
             </div>
         </section>
-</form>
-    </main><!-- End #main -->
+    </form>
+</main><!-- End #main -->
 
 </body>
 </html>
