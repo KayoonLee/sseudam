@@ -133,4 +133,20 @@
         update Member set state = 0 where email = #{email}
     </delete>
 
+
+    <!-- 관리자 방문자수 통계용도 -->
+    <select id="visitCheck" parameterType="visitor" resultType="int">
+        SELECT COUNT(1)
+        FROM VISITOR
+        WHERE SESSION_ID = #{session_id}
+          AND IP_ADDR    = #{ip_addr}
+          AND VISIT_TIME > DATE_SUB(NOW(), INTERVAL 1 DAY);
+    </select>
+
+    <insert id="visitInsert" parameterType="visitor">
+        insert into visitor (session_id, ip_addr, visit_time)
+        values (#{session_id}, #{ip_addr}, now())
+    </insert>
+
+
 </mapper>

@@ -12,10 +12,13 @@
 </head>
 <body>
 
-<!-- ======= Header ======= -->
-<!-- ======= Sidebar ======= -->
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/admin_navigator.jsp" %>
 
-<%--<main>--%>
+<!-- ======= Sidebar ======= -->
+<%@ include file="../navigator_footer/admin_sidebar.jsp" %>
+
+<main>
     <div class="container">
 
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
@@ -92,7 +95,8 @@
         </section>
 
     </div>
-<%--</main>--%><!-- End #main -->
+
+</main><!-- End #main -->
 
 <%--
 <main id="main" class="main">
@@ -100,6 +104,7 @@
 --%>
 
 <!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/admin_footer.jsp" %>
 
 </body>
 </html>

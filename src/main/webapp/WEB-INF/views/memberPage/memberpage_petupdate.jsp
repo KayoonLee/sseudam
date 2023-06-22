@@ -23,8 +23,10 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
   <script src="http://code.jquery.com/jquery-latest.js"></script>
   <link href="css/member.css" rel="stylesheet">
+
+
   <script>
-    // 이미지 업로드를 위한 JavaScript 함수
+    // 이미지 업로드와 삭제를 위한 JavaScript 함수
     function uploadImage() {
       $("#imageInput").click();
     }
@@ -46,6 +48,14 @@
         }
       }
     };
+
+    // 이미지 삭제
+    function removeImage() {
+      $("button").click(function () {
+        $("#imageInput").val('');
+      })
+    };
+
 
   </script>
   <style type="text/css">
@@ -284,10 +294,15 @@
 
                   <!-- 프로필사진 수정하는 코드 들어가야됨-->
                 <div class="row mb-3">
-                  <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
+                  <label for="profile_num" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
                   <div class="col-md-8 col-lg-9">
                     <div id="previewContainer">
-                      <img src="./petimg/${pet.profile_name}" alt="Profile" class="thumbnail" >
+                      <c:if test="${empty pet.profile_num}">
+                        <img src="/images/petdefault.png">
+                      </c:if>
+                      <c:if test="${!empty pet.profile_num}">
+                        <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle" width="250" >
+                      </c:if>
                     </div>
                     <div class="pt-2">
                       <input type="file" id="imageInput" name="files"
@@ -298,7 +313,7 @@
                       </button>
                       <%-- 이미지 삭제 하기 --%>
                       <button type="button" onclick="removeImage()" class="btn btn-danger btn-sm"
-                              title="Remove my profile image"><i class="bi bi-trash"></i>
+                              title="Remove my profile image" ><i class="bi bi-trash"></i>
                       </button>
 
                     </div>

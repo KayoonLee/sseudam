@@ -27,4 +27,7 @@ public interface PetDao {
 
     String profileSelect(ProfileBean profileBoard);
 
+    int p_modify(PetBean pet);
+
+    int profileInsert(PetBean pet);
 }

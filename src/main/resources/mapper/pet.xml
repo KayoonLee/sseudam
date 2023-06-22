@@ -8,11 +8,12 @@
         SELECT *
         FROM pet
                  LEFT JOIN img_profile ON pet.profile_num = img_profile.profile_num
+                 WHERE  g_id=#{g_id}
         UNION
         SELECT *
         FROM pet
                  RIGHT JOIN img_profile ON pet.profile_num = img_profile.profile_num
-        WHERE pet.profile_num IS NULL
+        WHERE pet.profile_num IS NULL and g_id=#{g_id}
 
     </select>
 
@@ -20,6 +21,14 @@
     <select id="getTotal" resultType="int">
         select count(*) from pet
     </select>
+
+    <!--프로필사진만 추가-->
+    <insert id="profileAdd" parameterType="profile_board">
+        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">
+            select ifnull(max(profile_num),0) + 1 from img_profile
+        </selectKey>
+        insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
+    </insert>
 
     <!-- 반려동물 상세정보 -->
     <select id="p_select" parameterType="int" resultType="pet">
@@ -31,40 +40,52 @@
         SELECT *
         FROM pet
                  RIGHT JOIN img_profile ON pet.profile_num = img_profile.profile_num
-        WHERE pet.profile_num IS NULL
+        WHERE pet.profile_num IS NULL and g_id=#{g_id}
 
     </select>
 
 
-    <!--반려동물 추가 -->
+    <!-- 반려동물 수정-->
     <insert id="p_insert" parameterType="pet">
         insert into pet (p_id, g_id, animal, birth, kind, breed, profile_num, feature, gender, neutering, state)
         values (#{p_id}, #{g_id}, #{animal}, #{birth}, #{kind}, #{breed}, #{profile_num}, #{feature}, #{gender}, #{neutering}, #{state})
     </insert>
 
+    <!--부모테이블에 먼저 insert-->
+    <insert id="profileInsert" parameterType="pet">
+        insert into img_profile(profile_origin, profile_name)
+        values (#{profile_origin}, #{profile_name})
+    </insert>
 
-    <!-- 반려동물 수정-->
-    <update id="p_update" parameterType="pet">
+    <!-- 프로필사진 제외한 수정 관련-->
+    <update id="p_modify" parameterType="pet">
         UPDATE pet
-            SET pet.animal=#{animal}, pet.birth=#{birth}, pet.kind=#{kind}, pet.breed=#{breed},
-                pet.feature=#{feature}, pet.gender=#{gender}, pet.neutering=#{neutering}
+        SET animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
+        feature=#{feature}, gender=#{gender}, neutering=#{neutering}
+        WHERE
+        p_id=#{p_id}
+    </update>
+
+
+
+
+    <!-- 프로필사진 관련-->
+    <update id="p_update" parameterType="pet">
+        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">
+            select max(profile_num) from img_profile
+        </selectKey>
+
+        UPDATE pet
+            SET animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
+                feature=#{feature}, gender=#{gender}, neutering=#{neutering}, profile_num=#{profile_num}
         WHERE
             p_id=#{p_id}
     </update>
 
-
-    <!-- 프로필사진 관련-->
+    <!-- 프로필사진 추가 -->
     <select id="getMaxnum" resultType="int">
         select ifnull(max(profile_num), 0) from img_profile
     </select>
-
-    <!-- 프로필사진 추가 -->
-    <insert id="profileAdd" parameterType="profile_board">
-        <selectKey keyProperty="profile_num" order="BEFORE" resultType="int">
-            select ifnull(max(profile_num),0) + 1 from img_profile
-        </selectKey>
-        insert into img_profile values(#{profile_num}, #{profile_origin}, #{profile_name})
-    </insert>
 
 
     <select id="profileSelect" parameterType="profile_board" resultType="String">
@@ -89,8 +110,6 @@
                 WHEN pet.profile_num IS NOT NULL THEN #{profile_origin}
                 ELSE img_profile.profile_origin
         END
-
-
     </update>
 
 </mapper>

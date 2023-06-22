@@ -11,4 +11,5 @@ public class ImgBean {
     private int file_serial;
     private String file_origin;
     private String file_name;
+
 }

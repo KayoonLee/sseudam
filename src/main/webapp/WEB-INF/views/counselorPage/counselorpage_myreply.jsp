@@ -21,6 +21,10 @@
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
+
+    <!-- ======= Table ======= -->
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
+
 </head>
 <body>
 <!-- ======= Header ======= -->
@@ -213,12 +217,48 @@
         </ul>
     </aside>
     <main id="main" class="main">
-        <div>
+        <div class="pagetitle">
             <h1>내가 쓴 댓글</h1>
+        </div><!-- End Page Title -->
+        <br>
+        <div class="card">
+            <div class="card-body">
+                <br>
+                <table id="example" class="table is-striped" style="width:100%">
+                    <thead>
+                    <tr>
+                        <th>번호</th>
+                        <th>게시글 제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>추천수</th>
+                        <th>작성일</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <td>1</td>
+                    <td>test제목</td>
+                    <td>test글쓴이</td>
+                    <td>10</td>
+                    <td>2</td>
+                    <td>2023-06-21</td>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <th>번호</th>
+                        <th>게시글 제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>추천수</th>
+                        <th>작성일</th>
+                    </tr>
 
 
+                    </tfoot>
+
+                </table>
+            </div>
         </div>
-
     </main>
 
 </body>

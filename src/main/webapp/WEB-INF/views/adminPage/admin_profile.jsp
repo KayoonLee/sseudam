@@ -11,28 +11,27 @@
     <!-- ======= Table ======= -->
     <%@ include file="../navigator_footer/admin_table.jsp" %>
 
-    <%--세욱 추가--%>
+    <%-- 이미지 업로드를 위한 JavaScript 함수 --%>
     <script>
-        // 이미지 업로드를 위한 JavaScript 함수
         function uploadImage() {
-            $("#imageInput").click();
+            $("#imageInput").click(); // <input id="imageInput"></input>
         }
 
         function removeImage() {
-            $("#imageInput").src("./images/muzik5.jpg");
+            $("#imageInput").src("./images/muzik5.jpg"); // 이미지 삭제할 경우, 기본 이미지
         }
 
-        function previewImage(input) {
-            var previewContainer = document.getElementById("previewContainer");
+        function previewImage(input) { // 무엇이 input? 매개변수로 이미지가 input 되었을 경우 <input>태그가 input
+            var previewContainer = document.getElementById("previewContainer"); // <div id="previewContainer"></div>
             previewContainer.innerHTML = ""; // 기존의 미리보기 이미지 초기화
 
-            if (input.files && input.files.length > 0) {
-                for (var i = 0; i < input.files.length; i++) {
+            if(input.files && input.file.length > 0) {
+                for(var i = 0; i < input.files.length; i++) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var preview = document.createElement("img");
+                    reader.onload = function(e) {
+                        var preview = document.createElement("img"); // webapp/WEB-INF/img 폴더에 이미지 저장
                         preview.src = e.target.result;
-                        preview.className = "thumbnail";
+                        preview.className = "thumbnail"; // ???
                         previewContainer.appendChild(preview);
                     };
                     reader.readAsDataURL(input.files[i]);
@@ -55,10 +54,13 @@
 </head>
 <body>
 
-<!-- ======= Header ======= -->
-<!-- ======= Sidebar ======= -->
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/admin_navigator.jsp" %>
 
-<%--<main id="main" class="main">--%>
+<!-- ======= Sidebar ======= -->
+<%@ include file="../navigator_footer/admin_sidebar.jsp" %>
+
+<main id="main" class="main">
 
 <%-- 왼쪽 상단 --%>
 <div class="pagetitle">
@@ -71,7 +73,6 @@
         </ol>
     </nav>
 </div><!-- End Page Title -->
-
 
 <section class="section profile">
     <div class="row">
@@ -236,9 +237,10 @@
     </div>
 </section>
 
-<%--</main>--%><!-- End #main -->
+</main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/admin_footer.jsp" %>
 
 </body>
 </html>

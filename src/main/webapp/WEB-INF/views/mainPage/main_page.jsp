@@ -82,7 +82,7 @@
                                         <a class="nav-link" href="main_page">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="about.html">상담신청</a>
+                                        <a class="nav-link" href="hasAnimal">상담신청</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="counselor_list">상담사 소개</a>

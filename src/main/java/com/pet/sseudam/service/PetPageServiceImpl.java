@@ -76,4 +76,14 @@ public class PetPageServiceImpl implements PetPageService{
     public String profileSelect(ProfileBean profileBoard) {
         return dao.profileSelect(profileBoard);
     }
+
+    @Override
+    public int profileInsert(PetBean pet) {
+        return dao.profileInsert(pet);
+    }
+
+    @Override
+    public int p_modify(PetBean pet) {
+        return dao.p_modify(pet);
+    }
 }

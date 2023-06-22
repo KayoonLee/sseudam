@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 82108
@@ -21,6 +22,44 @@
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <link href="css/member.css" rel="stylesheet">
+
+    <script>
+        // 이미지 업로드를 위한 JavaScript 함수
+        function uploadImage() {
+            $("#imageInput").click();
+        }
+
+        function previewImage(input) {
+            var previewContainer = document.getElementById("previewContainer");
+            previewContainer.innerHTML = ""; // 기존의 미리보기 이미지 초기화
+
+            if (input.files && input.files.length > 0) {
+                for (var i = 0; i < input.files.length; i++) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var preview = document.createElement("img");
+                        preview.src = e.target.result;
+                        preview.className = "thumbnail";
+                        previewContainer.appendChild(preview);
+                    };
+                    reader.readAsDataURL(input.files[i]);
+                }
+            }
+        };
+
+    </script>
+    <style type="text/css">
+        input[type=file] {
+            display: none;
+        }
+
+        .thumbnail {
+            max-width: 500px;
+            max-height: 400px;
+            margin: 5px;
+        }
+    </style>
+
 
 
 </head>
@@ -241,10 +280,12 @@
                                 <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
                                 <div class="col-md-8 col-lg-9">
                                     <div id="previewContainer">
-<%--                                        <c:forEach var="list" items="${profile_list}">--%>
-<%--                                            <p><img src="./petimg/${list.file_name}" class="thumbnail"></p>--%>
-<%--                                        </c:forEach>--%>
-                                        <img src="./images/petdefault.png" width="250" height="250">
+                                        <c:if test="${empty pet.profile_num}">
+                                            <img src="/images/petdefault.png" width="250", height="250">
+                                        </c:if>
+                                        <c:if test="${!empty pet.profile_num}">
+                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle" width="250" >
+                                        </c:if>
                                     </div>
                                     <div class="pt-2">
                                         <input type="file" id="imageInput" name="files"

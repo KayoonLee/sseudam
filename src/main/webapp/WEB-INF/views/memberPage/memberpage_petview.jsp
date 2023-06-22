@@ -116,7 +116,7 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">홍은희</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">${sessionScope.member.nick}</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -224,6 +224,7 @@
 
         </ul>
     </aside>
+
 <form method="post" enctype="multipart/form-data" attribute>
     <main id="main" class="main">
         <div class="pagetitle">
@@ -245,7 +246,7 @@
                                             <img src="/images/petdefault.png">
                                         </c:if>
                                         <c:if test="${!empty pet.profile_num}">
-                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle">
+                                            <img src="./petimg/${pet.profile_name }" alt="Profile" class="rounded-circle" width="250" >
                                         </c:if>
                                     </div>
                                     <div class="row">
