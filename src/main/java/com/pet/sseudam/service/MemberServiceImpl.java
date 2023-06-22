@@ -102,13 +102,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public List<Member> counselorList(Member member) {
-        return md.counselor(member);
+        return md.counselorList(member);
     }
 
-    @Override
-    public Member checkMem(int m_id) {
-        return md.checkMem(m_id);
-    }
 
     @Override
     public int memProfileAdd(Member member) {
@@ -123,6 +119,11 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member checkFilenum(String email) {
         return md.checkFilenum(email);
+    }
+
+    @Override
+    public int deletemember(String email) {
+        return md.deletemember(email);
     }
 
 

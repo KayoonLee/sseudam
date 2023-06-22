@@ -1,10 +1,13 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.model.Member;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -39,8 +42,6 @@ public class MainController {
     public String login_form(){
         return "login/login_form";
     }
-
-
 
 
 }

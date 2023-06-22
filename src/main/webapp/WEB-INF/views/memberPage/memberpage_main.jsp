@@ -27,7 +27,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="main_page" class="logo d-flex align-items-center">
             <img src="images/muzik5.jpg">
             <span class="d-none d-lg-block">쓰담</span>
         </a>
@@ -246,9 +246,7 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-<form action="memberpage_updateform" enctype="multipart/form-data" method="post" attribute>
-
- <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
+<form enctype="multipart/form-data" method="post" attribute>
         <section class="section profile">
             <div class="row" align="center">
                 <div class="col-xl-8">
@@ -283,7 +281,7 @@
                                         </c:if>
 
                                        <h2>${myModel.name}</h2>
-                                       <h3>ㅎㅅㅎ</h3>
+
                                          <div class="social-links mt-2">
                                           <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                                           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -324,7 +322,10 @@
                                     </div>
                                 </div>
                              <div class="text-center">
-                                 <button type="submit" class="btn btn-primary">개인정보 수정</button>
+                                 <button type="button" class="btn btn-primary"
+                                  onclick="location='memberpage_updateform?email=${myModel.email}'">개인정보 수정</button>
+                                 <button type="button" class="btn btn-danger"
+                                 onclick="location='memberpage_deleteform?email=${myModel.email}'">탈퇴하기</button>
 
                              </div>
 

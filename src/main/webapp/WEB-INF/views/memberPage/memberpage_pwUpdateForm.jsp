@@ -275,22 +275,22 @@
    <div class="tab-pane fade show active profile-overview" id="profile-overview">
         <br>
 
-   <form action="myPwUpdate" method="post" id="memPwUpdate">
+   <form action="myPwUpdate" method="post">
     <input type="hidden" id="email" name="email" value="${myModel.email}">
-    <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
 
       <div class="row mb-3">
-            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새로운 비밀번호</label>
-                 <div class="col-md-8 col-lg-9">
-                     <input name="passwd" type="password" class="form-control" id="passwd">
-                 </div>
+         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새로운 비밀번호</label>
+             <div class="col-md-8 col-lg-9">
+                <input type="password" id="passwd" name="passwd" class="form-control" placeholder="새 비밀번호를 입력하세요">
+            </div>
       </div>
 
       <div class="row mb-3">
-            <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
-                <div class="col-md-8 col-lg-9">
-                     <input name="confirmPasswd" type="password" class="form-control" id="confirmPasswd">
-                </div>
+            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
+            <div class="col-md-8 col-lg-9">
+               <input type="password" id="confirm-newpasswd" name="confirm-newpasswd" class="form-control"
+                             placeholder="비밀번호를 다시 입력하세요">
+            </div>
       </div>
 
        <div class="text-center">
@@ -300,20 +300,29 @@
 
    </div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 <script>
-  $(document).ready(function() {
-            $('#memPwUpdate').submit(function(event) {
-                event.preventDefault(); // 폼 제출 방지
+ $(function(){
+    $("form").submit(function(){
+          if($("#passwd").val()==""){
+                alert("비밀번호를 입력 하세요.");
+                $("#passwd").focus();
+                return false;
+          }
+          if($("#confirm-newpasswd").val()==""){
+             alert("비밀번호 확인을 입력 하세요.");
+             $("#confirm-newpasswd").focus();
+             return false;
+           }
+          if($("#passwd").val() != $("#confirm-newpasswd").val()){
+             alert("비밀번호가 일치하지 않습니다.");
+             $("#passwd").val("").focus();
+             $("#confirm-newpasswd").val("");
+             return false;
+          }
+    });
+ });
 
-                var newPassword = $('#newpasswd').val();
-                var confirmPasswd = $('#confirmPasswd').val();
-
-                // 비밀번호 확인
-                if (newPassword !== confirmPasswd) {
-                    alert('새로운 비밀번호가 일치하지 않습니다.');
-                    return;
-                }
 </script>
 
 </body>

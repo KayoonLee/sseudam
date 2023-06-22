@@ -1,12 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 82108
-  Date: 2023-06-10
-  Time: 오후 8:43
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>

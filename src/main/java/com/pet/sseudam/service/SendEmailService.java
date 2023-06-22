@@ -19,7 +19,7 @@ private static final String from_address ="testbootforme@gmail.com";
         msg.setFrom(SendEmailService.from_address);
         msg.setSubject("[쓰담쓰담] 회원가입 인증 이메일입니다.");
         msg.setTo(email);
-        msg.setText("안녕하세요. 회원가입에 필요한 인증번호는 "+ auth + " 입니다."+"감사합니다.");
+        msg.setText("안녕하세요. [쓰담쓰담] 입니다. 회원가입에 필요한 인증번호는 "+ auth + " 입니다."+" 감사합니다.");
         mailSender.send(msg);
     }
 

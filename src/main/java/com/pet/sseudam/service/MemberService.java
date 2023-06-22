@@ -45,13 +45,13 @@ public interface MemberService{
 
     List<Member> counselorList(Member member);
 
-    Member checkMem(int m_id);
+
     int memProfileAdd(Member member);
 
     void myUpfilenum(Member member);
 
+
     Member checkFilenum(String email);
 
-
-//    Member profileAfter(int m_id);
+    int deletemember(String email);
 }

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.JspEngineInfo;
 import java.io.File;
 import java.util.UUID;
 
@@ -29,13 +30,16 @@ public class MyPageController {
 
     // my page 진입
     @RequestMapping("memberpage_main")
-    public String memberPageMain(HttpSession session, Integer profile_num ,Model model) {
+    public String memberPageMain(HttpSession session,Model model) {
         System.out.println("일반회원 마이 페이지로 진입성공");
 
         Member member = (Member) session.getAttribute("member");
         Member myModel = new Member();
+        System.out.println("member.getEmail() 은 " + member.getEmail());
+        System.out.println("myModel.getProfile_num() 은 " + member.getProfile_num());
+        myModel = ms.userCheck(member.getEmail());
 
-        if(profile_num !=null){ // 사진 첨부 됐을 때
+        if(myModel.getProfile_num() != null){ // 사진 첨부 됐을 때(원래 사진 있던 경우->다른 사진으로 변경)
             myModel = ms.checkFilenum(member.getEmail());
             System.out.println("myModel:"+myModel);
         }else { // 사진 없는 상태
@@ -43,10 +47,9 @@ public class MyPageController {
             System.out.println("myModel:"+myModel);
         }
 
-        System.out.println("myModel.getProfile_num() 은 " + myModel.getProfile_num());
 
         model.addAttribute("myModel", myModel);
-        System.out.println("member:"+member);
+        //System.out.println("member:"+member);
 
 
         return "memberPage/memberpage_main";
@@ -55,11 +58,11 @@ public class MyPageController {
 
     //수정폼 진입
     @RequestMapping("memberpage_updateform")
-    public String myUpdateform(HttpSession session, Model model){
+    public String myUpdateform(String email, Model model){
         System.out.println("수정 페이지로 진입성공");
 
-        Member member = (Member) session.getAttribute("member");
-        Member myModel = ms.userCheck(member.getEmail());
+        //Member member = (Member) session.getAttribute("member");
+        Member myModel = ms.userCheck(email);
 
         model.addAttribute("myModel", myModel);
         return "memberPage/memberpage_updateform";
@@ -278,10 +281,30 @@ public class MyPageController {
     }
 
 
+    // 일반회원 탈퇴 폼
+    @RequestMapping("memberpage_deleteform")
+    public String memDeleteForm(String email, Model model){
+        Member myModel = ms.userCheck(email);
+
+        model.addAttribute("myModel", myModel);
+        System.out.println("탈퇴폼 진입");
+        return "memberPage/memberpage_deleteform";
+    }
+
+    // 일반회원 탈퇴하기
+    @RequestMapping("memberpage_delete")
+    public String memDelete(Member member, Model model, HttpSession session) {
 
 
+        System.out.println("탈퇴 도착");
+        int result = ms.deletemember(member.getEmail());
+        if (result == 1)
+            System.out.println("탈퇴 성공");
 
-
+        session.invalidate(); //session 끊기
+        model.addAttribute("result",result);
+        return "memberPage/member_out";
+    }
 
 
 

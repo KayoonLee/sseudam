@@ -1,14 +1,15 @@
-<!doctype html><%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
-
+<!doctype html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SSEUDAM</title>
-    <link rel="icon" href="main_page">
+    <!-- favicon logo-->
+    <link rel="icon" href="images/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- animate CSS -->
@@ -33,7 +34,7 @@
 </head>
 
 <body>
-   <!--::header part start::-->
+   <!--::header part(헤더 시작) start::-->
    <header class="main_menu">
         <div class="sub_menu">
             <div class="container">
@@ -67,7 +68,7 @@
                 <div class="row align-items-center ">
                     <div class="col-lg-12">
                         <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="main_page"> <img src="images/.png" alt="logo"> </a>
+                            <a class="navbar-brand" href="main_page"> <img src="./images/mainlogo.png" width=100 height=50> </a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                                 aria-expanded="false" aria-label="Toggle navigation">
@@ -97,7 +98,7 @@
                                             <a class="dropdown-item" href="single-blog.html">고객 후기</a>
                                         </div>
                                     </li>
-                                   <c:if test="${!empty member.m_id}">
+                                   <c:if test="${!empty member.m_id or !empty admin.a_email}">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -132,7 +133,7 @@
             </div>
         </div>
     </header>
-    <!-- Header part end-->
+    <!-- Header part(헤더 끝) end-->
 
     <!-- banner part start-->
     <section class="banner_part">
@@ -343,23 +344,22 @@
                 <div class="col-xl-8">
                     <div class="section_tittle">
                         <h2>What they said</h2>
-                        <h2>쓰담쓰담 상담사들의 한 마디</h2>
+                        <h2>쓰담쓰담의 상담사</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-10">
                     <div>
-                        <div>
-                        <img src="./images/counsel1.jpg" width="250" height="250">
-                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                        <img src="./images/counsel2.jpg" width="250" height="250">
-                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                        <img src="./images/counsel3.jpg" width="250" height="250">
+                      <div>
+                        <img src="images/counsel_icon1.jpg" width="250" height="250">
+                           &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                        <img src="images/counsel_icon2.jpg" width="250" height="250">
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                        <img src="images/counsel_icon3.jpg" width="250" height="250">
+                        <br>
+                        <br>
 
-                        </div>
-                        <br>
-                        <br>
                             <p>"나의 진심과 지식으로 반려동물과 주인을 위해 노력하자"</p>
                             <h5> - Allen Miller</h5>
                         <div>
