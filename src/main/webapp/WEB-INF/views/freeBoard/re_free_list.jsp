@@ -205,11 +205,13 @@
                             <input type="hidden" name="ref" value="${reBoard.ref }">
                             <input type="hidden" name="re_seq" value="${reBoard.re_seq }">
 
+                            <div><c:if test="${not empty reBoard.profile_num}">
+                                <img src="./memberImg/${reBoard.profile_name}" class="profile_image"></c:if>${reBoard.nick}</div>
+                            <div><fmt:formatDate value="${reBoard.re_reg_date }" pattern="yyyy년 MM월 dd일"/></div>
                             <div id="re_preview_${reBoard.board_renum}">
                                 <c:if test="${reBoard.file_num != 0}"><img src="./img/${reBoard.file_name}" class="re_image"></c:if>
                             </div>
                             <div id="content_${reBoard.board_renum }">${reBoard.re_content }</div>
-                            <div><fmt:formatDate value="${reBoard.re_reg_date }" pattern="yyyy년 MM월 dd일"/></div>
                             <c:if test="${not empty member.m_id}">
                                 <button type="button" onclick="r_reply(${reBoard.board_renum})">댓글</button>
                             </c:if>

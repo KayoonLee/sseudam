@@ -120,8 +120,8 @@
         }
 
         .thumbnail {
-            max-width: 500px;
-            max-height: 400px;
+            max-width: 700px;
+            max-height: 550px;
             margin: 5px;
         }
     </style>

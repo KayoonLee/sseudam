@@ -135,13 +135,22 @@
             }
         }
     </script>
-
+    <link rel="stylesheet" href="css/image_image.css">
     <style>
         .re_thumbnail {
             width: 200px;
             height: 150px;
             margin: 5px;
         }
+        .thumbnail {
+            max-width: 700px;
+            max-height: 550px;
+            margin: 5px;
+        }
+         .profile_image {
+             width: 30px;
+             height: 30px;
+         }
     </style>
 
 </head>
@@ -155,6 +164,8 @@
         <div>
             <h1>${fboard.subject }</h1>
             <div>카테고리 : ${fboard.category }</div>
+            <div><c:if test="${not empty fboard.profile_num}">
+                <img src="./memberImg/${fboard.profile_name}" class="profile_image"></c:if>${fboard.nick}</div>
             <div>조회수 ${fboard.readcount }</div>
         </div>
         <div>

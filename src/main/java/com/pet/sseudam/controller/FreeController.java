@@ -64,6 +64,7 @@ public class FreeController {
             // category 값을 정수로 변환할 수 없는 경우 예외 처리
             fboard.setCategory(0); // 기본값으로 0 설정
         }
+        //페이징 처리
         final int rowPerPage = 10;
 
         int currentPage = Integer.parseInt(pageNum);
@@ -83,6 +84,7 @@ public class FreeController {
         //      fboard.setEndRow(endRow);
         //      System.out.println("endRow" + endRow);
         int number = total - startRow;
+        //페이징처리 종료
 
         List<FreeBean> list = service.f_list(fboard);
         System.out.println("list:" + list);

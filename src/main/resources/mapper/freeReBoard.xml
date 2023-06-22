@@ -10,7 +10,11 @@
     </select>
 
     <select id="re_list" parameterType="re_fboard" resultType="re_fboard">
-        SELECT a.*, file_origin, file_name FROM board_reply a left join img_file b on a.file_num = b.file_num WHERE a.num=#{num} and a.board_num=#{board_num}
+        SELECT t1.*, nick, t2.profile_num, profile_name, file_origin, file_name
+        FROM board_reply t1 join member t2 on t1.m_id = t2.m_id
+        left join img_profile t3 on t2.profile_num = t3.profile_num
+        left join img_file t4 on t1.file_num = t4.file_num
+        WHERE t1.num=#{num} and t1.board_num=#{board_num}
         order by ref desc,re_seq desc limit #{startRow}, 10
     </select>
 
