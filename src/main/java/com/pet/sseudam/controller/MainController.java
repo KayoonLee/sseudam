@@ -44,4 +44,11 @@ public class MainController {
     }
 
 
+    //상담 소개(쓰담쓰담 소개)
+    @RequestMapping("intro_counsel")
+    public String intro_counsel(){
+        System.out.println("쓰담쓰담소개 진입");
+
+        return "mainPage/intro_counsel";
+    }
 }
