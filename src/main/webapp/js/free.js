@@ -3,7 +3,7 @@
 function free_check() {
     var fileInputs = document.getElementsByName("files");
     var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|webp)$/;
-    var maxSize = 5 * 1024 * 1024;
+    var maxSize = 1 * 1024 * 1024;
     var maxUploads = 10;
 
     if($.trim($("#subject").val()) == ""){

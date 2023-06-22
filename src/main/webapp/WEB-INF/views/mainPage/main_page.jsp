@@ -93,7 +93,7 @@
                                             커뮤니티
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="home.do">자유게시판</a>
+                                            <a class="dropdown-item" href="freeList?num=2">자유게시판</a>
                                             <a class="dropdown-item" href="single-blog.html">고객 후기</a>
                                         </div>
                                     </li>
