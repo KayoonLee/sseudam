@@ -10,6 +10,5 @@ public class AdminBean {
     private String a_email;
     private String passwd;
     private String name;
-    private int profile_num;
 
 }

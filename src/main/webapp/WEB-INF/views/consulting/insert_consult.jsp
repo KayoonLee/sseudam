@@ -18,6 +18,19 @@
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
+
+    <!-- DATE -->
+    <script>
+        function removeMinutes() {
+            var datetimeInput = document.getElementById("request_times");
+            var dateTime = datetimeInput.value;
+            var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
+            var dateTimeString = datetimeInput.value;
+            datetimeInput.value = dateTimeWithoutMinutes;
+            var dateTime1 = new Date(dateTimeString);
+
+        }
+    </script>
 </head>
 <body>
 
@@ -60,7 +73,7 @@
             <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
-                    <input type="datetime-local" class="form-control"  id="request_times" name="request_times">
+                    <input type="datetime-local" id="request_times" value="${nowtime}" name="request_times" onchange="removeMinutes()">
                 </div>
             </div>
             <div class="row mb-3">

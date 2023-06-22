@@ -35,11 +35,6 @@ public class ConsultingServiceImpl implements ConsultingService {
     }
 
     @Override
-    public PetBean change_to_pet_id(int g_id, String animal) {
-        return dao.change_to_pet_id(g_id, animal);
-    }
-
-    @Override
     public Member find_general(int g_id) {
         return dao.find_general(g_id);
     }
