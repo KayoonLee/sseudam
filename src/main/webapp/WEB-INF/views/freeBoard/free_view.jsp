@@ -151,7 +151,7 @@
 
         <input type="hidden" id="num" name=num value="${fboard.num }">
         <input type="hidden" id="board_num" name=board_num value="${fboard.board_num }">
-        <input type="hidden" id="m_id" name="m_id" value="${m_id }">
+        <input type="hidden" id="m_id" name="m_id" value="${member.m_id }">
         <div>
             <h1>${fboard.subject }</h1>
             <div>카테고리 : ${fboard.category }</div>
@@ -176,7 +176,7 @@
         </div>
 
 
-        <c:if test="${!empty m_id and m_id == fboard.m_id}">
+        <c:if test="${!empty member.m_id and member.m_id == fboard.m_id}">
             <div align="center">
                 <button type="button" onclick="location.href=
                         'freeUpdateForm?num=${fboard.num}&board_num=${fboard.board_num}'">글 수정
@@ -185,21 +185,21 @@
             </div>
         </c:if>
         <div>
-            <c:if test="${!empty m_id}">
+            <c:if test="${!empty member.m_id}">
                 <button type="button" id="report_button">신고하기</button>
             </c:if>
         </div>
         <div>
-            <a href="freeList?&num=${fboard.num}&pageNum=${pageNum }&category=${fboard.category}">목록</a>
+            <a href="freeList?&num=${fboard.num}&pageNum=${pageNum}">목록</a>
         </div>
 
 
-        <c:if test="${!empty m_id}">
+        <c:if test="${!empty member.m_id}">
             <div>
                 <form id="frm" name="frm" enctype="multipart/form-data" onsubmit="return free_check()">
                     <input type="hidden" name=num value="${fboard.num }">
                     <input type="hidden" name=board_num value="${fboard.board_num }">
-                    <input type="hidden" name=m_id value="${m_id }">
+                    <input type="hidden" name=m_id value="${member.m_id }">
                     댓글 :
                     <textarea rows=3 cols=30 id="re_content" name="re_content"></textarea>
                     <div id="previewContainer"></div>

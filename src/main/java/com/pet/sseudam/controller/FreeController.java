@@ -1,9 +1,6 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.model.FreeBean;
-import com.pet.sseudam.model.ImgBean;
-import com.pet.sseudam.model.RecomBean;
-import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.*;
 import com.pet.sseudam.service.FreeService;
 import com.pet.sseudam.service.PagingPgm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +31,16 @@ public class FreeController {
     }
 
 
-    @GetMapping("home.do")
-    public String home(HttpServletRequest request) {
-        System.out.println("home.do 도착");
-
-        HttpSession session = request.getSession();
-        session.setAttribute("m_id", 1);
-
-        return "freeBoard/freeboard";
-    }
+//    @GetMapping("home.do")
+//    public String home(HttpServletRequest request) {
+//        System.out.println("home.do 도착");
+//
+//        HttpSession session = request.getSession();
+//        Member member = (Member) session.getAttribute("member");
+//        session.setAttribute("m_id", member.getM_id());
+//
+//        return "freeBoard/freeboard";
+//    }
 
     //자유게시판 목록
     @GetMapping("freeList")
@@ -117,9 +115,9 @@ public class FreeController {
 
         System.out.println("freeInsert 진입확인");
 
-        HttpSession session = request.getSession();
-        int m_id = (int) session.getAttribute("m_id");
-        fboard.setM_id(m_id);
+//        HttpSession session = request.getSession();
+//        int m_id = (int) session.getAttribute("m_id");
+        System.out.println("m_id는 "+fboard.getM_id());
 
         //파일 첨부 관련
         List<MultipartFile> file_list = mhr.getFiles("files");

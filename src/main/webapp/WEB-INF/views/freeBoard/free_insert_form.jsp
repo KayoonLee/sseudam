@@ -131,9 +131,10 @@
 
 <div class="bgcolor">
     <div class="outbox">
-        <h2 align="center">레시피 글 쓰기</h2><br>
+        <h2 align="center">게시판 글 쓰기</h2><br>
         <form enctype="multipart/form-data" action="freeInsert" method="post" onsubmit="return free_check()">
             <input type="hidden" name="num" value="2">
+            <input type="hidden" name="m_id" value="${member.m_id}">
             <div class="container innerbox">
                 <div>
                     <div>제목</div>

@@ -210,10 +210,10 @@
                             </div>
                             <div id="content_${reBoard.board_renum }">${reBoard.re_content }</div>
                             <div><fmt:formatDate value="${reBoard.re_reg_date }" pattern="yyyy년 MM월 dd일"/></div>
-                            <c:if test="${not empty m_id}">
+                            <c:if test="${not empty member.m_id}">
                                 <button type="button" onclick="r_reply(${reBoard.board_renum})">댓글</button>
                             </c:if>
-                            <c:if test="${!empty m_id and m_id == reBoard.m_id}">
+                            <c:if test="${!empty member.m_id and member.m_id == reBoard.m_id}">
                                 <div id="btn_${reBoard.board_renum }">
                                     <input type="button" id="${reBoard.board_renum }" value="댓글 수정"
                                            class="r_update_check">

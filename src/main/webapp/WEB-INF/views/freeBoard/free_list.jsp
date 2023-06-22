@@ -159,7 +159,7 @@
         </nav>
     </c:if>
 
-    <c:if test="${!empty m_id }">
+    <c:if test="${!empty member.m_id }">
         <div align="center">
             <a href="freeInsertForm">글 작성입니다</a>
         </div>

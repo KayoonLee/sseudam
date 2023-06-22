@@ -181,7 +181,7 @@
 
                 <input type="submit" value="작성">
                 <input type="reset" value="취소">
-                <a href="freeList">목록</a>
+                <button type="button" onclick="history.go(-1)">본문으로</button>
             </div>
         </form>
     </div>
