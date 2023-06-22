@@ -114,7 +114,7 @@
 
 
 
-<button type="button" class="btn btn-outline-secondary" onclick="nickChange()">닉네임 변경</button>
+<button type="button" class="btn btn-outline-primary" onclick="nickChange()">닉네임 변경</button>
 
 <div id="nickTag">
     <form id="nick_frm" method="" action="">

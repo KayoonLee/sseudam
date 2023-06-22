@@ -45,6 +45,7 @@
                     <i class="bi bi-bell"></i>
                     <span class="badge bg-primary badge-number">2</span>
                 </a><!-- End Notification Icon -->
+
                 <%-- 알림 시작 --%>
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
                     <li class="dropdown-header">
@@ -89,6 +90,11 @@
             <%-- 헤더바 오른쪽 관리자 --%>
             <li class="nav-item dropdown pe-3">
 
+                <a href="main_page" class="nav-link nav-profile d-flex align-items-center pe-auto">
+                    <img src="images/muzik5.jpg" alt="">
+                    <span class="breadcrumb-item">홈페이지 바로가기&nbsp;&nbsp;&nbsp;</span>
+                </a>
+
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
                     <img src="images/muzik5.jpg" alt="">
                     <span class="d-none d-md-block dropdown-toggle ps-2">관리자</span>
@@ -101,6 +107,7 @@
                         <span>Administer</span>
                     </li>
                     <%-- 관리자 프로필 수정 --%>
+<%--
                     <li>
                         <hr class="dropdown-divider">
                     </li>
@@ -110,6 +117,7 @@
                             <span>My Profile</span>
                         </a>
                     </li>
+--%>
                     <%-- 로그아웃 --%>
                     <li>
                         <hr class="dropdown-divider">
@@ -117,7 +125,7 @@
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
+                            <span>로그아웃</span>
                         </a>
                     </li>
 

@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header/header.jsp" %>
 
-
 <html>
 <head>
     <title>admin_counselor_view</title>
@@ -9,7 +8,6 @@
         #nickTag {
             display: none;
         }
-
     </style>
 
     <script>
@@ -108,7 +106,6 @@
         }
     </script>
 </head>
-
 <body>
 
 <div class="pagetitle">
@@ -120,8 +117,7 @@
             <li class="breadcrumb-item">하위페이지</li>
         </ol>
     </nav>
-</div>
-<%-- End Page Title --%>
+</div><%-- End Page Title --%>
 
 <div class="card">
     <div class="card-body">
@@ -167,25 +163,26 @@
             </tr>
 
         </table>
+
+        <c:if test="${member.identifier == '3'}">
+            <button type="button" onclick="acceptCounselor(${member.m_id})" class="btn btn-outline-primary">승인</button>
+            <button type="button" onclick="declineCounselor(${member.m_id})" class="btn btn-outline-danger">거절</button>
+        </c:if>
+
+        <c:if test="${member.identifier == '2'}">
+            <button type="button" onclick="nickChange()" class="btn btn-outline-primary">닉네임 변경</button>
+            <button type="button" onclick="stateChange(${member.m_id}, ${member.state})" class="btn btn-outline-danger">회원 삭제/복원</button>
+        </c:if>
+
     </div>
 </div>
-
-<c:if test="${member.identifier == '3'}">
-    <button type="button" onclick="acceptCounselor(${member.m_id})">승인</button>
-    <button type="button" onclick="declineCounselor(${member.m_id})">거절</button>
-</c:if>
-
-<c:if test="${member.identifier == '2'}">
-    <button type="button" onclick="nickChange()">닉네임 변경</button>
-    <button type="button" onclick="stateChange(${member.m_id}, ${member.state})">회원 삭제/복원</button>
-</c:if>
 
 <div id="nickTag">
     <form id="nick_frm" method="" action="">
         <input type='hidden' name='m_id' value=${member.m_id}>
         <input type="text" name="nick" id="nick">
         <button type="button" onclick="nickConfirm()">수정</button>
-        <input type="reset" value="취소"/>
+        <input type="reset" value="취소" />
     </form>
 </div>
 

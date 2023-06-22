@@ -44,7 +44,7 @@
     </tr>
     <tr id="${m_id}" value="${m_id}">
         <td onclick="reportBoardView(${report_board.num}, ${report_board.board_num})">${report_board.report_content}
-            <button type="button">
+            <button type="button" class="btn btn-outline-primary">
                 글조회
             </button>
         </td>
