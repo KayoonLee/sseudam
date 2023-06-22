@@ -2,7 +2,6 @@ package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.MemberDao;
 import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.model.ProfileBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -103,13 +102,9 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public List<Member> counselorList(Member member) {
-        return md.counselor(member);
+        return md.counselorList(member);
     }
 
-    @Override
-    public Member checkMem(int m_id) {
-        return md.checkMem(m_id);
-    }
 
     @Override
     public int memProfileAdd(Member member) {
@@ -127,13 +122,8 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public int visitCheck(Visitor visitor) {
-        return md.visitCheck(visitor);
-    }
-
-    @Override
-    public int visitInsert(Visitor visitor) {
-        return md.visitInsert(visitor);
+    public int deletemember(String email) {
+        return md.deletemember(email);
     }
 
 

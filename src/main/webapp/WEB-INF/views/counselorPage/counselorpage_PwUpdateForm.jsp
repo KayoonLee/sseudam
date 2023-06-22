@@ -182,49 +182,61 @@
 
 <!-- ======= Sidebar ======= -->
 
-
 <aside id="sidebar" class="sidebar">
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-item">
-                    <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="counselorpage_main">
-                        <i class="bi bi-menu-button-wide"></i>
-                        <span>나의 프로필</span><i class="bi bi-chevron-down ms-auto"></i>
+            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="memberpage_main">
+                <i class="bi bi-menu-button-wide"></i>
+                <span>나의 프로필</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+               <li>
+                    <a href="memberpage_pwUpdateForm">
+                       <i class="bi bi-circle"></i><span>비밀번호 변경</span><i class="bi bi-chevron-down ms-auto"></i>
                     </a>
-                    <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                      <li>
-                          <a href="counselorpage_PwUpdateForm">
-                          <i class="bi bi-circle"></i><span>비밀번호 변경</span><i class="bi bi-chevron-down ms-auto"></i>
-                          </a>
-                      </li>
-                    </ul>
-                </li>
+               </li>
+            </ul>
+        </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+            <a class="nav-link collapsed" href="memberpage_mypet">
+                <i class="bi bi-balloon"></i><span>동물페이지</span>
+            </a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="counselorpage_mypost">
+                    <a href="memberpage_mypost">
                         <i class="bi bi-circle"></i><span>내가 쓴 글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="counselorpage_myreply">
+                    <a href="memberpage_myreply">
                         <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="counselorpage_mylike">
+                    <a href="memberpage_mylike">
                         <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                     </a>
                 </li>
                 <li>
-                    <a href="counselorpage_request">
+                    <a href="memberpage_mypaper">
                         <i class="bi bi-circle"></i><span>상담신청내역</span>
                     </a>
                 </li>
             </ul>
         </li><!-- End Components Nav -->
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="memberpage_mycounselor">
+                <i class="bi bi-grid"></i>
+                <span>즐겨찾는 상담사</span>
+            </a>
+        </li>
+
     </ul>
 </aside>
     <main id="main" class="main">
@@ -249,12 +261,12 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
                                 <li class="nav-item">
                                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-overview"
-                                    onClick="location.href='counselorpage_main'">프로필</button>
+                                    onClick="location.href='memberpage_main'">프로필</button>
                                 </li>
 
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-change-password"
-                                    onClick="location.href='counselorpage_PwUpdateForm'">비밀번호 변경</button>
+                                    onClick="location.href='memberpage_pwUpdateForm'">비밀번호 변경</button>
                                 </li>
 
                             </ul>
@@ -263,21 +275,22 @@
    <div class="tab-pane fade show active profile-overview" id="profile-overview">
         <br>
 
-   <form action="csMyPwUpdate" method="post" id="csPwUpdate">
+   <form action="myPwUpdate" method="post">
     <input type="hidden" id="email" name="email" value="${myModel.email}">
 
       <div class="row mb-3">
-            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새로운 비밀번호</label>
-                 <div class="col-md-8 col-lg-9">
-                     <input name="passwd" type="password" class="form-control" id="passwd">
-                 </div>
+         <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">새로운 비밀번호</label>
+             <div class="col-md-8 col-lg-9">
+                <input type="password" id="passwd" name="passwd" class="form-control" placeholder="새 비밀번호를 입력하세요">
+            </div>
       </div>
 
       <div class="row mb-3">
-            <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
-                <div class="col-md-8 col-lg-9">
-                     <input name="confirmPasswd" type="password" class="form-control" id="confirmPasswd">
-                </div>
+            <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
+            <div class="col-md-8 col-lg-9">
+               <input type="password" id="confirm-newpasswd" name="confirm-newpasswd" class="form-control"
+                             placeholder="비밀번호를 다시 입력하세요">
+            </div>
       </div>
 
        <div class="text-center">
@@ -289,18 +302,27 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-  $(document).ready(function() {
-            $('#csPwUpdate').submit(function(event) {
-                event.preventDefault(); // 폼 제출 방지
+ $(function(){
+    $("form").submit(function(){
+          if($("#passwd").val()==""){
+                alert("비밀번호를 입력 하세요.");
+                $("#passwd").focus();
+                return false;
+          }
+          if($("#confirm-newpasswd").val()==""){
+             alert("비밀번호 확인을 입력 하세요.");
+             $("#confirm-newpasswd").focus();
+             return false;
+           }
+          if($("#passwd").val() != $("#confirm-newpasswd").val()){
+             alert("비밀번호가 일치하지 않습니다.");
+             $("#passwd").val("").focus();
+             $("#confirm-newpasswd").val("");
+             return false;
+          }
+    });
+ });
 
-                var passwd = $('#passwd').val();
-                var confirmPasswd = $('#confirmPasswd').val();
-
-                // 비밀번호 확인
-                if (newPassword !== confirmPasswd) {
-                    alert('새로운 비밀번호가 일치하지 않습니다.');
-                    return;
-                }
 </script>
 
 </body>

@@ -117,12 +117,12 @@
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">${sessionScope.member.name}</span>
+                    <span class="d-none d-md-block dropdown-toggle ps-2">${sessionScope.member.nick}</span>
                 </a><!-- End Profile Iamge Icon -->
 
                 <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                     <li class="dropdown-header">
-                        <h6>${sessionScope.member.name}</h6>
+                        <h6>${sessionScope.member.nick}</h6>
                         <span>닉네임</span>
                     </li>
                     <li>
@@ -179,7 +179,7 @@
     <aside id="sidebar" class="sidebar">
         <ul class="sidebar-nav" id="sidebar-nav">
             <li class="nav-item">
-                <a class="nav-link " href="memberpage_main">
+                <a class="nav-link collapsed" href="memberpage_main">
                     <i class="bi bi-person"></i>
                     <span>나의 프로필</span>
                 </a>
@@ -249,8 +249,6 @@
                                                 <img src="/images/petdefault.png" width="250" height="250">
                                             </a>
                                         </c:if>
-
-
                                         <div class="card-body">
                                             <h4 class="card-title">${pet.animal }</h4>
                                         </div>

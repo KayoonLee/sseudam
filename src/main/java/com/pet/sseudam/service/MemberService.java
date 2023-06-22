@@ -1,7 +1,6 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.model.ProfileBean;
 
 import java.util.List;
@@ -46,17 +45,13 @@ public interface MemberService{
 
     List<Member> counselorList(Member member);
 
-    Member checkMem(int m_id);
+
     int memProfileAdd(Member member);
 
     void myUpfilenum(Member member);
 
+
     Member checkFilenum(String email);
 
-
-//    Member profileAfter(int m_id);
-
-    int visitCheck(Visitor visitor);
-
-    int visitInsert(Visitor visitor);
+    int deletemember(String email);
 }
