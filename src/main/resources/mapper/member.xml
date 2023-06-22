@@ -150,7 +150,7 @@
 
     <!-- 일반회원의 내가 쓴 댓글-->
     <select id="myreplyList" parameterType="int" resultType="fboard">
-        SELECT board.*
+        SELECT distinct board.*
         FROM board
                  JOIN board_reply ON board.board_num = board_reply.board_num
                  JOIN member ON board.m_id = member.m_id

@@ -252,11 +252,11 @@
 <tbody>
 <c:if test="${empty requestList}">
     <tr>
-        <td>------</td>
-        <td>상담요청</td>
-        <td>내역이</td>
-        <td>없습니다.</td>
-        <td>------</td>
+        <td>상담요청 내역이 없습니다.</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
     </tr>
 </c:if>
 <c:forEach var="counsel_paper" items="${requestList}">
