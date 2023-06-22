@@ -4,6 +4,7 @@ import com.pet.sseudam.model.AdminBean;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.Visitor;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.*;
@@ -67,7 +68,7 @@ public interface AdminDao {
 
     // 강아지 탈퇴/복구 상태값 변화
     int adminDogState(PetBean pet);
-    
+
     // 고양이 리스트
     List<PetBean> cat_list(PetBean pet);
 
@@ -80,4 +81,11 @@ public interface AdminDao {
     // 고양이 탈퇴/복구 상태값 변화
     int adminCatState(PetBean pet);
 
+    int getVisitToday();
+
+    int getVisitTotal();
+
+    List<Integer> getVisitWeek();
+
+    List<String> getVisitDays();
 }

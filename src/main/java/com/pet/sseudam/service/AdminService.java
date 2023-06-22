@@ -72,4 +72,12 @@ public interface AdminService {
     // 고양이 탈퇴/복구 상태값 변화
     int adminCatState(PetBean pet);
 
+
+    int getVisitToday();
+
+    int getVisitTotal();
+
+    List<Integer> getVisitWeek();
+
+    List<String> getVisitDays();
 }

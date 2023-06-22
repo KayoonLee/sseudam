@@ -1,80 +1,80 @@
 package com.pet.sseudam.service;
 
 public class PagingPgm {
-	private int total;
-	private int rowPerPage;
-	private int pagePerBlk = 10;
-	private int currentPage;
-	private int startPage;
-	private int endPage;
-	private int totalPage;
+    private int total;
+    private int rowPerPage;
+    private int pagePerBlk = 10;
+    private int currentPage;
+    private int startPage;
+    private int endPage;
+    private int totalPage;
 
-	public PagingPgm(int total, int rowPerPage, int currentPage) {
-		this.total = total;
-		this.rowPerPage = rowPerPage;
-		this.currentPage = currentPage;
-		
-		totalPage = (int) Math.ceil((double) total / rowPerPage);
-		startPage = currentPage - (currentPage - 1) % pagePerBlk;
-		endPage = startPage + pagePerBlk - 1;
-		
-		if (endPage > totalPage)
-			endPage = totalPage;
-	}
+    public PagingPgm(int total, int rowPerPage, int currentPage) {
+        this.total = total;
+        this.rowPerPage = rowPerPage;
+        this.currentPage = currentPage;
 
-	public int getTotal() {
-		return total;
-	}
+        totalPage = (int) Math.ceil((double) total / rowPerPage);
+        startPage = currentPage - (currentPage - 1) % pagePerBlk;
+        endPage = startPage + pagePerBlk - 1;
 
-	public void setTotal(int total) {
-		this.total = total;
-	}
+        if (endPage > totalPage)
+            endPage = totalPage;
+    }
 
-	public int getRowPerPage() {
-		return rowPerPage;
-	}
+    public int getTotal() {
+        return total;
+    }
 
-	public void setRowPerPage(int rowPerPage) {
-		this.rowPerPage = rowPerPage;
-	}
+    public void setTotal(int total) {
+        this.total = total;
+    }
 
-	public int getPagePerBlk() {
-		return pagePerBlk;
-	}
+    public int getRowPerPage() {
+        return rowPerPage;
+    }
 
-	public void setPagePerBlk(int pagePerBlk) {
-		this.pagePerBlk = pagePerBlk;
-	}
+    public void setRowPerPage(int rowPerPage) {
+        this.rowPerPage = rowPerPage;
+    }
 
-	public int getCurrentPage() {
-		return currentPage;
-	}
+    public int getPagePerBlk() {
+        return pagePerBlk;
+    }
 
-	public void setCurrentPage(int currentPage) {
-		this.currentPage = currentPage;
-	}
+    public void setPagePerBlk(int pagePerBlk) {
+        this.pagePerBlk = pagePerBlk;
+    }
 
-	public int getStartPage() {
-		return startPage;
-	}
+    public int getCurrentPage() {
+        return currentPage;
+    }
 
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
+    public void setCurrentPage(int currentPage) {
+        this.currentPage = currentPage;
+    }
 
-	public int getEndPage() {
-		return endPage;
-	}
+    public int getStartPage() {
+        return startPage;
+    }
 
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
+    public void setStartPage(int startPage) {
+        this.startPage = startPage;
+    }
 
-	public int getTotalPage() {
-		return totalPage;
-	}
+    public int getEndPage() {
+        return endPage;
+    }
 
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
-	}
+    public void setEndPage(int endPage) {
+        this.endPage = endPage;
+    }
+
+    public int getTotalPage() {
+        return totalPage;
+    }
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
 }

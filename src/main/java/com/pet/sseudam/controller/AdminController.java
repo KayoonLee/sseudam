@@ -4,6 +4,7 @@ import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.AdminBean;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.service.AdminService;
 import org.springframework.ui.Model;
 
@@ -77,6 +78,24 @@ public class AdminController {
         System.out.println("totalMember: " + totalMember);
         System.out.println("totalCounselor: " + totalCounselor);
         System.out.println("totalAdmin" + totalAdmin);
+
+
+        int todayCount = adminService.getVisitToday();
+        List<Integer> weekCount = adminService.getVisitWeek();
+        int totalCount = adminService.getVisitTotal();
+
+        List<String> weekDays  = adminService.getVisitDays();
+
+        model.addAttribute("weekDays", weekDays);
+
+        System.out.println(weekCount);
+        System.out.println(weekDays);
+
+
+        model.addAttribute("todayCount", todayCount);
+        model.addAttribute("weekDays", weekDays);
+        model.addAttribute("weekCount", weekCount);
+        model.addAttribute("totalCount", totalCount);
 
         return "adminPage/adminpage_main";
     }
@@ -319,6 +338,7 @@ public class AdminController {
     @GetMapping("adminDogState")
     public int adminDogState(int p_id) {
         System.out.println("강아지 회원 상태값 변경");
+
         PetBean pet = adminService.adminDogSelect(p_id);
 
         if(pet.getState() == 1) {
@@ -349,7 +369,9 @@ public class AdminController {
 
         System.out.println("p_id: " + p_id);
         PetBean pet = adminService.adminCatSelect(p_id);
+        System.out.println("1");
         Member memberDto = adminService.adminAnimalSelect_cat(p_id);
+        System.out.println("2");
         System.out.println(pet);
         System.out.println(memberDto);
 
@@ -375,6 +397,9 @@ public class AdminController {
         int result = adminService.adminCatState(pet);
         return result;
     }
+
+
+
 
     // 관리자 프로필/마이페이지
     @GetMapping("adminProfile")

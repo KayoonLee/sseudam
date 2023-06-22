@@ -2,6 +2,7 @@ package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.MemberDao;
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.model.ProfileBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -123,6 +124,16 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member checkFilenum(String email) {
         return md.checkFilenum(email);
+    }
+
+    @Override
+    public int visitCheck(Visitor visitor) {
+        return md.visitCheck(visitor);
+    }
+
+    @Override
+    public int visitInsert(Visitor visitor) {
+        return md.visitInsert(visitor);
     }
 
 

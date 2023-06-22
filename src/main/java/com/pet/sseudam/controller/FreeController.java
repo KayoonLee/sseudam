@@ -70,9 +70,8 @@ public class FreeController {
 
         int currentPage = Integer.parseInt(pageNum);
         int total = service.getTotal(fboard); // 검색
-        System.out.println("total:" + total);
 
-        System.out.println(total);
+        System.out.println("total:" + total);
         System.out.println("rowPerPage" + rowPerPage);
         System.out.println("currentPage" + currentPage);
 
@@ -82,8 +81,8 @@ public class FreeController {
 
         fboard.setSort(fboard.getSort());
         fboard.setStartRow(startRow);
-        //      fboard.setEndRow(endRow);
         System.out.println("startRow" + startRow);
+        //      fboard.setEndRow(endRow);
         //      System.out.println("endRow" + endRow);
         int number = total - startRow;
 
@@ -125,31 +124,31 @@ public class FreeController {
         //파일 첨부 관련
         List<MultipartFile> file_list = mhr.getFiles("files");
         String multi_path = request.getRealPath("img");
-        System.out.println("multi_path는 " + multi_path);
-        System.out.println("file_list는 " + file_list);
+        System.out.println("multi_path는 " +multi_path);
+        System.out.println("file_list는 "+ file_list);
 
-        if (!file_list.get(0).getOriginalFilename().equals("")) {
+        if(!file_list.get(0).getOriginalFilename().equals("")){
 
             System.out.println("for문 진입");
             int i = 1;
             int max_num = service.getMaxnum() + 1;
 
 
-            for (MultipartFile mf : file_list) {
+            for(MultipartFile mf : file_list){
 
-                String multi_filename = mf.getOriginalFilename();
+                String multi_filename =mf.getOriginalFilename();
 
                 String extension = multi_filename.substring(multi_filename.lastIndexOf("."));
-                UUID uuid = UUID.randomUUID();
+                UUID uuid =UUID.randomUUID();
 
                 String new_multi_filename = uuid.toString().replace("-", "") + extension;
 
                 System.out.println("multi_filename: " + multi_filename);
                 System.out.println("new_multi_filename: " + new_multi_filename);
 
-                try {
+                try{
                     mf.transferTo(new File(multi_path + "/" + new_multi_filename));
-                } catch (Exception e) {
+                }catch(Exception e){
                     e.getMessage();
                 }
 
@@ -167,7 +166,7 @@ public class FreeController {
         }
 
         int result = service.fInsert(fboard);
-        if (result == 1) System.out.println("게시글 입력 성공");
+        if(result == 1) System.out.println("게시글 입력 성공");
 
         model.addAttribute("result", result);
         model.addAttribute("num", fboard.getNum());
@@ -177,7 +176,7 @@ public class FreeController {
 
     // 글조회
     @GetMapping("freeView")
-    public String freeView(FreeBean freeboard, String pageNum, Model model) {
+    public String freeView(FreeBean freeboard, String pageNum, String rpageNum, Model model) {
 
         System.out.println("freeView 진입확인");
 
@@ -192,6 +191,7 @@ public class FreeController {
         model.addAttribute("fboard", fboard);
         model.addAttribute("img_list", img_list);
         model.addAttribute("pageNum", pageNum);
+        model.addAttribute("rpageNum", rpageNum);
 
         return "freeBoard/free_view";
     }
@@ -208,8 +208,8 @@ public class FreeController {
 
         String[] hashtag = fboard.getHashtag().split("x");
 
-        for (int i = 0; i < hashtag.length; i++) {
-            System.out.println("hashtag:" + hashtag[i]);
+        for(int i=0; i<hashtag.length; i++){
+            System.out.println("hashtag:"+hashtag[i]);
         }
 
         model.addAttribute("hashtag", hashtag);
@@ -228,18 +228,18 @@ public class FreeController {
 
         List<MultipartFile> file_list = mhr.getFiles("files");
         String multi_path = request.getRealPath("img");
-        System.out.println("Smulti_path는 " + multi_path);
-        System.out.println("file_list는 " + file_list);
+        System.out.println("multi_path는 " +multi_path);
+        System.out.println("file_list는 "+ file_list);
 
         //첨부파일이 있을경우
-        if (!file_list.get(0).getOriginalFilename().equals("")) {
+        if(!file_list.get(0).getOriginalFilename().equals("")){
 
             //이전 실제 첨부파일 삭제
             List<ImgBean> old_filelist = service.imgList(img_board);
-            for (int j = 0; j < old_filelist.size(); j++) {
+            for(int j=0; j< old_filelist.size(); j++){
                 String real_name = old_filelist.get(j).getFile_name();
                 System.out.println("삭제할 파일 경로" + multi_path + "/" + real_name);
-                File real_file = new File(multi_path + "/" + real_name);
+                File real_file =new File(multi_path + "/" + real_name);
                 real_file.delete();
             }
             //이전 첨부파일 컬럼 삭제
@@ -248,7 +248,7 @@ public class FreeController {
 
 
             // file 일련번호
-            int i = 1;
+            int i=1;
 
             for (MultipartFile mf : file_list) {
                 String multi_filename = mf.getOriginalFilename();
@@ -261,9 +261,9 @@ public class FreeController {
                 System.out.println("multi_filename: " + multi_filename);
                 System.out.println("new_multi_filename: " + new_multi_filename);
 
-                try {
+                try{
                     mf.transferTo(new File(multi_path + "/" + new_multi_filename));
-                } catch (Exception e) {
+                }catch(Exception e){
                     e.printStackTrace();
                 }
 
@@ -338,7 +338,7 @@ public class FreeController {
 
     @PostMapping("reportBoard")
     @ResponseBody
-    public int reportBoard(ReportBean reportboard) {
+    public int reportBoard(ReportBean reportboard){
 
         int check = service.reportCheck(reportboard);
 
@@ -347,7 +347,7 @@ public class FreeController {
 
     //글 신고폼
     @GetMapping("reportAddForm")
-    public String reportAddForm(ReportBean reportboard, Model model) {
+    public String reportAddForm(ReportBean reportboard, Model model){
 
         model.addAttribute("reportboard", reportboard);
 
@@ -356,11 +356,11 @@ public class FreeController {
 
     //글 신고추가
     @PostMapping("reportAdd")
-    public String reportAdd(ReportBean reportboard, Model model) {
+    public String reportAdd(ReportBean reportboard,Model model){
 
         int result = service.reportPlus(reportboard);
 
-        model.addAttribute("result", result);
+        model.addAttribute("result",result);
 
         return "freeBoard/report_result";
     }

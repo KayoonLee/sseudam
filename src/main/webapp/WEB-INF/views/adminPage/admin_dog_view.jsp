@@ -53,11 +53,19 @@
             <tr>
                 <th>품종</th>
                 <th>특이사항</th>
+                <th>중성화여부</th>
                 <th>상태값</th>
             </tr>
             <tr>
                 <td>${pet.breed}</td>
                 <td>${pet.feature}</td>
+                <%--<td>${pet.neutering}</td>--%>
+                <c:if test="${pet.neutering == 0}">
+                    <td>중성화x</td>
+                </c:if>
+                <c:if test="${pet.neutering == 1}">
+                    <td>중성화o</td>
+                </c:if>
                 <c:if test="${pet.state == 1}">
                     <td>활동중</td>
                 </c:if>
@@ -74,7 +82,7 @@
         </c:if>
 
         <c:if test="${pet.state == 1}">
-            <button type="button" class="btn btn-outline-warning"
+            <button type="button" class="btn btn-outline-danger"
                     onclick="adminDogStateChange(${pet.p_id}, ${pet.state})">강아지 삭제</button>
         </c:if>
 <%--

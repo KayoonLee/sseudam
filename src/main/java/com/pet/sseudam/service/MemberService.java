@@ -1,6 +1,7 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.model.Member;
+import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.model.ProfileBean;
 
 import java.util.List;
@@ -54,4 +55,8 @@ public interface MemberService{
 
 
 //    Member profileAfter(int m_id);
+
+    int visitCheck(Visitor visitor);
+
+    int visitInsert(Visitor visitor);
 }
