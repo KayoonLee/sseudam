@@ -219,7 +219,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="memberpage_mypaper">
+                    <a href="memberpage_mypaper?m_id=${myModel.m_id}">
                         <i class="bi bi-circle"></i><span>상담신청내역</span>
                     </a>
                 </li>

@@ -1,6 +1,7 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.MemberDao;
+import com.pet.sseudam.model.CounselPaper;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.model.ProfileBean;
@@ -134,6 +135,11 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public int visitInsert(Visitor visitor) {
         return md.visitInsert(visitor);
+    }
+
+    @Override
+    public List<CounselPaper> requestList(int m_id) {
+        return md.requestList(m_id);
     }
 
 

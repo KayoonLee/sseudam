@@ -1,5 +1,6 @@
 package com.pet.sseudam.service;
 
+import com.pet.sseudam.model.CounselPaper;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.model.ProfileBean;
@@ -59,4 +60,6 @@ public interface MemberService{
     int visitCheck(Visitor visitor);
 
     int visitInsert(Visitor visitor);
+
+    List<CounselPaper> requestList(int m_id);
 }

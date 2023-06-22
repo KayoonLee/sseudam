@@ -135,6 +135,14 @@
        WHERE member.profile_num IS NULL
    </select>
 
+    <!-- 상담사의 상담요청리스트-->
+    <select id="requestList" parameterType="int" resultType="CounselPaper">
+        SELECT c.* , m.nick
+        FROM counsel_paper c
+                 JOIN member m ON m.m_id = c.m_id
+        WHERE c.c_id = #{m_id}
+    </select>
+
 
 
 

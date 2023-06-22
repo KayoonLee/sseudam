@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 82108
@@ -22,7 +24,8 @@
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    z
     <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="vendor/quill/quill.snow.css" rel="stylesheet">
     <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
@@ -128,7 +131,6 @@
             </li><!-- End Notification Nav -->
 
 
-
             <li class="nav-item dropdown pe-3">
 
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
@@ -187,87 +189,110 @@
         </ul>
     </nav><!-- End Icons Navigation -->
 
-</header><!-- End Header -->
+</header>
+<!-- End Header -->
 
 <!-- ======= Sidebar ======= -->
-    <aside id="sidebar" class="sidebar">
-        <ul class="sidebar-nav" id="sidebar-nav">
+<aside id="sidebar" class="sidebar">
+    <ul class="sidebar-nav" id="sidebar-nav">
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="counselorpage_main">
-                    <i class="bi bi-person"></i>
-                    <span>나의 프로필</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="counselorpage_request">
-                    <i class="bi bi-balloon"></i><span>상담요청목록</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                    <li>
-                        <a href="counselorpage_mypost" >
-                            <i class="bi bi-circle"></i><span>내가 쓴 글</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="counselorpage_myreply" >
-                            <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="counselorpage_mylike" >
-                            <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
-                        </a>
-                    </li>
-                </ul>
-            </li><!-- End Components Nav -->
-        </ul>
-    </aside>
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="counselorpage_main">
+                <i class="bi bi-person"></i>
+                <span>나의 프로필</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " href="counselorpage_request">
+                <i class="bi bi-balloon"></i><span>상담요청목록</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="counselorpage_mypost">
+                        <i class="bi bi-circle"></i><span>내가 쓴 글</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="counselorpage_myreply">
+                        <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="counselorpage_mylike">
+                        <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Components Nav -->
+    </ul>
+</aside>
 <main id="main" class="main">
-    <div class="pagetitle">
-        <h1>상담요청내역</h1>
-    </div><!-- End Page Title -->
-    <br>
-    <div class="card">
-        <div class="card-body">
-            <br>
-            <table id="example" class="table is-striped" style="width:100%">
-                <thead>
-                <tr>
-                    <th>신청자</th>
-                    <th>제목</th>
-                    <th>작성일</th>
-                    <th>진행현황</th>
-                </tr>
-                </thead>
-                <tbody>
-                <td>test작성자</td>
-                <td>우리애가이상해요</td>
-                <td>2023-06-21</td>
-                <td>확정</td>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <th>신청자</th>
-                    <th>제목</th>
-                    <th>작성일</th>
-                    <th>진행현황</th>
-                </tr>
-                </tfoot>
-            </table>
-        </div>
+<div class="pagetitle">
+    <h1>상담요청내역</h1>
+</div>
+<!-- End Page Title -->
+<br>
+<div class="card">
+<div class="card-body">
+<br>
+<table id="example" class="table is-striped" style="width:100%">
+<thead>
+<tr>
+    <th>신청자</th>
+    <th>상담목적</th>
+    <th>신청날짜</th>
+    <th>상담요청시간</th>
+    <th>진행현황</th>
+</tr>
+</thead>
+<tbody>
+<c:if test="${empty requestList}">
+    <tr>
+        <td>------</td>
+        <td>상담요청</td>
+        <td>내역이</td>
+        <td>없습니다.</td>
+        <td>------</td>
+    </tr>
+</c:if>
+<c:forEach var="counsel_paper" items="${requestList}">
+    <tr onclick="location.href='get_Consult_Details?paper_num=${counsel_paper.paper_num}'">
+    <td>${counsel_paper.nick}</td>
+    <td>${counsel_paper.purpose}</td>
+    <td><fmt:formatDate value="${counsel_paper.application_date}"
+                        pattern="yyyy년 MM월 dd일"/></td>
+    <td><fmt:formatDate value="${counsel_paper.request_time}"
+                        pattern="HH시 mm분"/></td>
+    <td>
+            <c:if test="${counsel_paper.confirmed == '0'}">대기</c:if>
+            <c:if test="${counsel_paper.confirmed == '1'}">확정</c:if>
+            <c:if test="${counsel_paper.confirmed == '2'}">완료</c:if>
+            <c:if test="${counsel_paper.confirmed == '3'}">거절</c:if>
+    </tr>
+</c:forEach>
+    </tbody>
+    <tfoot>
+    <tr>
+    <th>신청자</th>
+    <th>상담목적</th>
+    <th>신청날짜</th>
+    <th>상담요청시간</th>
+    <th>진행현황</th>
+    </tr>
+    </tfoot>
+    </table>
+    </div>
     </div>
 
-</main>
+    </main>
 
 
-
-</body>
-</html>
+    </body>
+    </html>
 
 

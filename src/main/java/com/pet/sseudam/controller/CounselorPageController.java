@@ -1,15 +1,18 @@
 package com.pet.sseudam.controller;
 
+import com.pet.sseudam.model.CounselPaper;
 import com.pet.sseudam.model.Counselor;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.service.CounselorService;
 import com.pet.sseudam.service.MemberService;
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -68,21 +71,23 @@ public class CounselorPageController {
         return "counselorPage/counselor_list";
     }
 
-
-
-
-
-
-
-
-
-
-
     
     // 상담예약서목록
     @RequestMapping("counselorpage_request")
-    public String counselorPageRequest(){
-        System.out.println("상담예약서 목록으로 진입성공");
+    public String counselorPageRequest(String email, Model model, CounselPaper counselpaper,HttpSession session){
+        System.out.println("상담예약서 목록으로 진입성공을 감축드립니다^^");
+        // mapper 사용하려는데 m.m_id = c.c_id m_id c_id ?
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("email: " + email);
+        System.out.println("member : " + member);
+
+
+        List<CounselPaper> requestList = ms.requestList(member.getM_id());
+
+        System.out.println("requestList:" + requestList);
+
+        model.addAttribute("requestList", requestList);
+        model.addAttribute("member", member);
         return "counselorPage/counselorpage_request";
     }
 
