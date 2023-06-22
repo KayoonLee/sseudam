@@ -5,6 +5,7 @@ import com.pet.sseudam.model.CounselRecord;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 import java.util.List;
@@ -12,13 +13,11 @@ import java.util.List;
 @Mapper
 public interface ConsultingDao {
      List<Member> find_counselor_name();
-     List<Date> find_reservation_time(int g_id, int con_id);
+     List<Date> find_reservation_time(@Param("g_id") int g_id,@Param("con_id") int con_id);
 
      List<PetBean> find_pet(int g_id);
 
      Member find_general(int g_id);
-
-     PetBean change_to_pet_id(int g_id,String animal);
 
      Member find_counselor(int con_id);
 

@@ -44,7 +44,7 @@
                                 <select id="con_names_select" name="con_names">
                                     <option value="">상담사</option>
                                     <c:forEach var="counselor" items="${con_names}">
-                                        <option value="${counselor.m_id}">${counselor.name}</option>
+                                        <option value="${counselor.m_id}" >${counselor.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>

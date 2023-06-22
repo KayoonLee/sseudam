@@ -24,7 +24,7 @@
         SELECT request_time
         FROM counsel_paper
         WHERE m_id = #{g_id}
-          AND c_id = #{con_id}
+          or c_id = #{con_id}
 
     </select>
 
@@ -40,13 +40,6 @@
         SELECT *
         FROM pet
         WHERE g_id = #{g_id}
-    </select>
-    <!-- 작성폼 동물이름 -> 동물dto로-->
-    <select id="change_to_pet_id" resultType="Pet">
-        SELECT *
-        FROM pet
-        WHERE g_id = #{g_id}
-          AND animal = #{animal}
     </select>
 
     <!-- 해당 회원 id와 일치하는 회원 데이터 찾기 -->
@@ -99,7 +92,7 @@
 
     <!-- 현재 시간 조회 -->
     <select id="now_time" resultType="String">
-        SELECT DATE_FORMAT(now(), '%Y-%m-%d %H:%i');
+        SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 HOUR), '%Y-%m-%d %H:00');
     </select>
 
     <!-- 상담기록서 작성 -->

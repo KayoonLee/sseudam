@@ -115,7 +115,7 @@ public class AdminController {
     @GetMapping("adminMemberPage")
     public String memberPage(Member member, Model model, HttpSession session) {
         System.out.println("회원관리 페이지로 이동");
-        session.removeAttribute("m_id");
+        session.removeAttribute("adminM_id");
 
         List<Member> admin_list = adminService.admin_list(member);
         System.out.println("admin_list = " + admin_list);
@@ -132,7 +132,7 @@ public class AdminController {
         Member memberDto = adminService.adminSelect(m_id);
 
         List<PetBean> petBean = adminService.petSelect(m_id);
-        session.setAttribute("m_id", memberDto.getM_id());
+        session.setAttribute("adminM_id", memberDto.getM_id());
 
         System.out.println(memberDto);
         System.out.println(petBean);
@@ -147,7 +147,7 @@ public class AdminController {
         System.out.println("삭제 버튼 및 조회 이동");
         Member memberDto = adminService.adminSelect(m_id);
 
-        session.setAttribute("m_id", memberDto.getM_id());
+        session.setAttribute("adminM_id", memberDto.getM_id());
         model.addAttribute("memberDto", memberDto);
 
         return "adminPage/admin_member_del_view";
