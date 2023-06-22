@@ -78,12 +78,14 @@
                     <input type="text" class="form-control" id ="subject" name = "subject" maxlength="50">
                 </div>
             </div>
+<%--
             <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">상담 주제</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id ="topic" name = "topic" maxlength="50">
                 </div>
             </div>
+--%>
 
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담 기록</label>
@@ -91,12 +93,27 @@
                     <textarea class="form-control" style="height: 100px" id="content" name="content" maxlength="2000" required></textarea>
                 </div>
             </div>
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">상담현황</label>
+
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0">상담현황</legend>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height: 100px" id="consult_status" name="consult_status" maxlength="100" required></textarea>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1"
+                               checked>
+                        <label class="form-check-label" for="gridRadios1">
+                            진행중
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <label class="form-check-label" for="gridRadios2">
+                           진행완료
+                        </label>
+                    </div>
+
                 </div>
-            </div>
+            </fieldset>
+
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">특이사항</label>
                 <div class="col-sm-10">

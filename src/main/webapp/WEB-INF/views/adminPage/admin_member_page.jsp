@@ -15,6 +15,7 @@
             $.ajax({
                 url: "adminViewPage",
                 data: {m_id: m_id},
+                async: false, // 동기 처리
                 success: function (response) {
                     $("#adminResultView").html(response);
 
@@ -58,7 +59,7 @@
                 <tbody>
                 <c:if test="${not empty admin_list}">
                     <c:forEach var="member" items="${admin_list}">
-                        <input type="hidden" name="m_id" value="${m_id}">
+                        <input type="hidden" name="m_id" value="${adminM_id}">
                         <tr id="memberView" onclick="loadMemberPage(${member.m_id})"> <!-- onClick 으로 조회하는거 걸기 -->
                             <td>${member.row_num}</td>
                             <td>${member.m_id}</td>

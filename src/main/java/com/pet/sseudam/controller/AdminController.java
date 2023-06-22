@@ -115,7 +115,7 @@ public class AdminController {
     @GetMapping("adminMemberPage")
     public String memberPage(Member member, Model model, HttpSession session) {
         System.out.println("회원관리 페이지로 이동");
-        session.removeAttribute("m_id");
+        session.removeAttribute("adminM_id");
 
         List<Member> admin_list = adminService.admin_list(member);
         System.out.println("admin_list = " + admin_list);
@@ -132,7 +132,7 @@ public class AdminController {
         Member memberDto = adminService.adminSelect(m_id);
 
         List<PetBean> petBean = adminService.petSelect(m_id);
-        session.setAttribute("m_id", memberDto.getM_id());
+        session.setAttribute("adminM_id", memberDto.getM_id());
 
         System.out.println(memberDto);
         System.out.println(petBean);
@@ -147,7 +147,7 @@ public class AdminController {
         System.out.println("삭제 버튼 및 조회 이동");
         Member memberDto = adminService.adminSelect(m_id);
 
-        session.setAttribute("m_id", memberDto.getM_id());
+        session.setAttribute("adminM_id", memberDto.getM_id());
         model.addAttribute("memberDto", memberDto);
 
         return "adminPage/admin_member_del_view";
@@ -415,7 +415,7 @@ public class AdminController {
         return "adminPage/admin_register";
     }
 
-    // 관리자 테스트 페이지(나중에 지우기)
+// 관리자 테스트 페이지(나중에 지우기)
     @GetMapping("adminTest")
     public String adminTest() {
         System.out.println("토스트ui 테스트 페이지로 이동");
@@ -432,6 +432,12 @@ public class AdminController {
     public String adminTest3() {
         System.out.println("캘린더 예시2로 이동");
         return "adminPage/admin_test3";
+    }
+
+    @GetMapping("adminTest4")
+    public String adminTest4() {
+        System.out.println("상담사 예약 페이지 진입");
+        return "adminPage/admin_test4";
     }
 
 }
