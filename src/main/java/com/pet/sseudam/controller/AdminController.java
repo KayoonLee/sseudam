@@ -61,6 +61,12 @@ public class AdminController {
             }
         }
     }
+    // 관리자 로그아웃
+    @GetMapping("adminLogout")
+    public String adminLogout(HttpSession session){
+        session.removeAttribute("admin");
+        return "mainPage/main_page";
+    }
 
     // 관리자 메인페이지 + 일반회원 회원수 + 상담사 회원수
     @GetMapping("adminMain")
