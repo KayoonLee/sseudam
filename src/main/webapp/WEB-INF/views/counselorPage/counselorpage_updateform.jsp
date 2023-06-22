@@ -255,10 +255,11 @@
       <h1>내 정보 수정</h1>
       <br>
     </div><!-- End Page Title -->
-    <form action="counselor_update" method="post" enctype="multipart/form-data" attribute>
 
 
+  <form action="counselor_update" method="post" enctype="multipart/form-data" attribute>
     <section class="section profile">
+    <input type="hidden" name="m_id" value="${myModel.m_id}">
     <input type="hidden" name="c_id" value="${counsel.c_id}">
         <div class="col-xl-8">
           <div class="card">

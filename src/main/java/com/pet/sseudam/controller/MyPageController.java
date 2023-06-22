@@ -186,9 +186,6 @@ public class MyPageController {
     }
 
 
-
-
-
     // 일반회원 비번 변경 폼
     @RequestMapping("memberpage_pwUpdateForm")
     public String memberpage_pwUpdateForm(HttpSession session, Model model){
@@ -218,68 +215,6 @@ public class MyPageController {
         model.addAttribute("myModel", myModel);
         return "memberPage/memberpage_main";
     }
-    
-    
-    
-    
-    
-
-    /*상담사 수정 파트 : member 테이블 컬럼 수정이라 MyPageController에 넣음*/
-    
-    // 상담사 정보 수정
-    @RequestMapping("counselor_update")
-    public String csUpdate(Model model, Member member, Counselor counselor, HttpSession session){
-        System.out.println("member: "+member);
-        System.out.println("counselor 정보 수정 컨트롤러"+counselor);
-
-        // member테이블 컬럼 수정
-        int res = ms.csMyUpdate(member);
-
-        // 상담 테이블 컬럼 수정
-        int result = cs.csUpdate(counselor);
-        if (result == 1) {
-            System.out.println(result +": 수정 성공");
-
-        }
-
-
-        model.addAttribute("res", res);
-        model.addAttribute("result", result);
-
-        return "counselorPage/csupdate_result";
-    }
-
-    // 상담사 비밀번호 수정 폼
-    @RequestMapping("counselorpage_PwUpdateForm")
-    public String csPwUpdateForm(HttpSession session, Model model){
-        System.out.println("상담사 비번 수정 폼 진입");
-        Member member = (Member) session.getAttribute("member");
-        int c_id = member.getM_id(); // 상담사 번호 구하기
-
-        Member myModel = ms.userCheck(member.getEmail());
-        Counselor counsel = cs.counselChk(c_id);
-        System.out.println("myModel:"+myModel);
-        System.out.println("counsel:"+counsel);
-        model.addAttribute("myModel", myModel);
-        model.addAttribute("counsel", counsel);
-        return "counselorPage/counselorpage_PwUpdateForm";
-    }
-
-    // 상담사 비번 수정
-    @RequestMapping("csMyPwUpdate")
-    public String csMyPwUpdate(Member member, Model model){
-        System.out.println("상담사 비번 수정 컨트롤러");
-        //Member member = (Member) session.getAttribute("member");
-
-        int result = ms.csMyPwUpdate(member);
-        if(result==1){
-            System.out.println("비번 수정 성공");
-        }
-        Member myModel = ms.userCheck(member.getEmail());
-
-        model.addAttribute("myModel", myModel);
-        return "counselorPage/counselorpage_main";
-    }
 
 
     // 일반회원 탈퇴 폼
@@ -306,6 +241,9 @@ public class MyPageController {
         model.addAttribute("result",result);
         return "memberPage/member_out";
     }
+
+
+
 
 
 

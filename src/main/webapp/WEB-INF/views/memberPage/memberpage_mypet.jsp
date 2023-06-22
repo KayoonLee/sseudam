@@ -249,8 +249,6 @@
                                                 <img src="/images/petdefault.png" width="250" height="250">
                                             </a>
                                         </c:if>
-
-
                                         <div class="card-body">
                                             <h4 class="card-title">${pet.animal }</h4>
                                         </div>

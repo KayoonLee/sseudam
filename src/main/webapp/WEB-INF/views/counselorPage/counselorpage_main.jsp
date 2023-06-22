@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 
 <meta charset="UTF-8">
@@ -234,7 +234,8 @@
                 </ol>
             </nav>
         </div><!-- End Page Title -->
-<form action="counselorpage_updateform" method="post" enctype="multipart/form-data" attribute>
+
+<form method="post" enctype="multipart/form-data" attribute>
         <section class="section profile">
             <div class="row" align="center">
                 <div class="col-xl-8">
@@ -310,7 +311,10 @@
                                     </div>
                                 </div>
                              <div class="text-center">
-                                 <button type="submit" class="btn btn-primary">수정하러 가기</button>
+                                 <button type="button" class="btn btn-primary"
+                                 onClick="location.href='counselorpage_updateform?email=${myModel.email}'">수정하러 가기</button>
+                                 <button type = "button" class = "btn btn-danger"
+                                 onClick="location.href='counselorpage_deleteform?email=${myModel.email}'">탈퇴하기</button>
                              </div>
 
 

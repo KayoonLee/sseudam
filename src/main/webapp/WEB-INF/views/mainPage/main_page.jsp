@@ -82,10 +82,13 @@
                                         <a class="nav-link" href="main_page">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="hasAnimal">상담신청</a>
+                                        <a class="nav-link" href="intro_counsel">쓰담쓰담이란</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="counselor_list">상담사 소개</a>
+                                        <a class="nav-link" href="counsel_list">상담사 소개</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="hasAnimal">상담신청</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
@@ -94,7 +97,7 @@
                                             커뮤니티
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="home.do">자유게시판</a>
+                                            <a class="dropdown-item" href="freeList">자유게시판</a>
                                             <a class="dropdown-item" href="single-blog.html">고객 후기</a>
                                         </div>
                                     </li>

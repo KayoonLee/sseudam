@@ -83,16 +83,17 @@ public class CounselorController {
     }
 
 
-    //상담사 목록 제공
-    @RequestMapping("counselor_list")
-    public String counselor_list(Model model, Member member){
+    //상담사 목록
+    @RequestMapping("counsel_list")
+    public String counsel_list(Model model, Member member){
         System.out.println("상담사 목록 진입");
 
         List<Member> counselorList = ms.counselorList(member);
-        System.out.println("counselor list:"+counselorList);
+        System.out.println("counsel list:"+counselorList);
 
         model.addAttribute("counselorList", counselorList);
-        return "counselorPage/counselor_list";
+
+        return "counselorPage/counsel_list";
     }
 
 
