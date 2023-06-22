@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 82108
-  Date: 2023-06-13
-  Time: 오후 7:58
-  To change this template use File | Settings | File Templates.
---%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -47,14 +40,6 @@
       }
     };
 
-    function deleteImage(){
-        $("#imageInput").val("");
-    }
-
-
-
-
-
 
   </script>
   <style type="text/css">
@@ -77,7 +62,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
   <div class="d-flex align-items-center justify-content-between">
-    <a href="#" class="logo d-flex align-items-center">
+    <a href="main_page" class="logo d-flex align-items-center">
       <img src="images/muzik5.jpg" alt="">
       <span class="d-none d-lg-block">쓰담</span>
     </a>
@@ -285,7 +270,9 @@
       <h1>내 정보 수정</h1>
       <br>
     </div><!-- End Page Title -->
-    <form action="mypage_update" method="post" enctype="multipart/form-data" attribute>
+
+
+  <form action="mypage_update" class="validation-form" method="post" enctype="multipart/form-data" attribute>
     <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
     <section class="section profile">
         <div class="col-xl-8">
@@ -309,10 +296,7 @@
                       <button type="button" onclick="uploadImage()" class="btn btn-primary btn-sm"
                               title="Upload new profile image"><i class="bi bi-upload"></i>
                       </button>
-                      <%-- 이미지 삭제 하기 --%>
-                      <button type="button" onclick="deleteImage()" class="btn btn-danger btn-sm"
-                              title="Remove my profile image"><i class="bi bi-trash"></i>
-                      </button>
+
 
                     </div>
                   </div>
@@ -387,46 +371,45 @@
       </div>
     </section>
 
-    </form><!-- End Profile Edit Form -->>
+    </form>
   </main>
 
   <script>
-   window.addEventListener('load', () => {
-         const forms = document.getElementsByClassName('validation-form');
+    window.addEventListener('load', () => {
+                const forms = document.getElementsByClassName('validation-form');
 
-         Array.prototype.filter.call(forms, (form) => {
-           form.addEventListener('submit', function (event) {
-             if (form.checkValidity() === false) {
-               event.preventDefault();
-               event.stopPropagation();
-             }
+                Array.prototype.filter.call(forms, (form) => {
+                  form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
 
-             form.classList.add('was-validated');
-           }, false);
-         });
-   }, false);
+                    form.classList.add('was-validated');
+                  }, false);
+                });
+          }, false);
 
-       $( '#tel' ).on( 'focus keyup', function() {
-           var brn = document.getElementById( "tel" ).value;
-               if ( /^010[0-9]{4}[0-9]{4}$/.test( brn ) ) {
-                 document.getElementById( "checkTel" ).innerText = "유효한 휴대전화번호입니다.";
-                 } else {
-                 document.getElementById( "checkTel" ).innerText = "유효하지 않은 휴대전화번호입니다.";
-                 document.getElementById('checkTel').style.color = 'red';
-               }
-        } );
+              $( '#tel' ).on( 'focus keyup', function() {
+                  var brn = document.getElementById( "tel" ).value;
+                      if ( /^010[0-9]{4}[0-9]{4}$/.test( brn ) ) {
+                        document.getElementById( "checkTel" ).innerText = "유효한 휴대전화번호입니다.";
+                        } else {
+                        document.getElementById( "checkTel" ).innerText = "유효하지 않은 휴대전화번호입니다.";
+                        document.getElementById('checkTel').style.color = 'red';
+                      }
+               } );
 
 
-        $( '#birth' ).on( 'focus keyup', function() {
-           var brn = document.getElementById( "birth" ).value;
-               if ( /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/.test( brn ) ) {
-                 document.getElementById( "checkBirth" ).innerText = "올바른 형식입니다.";
-                 } else {
-                 document.getElementById( "checkBirth" ).innerText = "올바르지 않은 형식입니다.";
-                 document.getElementById('checkBirth').style.color = 'red';
-               }
-        } );
-
+               $( '#birth' ).on( 'focus keyup', function() {
+                  var brn = document.getElementById( "birth" ).value;
+                      if ( /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/.test( brn ) ) {
+                        document.getElementById( "checkBirth" ).innerText = "올바른 형식입니다.";
+                        } else {
+                        document.getElementById( "checkBirth" ).innerText = "올바르지 않은 형식입니다.";
+                        document.getElementById('checkBirth').style.color = 'red';
+                      }
+               } );
 
     // 닉네임 중복검사 (닉네임 변경 안 한 경우에는 중복검사하라고 하면 안됨)
        var nick_chk = false;
@@ -459,11 +442,6 @@
                        }
                      }); //ajax end
             });
-
-
-
-
-
 
 
   </script>

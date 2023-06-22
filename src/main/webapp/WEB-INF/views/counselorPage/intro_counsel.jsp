@@ -1,38 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8"  pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>쓰담쓰담 소개</title>
-        <link rel="icon" href="images/logo.png">
-        <!-- Font Awesome icons (free version)-->
-        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
-        <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/counsel_list.css" rel="stylesheet" />
+    <%@ include file="../navigator_footer/main_header.jsp" %>
+       <%@ include file="../navigator_footer/intro_counselor_header.jsp" %>
     </head>
+
+
     <body id="page-top">
-<!-- Header-->
-        <header class="masthead text-center text-white">
-            <div class="masthead-content">
-                <div class="container px-5">
-                    <h2 class="masthead-heading mb-0"></h2>
-                    <h4 class="masthead-subheading mb-0">쓰담쓰담의 지향점</h4>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    상담사 더보기
-                    </button>
-                </div>
-            </div>
-            <div class="bg-circle-1 bg-circle"></div>
-            <div class="bg-circle-2 bg-circle"></div>
-            <div class="bg-circle-3 bg-circle"></div>
-            <div class="bg-circle-4 bg-circle"></div>
-        </header>
+   <!--::네이게이션 start::-->
+    <%@ include file="../navigator_footer/main_navigator.jsp" %>
+    <%@ include file="../navigator_footer/intro_counselor_navigator.jsp" %>
 
             <!--모달-->
            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

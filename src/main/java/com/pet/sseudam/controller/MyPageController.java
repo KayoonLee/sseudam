@@ -36,8 +36,9 @@ public class MyPageController {
 
         Member member = (Member) session.getAttribute("member");
         Member myModel = new Member();
-        System.out.println("member.getEmail() 은 " + member.getEmail());
-        System.out.println("myModel.getProfile_num() 은 " + member.getProfile_num());
+
+//        System.out.println("member.getEmail() 은 " + member.getEmail());
+//        System.out.println("myModel.getProfile_num() 은 " + member.getProfile_num());
         myModel = ms.userCheck(member.getEmail());
 
         if(myModel.getProfile_num() != null){ // 사진 첨부 됐을 때(원래 사진 있던 경우->다른 사진으로 변경)
