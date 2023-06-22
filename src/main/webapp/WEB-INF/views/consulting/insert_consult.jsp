@@ -40,7 +40,7 @@
         <h5 class="card-title">상담예약서 작성</h5>
 
         <!-- General Form Elements -->
-        <form action="submit_Insert_Consult" method="POST">
+        <form action="submit_Insert_Consult" method="POST" onsubmit="return validateForm()">
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담사이름</label>
                 <div class="col-sm-10">

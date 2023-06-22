@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html lang="en">
-<!doctype html>
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -347,22 +347,23 @@
                 <div class="col-xl-8">
                     <div class="section_tittle">
                         <h2>What they said</h2>
-                        <h2>쓰담쓰담의 상담사</h2>
+                        <h2>쓰담쓰담 상담사들의 한 마디</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-10">
                     <div>
-                      <div>
-                        <img src="images/counsel_icon1.jpg" width="250" height="250">
-                           &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                        <img src="images/counsel_icon2.jpg" width="250" height="250">
-                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                        <img src="images/counsel_icon3.jpg" width="250" height="250">
-                        <br>
-                        <br>
+                        <div>
+                        <img src="./images/counsel1.jpg" width="250" height="250">
+                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                        <img src="./images/counsel2.jpg" width="250" height="250">
+                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                        <img src="./images/counsel3.jpg" width="250" height="250">
 
+                        </div>
+                        <br>
+                        <br>
                             <p>"나의 진심과 지식으로 반려동물과 주인을 위해 노력하자"</p>
                             <h5> - Allen Miller</h5>
                         <div>
