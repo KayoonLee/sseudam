@@ -78,7 +78,6 @@ public class CounselorPageController {
         System.out.println("상담예약서 목록으로 진입성공을 감축드립니다^^");
         // mapper 사용하려는데 m.m_id = c.c_id m_id c_id ?
         Member member = (Member) session.getAttribute("member");
-        System.out.println("email: " + email);
         System.out.println("member : " + member);
 
 

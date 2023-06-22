@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: 82108
@@ -16,6 +18,11 @@
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
+    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
+    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
@@ -236,7 +243,7 @@
             <table id="example" class="table is-striped" style="width:100%">
                 <thead>
                 <tr>
-                    <th>번호</th>
+                    <th>구분</th>
                     <th>게시글 제목</th>
                     <th>작성자</th>
                     <th>조회수</th>
@@ -245,32 +252,46 @@
                 </tr>
                 </thead>
                 <tbody>
-                <td>1</td>
-                <td>test제목</td>
-                <td>test글쓴이</td>
-                <td>10</td>
-                <td>2</td>
-                <td>2023-06-21</td>
+                <c:if test="${empty mypostList}">
+                    <tr>
+                        <td>작성한 글이 없습니다.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </c:if>
+                <c:forEach var="board" items="${mypostList}">
+                <tr>
+                    <td>
+                        <c:if test="${board.category == '1'}">자유</c:if>
+                        <c:if test="${board.category == '2'}">질문</c:if>
+                        <c:if test="${board.category == '3'}">토론</c:if>
+                    </td>
+                    <td>${board.subject}</td>
+                    <td>${board.nick}</td>
+                    <td>${board.readcount}</td>
+                    <td>${board.recom}</td>
+                    <td><fmt:formatDate value="${board.reg_date}"
+                                        pattern="yyyy년 MM월 dd일"/></td>
+                </tr>
+                </c:forEach>
                 </tbody>
                 <tfoot>
                 <tr>
-                    <th>번호</th>
+                    <th>구분</th>
                     <th>게시글 제목</th>
                     <th>작성자</th>
                     <th>조회수</th>
                     <th>추천수</th>
                     <th>작성일</th>
                 </tr>
-
-
                 </tfoot>
-
             </table>
         </div>
     </div>
-
 </main>
-
 
 </body>
 </html>

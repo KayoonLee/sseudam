@@ -1,9 +1,6 @@
 package com.pet.sseudam.service;
 
-import com.pet.sseudam.model.CounselPaper;
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.Visitor;
-import com.pet.sseudam.model.ProfileBean;
+import com.pet.sseudam.model.*;
 
 import java.util.List;
 
@@ -62,4 +59,10 @@ public interface MemberService{
     int visitInsert(Visitor visitor);
 
     List<CounselPaper> requestList(int m_id);
+
+    List<FreeBean> mypostList(int m_id);
+
+    List<ReFreeBean> myreplyList(int mId);
+
+    List<FreeBean> mylikeList(int m_id);
 }

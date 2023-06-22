@@ -1,10 +1,7 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.MemberDao;
-import com.pet.sseudam.model.CounselPaper;
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.Visitor;
-import com.pet.sseudam.model.ProfileBean;
+import com.pet.sseudam.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -140,6 +137,21 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public List<CounselPaper> requestList(int m_id) {
         return md.requestList(m_id);
+    }
+
+    @Override
+    public List<FreeBean> mypostList(int m_id) {
+        return md.mypostList(m_id);
+    }
+
+    @Override
+    public List<ReFreeBean> myreplyList(int m_id) {
+        return md.myreplyList(m_id);
+    }
+
+    @Override
+    public List<FreeBean> mylikeList(int m_id) {
+        return md.mylikeList(m_id);
     }
 
 
