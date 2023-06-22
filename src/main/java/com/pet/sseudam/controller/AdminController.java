@@ -415,7 +415,7 @@ public class AdminController {
         return "adminPage/admin_register";
     }
 
-    // 관리자 테스트 페이지(나중에 지우기)
+// 관리자 테스트 페이지(나중에 지우기)
     @GetMapping("adminTest")
     public String adminTest() {
         System.out.println("토스트ui 테스트 페이지로 이동");
@@ -432,6 +432,12 @@ public class AdminController {
     public String adminTest3() {
         System.out.println("캘린더 예시2로 이동");
         return "adminPage/admin_test3";
+    }
+
+    @GetMapping("adminTest4")
+    public String adminTest4() {
+        System.out.println("상담사 예약 페이지 진입");
+        return "adminPage/admin_test4";
     }
 
 }

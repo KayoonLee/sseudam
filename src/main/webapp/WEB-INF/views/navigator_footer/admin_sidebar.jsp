@@ -3,13 +3,13 @@
 <html>
 <head>
     <title>Admin_Sidebar</title>
-<%--
-    <style>
-        .active {
-            background-color: mediumpurple;
-        }
-    </style>
---%>
+    <%--
+        <style>
+            .active {
+                background-color: mediumpurple;
+            }
+        </style>
+    --%>
 </head>
 <body>
 
@@ -18,14 +18,20 @@
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
+        <%-- 왼쪽 사이드바 구분하는 말 --%>
+        <li class="nav-heading">DashBoard</li>
+
         <%-- 대시보드: 총 일반회원수, 상담자수, 방문자수 통계 페이지 --%>
         <li class="nav-item">
             <a class="nav-link collapsed" href="adminMain"> <%-- adminMain || adminDashboard --%>
                 <i class="bi bi-grid"></i>
-                <span id="ad_dashboard">회원수 통계(Dashboard)</span>
+                <span id="ad_dashboard">회원수 통계</span>
             </a>
         </li>
         <%-- End Dashboard Nav --%>
+
+        <%-- 왼쪽 사이드바 구분하는 말 --%>
+        <li class="nav-heading">일반회원</li>
 
         <%-- 일반회원 --%>
         <li class="nav-item">
@@ -42,6 +48,9 @@
                 <span id="ad_member_report">신고받은 회원관리</span>
             </a>
         </li><!-- End Components Nav -->
+
+        <%-- 왼쪽 사이드바 구분하는 말 --%>
+        <li class="nav-heading">동물회원</li>
 
         <%-- 동물회원 조회 --%>
         <li class="nav-item">
@@ -65,6 +74,9 @@
             </ul>
         </li><!-- End Tables Nav -->
 
+        <%-- 왼쪽 사이드바 구분하는 말 --%>
+        <li class="nav-heading">상담사</li>
+
         <%-- 상담사 조회 --%>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -87,34 +99,38 @@
         </li><!-- End Forms Nav -->
 
         <%-- 왼쪽 사이드바 구분하는 말 --%>
-        <li class="nav-heading">Admin Pages</li>
+        <%--<li class="nav-heading">Admin Pages</li>--%>
 
-        <%-- 관리자 마이페이지/프로파일 --%>
+        <%-- 관리자 마이페이지/프로파일 --%> <%-- adminProfile --%>
+<%--
         <li class="nav-item">
-            <a class="nav-link collapsed" href="adminProfile"> <%-- adminProfile --%>
+            <a class="nav-link collapsed" href="adminProfile">
                 <i class="bi bi-person"></i><span id="ad_profile">관리자 프로필</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
+--%>
 
-        <%-- 관리자 등록 --%>
+        <%-- 관리자 등록 --%> <%-- adminRegister --%>
+<%--
         <li class="nav-item">
-            <a class="nav-link collapsed" href="adminRegister"> <%-- adminRegister --%>
+            <a class="nav-link collapsed" href="adminRegister">
                 <i class="bi bi-card-list"></i><span id="ad_register">관리자 등록</span>
             </a>
-        </li><!-- End Register Page Nav -->
+        </li>
+--%>
 
         <%-- 쪽지는 보류 --%>
-        <%--
+<%--
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="note_contact.html">
                         <i class="bi bi-envelope"></i>
                         <span>Contact</span>
                     </a>
                 </li><!-- End Contact Page Nav -->
-        --%>
+--%>
     </ul>
 
-</aside><!-- End Sidebar-->
+</aside><%-- End Sidebar--%>
 
 </body>
 </html>
