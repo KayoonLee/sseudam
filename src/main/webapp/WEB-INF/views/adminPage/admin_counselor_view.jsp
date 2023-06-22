@@ -21,6 +21,7 @@
                         if (response == 1) {
                             alert("성공");
                             location.href = "adminCounselorApply";
+                            loadCounselorPage(m_id);
                         } else {
                             alert("오류 발생. 다시 시도해주세요");
                         }
@@ -125,35 +126,35 @@
         <table id="example" class="table is-striped" style="width:100%">
 
             <tr>
-                <td>프로필 사진</td>
+                <th>프로필 사진</th>
                 <td colspan="3">사진 출력</td>
             </tr>
             <tr>
-                <td>이름</td>
+                <th>이름</th>
                 <td colspan="3">${member.name}</td>
             </tr>
             <tr>
-                <td>닉네임</td>
+                <th>닉네임</th>
                 <td colspan="3">${member.nick}</td>
             </tr>
             <tr>
-                <td>생일</td>
+                <th>생일</th>
                 <td colspan="3">${member.birth}</td>
             </tr>
             <tr>
-                <td>전화번호</td>
+                <th>전화번호</th>
                 <td colspan="3">${member.tel}</td>
             </tr>
             <tr>
-                <td>경력사항</td>
+                <th>경력사항</th>
                 <td colspan="3">${member.career}</td>
             </tr>
             <tr>
-                <td>자격증</td>
+                <th>자격증</th>
                 <td>${member.license}</td>
             </tr>
             <tr>
-                <td>상태</td>
+                <th>상태</th>
                 <c:if test="${member.state == 1}">
                     <td>활동</td>
                 </c:if>
@@ -171,7 +172,12 @@
 
         <c:if test="${member.identifier == '2'}">
             <button type="button" onclick="nickChange()" class="btn btn-outline-primary">닉네임 변경</button>
-            <button type="button" onclick="stateChange(${member.m_id}, ${member.state})" class="btn btn-outline-danger">회원 삭제/복원</button>
+            <c:if test="${member.state == 0}">
+                <button type="button" onclick="stateChange(${member.m_id}, ${member.state})" class="btn btn-outline-primary">회원 복원</button>
+            </c:if>
+            <c:if test="${member.state == 1}">
+                <button type="button" onclick="stateChange(${member.m_id}, ${member.state})" class="btn btn-outline-danger">회원 삭제</button>
+            </c:if>
         </c:if>
 
     </div>
