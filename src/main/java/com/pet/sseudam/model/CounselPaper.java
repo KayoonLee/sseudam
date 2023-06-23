@@ -22,4 +22,7 @@ public class CounselPaper {
     private int confirmed;
     private String type;
     private String wish_list;
+
+    //임시 State
+    private int state;
 }

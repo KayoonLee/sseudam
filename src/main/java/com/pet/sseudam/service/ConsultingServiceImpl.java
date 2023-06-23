@@ -88,4 +88,10 @@ public class ConsultingServiceImpl implements ConsultingService {
         return dao.select_counsel_record(record_num);
     }
 
+    // 시간조회해오기
+    @Override
+    public List<CounselPaper> requestTime_list(int c_id) {
+        return dao.requestTime_list(c_id);
+    }
+
 }

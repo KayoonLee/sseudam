@@ -30,4 +30,7 @@ public interface ConsultingService {
     String now_time();
     void insert_consulting(CounselRecord counselrecord);
     CounselRecord select_counsel_record(int record_num);
+    
+    // requestTIme 조회 sjw
+    List<CounselPaper> requestTime_list(int c_id);
 }

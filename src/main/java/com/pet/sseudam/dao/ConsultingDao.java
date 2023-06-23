@@ -32,4 +32,6 @@ public interface ConsultingDao {
      void insert_consulting(CounselRecord counselrecord);
 
      CounselRecord select_counsel_record(int record_num);
+
+    List<CounselPaper> requestTime_list(int c_id);
 }
