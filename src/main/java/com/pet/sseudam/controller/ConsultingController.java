@@ -116,7 +116,7 @@ public class ConsultingController {
         counselpaper.setRequest_time(date);
         con.insert_consult(counselpaper);
 
-        return "redirect:/get_Consult_Details";
+        return "redirect:/memberpage_mypaper";
 
     }
 
