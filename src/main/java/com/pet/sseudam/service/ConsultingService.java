@@ -35,7 +35,4 @@ public interface ConsultingService {
     // requestTIme 조회 sjw
     List<CounselPaper> requestTime_list(int c_id);
 
-// 가윤
-    // 상담신청 - 상담사 선택
-    List<Member> getConsultingList(Member member);
 }
