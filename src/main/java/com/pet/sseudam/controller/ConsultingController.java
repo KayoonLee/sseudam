@@ -122,13 +122,12 @@ public class ConsultingController {
 
     /*상세페이지로 이동 */
     @RequestMapping("get_Consult_Details")
-    public String get_Consult_Details(HttpSession session, Model model)
+    public String get_Consult_Details(HttpSession session, Model model , @RequestParam("paper_num") int paper_num)
     //    @RequestParam("paper_num") int paper_num,
     //      @RequestParam("r_num") int r_num)
     {
 
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 임의값 나중에 삭제해야함.
-        int paper_num = 36;
         int r_num = 4;
 
         //해당 일반 회원 검색
