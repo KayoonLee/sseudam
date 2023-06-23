@@ -182,6 +182,15 @@
         where board_recom.m_id=#{m_id}
     </select>
 
+    <!-- 일반회원의 상담신청내역 -->
+    <select id="mypaperList" parameterType="int" resultType="CounselPaper">
+        SELECT c.* , m.*, p.*
+        FROM counsel_paper c
+                 JOIN member m ON m.m_id = c.m_id
+                join pet p on p.p_id=c.p_id
+        WHERE c.m_id = #{m_id}
+    </select>
+
 
 
 

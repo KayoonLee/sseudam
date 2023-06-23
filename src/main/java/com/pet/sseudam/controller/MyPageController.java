@@ -303,8 +303,18 @@ public class MyPageController {
 
     // 상담신청내역
     @RequestMapping("memberpage_mypaper")
-    public String memberPagePaper(){
+    public String memberPagePaper(Model model, HttpSession session){
         System.out.println("상담신청내역으로 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member: " + member);
+
+        List<CounselPaper> mypaperList = ms.mypaperList(member.getM_id());
+        System.out.println("mypaperList: " + mypaperList);
+
+        model.addAttribute("mypaperList", mypaperList);
+        model.addAttribute("member",member);
+
         return "memberPage/memberpage_mypaper";
     }
 
