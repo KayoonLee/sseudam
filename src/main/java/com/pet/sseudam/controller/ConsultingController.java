@@ -78,9 +78,8 @@ public class ConsultingController {
         for (Date c : reservation_time) {
             System.out.println(c);
         }
-
         model.addAttribute("reservation_time", reservation_time);
-        model.addAttribute("nowtime",con.now_time());
+        model.addAttribute("nowtime", con.now_time());
         System.out.println(con.now_time());
 
 
@@ -93,7 +92,7 @@ public class ConsultingController {
     public String submit_Insert_Consult(@RequestParam("g_id") int g_id,
                                         @RequestParam("c_id") int c_id,
                                         @RequestParam("request_times") String request_time,
-                                        
+
                                         Model model,
 
                                         CounselPaper counselpaper) {
@@ -105,23 +104,40 @@ public class ConsultingController {
             date = inputFormat.parse(request_time);
             String formattedDate = outputFormat.format(date);
             date = outputFormat.parse(formattedDate);
-            System.out.println(formattedDate);
+            System.out.println(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        // Request Time 조회용 List
-        List<CounselPaper> cTimeList = con.requestTime_list(c_id);
 
-        for(int i = 0; i<cTimeList.size(); i++){
-            if(cTimeList.get(i).equals(request_time)){
-                counselpaper.setState(-1);      //  -1 = 중복
-            }else{
-                counselpaper.setState(1);       // 1 = 통과
-            }
-        }
-        
-        model.addAttribute("state", counselpaper.getState());
-        
+//        // Request Time 조회용 List
+//        List<Date> reservation_time;
+//        reservation_time = con.find_reservation_time(g_id, c_id);
+//
+//        for (Date c : reservation_time) {
+//            System.out.println("시간목록" + c);
+//            System.out.println(c.equals(date));
+//
+//
+//            if(counselpaper.getState() != 1) {
+//
+//                if (c.equals(date)) {
+//                    counselpaper.setState(1);
+//                    model.addAttribute("useCheck", counselpaper.getState());
+//                    return "redirect:submit_Insert_Consult";              // 1= 중복
+//
+//                } else {
+//                    counselpaper.setState(-1);     // -1 통과
+//                }
+//
+//            }
+
+//        }
+
+//        model.addAttribute("reservation_time", reservation_time);
+
+        System.out.println("중복체크 1 or -1 : " + counselpaper.getState());
+        model.addAttribute("useCheck", counselpaper.getState());
+
         counselpaper.setC_id(c_id);
         counselpaper.setM_id(g_id);
         counselpaper.setRequest_time(date);
@@ -133,7 +149,7 @@ public class ConsultingController {
 
     /*상세페이지로 이동 */
     @RequestMapping("get_Consult_Details")
-    public String get_Consult_Details(HttpSession session, Model model , @RequestParam("paper_num") int paper_num)
+    public String get_Consult_Details(HttpSession session, Model model, @RequestParam("paper_num") int paper_num)
     //      @RequestParam("r_num") int r_num)
     {
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 임의값 나중에 삭제해야함.
@@ -251,6 +267,7 @@ public class ConsultingController {
 
         return "consulting/write_consulting";
     }
+
     /*기록서 insert*/
     @RequestMapping("insert_Consulting")
     public String insert_Consulting(@RequestParam("consulting_dates") String consulting_dates,
@@ -287,14 +304,9 @@ public class ConsultingController {
             @RequestParam("record_num") int record_num,
             CounselRecord counselrecord,
             Model model
-            ) {
-         counselrecord = con.select_counsel_record(record_num);
-         model.addAttribute("counselrecord",counselrecord);
-
-
-
-
-
+    ) {
+        counselrecord = con.select_counsel_record(record_num);
+        model.addAttribute("counselrecord", counselrecord);
 
 
         return null;
