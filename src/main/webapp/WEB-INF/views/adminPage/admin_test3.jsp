@@ -34,7 +34,7 @@
     <div id="picker"></div>
     <div>
         <p>Selected dates / times:</p>
-        <div id="selected-dates"></div>
+        <div id="selected-dates" name="request_times" onchange="removeMinutes()"></div>
     </div>
 </div>
 

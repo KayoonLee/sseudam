@@ -3,6 +3,10 @@
 
 <html>
 <head>
+
+
+
+
     <title>상담예약서 작성</title>
 
     <meta charset="UTF-8">
@@ -93,6 +97,8 @@
             return true;
         }
     </script>
+
+
 </head>
 <body>
 
@@ -104,6 +110,7 @@
 <div class="row">
 <div class="col-lg-12">
 --%>
+
 
 <main id="main" class="main">
     <div class="card" style="margin: 50px">
