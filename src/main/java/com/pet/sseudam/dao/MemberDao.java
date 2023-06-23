@@ -76,4 +76,6 @@ public interface MemberDao {
     List<Member> counselorList(Member member);
 
     List<CounselPaper> mypaperList(int m_id);
+
+    List<CounselRecord> recordList(int m_id);
 }

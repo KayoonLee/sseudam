@@ -52,6 +52,4 @@ public class MainController {
         return "mainPage/intro_counsel";
     }
 
-
-
 }

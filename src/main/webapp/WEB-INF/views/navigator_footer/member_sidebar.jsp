@@ -15,6 +15,11 @@
             </a>
     <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
          <li>
+             <a href="memberpage_main">
+               <i class="bi bi-circle"></i><span>나의 프로필 수정</span>
+             </a>
+         </li>
+         <li>
              <a href="memberpage_pwUpdateForm">
                <i class="bi bi-circle"></i><span>비밀번호 변경</span>
              </a>
@@ -47,17 +52,13 @@
                         <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
                     </a>
                 </li>
-                <li>
-                    <a href="memberpage_mypaper">
-                        <i class="bi bi-circle"></i><span>상담신청내역</span>
-                    </a>
-                </li>
+
             </ul>
         </li><!-- End Components Nav -->
         <li class="nav-item">
-            <a class="nav-link collapsed" href="memberpage_mycounselor">
+            <a class="nav-link collapsed" href="memberpage_mypaper">
                 <i class="bi bi-grid"></i>
-                <span>즐겨찾는 상담사</span>
+                <span>상담신청내역</span>
             </a>
         </li>
 

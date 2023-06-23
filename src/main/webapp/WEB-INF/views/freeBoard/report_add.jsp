@@ -2,6 +2,7 @@
          pageEncoding="UTF-8"%>
 <%@ include file = "../header/header.jsp" %>
 
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +13,7 @@
 <body>
 
 <div class="outbox">
-  <form method="post" action="reportAdd">
+  <form method="post" action="reportAdd" onsubmit="return report_check()">
     <input type="hidden" name="num" value="${reportboard.num}" />
     <input type="hidden" name="board_num" value="${reportboard.board_num}" />
     <input type="hidden" name="m_id" value="${reportboard.m_id}" />
@@ -31,7 +32,7 @@
       </select>
     </div>
     <div>
-      <textarea name="report_content" placeholder="이유를 상세히 적어 제출하시면 관리자 검토 후 조치하겠습니다."></textarea>
+      <textarea id="report_content" name="report_content" placeholder="이유를 상세히 적어 제출하시면 관리자 검토 후 조치하겠습니다."></textarea>
     </div>
     <button type="submit">제출</button>
     <button type="reset">취소</button>

@@ -93,7 +93,7 @@ public class ConsultingController {
     public String submit_Insert_Consult(@RequestParam("g_id") int g_id,
                                         @RequestParam("c_id") int c_id,
                                         @RequestParam("request_times") String request_time,
-
+                                        
                                         Model model,
 
                                         CounselPaper counselpaper) {
@@ -302,5 +302,6 @@ public class ConsultingController {
         model.addAttribute("pet", pet);
         return "consulting/view_consulting";
     }
+*/
 
 }

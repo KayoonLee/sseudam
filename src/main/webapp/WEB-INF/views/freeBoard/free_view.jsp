@@ -18,7 +18,7 @@
 
             // 추천 클릭
             $("#recom_image").click(function () {
-                if (m_id == "0") {
+                if (m_id == "") {
                     alert("로그인이 필요합니다");
                 } else {
                     $.ajax({
@@ -98,35 +98,12 @@
                             $("#re_content").val("");
                             $("#files").val("");
                             // $("#previewContainer").innerHTML = '';
-                             document.getElementById("previewContainer").innerHTML = '';
+                            document.getElementById("previewContainer").innerHTML = '';
                             loadReplies(); // 댓글 목록 다시 로드
                         }
                     }
                 });
             });
-
-
-            // 댓글 삭제 확인
-            function delete_check() {
-                var text = "정말로 삭제하시겠습니까?";
-                if (confirm(text)) {
-                    var num = $("#num").val();
-                    var board_num = $("#board_num").val();
-                    $.ajax({
-                        type: "post",
-                        url: "freeDelete",
-                        data: {"num": num, "board_num": board_num},
-                        success: function (data) {
-                            if (data == 1) {
-                                alert("글이 삭제되었습니다");
-                                location.href = "freeList?num=" + num;
-                            } else {
-                                alert("다시 시도해주세요");
-                            }
-                        }
-                    });
-                }
-            }
 
             // 댓글 목록을 가져와서 출력하는 함수
             function loadReplies() {
@@ -136,6 +113,28 @@
                 $('#listRe').load('FreeReList?num=' + num + '&board_num=' + board_num + '&rpageNum=' + rpageNum);
             }
         });
+        // 댓글 삭제 확인
+        function delete_check() {
+            var text = "정말로 삭제하시겠습니까?";
+            if (confirm(text)) {
+                var num = $("#num").val();
+                var board_num = $("#board_num").val();
+                $.ajax({
+                    type: "post",
+                    url: "freeDelete",
+                    data: {"num": num, "board_num": board_num},
+                    success: function (data) {
+                        if (data == 1) {
+                            alert("글이 삭제되었습니다");
+                            location.href = "freeList?num=" + num;
+                        } else {
+                            alert("다시 시도해주세요");
+                        }
+                    }
+                });
+            }
+        }
+
 
         //사진 미리보기
         function previewImage(input) {
@@ -215,7 +214,7 @@
                 <button type="button" onclick="location.href=
                         'freeUpdateForm?num=${fboard.num}&board_num=${fboard.board_num}'">글 수정
                 </button>
-                <button type="button" onClick="delete_check()">글 삭제</button>
+                <button type="button" onclick="delete_check()" >글 삭제</button>
             </div>
         </c:if>
         <div>
