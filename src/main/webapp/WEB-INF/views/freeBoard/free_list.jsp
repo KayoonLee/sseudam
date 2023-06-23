@@ -16,6 +16,15 @@
             height: 30px;
         }
     </style>
+
+    <!-- Vendor CSS Files -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="css/member.css" rel="stylesheet">
+    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
 </head>
 <body>
 
@@ -45,46 +54,51 @@
     </div>
     <p></p>
 
-    <div class="container" align="center">
-        <table>
-            <thead>
-            <tr>
-                <th>번호</th>
-                <th>게시글 제목</th>
-                <th>작성자</th>
-                <th>조회수</th>
-                <th>추천수</th>
-                <th>작성일</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:if test="${empty list}">
-                <tr align="center">
-                    <td colspan="6">데이터가 없습니다</td>
-                </tr>
-            </c:if>
+    <div class="card" style="margin:50px">
+        <div class="card-body" >
+            <div class="card-title" align="center" >자유게시판</div>
 
-            <c:if test="${not empty list}">
-                <c:set var="no" value="${number}"/>
-                <c:forEach var="board" items="${list }">
-                    <tr>
-                        <td>${no}</td>
-                        <td><a href="freeView?num=${board.num}&board_num=${board.board_num}
-                           &pageNum=${pageNum}">
-                                ${board.subject}</a></td>
-                        <td><c:if test="${not empty board.profile_num}">
-                            <img src="./memberImg/${board.profile_name}" class="profile_image"></c:if>
-                        ${board.nick}</td>
-                        <td>${board.readcount}</td>
-                        <td>${board.recom}</td>
-                        <td><fmt:formatDate value="${board.reg_date }"
-                                            pattern="yyyy년 MM월 dd일"/></td>
+            <!-- Table with hoverable rows -->
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>번호</th>
+                    <th>게시글 제목</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>추천수</th>
+                    <th>작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:if test="${empty list}">
+                    <tr align="center">
+                        <td colspan="6">데이터가 없습니다</td>
                     </tr>
-                    <c:set var="no" value="${no-1}"/>
-                </c:forEach>
-            </c:if>
-            </tbody>
-        </table>
+                </c:if>
+
+                <c:if test="${not empty list}">
+                    <c:set var="no" value="${number}"/>
+                    <c:forEach var="board" items="${list }">
+                        <tr>
+                            <td>${no}</td>
+                            <td><a href="freeView?num=${board.num}&board_num=${board.board_num}
+                           &pageNum=${pageNum}">
+                                    ${board.subject}</a></td>
+                            <td><c:if test="${not empty board.profile_num}">
+                                <img src="./memberImg/${board.profile_name}" class="profile_image"></c:if>
+                                    ${board.nick}</td>
+                            <td>${board.readcount}</td>
+                            <td>${board.recom}</td>
+                            <td><fmt:formatDate value="${board.reg_date }"
+                                                pattern="yyyy년 MM월 dd일"/></td>
+                        </tr>
+                        <c:set var="no" value="${no-1}"/>
+                    </c:forEach>
+                </c:if>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <form action="freeList">

@@ -22,4 +22,11 @@ public class CounselPaper {
     private int confirmed;
     private String type;
     private String wish_list;
+
+    private String nick;
+    private String animal;
+    private String name;
+
+    //임시 State
+    private int state;
 }

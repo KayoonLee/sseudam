@@ -5,250 +5,30 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>
-    <title>Title</title>
-
-    <!-- Vendor CSS Files -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z
-    <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="vendor/quill/quill.snow.css" rel="stylesheet">
-    <link href="vendor/quill/quill.bubble.css" rel="stylesheet">
-    <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="vendor/simple-datatables/style.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-
+<%@ include file="../navigator_footer/member_header.jsp" %>
 
 </head>
 <body>
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
-
-    <div class="d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-            <img src="images/muzik5.jpg">
-            <span class="d-none d-lg-block">쓰담</span>
-        </a>
-
-        <i class="bi bi-list toggle-sidebar-btn"></i>
-
-    </div><!-- End Logo -->
-
-
-    <nav class="header-nav ms-auto">
-        <ul class="d-flex align-items-center">
-            <li class="nav-item dropdown">
-                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                    <i class="bi bi-bell"></i>
-                    <span class="badge bg-primary badge-number">4</span>
-                </a><!-- End Notification Icon -->
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                    <li class="dropdown-header">
-                        You have 4 new notifications
-                        <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="notification-item">
-                        <i class="bi bi-exclamation-circle text-warning"></i>
-                        <div>
-                            <h4>Lorem Ipsum</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>30 min. ago</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="notification-item">
-                        <i class="bi bi-x-circle text-danger"></i>
-                        <div>
-                            <h4>Atque rerum nesciunt</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>1 hr. ago</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="notification-item">
-                        <i class="bi bi-check-circle text-success"></i>
-                        <div>
-                            <h4>Sit rerum fuga</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>2 hrs. ago</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li class="notification-item">
-                        <i class="bi bi-info-circle text-primary"></i>
-                        <div>
-                            <h4>Dicta reprehenderit</h4>
-                            <p>Quae dolorem earum veritatis oditseno</p>
-                            <p>4 hrs. ago</p>
-                        </div>
-                    </li>
-
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li class="dropdown-footer">
-                        <a href="#">Show all notifications</a>
-                    </li>
-
-                </ul><!-- End Notification Dropdown Items -->
-
-            </li><!-- End Notification Nav -->
-
-
-
-            <li class="nav-item dropdown pe-3">
-
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-                    <span class="d-none d-md-block dropdown-toggle ps-2">${myModel.nick}</span>
-                </a><!-- End Profile Iamge Icon -->
-
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-                    <li class="dropdown-header">
-                        <h6>Kevin Anderson</h6>
-                        <span>Web Designer</span>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-person"></i>
-                            <span>My Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                            <i class="bi bi-gear"></i>
-                            <span>Account Settings</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-                            <i class="bi bi-question-circle"></i>
-                            <span>Need Help?</span>
-                        </a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-
-                    <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
-                            <i class="bi bi-box-arrow-right"></i>
-                            <span>Sign Out</span>
-                        </a>
-                    </li>
-
-                </ul><!-- End Profile Dropdown Items -->
-            </li><!-- End Profile Nav -->
-
-        </ul>
-    </nav><!-- End Icons Navigation -->
-
-</header><!-- End Header -->
+<%@ include file="../navigator_footer/counselor_navigator.jsp" %>
 
 <!-- ======= Sidebar ======= -->
+<%@ include file="../navigator_footer/member_sidebar.jsp" %>
 
-<aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="memberpage_main">
-                <i class="bi bi-menu-button-wide"></i>
-                <span>나의 프로필</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="memberpage_pwUpdateForm">
-                        <i class="bi bi-circle"></i><span>비밀번호 변경</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberpage_mypet">
-                <i class="bi bi-balloon"></i><span>동물페이지</span>
-            </a>
 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="memberpage_mypost">
-                        <i class="bi bi-circle"></i><span>내가 쓴 글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberpage_myreply">
-                        <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberpage_mylike">
-                        <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberpage_mypaper">
-                        <i class="bi bi-circle"></i><span>상담신청내역</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Components Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberpage_mycounselor">
-                <i class="bi bi-grid"></i>
-                <span>즐겨찾는 상담사</span>
-            </a>
-        </li>
+    <main id="main" class="main">
+        <div class="pagetitle">
+            <h1>Profile</h1>
+            <nav>
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item">Users</li>
+                    <li class="breadcrumb-item active">Profile</li>
+                </ol>
+            </nav>
+        </div><!-- End Page Title -->
 
-    </ul>
-</aside>
-
-<main id="main" class="main">
-    <div class="pagetitle">
-        <h1>Profile</h1>
-        <nav>
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item">Users</li>
-                <li class="breadcrumb-item active">Profile</li>
-            </ol>
-        </nav>
-    </div><!-- End Page Title -->
-    <form action="memberpage_updateform" enctype="multipart/form-data" method="post" attribute>
-
-        <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
+<form enctype="multipart/form-data" method="post" attribute>
         <section class="section profile">
             <div class="row" align="center">
                 <div class="col-xl-8">
@@ -258,7 +38,7 @@
                             <ul class="nav nav-tabs nav-tabs-bordered">
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-overview"
-                                            onClick="location.href='memberpage_main'">프로필</button>
+                                    onClick="location.href='memberpage_main'">프로필</button>
                                 </li>
 
                                 <!--<li class="nav-item">
@@ -271,27 +51,27 @@
 
                                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
                                     <br>
-                                    <div class="card">
-                                        <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
+                                   <div class="card">
+                                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
-                                            <c:if test="${!empty myModel.profile_num}">
-                                                <img src="./memberImg/${myModel.profile_name}" class="rounded-circle">
-                                            </c:if>
+                                        <c:if test="${!empty myModel.profile_num}">
+                                            <img src="./memberImg/${myModel.profile_name}" class="rounded-circle">
+                                        </c:if>
 
-                                            <c:if test="${empty myModel.profile_num}">
-                                                <img src="./images/memberdefault.png" class="rounded-circle">
-                                            </c:if>
+                                        <c:if test="${empty myModel.profile_num}">
+                                             <img src="./images/memberdefault.png" class="rounded-circle">
+                                        </c:if>
 
-                                            <h2>${myModel.name}</h2>
-                                            <h3>ㅎㅅㅎ</h3>
-                                            <div class="social-links mt-2">
-                                                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                                                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                                                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                                                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-                                            </div>
+                                       <h2>${myModel.name}</h2>
+
+                                         <div class="social-links mt-2">
+                                          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                                          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                                          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                                          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                                         </div>
                                         </div>
-                                    </div>
+                                   </div>
 
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label ">이름</div>
@@ -323,10 +103,13 @@
                                         <div class="col-lg-9 col-md-8">${myModel.join_date}</div>
                                     </div>
                                 </div>
-                                <div class="text-center">
-                                    <button type="submit" class="btn btn-primary">개인정보 수정</button>
+                             <div class="text-center">
+                                 <button type="button" class="btn btn-primary"
+                                  onclick="location='memberpage_updateform?email=${myModel.email}'">개인정보 수정</button>
+                                 <button type="button" class="btn btn-danger"
+                                 onclick="location='memberpage_deleteform?email=${myModel.email}'">탈퇴하기</button>
 
-                                </div>
+                             </div>
 
 
                             </div><!-- End Bordered Tabs -->
@@ -337,8 +120,8 @@
                 </div>
             </div>
         </section>
-    </form>
-</main><!-- End #main -->
+</form>
+    </main><!-- End #main -->
 
 </body>
 </html>

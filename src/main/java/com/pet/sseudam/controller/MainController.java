@@ -1,43 +1,21 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.model.Visitor;
-import com.pet.sseudam.service.MemberService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pet.sseudam.model.Member;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class MainController {
 
-    @Autowired
-    private MemberService service;
-
-
     // 메인페이지
-    @GetMapping("main_page")
-    public String mainPage(HttpServletRequest request,Visitor visitor) {
+    @RequestMapping("main_page")
+    public String mainPage() {
         System.out.println("메인페이지 진입");
-
-        String session_id = request.getSession().getId();
-        String ip_addr = request.getRemoteAddr();
-        System.out.println("session_id : " +session_id);
-        System.out.println("ip_addr : " +ip_addr);
-
-        visitor.setSession_id(session_id);
-        visitor.setIp_addr(ip_addr);
-
-        int count = service.visitCheck(visitor);
-        System.out.println("방문자 체크 여부 : " + count);
-
-        if (count == 0) {
-            int result = service.visitInsert(visitor);
-            System.out.println("방문자 더하기 여부 : " + result);
-        }
-
         return "mainPage/main_page";
     }
 
@@ -65,6 +43,14 @@ public class MainController {
         return "login/login_form";
     }
 
+
+    //상담 소개(쓰담쓰담 소개)
+    @RequestMapping("intro_counsel")
+    public String intro_counsel(){
+        System.out.println("쓰담쓰담소개 진입");
+
+        return "mainPage/intro_counsel";
+    }
 
 
 

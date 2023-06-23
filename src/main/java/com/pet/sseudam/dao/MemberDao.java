@@ -1,8 +1,6 @@
 package com.pet.sseudam.dao;
 
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.Visitor;
-import com.pet.sseudam.model.ProfileBean;
+import com.pet.sseudam.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -64,4 +62,18 @@ public interface MemberDao {
     int visitCheck(Visitor visitor);
 
     int visitInsert(Visitor visitor);
+
+    List<CounselPaper> requestList(int m_id);
+
+    List<FreeBean> mypostList(int m_id);
+
+    List<ReFreeBean> myreplyList(int m_id);
+
+    List<FreeBean> mylikeList(int m_id);
+
+    int deletemember(String email);
+
+    List<Member> counselorList(Member member);
+
+    List<CounselPaper> mypaperList(int m_id);
 }

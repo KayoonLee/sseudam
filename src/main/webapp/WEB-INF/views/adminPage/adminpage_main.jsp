@@ -68,6 +68,7 @@
             });
         </script>
     --%>
+    <link href="css/counselorTest.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -98,6 +99,7 @@
     <a href="adminTest2">calendar test1</a>
     <a href="adminTest3">calendar test2</a>
     <a href="adminTest4">상담사 예약 테스트</a>
+    <a href="adminTest5">상담사 예약 테스트2</a>
 
     <div class="pagetitle">
         <h1>회원수 통계</h1>
