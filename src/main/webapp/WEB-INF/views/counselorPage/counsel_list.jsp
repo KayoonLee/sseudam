@@ -28,7 +28,7 @@
                                 <div>
                                     <div class="card">
                                         <c:if test="${!empty counsel.profile_num}">
-                                                <img class="card-img-top" src="images/${counsel.profile_name}">
+                                                <img class="card-img-top" src="counselorImg/${counsel.profile_name}">
 
                                         </c:if>
                                         <c:if test="${empty counsel.profile_num}">

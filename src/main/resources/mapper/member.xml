@@ -107,6 +107,15 @@
         update member set passwd=#{passwd}, reset='n' where email=#{email}
     </update>
 
+    <!--상담사 목록 출력-->
+    <select id="counselorList" parameterType="member" resultType="member">
+        SELECT m.*, c.license, c.career, ip.profile_name
+        FROM member AS m
+        JOIN counselor AS c ON m.m_id = c.c_id
+        JOIN img_profile AS ip ON m.profile_num = ip.profile_num
+        WHERE m.identifier = 2 AND m.state = 1;
+
+    </select>
 
 
     <!--    첨부파일 번호 -->
