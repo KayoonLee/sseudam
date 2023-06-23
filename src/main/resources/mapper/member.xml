@@ -159,6 +159,17 @@
         WHERE c.c_id = #{m_id}
     </select>
 
+    <!-- 상담사의 상담기록서리스트-->
+    <select id="recordList" parameterType="int" resultType="CounselRecord">
+        select c.*, m.*, p.*
+        from counsel_record c
+            join member m on m.m_id = c.m_id
+            join pet p on p.p_id=c.p_id
+        where c.c_id =#{m_id}
+    </select>
+
+
+
     <!-- 일반회원의 내가 쓴 글-->
     <select id="mypostList" parameterType="int" resultType="fboard">
         select b.*, m.nick from board b join member m on m.m_id=b.m_id where b.m_id=#{m_id}
@@ -166,8 +177,7 @@
 
     <!-- 일반회원의 내가 쓴 댓글-->
     <select id="myreplyList" parameterType="int" resultType="fboard">
-        SELECT distinct board.*
-        FROM board
+        SELECT distinct board.*, member.* from board
                  JOIN board_reply ON board.board_num = board_reply.board_num
                  JOIN member ON board.m_id = member.m_id
         where board_reply.m_id =#{m_id}
@@ -175,7 +185,7 @@
 
     <!-- 일반회원의 추천한 글-->
     <select id="mylikeList" parameterType="int" resultType="fboard">
-        select board.*
+        select board.*, member.*
         from board
             join board_recom on board.board_num = board_recom.board_num
             join member on board.m_id = member.m_id

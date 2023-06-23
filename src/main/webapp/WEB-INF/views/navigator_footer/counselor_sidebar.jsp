@@ -15,6 +15,11 @@
                 </a>
               <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                  <li>
+                   <a href="counselorpage_main">
+                      <i class="bi bi-circle"></i><span>나의 프로필 수정</span>
+                   </a>
+                 </li>
+                 <li>
                    <a href="counselorpage_PwUpdateForm" >
                       <i class="bi bi-circle"></i><span>비밀번호 변경</span>
                    </a>
@@ -24,6 +29,11 @@
             <li class="nav-item">
                 <a class="nav-link " href="counselorpage_request">
                     <i class="bi bi-balloon"></i><span>상담요청목록</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="counselorpage_record">
+                    <i class="bi bi-balloon"></i><span>상담기록서</span>
                 </a>
             </li>
             <li class="nav-item">

@@ -22,4 +22,6 @@ public class CounselRecord {
     private String consult_status;   //상담현황
     private String etc; //특이사항
 
+    private String animal;
+
 }
