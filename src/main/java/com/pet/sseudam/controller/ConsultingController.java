@@ -80,7 +80,7 @@ public class ConsultingController {
         }
 
         model.addAttribute("reservation_time", reservation_time);
-        model.addAttribute("nowtime",con.now_time());
+        model.addAttribute("nowtime", con.now_time());
         System.out.println(con.now_time());
 
 
@@ -93,7 +93,7 @@ public class ConsultingController {
     public String submit_Insert_Consult(@RequestParam("g_id") int g_id,
                                         @RequestParam("c_id") int c_id,
                                         @RequestParam("request_times") String request_time,
-                                        
+
                                         Model model,
 
                                         CounselPaper counselpaper) {
@@ -112,16 +112,16 @@ public class ConsultingController {
         // Request Time 조회용 List
         List<CounselPaper> cTimeList = con.requestTime_list(c_id);
 
-        for(int i = 0; i<cTimeList.size(); i++){
-            if(cTimeList.get(i).equals(request_time)){
+        for (int i = 0; i < cTimeList.size(); i++) {
+            if (cTimeList.get(i).equals(request_time)) {
                 counselpaper.setState(-1);      //  -1 = 중복
-            }else{
+            } else {
                 counselpaper.setState(1);       // 1 = 통과
             }
         }
-        
+
         model.addAttribute("state", counselpaper.getState());
-        
+
         counselpaper.setC_id(c_id);
         counselpaper.setM_id(g_id);
         counselpaper.setRequest_time(date);
@@ -133,7 +133,7 @@ public class ConsultingController {
 
     /*상세페이지로 이동 */
     @RequestMapping("get_Consult_Details")
-    public String get_Consult_Details(HttpSession session, Model model , @RequestParam("paper_num") int paper_num)
+    public String get_Consult_Details(HttpSession session, Model model, @RequestParam("paper_num") int paper_num)
     //      @RequestParam("r_num") int r_num)
     {
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 임의값 나중에 삭제해야함.
@@ -220,18 +220,21 @@ public class ConsultingController {
         return "redirect:/get_Consult_Details";
     }
 
+    /*예약서삭제*/
     @RequestMapping("delete_Consult")
     public String delete_Consult(@RequestParam("paper_num") int paper_num) {
         con.delete_consult(paper_num);
         return "consulting/complete_delete_consult";
     }
 
+    /* 상담 수락*/
     @RequestMapping("accept_Consult")
     public String accept_Consult(@RequestParam("paper_num") int paper_num) {
         con.accept_consult(paper_num);
         return "consulting/complete_accept_consult";
     }
 
+    /*기록서 작성 폼으로 */
     @RequestMapping("write_Consulting")
     public String write_Consulting(@RequestParam("paper_num") int paper_num, Model model) {
         /* 해당 상담예약서를 클릭 했을때 paper_num이 넘어옴  상담서에 들어갈껀 동물 이름, 회원 이름,
@@ -251,6 +254,7 @@ public class ConsultingController {
 
         return "consulting/write_consulting";
     }
+
     /*기록서 insert*/
     @RequestMapping("insert_Consulting")
     public String insert_Consulting(@RequestParam("consulting_dates") String consulting_dates,
@@ -278,26 +282,25 @@ public class ConsultingController {
         con.insert_consulting(counselrecord);
 
 
-        return "상담사 마이페이지의 상담사 기록서 모여있는 곳으로";
+        return "redirect:/counselorpage_main";
+        /* 나중에 상담기록서 리스트로 전달할 예정. */
     }
 
     /*상담사 마이페이지에서 기록서 클릭했을 때 */
-    @RequestMapping("상담사 마이페이지에서 클릭했을 때")
+    @RequestMapping("get_Consulting_Details")
     public String get_Consulting_Details(
             @RequestParam("record_num") int record_num,
-            CounselRecord counselrecord,
             Model model
-            ) {
-         counselrecord = con.select_counsel_record(record_num);
-         model.addAttribute("counselrecord",counselrecord);
-
-
-
-
-
-
-
-        return null;
+    ) {
+        CounselRecord counselrecord = con.select_counsel_record(record_num);
+        Member counselor = con.find_general(counselrecord.getC_id());
+        Member gen = con.find_general(counselrecord.getM_id());
+        PetBean pet = con.select_pet(counselrecord.getP_id());
+        model.addAttribute("counselrecord", counselrecord);
+        model.addAttribute("counselor", counselor);
+        model.addAttribute("gen", gen);
+        model.addAttribute("pet", pet);
+        return "consulting/view_consulting";
     }
 
 }
