@@ -166,8 +166,7 @@
 
     <!-- 일반회원의 내가 쓴 댓글-->
     <select id="myreplyList" parameterType="int" resultType="fboard">
-        SELECT distinct board.*
-        FROM board
+        SELECT distinct board.*, member.* from board
                  JOIN board_reply ON board.board_num = board_reply.board_num
                  JOIN member ON board.m_id = member.m_id
         where board_reply.m_id =#{m_id}
@@ -175,7 +174,7 @@
 
     <!-- 일반회원의 추천한 글-->
     <select id="mylikeList" parameterType="int" resultType="fboard">
-        select board.*
+        select board.*, member.*
         from board
             join board_recom on board.board_num = board_recom.board_num
             join member on board.m_id = member.m_id

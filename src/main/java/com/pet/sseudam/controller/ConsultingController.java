@@ -19,6 +19,7 @@ import java.util.List;
 
 @Controller
 public class ConsultingController {
+
     @Autowired
     private ConsultingService con;
     @Autowired
@@ -286,11 +287,12 @@ public class ConsultingController {
         con.insert_consulting(counselrecord);
 
 
-        return "상담사 마이페이지의 상담사 기록서 모여있는 곳으로";
+        return ""; // 상담사 마이페이지의 상담사 기록서 모여있는 곳으로
     }
 
     /*상담사 마이페이지에서 기록서 클릭했을 때 */
-    @RequestMapping("상담사 마이페이지에서 클릭했을 때")
+/*
+    @RequestMapping("") // 상담사 마이페이지에서 클릭했을 때
     public String get_Consulting_Details(
             @RequestParam("record_num") int record_num,
             CounselRecord counselrecord,
@@ -299,13 +301,8 @@ public class ConsultingController {
          counselrecord = con.select_counsel_record(record_num);
          model.addAttribute("counselrecord",counselrecord);
 
-
-
-
-
-
-
         return null;
     }
+*/
 
 }

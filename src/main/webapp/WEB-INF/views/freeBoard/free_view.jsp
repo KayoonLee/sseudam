@@ -98,7 +98,7 @@
                             $("#re_content").val("");
                             $("#files").val("");
                             // $("#previewContainer").innerHTML = '';
-                             document.getElementById("previewContainer").innerHTML = '';
+                            document.getElementById("previewContainer").innerHTML = '';
                             loadReplies(); // 댓글 목록 다시 로드
                         }
                     }

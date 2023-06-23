@@ -9,15 +9,6 @@
     <title>정보 공유 리스트</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Vendor CSS Files -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-
-
     <style>
         /*    * {
                 font-family: 'Title_Medium';

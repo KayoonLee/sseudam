@@ -29,7 +29,6 @@
             }
             return true;
         }
-
     </script>
 
 </head>
@@ -39,6 +38,7 @@
 <%@ include file="../navigator_footer/main_navigator.jsp" %>
 
 <main id="main" class="main">
+
     <div class="container" align="center">
         <div class="row">
             <table>
