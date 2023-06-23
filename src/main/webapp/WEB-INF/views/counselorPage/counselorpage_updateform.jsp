@@ -77,7 +77,7 @@
                   <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">프로필 이미지</label>
                   <div class="col-md-8 col-lg-9">
                     <div id="previewContainer">
-                      <img src="./counselorImg/${myModel.profile_name}" alt="Profile" class="thumbnail" >
+                      <img src="./memberImg/${myModel.profile_name}" alt="Profile" class="thumbnail" >
                     </div>
                     <div class="pt-2">
                       <input type="file" id="imageInput" name="files"

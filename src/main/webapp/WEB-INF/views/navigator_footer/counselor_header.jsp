@@ -3,7 +3,7 @@
 <html>
 <head>
 <title>상담사 마이페이지</title>
-
+<link rel="icon" href="images/logo.png">
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">z

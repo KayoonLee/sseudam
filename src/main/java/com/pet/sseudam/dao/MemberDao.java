@@ -49,7 +49,6 @@ public interface MemberDao {
 
     int myPicUpdate(Member member);
 
-    List<Member> counselor(Member member);
 
     Member checkMem(int m_id);
 
@@ -72,6 +71,10 @@ public interface MemberDao {
     List<FreeBean> mylikeList(int m_id);
 
     int deletemember(String email);
+
+
+
+    List<Member> counselorList(Member member);
 
     List<CounselPaper> mypaperList(int m_id);
 }

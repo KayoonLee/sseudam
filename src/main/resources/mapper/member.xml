@@ -107,6 +107,15 @@
         update member set passwd=#{passwd}, reset='n' where email=#{email}
     </update>
 
+    <!--상담사 목록 출력-->
+    <select id="counselorList" parameterType="member" resultType="member">
+        SELECT m.*, c.license, c.career, ip.profile_name
+        FROM member AS m
+        JOIN counselor AS c ON m.m_id = c.c_id
+        JOIN img_profile AS ip ON m.profile_num = ip.profile_num
+        WHERE m.identifier = 2 AND m.state = 1;
+
+    </select>
 
 
     <!--    첨부파일 번호 -->
@@ -157,8 +166,7 @@
 
     <!-- 일반회원의 내가 쓴 댓글-->
     <select id="myreplyList" parameterType="int" resultType="fboard">
-        SELECT distinct board.*
-        FROM board
+        SELECT distinct board.*, member.* from board
                  JOIN board_reply ON board.board_num = board_reply.board_num
                  JOIN member ON board.m_id = member.m_id
         where board_reply.m_id =#{m_id}
@@ -166,7 +174,7 @@
 
     <!-- 일반회원의 추천한 글-->
     <select id="mylikeList" parameterType="int" resultType="fboard">
-        select board.*
+        select board.*, member.*
         from board
             join board_recom on board.board_num = board_recom.board_num
             join member on board.m_id = member.m_id

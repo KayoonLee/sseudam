@@ -13,9 +13,24 @@
             <span class="d-none d-lg-block">쓰담</span>
         </a>
 
-        <i class="bi bi-list toggle-sidebar-btn"></i>
 
-    </div><!-- End Logo -->
+    </div>
+
+
+    <nav class="header-nav ms-auto">
+        <ul class="d-flex align-items-center">
+            <li class="nav-item dropdown">
+                <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                </a><!-- End Notification Icon -->
+            </li><!-- End Notification Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="logout" >
+                    <span class="d-none d-md-block ">로그아웃</span> &nbsp;&nbsp;&nbsp;
+                </a><!-- End Profile Iamge Icon -->
+            </li><!-- End Profile Nav -->
+        </ul>
+    </nav><!-- End Icons Navigation -->
 
 
 
