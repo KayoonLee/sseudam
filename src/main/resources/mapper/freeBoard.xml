@@ -102,9 +102,11 @@
     </select>
 
     <insert id="fInsert" parameterType="fboard">
-        insert into board (num, subject, category, m_id, content, hashtag, file_num, readcount, reg_date, state) values (
-                                                                                                                            #{num},#{subject},#{category},#{m_id},#{content},#{hashtag,jdbcType=VARCHAR},#{file_num,jdbcType=VARCHAR},
-                                                                                                                            0,sysdate(),1)
+        insert into board
+        (num, subject, category, m_id, content, hashtag, file_num, readcount, reg_date, state)
+        values (#{num}, #{subject}, #{category}, #{m_id}, #{content}, #{hashtag,jdbcType=VARCHAR},
+                #{file_num,jdbcType=VARCHAR},
+                0, sysdate(), 1)
     </insert>
 
     <select id="fView" parameterType="fboard" resultType="fboard">

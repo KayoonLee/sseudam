@@ -1,7 +1,6 @@
 package com.pet.sseudam.dao;
 
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.ProfileBean;
+import com.pet.sseudam.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -20,7 +19,6 @@ public interface MemberDao {
     int getNumber(Member member);
 
     Member searchEmail(Member member);
-
 
     Member searchPwd(Member member);
 
@@ -52,7 +50,7 @@ public interface MemberDao {
     int myPicUpdate(Member member);
 
 
-
+    Member checkMem(int m_id);
 
     int memProfileAdd(Member member);
 
@@ -60,7 +58,19 @@ public interface MemberDao {
 
     Member checkFilenum(String email);
 
-    List<Member> counselorList(Member member);
+    int visitCheck(Visitor visitor);
+
+    int visitInsert(Visitor visitor);
+
+    List<CounselPaper> requestList(int m_id);
+
+    List<FreeBean> mypostList(int m_id);
+
+    List<ReFreeBean> myreplyList(int m_id);
+
+    List<FreeBean> mylikeList(int m_id);
 
     int deletemember(String email);
+
+    List<Member> counselorList(Member member);
 }

@@ -3,141 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html lang="en">
+<!doctype html>
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>SSEUDAM</title>
-    <!-- favicon logo-->
-    <link rel="icon" href="images/logo.png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- animate CSS -->
-    <link rel="stylesheet" href="css/animate.css">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <!-- themify CSS -->
-    <link rel="stylesheet" href="css/themify-icons.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="css/flaticon.css">
-    <!-- fontawesome CSS -->
-    <link rel="stylesheet" href="css/all.min.css">
-    <!-- magnific CSS -->
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/gijgo.min.css">
-    <!-- niceselect CSS -->
-    <link rel="stylesheet" href="css/nice-select.css">
-    <!-- slick CSS -->
-    <link rel="stylesheet" href="css/slick.css">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="css/style.css">
+       <%@ include file="../navigator_footer/main_header.jsp" %>
 </head>
 
 <body>
-   <!--::header part(헤더 시작) start::-->
-   <header class="main_menu">
-        <div class="sub_menu">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-sm-12 col-md-6">
-                        <div class="sub_menu_right_content">
-
-                        <span>Welcome To SSEUDAM</span>
-
-
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-sm-12 col-md-6">
-                        <div class="sub_menu_social_icon">
-
-                        <c:if test="${empty member.m_id and empty admin.a_email}">
-                            <a href="separate_join">회원가입</a>
-                            <a href="login_form">로그인</a>
-                        </c:if>
-
-                        <c:if test="${!empty member.m_id or !empty admin.a_email}">
-                            <a href="logout">로그아웃</a>
-                        </c:if>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="main_menu_iner">
-            <div class="container">
-                <div class="row align-items-center ">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="main_page"> <img src="images/mainlogo.png" width=100 height=50> </a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
-
-                            <div class="collapse navbar-collapse main-menu-item justify-content-center"
-                                id="navbarSupportedContent">
-                                <ul class="navbar-nav">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="main_page">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="intro_counsel">쓰담쓰담이란</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="counsel_list">상담사 소개</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="hasAnimal">상담신청</a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
-                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            커뮤니티
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="freeList">자유게시판</a>
-                                            <a class="dropdown-item" href="single-blog.html">고객 후기</a>
-                                        </div>
-                                    </li>
-                                   <c:if test="${!empty member.m_id or !empty admin.a_email}">
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
-                                            role="button" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            My Page
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="navbarDropdown_1" href="#">
-
-                                        <c:if test="${member.identifier == 1}">
-                                            <a class="dropdown-item" href="memberpage_main">일반회원 마이페이지</a>
-                                        </c:if>
-                                        <c:if test="${member.identifier == 2}">
-                                            <a class="dropdown-item" href="counselorpage_main">상담사 마이페이지</a>
-                                        </c:if>
-                                        <c:if test="${!empty admin.a_email}">
-                                            <a class="dropdown-item" href="adminMain">관리자 페이지</a>
-                                        </c:if>
-                                        </div>
-                                    </li>
-                                  </c:if>
-                                </ul>
-                            </div>
-                            <c:if test="${!empty member.m_id}">
-                            <a href="#" class="btn_1 d-none d-lg-block">${member.nick} 님</a>
-                            </c:if>
-                            <c:if test="${!empty admin.a_email}">
-                            <a href="#" class="btn_1 d-none d-lg-block">${admin.name} 님</a>
-                             </c:if>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Header part(헤더 끝) end-->
+   <!--::네이게이션 start::-->
+    <%@ include file="../navigator_footer/main_navigator.jsp" %>
+    <!--네이게이션 끝 end-->
 
     <!-- banner part start-->
     <section class="banner_part">
@@ -348,23 +222,22 @@
                 <div class="col-xl-8">
                     <div class="section_tittle">
                         <h2>What they said</h2>
-                        <h2>쓰담쓰담 상담사들의 한 마디</h2>
+                        <h2>쓰담쓰담의 상담사</h2>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-lg-10">
                     <div>
-                        <div>
-                        <img src="./images/counsel1.jpg" width="250" height="250">
-                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-                        <img src="./images/counsel2.jpg" width="250" height="250">
-                        &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
-                        <img src="./images/counsel3.jpg" width="250" height="250">
+                      <div>
+                        <img src="images/counsel_icon1.jpg" width="250" height="250">
+                           &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+                        <img src="images/counsel_icon2.jpg" width="250" height="250">
+                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                        <img src="images/counsel_icon3.jpg" width="250" height="250">
+                        <br>
+                        <br>
 
-                        </div>
-                        <br>
-                        <br>
                             <p>"나의 진심과 지식으로 반려동물과 주인을 위해 노력하자"</p>
                             <h5> - Allen Miller</h5>
                         <div>
@@ -428,79 +301,8 @@
     <!--::industries end::-->
 
 
-
-
-
-
     <!-- footer part start-->
-    <footer class="footer-area">
-        <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-sm-6 col-md-5">
-                    <div class="single-footer-widget">
-                        <h4>Discover Destination</h4>
-                        <ul>
-                            <li><a href="#">Miami, USA</a></li>
-                            <li><a href="#">California, USA</a></li>
-                            <li><a href="#">London, UK</a></li>
-                            <li><a href="#">Saintmartine, Bangladesh</a></li>
-                            <li><a href="#">Mount Everast, India</a></li>
-                            <li><a href="#">Sidney, Australia</a></li>
-                            <li><a href="#">Miami, USA</a></li>
-                            <li><a href="#">California, USA</a></li>
-                            <li><a href="#">London, UK</a></li>
-                            <li><a href="#">Saintmartine, Bangladesh</a></li>
-                            <li><a href="#">Mount Everast, India</a></li>
-                            <li><a href="#">Sidney, Australia</a></li>
-                        </ul>
-
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="single-footer-widget">
-                        <h4>SEARCH!</h4>
-
-                        <div class="form-wrap" id="mc_embed_signup">
-                            <form target="_blank"
-                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                method="get" class="form-inline">
-                                <input class="form-control" name="EMAIL" placeholder="검색해보세요!"
-                                    onfocus="this.placeholder = '검색해보세요!'" onblur="this.placeholder = '검색해보세요! '"
-                                   type="email">
-                                <button class="click-btn btn btn-default text-uppercase"> <i class="far fa-paper-plane"></i>
-                                </button>
-                                <div style="position: absolute; left: -5000px;">
-                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
-                                        type="text">
-                                </div>
-
-                                <div class="info"></div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-3">
-                    <div class="single-footer-widget footer_icon">
-                        <h4>Contact Us</h4>
-                        <p>서울특별시 마포구 신촌로 176</p>
-                        <span>sseudam@sseudam.com</span>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="copyright_part_text text-center">
-                        <p class="footer-text m-0">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> SSEUDAM
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <%@ include file="../navigator_footer/main_footer.jsp" %>
     <!-- footer part end-->
 
     <!-- jquery plugins here-->

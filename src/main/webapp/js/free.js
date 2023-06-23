@@ -39,7 +39,7 @@ function free_check() {
                 return false;
             }
             if (file.size > maxSize) {
-                alert("파일 사이즈는 5MB까지 가능합니다.");
+                alert("파일 사이즈는 1MB까지 가능합니다.");
                 return false;
             }
         }
