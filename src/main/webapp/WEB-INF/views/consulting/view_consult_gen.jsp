@@ -41,8 +41,8 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">회원이름</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" value="${member.name}" disabled>
-                    <input type="hidden" name="g_id" value="${member.m_id}">
+                    <input type="text" class="form-control" id="name" name="name" value="${genconsult.name}" disabled>
+                    <input type="hidden" name="g_id" value="${genconsult.m_id}">
                 </div>
             </div>
             <div class="row mb-3">

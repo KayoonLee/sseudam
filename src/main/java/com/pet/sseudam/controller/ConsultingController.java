@@ -134,32 +134,35 @@ public class ConsultingController {
     /*상세페이지로 이동 */
     @RequestMapping("get_Consult_Details")
     public String get_Consult_Details(HttpSession session, Model model , @RequestParam("paper_num") int paper_num)
-    //    @RequestParam("paper_num") int paper_num,
     //      @RequestParam("r_num") int r_num)
     {
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 임의값 나중에 삭제해야함.
         int r_num = 4;
 
         //해당 일반 회원 검색
-        Member member = (Member) session.getAttribute("member");
+
+
+        Member sessionmember = (Member) session.getAttribute("member");
         CounselPaper counselpaper = con.find_consult(paper_num);
+        Member member = con.find_general(counselpaper.getM_id());
         //해당 상담사 회원 정보 검색
         Member counselor = con.find_general(counselpaper.getC_id());
-
+        System.out.println(member);
+        System.out.println(counselor);
         //해당 펫 조회
         PetBean pet = con.select_pet(counselpaper.getP_id());
-        if (member.getIdentifier().equals("1")) {  //일반 회원
+        if (sessionmember.getIdentifier().equals("1")) {  //일반 회원
             model.addAttribute("paper_num", paper_num);
             model.addAttribute("r_num", r_num);
-            model.addAttribute("member", member);
+            model.addAttribute("genconsult", member);
             model.addAttribute("counselor", counselor);
             model.addAttribute("counselpaper", counselpaper);
             model.addAttribute("pet", pet);
             return "consulting/view_consult_gen";
-        } else if (member.getIdentifier().equals("2")) {  //상담회원
+        } else if (sessionmember.getIdentifier().equals("2")) {  //상담회원
             model.addAttribute("paper_num", paper_num);
             model.addAttribute("r_num", r_num);
-            model.addAttribute("member", member);
+            model.addAttribute("genconsult", member);
             model.addAttribute("counselor", counselor);
             model.addAttribute("counselpaper", counselpaper);
             model.addAttribute("pet", pet);
@@ -185,7 +188,7 @@ public class ConsultingController {
         List<PetBean> pet_list = con.find_pet(member.getM_id());
 
 
-        model.addAttribute("member", member);
+        model.addAttribute("gen", member);
         model.addAttribute("counselor", counselor);
         model.addAttribute("counselpaper", counselpaper);
         model.addAttribute("pet", pet);
@@ -243,7 +246,7 @@ public class ConsultingController {
         model.addAttribute("time", time);
         model.addAttribute("counselor", counselor);
         model.addAttribute("counselpaper", counselpaper);
-        model.addAttribute("member", member);
+        model.addAttribute("gen", member);
         model.addAttribute("pet", pet);
 
         return "consulting/write_consulting";
