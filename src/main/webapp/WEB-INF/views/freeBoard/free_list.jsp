@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="../header/header.jsp" %>
 
 <!DOCTYPE html>
@@ -25,38 +24,119 @@
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/main_header.jsp" %>
+
+    <script>
+        function setActiveButton(buttonId) {
+            // 현재 활성화된 버튼의 active 클래스 제거
+            var activeButton = document.querySelector('.nav-link.active');
+            activeButton.classList.remove('active');
+            activeButton.setAttribute('aria-selected', 'false');
+
+            // 선택한 버튼에 active 클래스 추가
+            var selectedButton = document.getElementById(buttonId);
+            selectedButton.classList.add('active');
+            selectedButton.setAttribute('aria-selected', 'true');
+        }
+
+    </script>
+
+
+    <script>
+        function handleOptionChange(selectElement) {
+            var selectedValue = selectElement.value;
+            var num = "${num}"; // 적절한 값으로 대체해야 함
+            var category = "${category}"; // 적절한 값으로 대체해야 함
+
+            // 선택된 값에 따라 페이지 이동 처리
+            if (selectedValue === "latest") {
+                location.href = `freeList?num=${num}&category=${category}&sort=latest`;
+            } else if (selectedValue === "readcount") {
+                location.href = `freeList?num=${num}&category=${category}&sort=readcount`;
+            } else if (selectedValue === "recom") {
+                location.href = `freeList?num=${num}&category=${category}&sort=recom`;
+            }
+        }
+    </script>
+
+
 </head>
 <body>
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 
 <div>
     <h2 class="text-primary" align="center">게시판 목록</h2>
-    <div>
-        <div style="text-align:left; margin-left: 2em"> 총 <b>${total }</b>개의 글이 있습니다!</div>
-        <div class="btn-group">
-            <button type="button" class="btn btn-outline-success"
-                    onClick="location.href='freeList?num=${num}&category=${category}'">최신순
-            </button>
-            <button type="button" class="btn btn-outline-success" onClick=
-                    "location.href='freeList?num=${num}&category=${category}&sort=readcount'">조회순
-            </button>
-            <button type="button" class="btn btn-outline-success" onClick=
-                    "location.href='freeList?num=${num}&category=${category}&sort=recom'">추천순
-            </button>
-        </div>
-    </div>
-    <div>
-        <ul>
-            <li><a href="freeList?num=${num}&category=0">전체</a></li>
-            <li><a href="freeList?num=${num}&category=1">자유</a></li>
-            <li><a href="freeList?num=${num}&category=2">질문</a></li>
-            <li><a href="freeList?num=${num}&category=3">토론</a></li>
-        </ul>
-    </div>
+
     <p></p>
 
     <div class="card" style="margin:50px">
-        <div class="card-body" >
-            <div class="card-title" align="center" >자유게시판</div>
+        <div class="card-body">
+            <br>
+            <div>
+                <div style="text-align:left; margin-left: 2em"> 총 <b>${total }</b>개의 글이 있습니다!</div>
+            </div>
+            <br>
+            <div class="row mb-3">
+                <div class="col-2">
+                    <select class="form-select" aria-label="Default select example" onchange="handleOptionChange(this)">
+                        <option value="latest">최신순</option>
+                        <option value="readcount">조회순</option>
+                        <option value="recom">추천순</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+
+            <div class="d-flex justify-content-center">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-home-button" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                aria-selected="true"
+                                onclick="setActiveButton('pills-home-button'); location.href='freeList?num=${num}&category=0'">
+                            전체
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-profile-button" data-bs-toggle="pill"
+                                data-bs-target="#pills-free" type="button" role="tab" aria-controls="pills-free"
+                                aria-selected="false"
+                                onclick="setActiveButton('pills-profile-button'); location.href='freeList?num=${num}&category=1'">
+                            자유
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-contact-button" data-bs-toggle="pill"
+                                data-bs-target="#pills-question" type="button" role="tab" aria-controls="pills-question"
+                                aria-selected="false"
+                                onclick="setActiveButton('pills-contact-button'); location.href='freeList?num=${num}&category=2'">
+                            질문
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="pills-debate-button" data-bs-toggle="pill"
+                                data-bs-target="#pills-talk" type="button" role="tab" aria-controls="pills-talk"
+                                aria-selected="false"
+                                onclick="setActiveButton('pills-debate-button'); location.href='freeList?num=${num}&category=3'">
+                            토론
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <c:if test="${!empty member.m_id }">
+                <div align="right">
+                    <button type="button" class="btn btn-outline-primary" onclick="location.href='freeInsertForm'">글작성
+                    </button>
+                </div>
+                <br>
+            </c:if>
+
 
             <!-- Table with hoverable rows -->
             <table class="table table-hover">
@@ -101,7 +181,7 @@
         </div>
     </div>
 
-    <form action="freeList">
+    <form action="freeList" align="center">
         <input type="hidden" name="num" value="${num}">
         <input type="hidden" name="category" value="${category}">
         <select name="search">
@@ -182,14 +262,12 @@
             </ul>
         </nav>
     </c:if>
+    <br>
 
-    <c:if test="${!empty member.m_id }">
-        <div align="center">
-            <a href="freeInsertForm">글 작성입니다</a>
-        </div>
-    </c:if>
+
 </div>
 </div>
-
+<!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 </body>
 </html>
