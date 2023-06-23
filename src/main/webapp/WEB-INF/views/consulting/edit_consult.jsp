@@ -51,8 +51,8 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">회원 이름</label>
                 <div class="col-sm-10">
-                    <input type="text" id="name" name="name" class="form-control" value="${member.name}" readonly>
-                    <input type="hidden" name="g_id" value="${member.m_id}">
+                    <input type="text" id="name" name="name" class="form-control" value="${gen.name}" readonly>
+                    <input type="hidden" name="g_id" value="${gen.m_id}">
                 </div>
             </div>
             <div class="row mb-3">
