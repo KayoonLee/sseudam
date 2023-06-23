@@ -6,6 +6,9 @@
 <!doctype html>
 <head>
     <%@ include file="../navigator_footer/main_header.jsp" %>
+
+    <%-- 유효성 검사 세욱--%>
+    <script src="./js/free.js"></script>
 </head>
 
 <body>
@@ -22,7 +25,8 @@
                     <div class="banner_text_iner">
                         <h1>SSEUDAM</h1>
                         <p>쓰담쓰담</p>
-                        <a href="#" class="btn_1">상담신청하기</a>
+                        <a onclick="select_counselor(${member.identifier})"
+                           href="#" class="btn_1">상담신청하기</a>
                     </div>
                 </div>
             </div>

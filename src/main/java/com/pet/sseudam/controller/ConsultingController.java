@@ -2,6 +2,7 @@ package com.pet.sseudam.controller;
 
 import com.pet.sseudam.model.*;
 import com.pet.sseudam.service.ConsultingService;
+import com.pet.sseudam.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +21,8 @@ import java.util.List;
 public class ConsultingController {
     @Autowired
     private ConsultingService con;
+    @Autowired
+    private MemberService ms;
 
     /*등록된 동물이 없을 시 동물 생성으로 이동 */
     @RequestMapping("hasAnimal")
@@ -36,14 +39,20 @@ public class ConsultingController {
         return "redirect:/choose_Counselor";
     }
 
-
+//세욱
+// 상담신청 - 상담사 선택
     /* 상담사 예약으로 이동*/
     @RequestMapping("choose_Counselor")
-    public String choose_Counselor(Model model) {
+    public String choose_Counselor(Model model,Member member) {
         //상담사 이름 model 주입
 
-        List<Member> con_names = con.find_counselor_name();
-        model.addAttribute("con_names", con_names);
+//        List<Member> con_names = con.find_counselor_name();
+//        model.addAttribute("con_names", con_names);
+        List<Member> counselorList = ms.counselorList(member);
+        System.out.println("counselor list:"+counselorList);
+
+        model.addAttribute("counselorList", counselorList);
+
 
         return "consulting/choose_counselor";
     }
@@ -51,7 +60,7 @@ public class ConsultingController {
     /* 상담사 예약 시간으로 이동*/
     @RequestMapping("choose_Consult_Time")
     public String choose_Consult_Time(HttpSession session, Model model,
-                                      @RequestParam("con_names") int con_id) {
+                                      @RequestParam("m_id") int con_id) {
         /* 받아온 상담사(member table name)이름과 구분 번호 일치한 c_id 찾는다.
             c_id의 상담예약서 request_time 값을 찾아낸다.
             세션에 로그인한 회원의 g_id의 상담예약서 request_time 값을 찾아낸다.
@@ -171,7 +180,7 @@ public class ConsultingController {
         return null;
     }
 
-    /* 수정페이지로 이동(일반회원) */
+    /* 수정페이지로 이동(일반회원) */ // 세욱 수정
     @RequestMapping("edit_Consult")
     public String edit_Consult(@RequestParam("paper_num") int paper_num,
                                Model model) {
@@ -192,7 +201,7 @@ public class ConsultingController {
         model.addAttribute("pet_list", pet_list);
 
 
-        return "redirect:update_Consult";
+        return "consulting/edit_consult";
     }
 
     /* 수정페이지 업데이트 */
@@ -201,6 +210,8 @@ public class ConsultingController {
                                  @RequestParam("g_id") int g_id,
                                  @RequestParam("request_times") String request_time,
                                  CounselPaper counselpaper) {
+        System.out.println("update_Consult 진입");
+        
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         Date date = null;
         try {

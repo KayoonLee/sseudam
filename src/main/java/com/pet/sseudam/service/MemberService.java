@@ -53,7 +53,7 @@ public interface MemberService{
 
 
 //    Member profileAfter(int m_id);
-
+// 접속자수 count
     int visitCheck(Visitor visitor);
 
     int visitInsert(Visitor visitor);

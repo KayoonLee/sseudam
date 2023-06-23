@@ -52,3 +52,14 @@ function report_check(){
         return false;
     }
 }
+
+function select_counselor(identifier){
+    if(identifier == '' || identifier == 'null'|| identifier == null){
+        alert("일반 회원으로 로그인해 주세요");
+        return false;
+    }else if(identifier == 2){
+        alert("일반 회원만 상담신청이 가능합니다");
+        return false;
+    }
+    location.href = "hasAnimal";
+}
