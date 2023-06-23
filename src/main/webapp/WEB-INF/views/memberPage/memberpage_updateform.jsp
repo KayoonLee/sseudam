@@ -1,28 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: 82108
-  Date: 2023-06-13
-  Time: 오후 7:58
-  To change this template use File | Settings | File Templates.
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>
-  <title>Title</title>
-
-  <!-- Vendor CSS Files -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="css/tab" rel="stylesheet">
-  <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <link href="css/member.css" rel="stylesheet">
+<%@ include file="../navigator_footer/member_header.jsp" %>
   <script>
     // 이미지 업로드를 위한 JavaScript 함수
     function uploadImage() {
@@ -47,14 +29,6 @@
       }
     };
 
-    function deleteImage(){
-        $("#imageInput").val("");
-    }
-
-
-
-
-
 
   </script>
   <style type="text/css">
@@ -74,218 +48,20 @@
 </head>
 <body>
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top d-flex align-items-center">
 
-  <div class="d-flex align-items-center justify-content-between">
-    <a href="#" class="logo d-flex align-items-center">
-      <img src="images/muzik5.jpg" alt="">
-      <span class="d-none d-lg-block">쓰담</span>
-    </a>
-    <i class="bi bi-list toggle-sidebar-btn"></i>
-  </div><!-- End Logo -->
-
-
-  <nav class="header-nav ms-auto">
-    <ul class="d-flex align-items-center">
-      <li class="nav-item dropdown">
-        <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-          <i class="bi bi-bell"></i>
-          <span class="badge bg-primary badge-number">4</span>
-        </a><!-- End Notification Icon -->
-
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-          <li class="dropdown-header">
-            You have 4 new notifications
-            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li class="notification-item">
-            <i class="bi bi-exclamation-circle text-warning"></i>
-            <div>
-              <h4>Lorem Ipsum</h4>
-              <p>Quae dolorem earum veritatis oditseno</p>
-              <p>30 min. ago</p>
-            </div>
-          </li>
-
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li class="notification-item">
-            <i class="bi bi-x-circle text-danger"></i>
-            <div>
-              <h4>Atque rerum nesciunt</h4>
-              <p>Quae dolorem earum veritatis oditseno</p>
-              <p>1 hr. ago</p>
-            </div>
-          </li>
-
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li class="notification-item">
-            <i class="bi bi-check-circle text-success"></i>
-            <div>
-              <h4>Sit rerum fuga</h4>
-              <p>Quae dolorem earum veritatis oditseno</p>
-              <p>2 hrs. ago</p>
-            </div>
-          </li>
-
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li class="notification-item">
-            <i class="bi bi-info-circle text-primary"></i>
-            <div>
-              <h4>Dicta reprehenderit</h4>
-              <p>Quae dolorem earum veritatis oditseno</p>
-              <p>4 hrs. ago</p>
-            </div>
-          </li>
-
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-          <li class="dropdown-footer">
-            <a href="#">Show all notifications</a>
-          </li>
-
-        </ul><!-- End Notification Dropdown Items -->
-
-      </li><!-- End Notification Nav -->
-
-
-      <li class="nav-item dropdown pe-3">
-
-        <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-          <span class="d-none d-md-block dropdown-toggle ps-2">${myModel.nick}</span>
-        </a><!-- End Profile Iamge Icon -->
-
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-          <li class="dropdown-header">
-            <h6>Kevin Anderson</h6>
-            <span>Web Designer</span>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-              <i class="bi bi-person"></i>
-              <span>My Profile</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-              <i class="bi bi-gear"></i>
-              <span>Account Settings</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
-              <i class="bi bi-question-circle"></i>
-              <span>Need Help?</span>
-            </a>
-          </li>
-          <li>
-            <hr class="dropdown-divider">
-          </li>
-
-          <li>
-            <a class="dropdown-item d-flex align-items-center" href="#">
-              <i class="bi bi-box-arrow-right"></i>
-              <span>Sign Out</span>
-            </a>
-          </li>
-
-        </ul><!-- End Profile Dropdown Items -->
-      </li><!-- End Profile Nav -->
-
-    </ul>
-  </nav><!-- End Icons Navigation -->
-
-</header><!-- End Header -->
+<%@ include file="../navigator_footer/counselor_navigator.jsp" %>
 
 <!-- ======= Sidebar ======= -->
-<aside id="sidebar" class="sidebar">
-    <ul class="sidebar-nav" id="sidebar-nav">
-        <li class="nav-item">
-            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="memberpage_main">
-                <i class="bi bi-menu-button-wide"></i>
-                <span>나의 프로필</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
-               <li>
-                    <a href="memberpage_pwUpdateForm">
-                       <i class="bi bi-circle"></i><span>비밀번호 변경</span><i class="bi bi-chevron-down ms-auto"></i>
-                    </a>
-               </li>
-            </ul>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberpage_mypet">
-                <i class="bi bi-balloon"></i><span>동물페이지</span>
-            </a>
+<%@ include file="../navigator_footer/member_sidebar.jsp" %>
 
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>나의 활동내역</span><i class="bi bi-chevron-down ms-auto"></i>
-            </a>
-            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-                <li>
-                    <a href="memberpage_mypost">
-                        <i class="bi bi-circle"></i><span>내가 쓴 글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberpage_myreply">
-                        <i class="bi bi-circle"></i><span>내가 쓴 댓글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberpage_mylike">
-                        <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="memberpage_mypaper">
-                        <i class="bi bi-circle"></i><span>상담신청내역</span>
-                    </a>
-                </li>
-            </ul>
-        </li><!-- End Components Nav -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="memberpage_mycounselor">
-                <i class="bi bi-grid"></i>
-                <span>즐겨찾는 상담사</span>
-            </a>
-        </li>
-
-    </ul>
-</aside>
   <main id="main" class="main">
     <div class="pagetitle">
       <h1>내 정보 수정</h1>
       <br>
     </div><!-- End Page Title -->
-    <form action="mypage_update" method="post" enctype="multipart/form-data" attribute>
+
+
+  <form action="mypage_update" class="validation-form" method="post" enctype="multipart/form-data" attribute>
     <input type="hidden" id="profile_num" name="profile_num" value="${myModel.profile_num}">
     <section class="section profile">
         <div class="col-xl-8">
@@ -309,10 +85,7 @@
                       <button type="button" onclick="uploadImage()" class="btn btn-primary btn-sm"
                               title="Upload new profile image"><i class="bi bi-upload"></i>
                       </button>
-                      <%-- 이미지 삭제 하기 --%>
-                      <button type="button" onclick="deleteImage()" class="btn btn-danger btn-sm"
-                              title="Remove my profile image"><i class="bi bi-trash"></i>
-                      </button>
+
 
                     </div>
                   </div>
@@ -387,46 +160,45 @@
       </div>
     </section>
 
-    </form><!-- End Profile Edit Form -->>
+    </form>
   </main>
 
   <script>
-   window.addEventListener('load', () => {
-         const forms = document.getElementsByClassName('validation-form');
+    window.addEventListener('load', () => {
+                const forms = document.getElementsByClassName('validation-form');
 
-         Array.prototype.filter.call(forms, (form) => {
-           form.addEventListener('submit', function (event) {
-             if (form.checkValidity() === false) {
-               event.preventDefault();
-               event.stopPropagation();
-             }
+                Array.prototype.filter.call(forms, (form) => {
+                  form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
 
-             form.classList.add('was-validated');
-           }, false);
-         });
-   }, false);
+                    form.classList.add('was-validated');
+                  }, false);
+                });
+          }, false);
 
-       $( '#tel' ).on( 'focus keyup', function() {
-           var brn = document.getElementById( "tel" ).value;
-               if ( /^010[0-9]{4}[0-9]{4}$/.test( brn ) ) {
-                 document.getElementById( "checkTel" ).innerText = "유효한 휴대전화번호입니다.";
-                 } else {
-                 document.getElementById( "checkTel" ).innerText = "유효하지 않은 휴대전화번호입니다.";
-                 document.getElementById('checkTel').style.color = 'red';
-               }
-        } );
+              $( '#tel' ).on( 'focus keyup', function() {
+                  var brn = document.getElementById( "tel" ).value;
+                      if ( /^010[0-9]{4}[0-9]{4}$/.test( brn ) ) {
+                        document.getElementById( "checkTel" ).innerText = "유효한 휴대전화번호입니다.";
+                        } else {
+                        document.getElementById( "checkTel" ).innerText = "유효하지 않은 휴대전화번호입니다.";
+                        document.getElementById('checkTel').style.color = 'red';
+                      }
+               } );
 
 
-        $( '#birth' ).on( 'focus keyup', function() {
-           var brn = document.getElementById( "birth" ).value;
-               if ( /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/.test( brn ) ) {
-                 document.getElementById( "checkBirth" ).innerText = "올바른 형식입니다.";
-                 } else {
-                 document.getElementById( "checkBirth" ).innerText = "올바르지 않은 형식입니다.";
-                 document.getElementById('checkBirth').style.color = 'red';
-               }
-        } );
-
+               $( '#birth' ).on( 'focus keyup', function() {
+                  var brn = document.getElementById( "birth" ).value;
+                      if ( /([0-9]{2}(0[1-9]|1[0-2])(0[1-9]|[1,2][0-9]|3[0,1]))/.test( brn ) ) {
+                        document.getElementById( "checkBirth" ).innerText = "올바른 형식입니다.";
+                        } else {
+                        document.getElementById( "checkBirth" ).innerText = "올바르지 않은 형식입니다.";
+                        document.getElementById('checkBirth').style.color = 'red';
+                      }
+               } );
 
     // 닉네임 중복검사 (닉네임 변경 안 한 경우에는 중복검사하라고 하면 안됨)
        var nick_chk = false;
@@ -459,11 +231,6 @@
                        }
                      }); //ajax end
             });
-
-
-
-
-
 
 
   </script>

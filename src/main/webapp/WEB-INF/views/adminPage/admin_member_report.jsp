@@ -84,7 +84,7 @@
                             <td>기타</td>
                         </c:if>
                         <td><fmt:formatDate value="${list.report_date}"
-                                            pattern="yyyy년 MM월 dd일"/></td>
+                                            pattern=""/></td>
                     </tr>
                 </c:forEach>
 

@@ -59,12 +59,30 @@
 
             // 댓글 등록 버튼 클릭
             $("#repl_insert").click(function () {
+                var fileInput = document.getElementsByName("files")[0];
+                var fileForm = /(.*?)\.(jpg|jpeg|png|gif|bmp|webp)$/;
+                var maxSize = 1 * 1024 * 1024;
+
                 if ($("#re_content").val() == "") {
                     alert('댓글 입력 후에 클릭하시오');
                     $("#re_content").focus();
                     return false;
                 }
 
+                var files = fileInput.files;
+                if (files.length > 0) {
+                    var file = files[0];
+
+                    if (!file.name.match(fileForm)) {
+                        alert("이미지 파일만 업로드 가능합니다.");
+                        return false;
+                    }
+
+                    if (file.size > maxSize) {
+                        alert("파일 사이즈는 1MB까지 가능합니다.");
+                        return false;
+                    }
+                }
                 var formData = new FormData($('#frm')[0]);
                 $.ajax({
                     type: "post",
@@ -76,14 +94,17 @@
                         if (data == '') {
                             alert("다시 시도해주세요");
                         } else {
-                            document.getElementById("re_content").value = '';
+                            // document.getElementById("re_content").value = '';
+                            $("#re_content").val("");
                             $("#files").val("");
-                            document.getElementById("previewContainer").innerHTML = '';
+                            // $("#previewContainer").innerHTML = '';
+                             document.getElementById("previewContainer").innerHTML = '';
                             loadReplies(); // 댓글 목록 다시 로드
                         }
                     }
                 });
             });
+
 
             // 댓글 삭제 확인
             function delete_check() {
@@ -142,15 +163,17 @@
             height: 150px;
             margin: 5px;
         }
+
         .thumbnail {
             max-width: 700px;
             max-height: 550px;
             margin: 5px;
         }
-         .profile_image {
-             width: 30px;
-             height: 30px;
-         }
+
+        .profile_image {
+            width: 30px;
+            height: 30px;
+        }
     </style>
 
 </head>

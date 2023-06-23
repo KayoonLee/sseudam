@@ -1,8 +1,7 @@
 package com.pet.sseudam.service;
 
 import com.pet.sseudam.dao.MemberDao;
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.ProfileBean;
+import com.pet.sseudam.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -102,9 +101,13 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public List<Member> counselorList(Member member) {
-        return md.counselorList(member);
+        return md.counselor(member);
     }
 
+    @Override
+    public Member checkMem(int m_id) {
+        return md.checkMem(m_id);
+    }
 
     @Override
     public int memProfileAdd(Member member) {
@@ -122,8 +125,43 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public int visitCheck(Visitor visitor) {
+        return md.visitCheck(visitor);
+    }
+
+    @Override
+    public int visitInsert(Visitor visitor) {
+        return md.visitInsert(visitor);
+    }
+
+    @Override
+    public List<CounselPaper> requestList(int m_id) {
+        return md.requestList(m_id);
+    }
+
+    @Override
+    public List<FreeBean> mypostList(int m_id) {
+        return md.mypostList(m_id);
+    }
+
+    @Override
+    public List<ReFreeBean> myreplyList(int m_id) {
+        return md.myreplyList(m_id);
+    }
+
+    @Override
+    public List<FreeBean> mylikeList(int m_id) {
+        return md.mylikeList(m_id);
+    }
+
+    @Override
     public int deletemember(String email) {
         return md.deletemember(email);
+    }
+
+    @Override
+    public List<CounselPaper> mypaperList(int m_id) {
+        return md.mypaperList(m_id);
     }
 
 
