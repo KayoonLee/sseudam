@@ -67,14 +67,15 @@
                                         <a class="nav-link" href="hasAnimal">상담신청</a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
+                                        <a class="nav-link dropdown-toggle" href="freeList?num=2" id="navbarDropdown"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                             커뮤니티
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="freeList">자유게시판</a>
-                                            <a class="dropdown-item" href="single-blog.html">고객 후기</a>
+                                            <a class="dropdown-item" href="freeList?num=2">자유게시판</a>
+                                            <a class="dropdown-item" href="freeList?num=2&category=2">질문게시판</a>
+                                            <a class="dropdown-item" href="freeList?num=2&category=3">토론게시판</a>
                                         </div>
                                     </li>
                                    <c:if test="${!empty sessionScope.member.m_id or !empty sessionScope.admin.a_email}">
@@ -86,13 +87,13 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_1" href="#">
 
-                                        <c:if test="${member.identifier == 1}">
+                                        <c:if test="${sessionScope.member.identifier == 1}">
                                             <a class="dropdown-item" href="memberpage_main">일반회원 마이페이지</a>
                                         </c:if>
-                                        <c:if test="${member.identifier == 2}">
+                                        <c:if test="${sessionScope.member.identifier == 2}">
                                             <a class="dropdown-item" href="counselorpage_main">상담사 마이페이지</a>
                                         </c:if>
-                                        <c:if test="${!empty admin.a_email}">
+                                        <c:if test="${!empty sessionScope.admin.a_email}">
                                             <a class="dropdown-item" href="adminMain">관리자 페이지</a>
                                         </c:if>
                                         </div>

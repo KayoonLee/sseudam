@@ -55,7 +55,7 @@
                                      <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
 
                                         <c:if test="${!empty myModel.profile_num}">
-                                            <img src="./counselorImg/${myModel.profile_name}" class="rounded-circle">
+                                            <img src="./memberImg/${myModel.profile_name}" class="rounded-circle">
                                         </c:if>
 
                                         <c:if test="${empty myModel.profile_num}">
