@@ -33,10 +33,7 @@
                         <div class="card-body pt-3">
                             <!-- Bordered Tabs -->
                             <ul class="nav nav-tabs nav-tabs-bordered">
-                                <li class="nav-item">
-                                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-overview"
-                                    onClick="location.href='memberpage_main'">프로필</button>
-                                </li>
+
 
                                 <li class="nav-item">
                                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#profile-change-password"
@@ -63,7 +60,7 @@
             <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">비밀번호 확인</label>
             <div class="col-md-8 col-lg-9">
                <input type="password" id="confirm-newpasswd" name="confirm-newpasswd" class="form-control"
-                             placeholder="비밀번호를 다시 입력하세요">
+                             placeholder="새 비밀번호를 다시 입력하세요">
             </div>
       </div>
 
