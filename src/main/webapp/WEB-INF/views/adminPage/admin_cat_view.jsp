@@ -20,6 +20,7 @@
                     success: function (response) {
                         if (response == 1) {
                             alert("고양이 회원의 상태값이 변경되었습니다.");
+                            loadCatPage(p_id);
                         } else {
                             alert("오류 발생! 다시 시도해주세요.");
                         }

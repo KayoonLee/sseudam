@@ -1,15 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: channy1942
-  Date: 2023-06-20
-  Time: 오후 3:15
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <title>상담예약서 작성</title>
+
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/main_header.jsp" %>
+
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -18,32 +19,82 @@
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
-
     <!-- DATE -->
     <script>
         function removeMinutes() {
             var datetimeInput = document.getElementById("request_times");
             var dateTime = datetimeInput.value;
             var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
-            var dateTimeString = datetimeInput.value;
             datetimeInput.value = dateTimeWithoutMinutes;
+            var dateTimeString = datetimeInput.value;
             var dateTime1 = new Date(dateTimeString);
+            <!-- 수정중입니다 !!!!!!!!!!!!!!!!!!!!!!!!-->
+        }
 
+        // 유효성 검사
+        function validateForm() {
+            var petSelect = document.getElementById("p_id");
+            var dateTimeInput = document.getElementById("request_times");
+            var purposeSelect = document.getElementById("purpose");
+            var reasonInput = document.getElementById("reason");
+            var wishListInput = document.getElementById("wish_list");
+            var nowdate = document.getElementById("nowdate");
+
+            // 각 필드의 유효성 검사 로직을 구현하고, 필요한 조건에 맞지 않는 경우 알림을 표시하거나 작업을 수행합니다.
+            if (petSelect.value === "") {
+                alert("반려동물을 선택해주세요.");
+                return false;
+            }
+
+            if (dateTimeInput.value === "") {
+                alert("예약 시간을 입력해주세요.");
+                return false;
+            }
+
+            if (dateTimeInput.value <= nowdate.value) {
+                alert("예약 시간을 현재시간 이후로 설정해주세요.");
+                return false;
+            }
+
+            if (purposeSelect.value === "") {
+                alert("상담 목적을 선택해주세요.");
+                return false;
+            }
+
+            if (reasonInput.value === "") {
+                alert("상담 사유를 입력해주세요.");
+                return false;
+            }
+
+            if (wishListInput.value === "") {
+                alert("요청 사항을 입력해주세요.");
+                return false;
+            }
+
+            // 필요한 유효성 검사를 모두 통과한 경우에는 true를 반환하여 폼이 제출됩니다.
+            return true;
         }
     </script>
 </head>
 <body>
 
-<%--<section class="section">--%>
-<%--<div class="row">--%>
-<%--<div class="col-lg-6">--%>
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">상담예약서 작성</h5>
+<%--
+<section class="section">
+<div class="row">
+<div class="col-lg-12">
+--%>
+
+<main id="main" class="main">
+    <div class="card" style="margin: 50px">
+        <div class="card-body">
+            <h5 class="card-title">상담예약서 작성</h5>
 
         <!-- General Form Elements -->
-        <form action="submit_Insert_Consult" method="POST">
+        <form action="submit_Insert_Consult" method="POST" onsubmit="return validateForm()">
+            <input type="hidden" id="nowdate" name="nowdate" value="${nowtime}">
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담사이름</label>
                 <div class="col-sm-10">
@@ -73,7 +124,7 @@
             <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
-                    <input type="datetime-local" id="request_times" value="${nowtime}" name="request_times" onchange="removeMinutes()">
+                    <input type="datetime-local" id="request_times" name="request_times" onchange="removeMinutes()">
                 </div>
             </div>
             <div class="row mb-3">
@@ -99,27 +150,27 @@
                 </div>
             </div>
 
-
-
-
-
-
-
-            <div class="row mb-3">
-                <label class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">상담 예약서 작성</button>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary">상담 예약서 작성</button>
+                    </div>
                 </div>
-            </div>
 
-        </form><!-- End General Form Elements -->
+            </form><!-- End General Form Elements -->
 
+        </div>
     </div>
-</div>
+</main>
 
-<%--</div>--%>
-<%--</div>--%>
-<%--</section>--%>
+<%--
+</div>
+</div>
+</section>
+--%>
+
+<!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 </body>
 </html>

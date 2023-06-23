@@ -18,6 +18,11 @@
           AND m_id = #{m_id};
     </select>
 
+    <!-- 상담 예약시 상담원의 사용중인 예약 시간 가져오기 -->
+    <select id="requestTime_list" resultType="CounselPaper">
+        select request_time from counsel_paper where c_id = #{c_id}
+    </select>
+
 
     <!-- 상담원과 회원의 예약시간 조회 -->
     <select id="find_reservation_time" resultType="java.util.Date">
@@ -101,5 +106,9 @@
         VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{consult_status},#{etc})
     </insert>
 
+    <!-- 상당기록서 조회 -->
+    <select id="select_counsel_record" resultType="CounselRecord">
+    SELECT * FROM counsel_record WHERE record_num = #{record_num}
+    </select>
 
 </mapper>

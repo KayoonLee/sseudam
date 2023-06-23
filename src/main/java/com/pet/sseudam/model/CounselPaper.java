@@ -26,4 +26,7 @@ public class CounselPaper {
     private String nick;
     private String animal;
     private String name;
+
+    //임시 State
+    private int state;
 }
