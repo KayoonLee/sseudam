@@ -226,7 +226,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-10">
-                    <div>
+                   <div>
                       <div>
                         <img src="images/counsel_icon1.jpg" width="250" height="250">
                            &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
@@ -246,7 +246,8 @@
                             <p>"상담의 순간, 동물들과 주인들의 심장을 한껏 들여다보자."</p>
                             <h5> - Allen Miller</h5>
                         </div>
-                    </div>
+                      </div>
+                   </div>
                 </div>
             </div>
         </div>
