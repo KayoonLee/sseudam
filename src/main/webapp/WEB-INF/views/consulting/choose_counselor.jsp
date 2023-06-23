@@ -29,7 +29,6 @@
             }
             return true;
         }
-
     </script>
 
 </head>
@@ -39,6 +38,7 @@
 <%@ include file="../navigator_footer/main_navigator.jsp" %>
 
 <main id="main" class="main">
+
     <div class="container" align="center">
         <div class="row">
             <table>
@@ -46,7 +46,16 @@
                 <div class="pagetitle">
                     <h1>상담사 선택</h1>
                 </div>
-                <p><p><p>
+                <p><p>
+
+
+
+            </table>
+
+
+
+            <%-- 소빈님 --%>
+            <table>
                 <c:forEach var="counsel" items="${counselorList}">
                 <div class="col-sm-3">
                     <div>
@@ -112,14 +121,7 @@
         </div>
     </div> <%-- 상담사 선택 end --%>
 
-
 </main>
-
-<%--<section class="section">--%>
-<%--<div class="row">--%>
-
-<%--</div>--%>
-<%--</section>--%>
 
 <!-- ======= Footer ======= -->
 <%@ include file="../navigator_footer/main_footer.jsp" %>

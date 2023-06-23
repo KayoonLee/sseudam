@@ -94,4 +94,9 @@ public class ConsultingServiceImpl implements ConsultingService {
         return dao.requestTime_list(c_id);
     }
 
+// 가윤
+    // 상담신청 - 상담사 선택
+    @Override
+    public List<Member> getConsultingList(Member member) { return dao.getConsultingList(member); }
+
 }
