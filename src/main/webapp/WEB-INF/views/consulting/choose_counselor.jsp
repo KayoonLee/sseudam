@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
+    <!-- ======= Header ======= -->
     <%@ include file="../navigator_footer/main_header.jsp" %>
 
     <!-- Vendor CSS Files -->
@@ -31,7 +32,7 @@
 </head>
 <body>
 
-<%-- Navigator --%>
+<!-- ======= Navigator ======= -->
 <%@ include file="../navigator_footer/main_navigator.jsp" %>
 
 <main id="main" class="main">
@@ -124,7 +125,7 @@
 <%--</div>--%>
 <%--</section>--%>
 
-<!-- footer part start-->
+<!-- ======= Footer ======= -->
 <%@ include file="../navigator_footer/main_footer.jsp" %>
 
 </body>

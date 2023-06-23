@@ -289,11 +289,4 @@ public class ConsultingController {
         return null;
     }
 
-// 테스트 페이지 지울 예정
-    @GetMapping("counsultingTest")
-    public String adminTest5() {
-        System.out.println("상담사 예약 페이지");
-        return "counsulting/counsulting_test";
-    }
-
 }
