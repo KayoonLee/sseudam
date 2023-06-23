@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>admin_member_del_view</title>
+
     <script>
         // 상태값 변경
         function adminSetState(m_id, state) {
@@ -61,7 +62,6 @@
                 });
             }
         }
-
     </script>
 
     <style>
@@ -74,6 +74,7 @@
 
 <table id="example" class="table is-striped" style="width:100%">
     <tr>
+        <br>
         <th>회원번호</th>
         <td>${memberDto.m_id}</td>
     </tr>
@@ -106,13 +107,8 @@
         <c:if test="${memberDto.state == 0}">
             <td>탈퇴</td>
         </c:if>
-
     </tr>
-
-
 </table>
-
-
 
 <button type="button" class="btn btn-outline-primary" onclick="nickChange()">닉네임 변경</button>
 
@@ -125,14 +121,19 @@
     </form>
 </div>
 
-<!-- 회원 삭제/복구-->
+<%-- 회원 삭제 --%>
 <c:if test="${memberDto.state == 1}">
-    <button type="button" class="btn btn-outline-danger" onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원삭제</button>
-</c:if>
-<c:if test="${memberDto.state == 0}">
-    <button type="button" class="btn btn-outline-primary" onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원복원</button>
+    <button type="button" class="btn btn-outline-danger"
+            onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원삭제
+    </button>
 </c:if>
 
+<%-- 회원 복구 --%>
+<c:if test="${memberDto.state == 0}">
+    <button type="button" class="btn btn-outline-primary"
+            onclick="adminSetState(${memberDto.m_id}, ${memberDto.state})">회원복원
+    </button>
+</c:if>
 
 <%--
 <button onclick="location.href='adminDeleteBtn?m_id=${memberDto.m_id}'">활동</button>

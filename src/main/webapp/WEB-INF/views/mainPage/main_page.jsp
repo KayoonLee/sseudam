@@ -58,6 +58,7 @@
                         <c:if test="${!empty member.m_id or !empty admin.a_email}">
                             <a href="logout">로그아웃</a>
                         </c:if>
+
                         </div>
                     </div>
                 </div>
