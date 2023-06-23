@@ -159,6 +159,11 @@ public class MemberServiceImpl implements MemberService{
         return md.deletemember(email);
     }
 
+    @Override
+    public List<CounselPaper> mypaperList(int m_id) {
+        return md.mypaperList(m_id);
+    }
+
 
 }
 
