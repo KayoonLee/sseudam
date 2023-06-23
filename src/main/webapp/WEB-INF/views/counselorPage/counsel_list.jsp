@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>
-    <title>Title</title>
+    <title>상담사 소개</title>
+<%@ include file="../navigator_footer/main_header.jsp" %>
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -16,12 +17,18 @@
 
 </head>
 <body>
+ <%@ include file="../navigator_footer/main_navigator.jsp" %>
+
 
     <main id="main" class="main">
         <div class="container" align="center">
             <div class="row">
                 <table>
+                <p>
+                <p>
                     <h2>상담사 소개</h2>
+                    <p>
+                    <p>
                     <p>
                     <c:forEach var="counsel" items="${counselorList }">
                             <div class="col-sm-3">

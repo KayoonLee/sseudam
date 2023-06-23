@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,12 +24,12 @@
                     <div class="col-lg-6 col-sm-12 col-md-6">
                         <div class="sub_menu_social_icon">
 
-                        <c:if test="${empty member.m_id and empty admin.a_email}">
+                        <c:if test="${empty sessionScope.member.m_id and empty sessionScope.admin.a_email}">
                             <a href="separate_join">회원가입</a>
                             <a href="login_form">로그인</a>
                         </c:if>
 
-                        <c:if test="${!empty member.m_id or !empty admin.a_email}">
+                        <c:if test="${!empty sessionScope.member.m_id or !empty sessionScope.admin.a_email}">
                             <a href="logout">로그아웃</a>
                         </c:if>
                         </div>
@@ -77,7 +77,7 @@
                                             <a class="dropdown-item" href="single-blog.html">고객 후기</a>
                                         </div>
                                     </li>
-                                   <c:if test="${!empty member.m_id or !empty admin.a_email}">
+                                   <c:if test="${!empty sessionScope.member.m_id or !empty sessionScope.admin.a_email}">
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown_1"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -100,11 +100,11 @@
                                   </c:if>
                                 </ul>
                             </div>
-                            <c:if test="${!empty member.m_id}">
-                            <a href="#" class="btn_1 d-none d-lg-block">${member.nick} 님</a>
+                            <c:if test="${!empty sessionScope.member.m_id}">
+                            <a href="#" class="btn_1 d-none d-lg-block">${sessionScope.member.nick} 님</a>
                             </c:if>
-                            <c:if test="${!empty admin.a_email}">
-                            <a href="#" class="btn_1 d-none d-lg-block">${admin.name} 님</a>
+                            <c:if test="${!empty sessionScope.admin.a_email}">
+                            <a href="#" class="btn_1 d-none d-lg-block">${sessionScope.admin.name} 님</a>
                              </c:if>
                         </nav>
                     </div>
