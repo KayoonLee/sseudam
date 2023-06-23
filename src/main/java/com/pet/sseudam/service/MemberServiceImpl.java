@@ -154,6 +154,11 @@ public class MemberServiceImpl implements MemberService{
         return md.mylikeList(m_id);
     }
 
+    @Override
+    public int deletemember(String email) {
+        return md.deletemember(email);
+    }
+
 
 }
 

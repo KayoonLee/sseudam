@@ -70,4 +70,6 @@ public interface MemberDao {
     List<ReFreeBean> myreplyList(int m_id);
 
     List<FreeBean> mylikeList(int m_id);
+
+    int deletemember(String email);
 }

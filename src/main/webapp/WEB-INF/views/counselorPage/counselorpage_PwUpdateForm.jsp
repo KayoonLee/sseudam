@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 82108
-  Date: 2023-06-10
-  Time: 오후 8:43
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <meta charset="UTF-8">
@@ -79,7 +72,7 @@
        <div class="text-center">
            <button type="submit" class="btn btn-primary">변경</button>
        </div>
-    </form><!-- End Change Password Form -->
+    </form>
 
    </div>
 </div>

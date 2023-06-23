@@ -4,7 +4,6 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>
 
-
 <%@ include file="../navigator_footer/member_header.jsp" %>
 
 </head>

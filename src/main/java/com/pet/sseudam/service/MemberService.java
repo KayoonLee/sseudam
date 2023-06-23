@@ -65,4 +65,6 @@ public interface MemberService{
     List<ReFreeBean> myreplyList(int mId);
 
     List<FreeBean> mylikeList(int m_id);
+
+    int deletemember(String email);
 }

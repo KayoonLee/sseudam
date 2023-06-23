@@ -87,6 +87,13 @@
         update member set passwd=#{passwd}, reset='n' where email=#{email}
     </update>
 
+<!--    회원 탈퇴-->
+    <update id="deletemember" parameterType="String">
+        update member set state = 0 where email = #{email}
+    </update>
+
+
+
     <!--    상담사 정보수정 - member 테이블 컬럼 변경-->
     <update id="csMyUpdate" parameterType="member">
 
