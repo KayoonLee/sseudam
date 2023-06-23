@@ -302,6 +302,6 @@ public class ConsultingController {
         model.addAttribute("pet", pet);
         return "consulting/view_consulting";
     }
-*/
+
 
 }
