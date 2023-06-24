@@ -58,6 +58,7 @@ public class CounselorController {
         return auth;
     }
 
+
     //email 중복검사
     @PostMapping("counselEmailChk.do")
     public String emailChk(@RequestParam("email") String email, Model model){
