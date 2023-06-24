@@ -164,6 +164,11 @@ public class MemberServiceImpl implements MemberService{
         return md.mypaperList(m_id);
     }
 
+    @Override
+    public List<CounselRecord> recordList(int m_id) {
+        return md.recordList(m_id);
+    }
+
 
 }
 
