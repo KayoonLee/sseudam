@@ -14,7 +14,76 @@
             width: 30px;
             height: 30px;
         }
+
+        .search-bar {
+            min-width: 360px;
+            padding: 0 20px;
+        }
+
+        @media (max-width: 1199px) {
+            .search-bar {
+                position: fixed;
+                top: 50px;
+                left: 0;
+                right: 0;
+                padding: 20px;
+                box-shadow: 0px 0px 15px 0px rgba(1, 41, 112, 0.1);
+                background: white;
+                z-index: 9999;
+                transition: 0.3s;
+                visibility: hidden;
+                opacity: 0;
+            }
+        }
+
+        .search-form {
+            width: 30%;
+        }
+
+        .search-select {
+            width: 30px;
+        }
+
+
+        .search-form input {
+            border: 0;
+            font-size: 14px;
+            color: #012970;
+            border: 1px solid rgba(1, 41, 112, 0.2);
+            padding: 7px 38px 7px 8px;
+            border-radius: 3px;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .search-form input:focus,
+        .search-form input:hover {
+            outline: none;
+            box-shadow: 0 0 10px 0 rgba(1, 41, 112, 0.15);
+            border: 1px solid rgba(1, 41, 112, 0.3);
+        }
+
+        .search-form button {
+            border: 0;
+            padding: 0;
+            margin-left: -30px;
+            background: none;
+        }
+
+        .search-form button i {
+            color: #012970;
+        }
+
+        .search-select{
+            width: 40%;
+            height: 35px;
+            border-radius: 5px;
+            border-color: #8b95a5;
+        }
+
+
     </style>
+
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -161,16 +230,16 @@
                     <c:set var="no" value="${number}"/>
                     <c:forEach var="board" items="${list }">
                         <tr>
-                            <td>${no}</td>
-                            <td><a href="freeView?num=${board.num}&board_num=${board.board_num}
+                            <td width="100">${no}</td>
+                            <td width="500"><a href="freeView?num=${board.num}&board_num=${board.board_num}
                            &pageNum=${pageNum}">
                                     ${board.subject}</a></td>
-                            <td><c:if test="${not empty board.profile_num}">
+                            <td width="250"><c:if test="${not empty board.profile_num}">
                                 <img src="./memberImg/${board.profile_name}" class="profile_image"></c:if>
                                     ${board.nick}</td>
-                            <td>${board.readcount}</td>
-                            <td>${board.recom}</td>
-                            <td><fmt:formatDate value="${board.reg_date }"
+                            <td width="100">${board.readcount}</td>
+                            <td width="100">${board.recom}</td>
+                            <td width="250"><fmt:formatDate value="${board.reg_date }"
                                                 pattern="yyyy년 MM월 dd일"/></td>
                         </tr>
                         <c:set var="no" value="${no-1}"/>
@@ -181,17 +250,22 @@
         </div>
     </div>
 
-    <form action="freeList" align="center">
-        <input type="hidden" name="num" value="${num}">
-        <input type="hidden" name="category" value="${category}">
-        <select name="search">
-            <option value="subject" ${search=='subject' ? 'selected' : ''}>제목</option>
-            <option value="content" ${search=='content' ? 'selected' : ''}>내용</option>
-            <option value="subcon" ${search=='subcon' ? 'selected' : ''}>제목+내용</option>
-        </select>
-        <input type="text" name="keyword">
-        <input type="submit" value="확인">
-    </form>
+
+
+    <div class="search-bar" align="center">
+        <form action="freeList" class="search-form d-flex align-items-center">
+            <input type="hidden" name="num" value="${num}">
+            <input type="hidden" name="category" value="${category}">
+            <select name="search" class="search-select" aria-label="Default select example">
+                <option value="subject" ${search=='subject' ? 'selected' : ''}>제목</option>
+                <option value="content" ${search=='content' ? 'selected' : ''}>내용</option>
+                <option value="subcon" ${search=='subcon' ? 'selected' : ''}>제목+내용</option>
+            </select>
+            <input type="text" name="keyword">
+            <button type="submit" value="확인"><i class="bi bi-search"></i></button>
+        </form>
+    </div>
+    <br><br>
 
 
     <c:if test="${not empty keyword}">
