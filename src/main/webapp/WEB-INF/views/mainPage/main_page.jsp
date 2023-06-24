@@ -22,7 +22,7 @@
                         <div class="banner_text_iner">
                             <h1>SSEUDAM</h1>
                             <p>쓰담쓰담</p>
-                            <a href="#" class="btn_1">상담신청하기</a>
+                            <a href="#" onclick="select_counselor(${member.identifier})" class="btn_1">상담신청하기</a>
                         </div>
                     </div>
                 </div>
