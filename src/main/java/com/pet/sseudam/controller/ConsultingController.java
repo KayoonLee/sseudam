@@ -5,7 +5,6 @@ import com.pet.sseudam.service.ConsultingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -13,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -302,5 +303,71 @@ public class ConsultingController {
         model.addAttribute("pet", pet);
         return "consulting/view_consulting";
     }
+
+    @RequestMapping("edit_Consulting")
+    public String edit_Consulting(@RequestParam("record_num") int record_num, Model model) {
+
+
+        CounselRecord counselrecord = con.select_counsel_record(record_num);
+        Member counselor = con.find_general(counselrecord.getC_id());
+        Member gen = con.find_general(counselrecord.getM_id());
+        PetBean pet = con.select_pet(counselrecord.getP_id());
+        model.addAttribute("counselrecord", counselrecord);
+        model.addAttribute("counselor", counselor);
+        model.addAttribute("gen", gen);
+        model.addAttribute("pet", pet);
+
+
+        return "consulting/edit_consulting";
+    }
+
+    @RequestMapping("delete_Consulting")
+    public String delete_Consulting(@RequestParam("record_num") int record_num) {
+        con.delete_consulting(record_num);
+        return "counselorpage_record";
+    }
+
+    @RequestMapping("update_Consulting")
+    public String update_Consulting(@RequestParam("record_num") int record_num,@RequestParam("consulting_dates") String consulting_dates,
+                                    CounselRecord counselrecord) {
+        System.out.println("처음 진입시 condate:"+ consulting_dates);
+
+
+        // 포맷터
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:00");
+        DateTimeFormatter formattertemp = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:00");
+        System.out.println("중간 condate:"+ consulting_dates);
+
+        // 문자열 -> Date
+        LocalDateTime datetime = LocalDateTime.parse(consulting_dates, formatter);
+
+        System.out.println(datetime); // 2021-06-19T21:05:07
+        String datetimeString = datetime.format(formattertemp);
+
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:00");
+        Date date = null;
+        try {
+            /*  yyyy-MM-dd'T'HH:mm ->  yyyy-MM-dd HH:mm -> yyyy-MM-dd HH:00 */
+
+
+            date = outputFormat.parse(datetimeString);
+            System.out.println(date);
+            counselrecord.setConsulting_date(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        System.out.println("마지막 condate:"+ consulting_dates);
+        System.out.println(date);
+        System.out.println(counselrecord);
+
+
+
+
+
+        con.update_consulting(record_num);
+        return "counselorpage_record";
+    }
+
 
 }

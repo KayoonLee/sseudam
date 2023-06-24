@@ -1,6 +1,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
@@ -26,13 +27,8 @@
         <h5 class="card-title">상담기록서</h5>
 
         <!-- General Form Elements -->
-        <form action="insert_Consulting" method="POST">
-            <input type="hidden" name="old_paper_num" value="${counselpaper.paper_num}">
-            <input type="hidden" name="old_p_id" value="${counselpaper.p_id}">
-            <input type="hidden" name="old_m_id" value="${counselpaper.m_id}">
-            <input type="hidden" name="old_c_id" value="${counselpaper.c_id}">
-
-
+        <form method="POST">
+            <input type="hidden" name="record_num" value="${counselrecord.record_num}">
             <div class="row mb-3">
                 <label for="con_name" class="col-sm-2 col-form-label">상담사이름</label>
                 <div class="col-sm-10">
@@ -56,15 +52,16 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label">작성 날짜</label>
+                <label class="col-sm-2 col-form-label">기록 날짜</label>
                 <div class="col-sm-10">
-                    <input type="text" id ="consulting_dates" name = "consulting_dates" value="${time}" class="form-control" readonly>
+
+                    <input type="text" id ="consulting_dates" name = "consulting_dates" value="<fmt:formatDate value="${counselrecord.consulting_date}" pattern="yyyy-MM-dd HH:00"/>" class="form-control" readonly>
                 </div>
             </div>
             <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">상담 제목</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id ="subject" name = "subject" maxlength="50">
+                    <input type="text" class="form-control" id ="subject" name = "subject" value="${counselrecord.subject}" maxlength="50" disabled>
                 </div>
             </div>
             <%--
@@ -79,7 +76,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담 기록</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height: 100px" id="content" name="content" maxlength="2000" required></textarea>
+                    <textarea class="form-control" style="height: 100px" id="content" name="content" maxlength="2000" disabled>${counselrecord.content}</textarea>
                 </div>
             </div>
             <%--
@@ -106,13 +103,14 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">특이사항</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height: 100px" id="etc" name="etc" maxlength="50" required></textarea>
+                    <textarea class="form-control" style="height: 100px" id="etc" name="etc" maxlength="50" disabled>${counselrecord.etc}</textarea>
                 </div>
             </div>
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary">상담 기록</button>
+                    <input type="submit" class="btn btn-primary" value="상담기록 수정하기" onclick="javascript: form.action='edit_Consulting';">
+                    <input type="submit" class="btn btn-primary" value="상담기록 삭제하기" onclick="javascript: form.action='delete_Consulting';">
                 </div>
             </div>
 

@@ -34,5 +34,6 @@ public interface ConsultingService {
     
     // requestTIme 조회 sjw
     List<CounselPaper> requestTime_list(int c_id);
-
+    void delete_consulting(int record_num);
+    void update_consulting(int record_num);
 }
