@@ -5,6 +5,8 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>
 <%@ include file="../navigator_footer/member_header.jsp" %>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
   <script>
     // 이미지 업로드를 위한 JavaScript 함수
     function uploadImage() {

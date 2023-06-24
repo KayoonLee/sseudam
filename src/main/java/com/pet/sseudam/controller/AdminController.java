@@ -6,6 +6,8 @@ import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ReportBean;
 import com.pet.sseudam.model.Visitor;
 import com.pet.sseudam.service.AdminService;
+import com.pet.sseudam.service.MemberService;
+import com.pet.sseudam.service.SendEmailService;
 import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.*;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -24,6 +27,12 @@ public class AdminController {
 
     @Autowired
     private AdminService adminService;
+
+    @Autowired
+    private MemberService ms;
+
+    @Resource(name = "SendEmailService")
+    private SendEmailService emailService;
 
     //관리자 로그인 창
     @RequestMapping("admin_login")
@@ -251,10 +260,15 @@ public class AdminController {
     @GetMapping("adminCounselorAccept")
     public int adminCounselorAccept(Member member, Model model) {
         System.out.println("상담사 승인 페이지로 이동");
+        // 소빈 추가
+        String email = member.getEmail();
+        String nick =  member.getNick();
 
         System.out.println("getM_id : " + member.getM_id());
         System.out.println("getIdentifier : " + member.getIdentifier());
         int result = adminService.admin_counsel_accept(member);
+
+        emailService.joinMail(email,nick); // mail 발송
         System.out.println("counselor : " + result);
 
         return result;
@@ -266,8 +280,15 @@ public class AdminController {
     public int adminCounselorDecline(Member member, Model model) {
         System.out.println("상담사 거부 페이지로 이동");
 
+        // 소빈 추가
+        String email = member.getEmail();
+        String nick =  member.getNick();
+
         System.out.println("getM_id : " + member.getM_id());
-        int result = adminService.admin_counsel_decline(member);
+        int result = adminService.admin_counsel_decline(member); //update문으로 변경 (승인 거절: identifier=4)
+
+        emailService.rejectMail(email,nick); // mail 발송
+
         System.out.println("counselor : " + result);
 
         return result;
