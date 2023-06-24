@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>상담사 소개</title>
@@ -18,8 +19,7 @@
 
 </head>
 <body>
- <%@ include file="../navigator_footer/main_navigator.jsp" %>
-
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 
     <main id="main" class="main">
         <div class="container" align="center">
@@ -36,7 +36,7 @@
                                 <div>
                                     <div class="card">
                                         <c:if test="${!empty counsel.profile_num}">
-                                                <img class="card-img-top" src="counselorImg/${counsel.profile_name}">
+                                                <img class="card-img-top" src="memberImg/${counsel.profile_name}">
 
                                         </c:if>
                                         <c:if test="${empty counsel.profile_num}">
@@ -54,7 +54,6 @@
                                 </div>
                             </div>
                     </c:forEach>
-
                </table>
             </div>
         </div>

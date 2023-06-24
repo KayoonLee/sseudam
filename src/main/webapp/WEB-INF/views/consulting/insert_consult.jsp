@@ -3,10 +3,6 @@
 
 <html>
 <head>
-
-
-
-
     <title>상담예약서 작성</title>
 
     <meta charset="UTF-8">
@@ -26,7 +22,7 @@
     <!-- DATE -->
     <script>
         function removeMinutes() {
-            var datetimeInput = document.getElementById("request_times");
+            var datetimeInput = document.getElementById("request_times"); /* request_times */
             var dateTime = datetimeInput.value;
             var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
             datetimeInput.value = dateTimeWithoutMinutes;
@@ -97,7 +93,6 @@
         }
     </script>
 
-
 </head>
 <body>
 
@@ -112,6 +107,7 @@
 
 
 <main id="main" class="main">
+
     <div class="card" style="margin: 50px">
         <div class="card-body">
             <h5 class="card-title">상담예약서 작성</h5>
@@ -158,7 +154,12 @@
                     <div class="col-sm-10">
                         <select class="form-select" aria-label="Default select example" id="purpose" name="purpose">
                             <option value="">상담목적을 선택하세요</option>
-                            <option value="반려동물상담">반려동물상담</option>
+                            <option value="산책문제">산책문제</option>
+                            <option value="분리불안">분리불안</option>
+                            <option value="공격성">공격성 문제</option>
+                            <option value="배변문제">배변문제</option>
+                            <option value="훈련고민">훈련고민</option>
+                            <option value="비용고민">비용고민</option>
                             <option value="기타">기타</option>
                         </select>
                     </div>

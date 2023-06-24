@@ -1,9 +1,6 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.model.CounselPaper;
-import com.pet.sseudam.model.Counselor;
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.ProfileBean;
+import com.pet.sseudam.model.*;
 import com.pet.sseudam.service.CounselorService;
 import com.pet.sseudam.service.MemberService;
 import org.apache.coyote.Request;
@@ -90,7 +87,7 @@ public class CounselorPageController {
             int max_num = ms.getMaxnum() + 1;
             System.out.println("insert후 max_num: " + max_num);
 
-            String file_path = request.getRealPath("counselorImg");
+            String file_path = request.getRealPath("memberImg");
             System.out.println("file_path는 " + file_path);
             System.out.println("filename은 " + filename);
 
@@ -208,7 +205,7 @@ public class CounselorPageController {
         return "counselorPage/counselor_out";
     }
 
-    //상담사 목록 페이지--내일
+    //상담사 목록 페이지
     @RequestMapping("counselor_list")
     public String counselor_list(Member member, Model model){
         System.out.println("상담사 목록 진입");
@@ -241,22 +238,49 @@ public class CounselorPageController {
 
     // 상담사가 쓴 글
     @RequestMapping("counselorpage_mypost")
-    public String counselorPagePost(){
+    public String counselorPagePost(HttpSession session, Model model){
         System.out.println("내가 쓴 글로 진입성공");
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member: " + member);
+
+        List<FreeBean> mypostList = ms.mypostList(member.getM_id());
+        System.out.println("mypostList: " + mypostList);
+
+
+        model.addAttribute("mypostList", mypostList);
+        model.addAttribute("member", member);
+
         return "counselorPage/counselorpage_mypost";
     }
 
     // 상담사가 쓴 댓글
     @RequestMapping("counselorpage_myreply")
-    public String counselorPageReply(){
+    public String counselorPageReply(HttpSession session, Model model){
         System.out.println("내가 쓴 댓글로 진입성공");
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member: " + member);
+
+        List<ReFreeBean> myreplyList = ms.myreplyList(member.getM_id());
+        System.out.println("myreplyList: " + myreplyList);
+
+        model.addAttribute("myreplyList", myreplyList);
+        model.addAttribute("member", member);
         return "counselorPage/counselorpage_myreply";
     }
 
     // 상담사가 좋아요 한 글
     @RequestMapping("counselorpage_mylike")
-    public String counselorLikeReply(){
+    public String counselorLikeReply(Model model, HttpSession session){
         System.out.println("내가 좋아요 한 글로 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member: " + member);
+
+        List<FreeBean> mylikeList = ms.mylikeList(member.getM_id());
+        System.out.println("mylikeList: " + mylikeList);
+
+        model.addAttribute("mylikeList", mylikeList);
+        model.addAttribute("member", member);
         return "counselorPage/counselorpage_mylike";
     }
 }

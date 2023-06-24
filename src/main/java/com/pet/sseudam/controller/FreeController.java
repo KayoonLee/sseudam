@@ -193,7 +193,7 @@ public class FreeController {
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("rpageNum", rpageNum);
 
-        return "freeBoard/free_view";
+            return "freeBoard/free_view";
     }
 
     // 글수정 폼
@@ -311,7 +311,6 @@ public class FreeController {
 
         int num = recomb.getNum();
         int board_num = recomb.getBoard_num();
-        int m_id = recomb.getM_id();
 
         if (check == 0) {
             int result = service.recomAdd(recomb);

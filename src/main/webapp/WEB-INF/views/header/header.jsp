@@ -6,3 +6,6 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 
 <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+<%-- 사이트 로고 --%>
+<link rel="icon" href="images/logo.png">

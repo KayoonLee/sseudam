@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 
+<%-- 유효성 검사 세욱--%>
+    <script src="./js/free.js"></script>
 </head>
 
 <body>
@@ -64,17 +68,19 @@
                                         <a class="nav-link" href="counsel_list">상담사 소개</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="hasAnimal">상담신청</a>
+                                        <a class="nav-link" onclick="select_counselor(${member.identifier})"
+                                           href="#">상담신청</a>
                                     </li>
                                     <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown"
+                                        <a class="nav-link dropdown-toggle" href="freeList?num=2" id="navbarDropdown"
                                             role="button" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                             커뮤니티
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="freeList?num=2">자유게시판</a>
-                                            <a class="dropdown-item" href="single-blog.html">고객 후기</a>
+                                            <a class="dropdown-item" href="freeList?num=2&category=1">자유게시판</a>
+                                            <a class="dropdown-item" href="freeList?num=2&category=2">질문게시판</a>
+                                            <a class="dropdown-item" href="freeList?num=2&category=3">토론게시판</a>
                                         </div>
                                     </li>
                                    <c:if test="${!empty sessionScope.member.m_id or !empty sessionScope.admin.a_email}">
@@ -86,13 +92,13 @@
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown_1" href="#">
 
-                                        <c:if test="${member.identifier == 1}">
+                                        <c:if test="${sessionScope.member.identifier == 1}">
                                             <a class="dropdown-item" href="memberpage_main">일반회원 마이페이지</a>
                                         </c:if>
-                                        <c:if test="${member.identifier == 2}">
+                                        <c:if test="${sessionScope.member.identifier == 2}">
                                             <a class="dropdown-item" href="counselorpage_main">상담사 마이페이지</a>
                                         </c:if>
-                                        <c:if test="${!empty admin.a_email}">
+                                        <c:if test="${!empty sessionScope.admin.a_email}">
                                             <a class="dropdown-item" href="adminMain">관리자 페이지</a>
                                         </c:if>
                                         </div>
@@ -115,4 +121,4 @@
     <!-- header part(헤더 끝) end-->
 
 </body>
-</ht
+</html>
