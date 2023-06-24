@@ -88,16 +88,17 @@
                 var id = $(this).attr('id');
                 var content = $('#content_' + id).text(); // replytext / id:td_태그의 내용을 추출
                 $('#content_' + id).html(
-                    "<textarea rows='3' cols='30' name='re_content' id='content_" + id + "'>" + content + "</textarea>"
+                    "<textarea rows='3' cols='105' name='re_content' id='content_" + id + "'>" + content + "</textarea>"
                     + "<input type='file' name='files' onchange='re_previewImage(this," + id + ")'>"
                 );
 
                 $('#btn_' + id).html(
                     "<div id='updatediv_" + id + "'>"
-                    + "<input type='button' value='수정하기' onclick='update(" + id + ")'>"
-                    + "<input type='button' value='취소' onclick='lst(" + id + ")'>"
+                    + "<button type='button' class='btn btn-outline-primary' onclick='update(" + id + ")'>수정하기</button>"
+                    + "<button type='button' class='btn btn-outline-danger' onclick='lst(" + id + ")'>취소</button>"
                     + "</div>"
                 );
+
             });
         });
 
@@ -199,8 +200,8 @@
 
 <%--<main id="main" class="main">--%>
 <%--<div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 200px">--%>
-    <%--<div class="card-body">--%>
-        <%--<h5 class="card-title">글 상세 보기</h5>--%>
+<%--<div class="card-body">--%>
+<%--<h5 class="card-title">글 상세 보기</h5>--%>
 
 <%-- 리뷰갯수 --%>
 <div class="row mb-3">
@@ -210,114 +211,120 @@
     </div>
 </div>
 
-<%-- 댓글을 새로 달아주세요 --%>
+
+<c:if test="${empty reList}">
+    <div align="center">
+        <br><br><br>
+        <b>댓글을 새로 달아주세요</b>
+    </div>
+</c:if>
+
+
+<%-- 댓글 --%>
 <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">리뷰갯수</label>
+    <label class="col-sm-2 col-form-label"></label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" name="subject" value="${total}개의 리뷰가 있습니다" disabled>
-    </div>
+        <br><br>
+        <c:if test="${not empty reList}">
+            <c:forEach var="reBoard" items="${reList}">
 
-    <div class="col-sm-10">
-        <input type="text" class="form-control" name="subject" value="${total}개의 리뷰가 있습니다" disabled>
-    </div>
-</div>
-
-        <c:if test="${empty reList}">
-            <div>
-                <b>댓글을 새로 달아주세요</b>
-            </div>
-        </c:if>
-
-
-
-        <%-- 댓글 --%>
-        <div class="row mb-3">
-            <%--<label class="col-sm-2 col-form-label">제목</label>--%>
-            <div class="col-sm-10">
-                <c:if test="${not empty reList}">
-                    <c:forEach var="reBoard" items="${reList}">
-
-                        <c:if test="${reBoard.re_state == 0}">
-                            <div>삭제된 댓글입니다.</div>
+                <c:if test="${reBoard.re_state == 0}">
+                    <div class="card">
+                        <div class="card-body">
                             <br>
-                        </c:if>
+                            <b>삭제된 댓글입니다.</b>
+                        </div>
+                    </div>
+                </c:if>
 
-                        <c:if test="${reBoard.re_state != 0}">
-                            <form id="frm${reBoard.board_renum }" name="frm" enctype="multipart/form-data">
-                                <div>
-                                    <input type="hidden" name="board_renum" value="${reBoard.board_renum }">
-                                    <input type="hidden" name="num" value="${reBoard.num }">
-                                    <input type="hidden" name="board_num" value="${reBoard.board_num }">
-                                    <input type="hidden" name="file_num" value="${reBoard.file_num }">
-                                    <input type="hidden" name="ref" value="${reBoard.ref }">
-                                    <input type="hidden" name="re_seq" value="${reBoard.re_seq }">
+                <c:if test="${reBoard.re_state != 0}">
+                    <form id="frm${reBoard.board_renum }" name="frm" enctype="multipart/form-data">
+                        <div>
+                            <input type="hidden" name="board_renum" value="${reBoard.board_renum }">
+                            <input type="hidden" name="num" value="${reBoard.num }">
+                            <input type="hidden" name="board_num" value="${reBoard.board_num }">
+                            <input type="hidden" name="file_num" value="${reBoard.file_num }">
+                            <input type="hidden" name="ref" value="${reBoard.ref }">
+                            <input type="hidden" name="re_seq" value="${reBoard.re_seq }">
 
-                                    <div><c:if test="${not empty reBoard.profile_num}">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"><c:if test="${not empty reBoard.profile_num}">
                                         <img src="./memberImg/${reBoard.profile_name}" class="profile_image"></c:if>
-                                            ${reBoard.nick}</div>
-                                    <div><fmt:formatDate value="${reBoard.re_reg_date }" pattern="yyyy년 MM월 dd일"/></div>
+                                            ${reBoard.nick}<p><fmt:formatDate value="${reBoard.re_reg_date }"
+                                                                              pattern="yyyy년 MM월 dd일"/></p></h5>
                                     <div id="re_preview_${reBoard.board_renum}">
                                         <c:if test="${reBoard.file_num != 0}"><img src="./img/${reBoard.file_name}"
                                                                                    class="re_image"></c:if>
                                     </div>
                                     <div id="content_${reBoard.board_renum }">${reBoard.re_content }</div>
-                                    <c:if test="${not empty member.m_id}">
-                                        <button type="button" onclick="r_reply(${reBoard.board_renum})">댓글</button>
-                                    </c:if>
-                                    <c:if test="${!empty member.m_id and member.m_id == reBoard.m_id}">
-                                        <div id="btn_${reBoard.board_renum }">
-                                            <input type="button" id="${reBoard.board_renum }" value="댓글 수정"
-                                                   class="r_update_check">
-                                            <input type="button" value="댓글 삭제" onClick="r_delete_check(${reBoard.board_renum})">
-                                        </div>
-                                    </c:if>
                                 </div>
-                            </form>
-                        </c:if>
+                            </div>
+                        </div>
 
-                    </c:forEach>
+                        <c:if test="${!empty member.m_id and member.m_id == reBoard.m_id}">
+                            <div id="btn_${reBoard.board_renum }">
+                                <button type="button" id="${reBoard.board_renum}"
+                                        class="r_update_check btn btn-outline-primary">댓글 수정
+                                </button>
+                                <button type="button" onclick="r_delete_check(${reBoard.board_renum})"
+                                        class="btn btn-outline-danger">댓글 삭제
+                                </button>
+                            </div>
+                        </c:if>
+                    </form>
                 </c:if>
-            </div>
-        </div>
 
-        <%-- 댓글 --%>
-        <div class="row mb-3">
-            <%--<label class="col-sm-2 col-form-label">제목</label>--%>
-            <div class="col-sm-10">
-                <ul>
-                    <c:if test="${pp.startPage > pp.pagePerBlk }">
-                        <li>
-                            <a href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${pp.startPage - 1}">이전</a>
+            </c:forEach>
+        </c:if>
+    </div>
+</div>
+
+<%-- 댓글페이징 처리 --%>
+<div class="row mb-3">
+    <label class="col-sm-2 col-form-label"></label>
+
+    <div class="col-sm-10">
+        <!-- Pagination with icons -->
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <li class="page-item">
+                    <c:if test="${pp.startPage > pp.pagePerBlk}">
+                        <a class="page-link"
+                           href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${pp.startPage - 1}"
+                           aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </c:if>
+                </li>
+
+                <c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
+                    <c:if test="${pp.currentPage==i}">
+                        <li class="page-item active">
+                            <a class="page-link" href="#">${i}</a>
                         </li>
                     </c:if>
 
+                    <c:if test="${pp.currentPage!=i}">
+                        <li class="page-item">
+                            <a class="page-link"
+                               href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${i}">${i}</a>
+                        </li>
+                    </c:if>
+                </c:forEach>
 
-                    <c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-                        <c:if test="${pp.currentPage==i}">
-                            <li>
-                                <a href="#">${i}</a>
-                            </li>
-                        </c:if>
-
-                        <c:if test="${pp.currentPage!=i}">
-                            <li>
-                                <a href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${i}">${i}</a>
-                            </li>
-                        </c:if>
-                    </c:forEach>
-
+                <li class="page-item">
                     <c:if test="${pp.endPage < pp.totalPage}">
-                        <li>
-                            <a href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${pp.startPage + 1}">다음</a>
-                        </li>
+                        <a class="page-link"
+                           href="freeView?num=${num}&board_num=${board_num}&pageNum=${pageNum}&rpageNum=${pp.startPage + 1}"
+                           aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
                     </c:if>
-                </ul>
-
-            </div>
-        </div>
-
-    <%--</div>--%>
-<%--</div>--%>
-
+                </li>
+            </ul>
+        </nav><!-- End Pagination with icons -->
+    </div>
+</div>
 </body>
 </html>

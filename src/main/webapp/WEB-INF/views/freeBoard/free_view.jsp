@@ -327,7 +327,6 @@
                             <textarea class="form-control" id="re_content" name="re_content"
                                       style="height: 150px"></textarea>
                             <input type="button" value="댓글입력" id="repl_insert" class="btn btn-primary">
-
                             <p>
                             <div id="previewContainer"></div>
                             <input class="form-control" type="file" id="files" name="files" onchange="previewImage(this)">
@@ -339,7 +338,6 @@
             </form>
 
         </c:if>
-
         <%-- 댓글 --%>
         <div id="listRe"></div>
 
