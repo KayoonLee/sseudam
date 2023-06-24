@@ -87,9 +87,11 @@
             $('.r_update_check').click(function () {
                 var id = $(this).attr('id');
                 var content = $('#content_' + id).text(); // replytext / id:td_태그의 내용을 추출
+
+
                 $('#content_' + id).html(
                     "<textarea rows='3' cols='105' name='re_content' id='content_" + id + "'>" + content + "</textarea>"
-                    + "<input type='file' name='files' onchange='re_previewImage(this," + id + ")'>"
+                    + "<input type='file' name='files' onchange='re_previewImage(this, " + id + ")'>"
                 );
 
                 $('#btn_' + id).html(
