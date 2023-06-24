@@ -38,12 +38,11 @@
         // 유효성 검사
         function validateForm() {
             var petSelect = document.getElementById("p_id");
-            var dateTimeInput = document.getElementById("request_times");
+            var dateTimeInput = document.getElementById("request_times");       //요청시간
             var purposeSelect = document.getElementById("purpose");
             var reasonInput = document.getElementById("reason");
             var wishListInput = document.getElementById("wish_list");
             var nowdate = document.getElementById("nowdate");
-            var useCheck = document.getElementById("useCheck");
 
             // reservation_time 목록을 JavaScript 배열로 변환
             var reservationTimeArray = [<c:forEach items="${reservation_time}" var="time">${time.getTime()}, </c:forEach>];
