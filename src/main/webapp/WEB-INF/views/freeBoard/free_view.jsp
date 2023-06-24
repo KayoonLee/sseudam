@@ -45,9 +45,15 @@
                             data: {"num": num, "board_num": board_num, "m_id": m_id},
                             success: function (data) {
                                 if (data == 0) {
+                                    var _width = '450';
+                                    var _height = '520';
+
+                                    var _left = Math.ceil(( window.screen.width - _width )/2);
+                                    var _top = Math.ceil(( window.screen.height - _height )/2);
+
                                     window.open('reportAddForm?num=' + num + "&board_num=" + board_num + "&m_id=" + m_id,
                                         "_blank",
-                                        "top=20, left=30, width=450, height=400, resizable=no");
+                                        "width="+_width+", height="+_height+", resizable=no left="+_left+",top="+_top);
                                 } else {
                                     alert("이미 신고한 글입니다");
                                 }

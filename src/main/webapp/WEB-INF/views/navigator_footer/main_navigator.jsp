@@ -78,7 +78,7 @@
                                             커뮤니티
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="freeList?num=2">자유게시판</a>
+                                            <a class="dropdown-item" href="freeList?num=2&category=1">자유게시판</a>
                                             <a class="dropdown-item" href="freeList?num=2&category=2">질문게시판</a>
                                             <a class="dropdown-item" href="freeList?num=2&category=3">토론게시판</a>
                                         </div>
