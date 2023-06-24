@@ -1,13 +1,11 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.model.CounselPaper;
-import com.pet.sseudam.model.CounselRecord;
-import com.pet.sseudam.model.Member;
-import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.*;
 import com.pet.sseudam.service.ConsultingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,6 +18,7 @@ import java.util.List;
 
 @Controller
 public class ConsultingController {
+
     @Autowired
     private ConsultingService con;
 
@@ -90,11 +89,13 @@ public class ConsultingController {
     }
 
 
-    /*상담예약 폼 기록 */
+    /*상담예약 폼 기록  신진우 수정중 */
     @RequestMapping("submit_Insert_Consult")
     public String submit_Insert_Consult(@RequestParam("g_id") int g_id,
                                         @RequestParam("c_id") int c_id,
                                         @RequestParam("request_times") String request_time,
+                                        
+                                        Model model,
 
                                         CounselPaper counselpaper) {
         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
@@ -109,26 +110,35 @@ public class ConsultingController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        // Request Time 조회용 List
+        List<CounselPaper> cTimeList = con.requestTime_list(c_id);
 
-
+        for(int i = 0; i<cTimeList.size(); i++){
+            if(cTimeList.get(i).equals(request_time)){
+                counselpaper.setState(-1);      //  -1 = 중복
+            }else{
+                counselpaper.setState(1);       // 1 = 통과
+            }
+        }
+        
+        model.addAttribute("state", counselpaper.getState());
+        
         counselpaper.setC_id(c_id);
         counselpaper.setM_id(g_id);
         counselpaper.setRequest_time(date);
         con.insert_consult(counselpaper);
 
-        return "redirect:/get_Consult_Details";
+        return "redirect:/memberpage_mypaper";
 
     }
 
     /*상세페이지로 이동 */
     @RequestMapping("get_Consult_Details")
-    public String get_Consult_Details(HttpSession session, Model model)
+    public String get_Consult_Details(HttpSession session, Model model , @RequestParam("paper_num") int paper_num)
     //    @RequestParam("paper_num") int paper_num,
     //      @RequestParam("r_num") int r_num)
     {
-
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 임의값 나중에 삭제해야함.
-        int paper_num = 36;
         int r_num = 4;
 
         //해당 일반 회원 검색
@@ -183,7 +193,7 @@ public class ConsultingController {
         model.addAttribute("pet_list", pet_list);
 
 
-        return "edit_consulttemp";
+        return "redirect:update_Consult";
     }
 
     /* 수정페이지 업데이트 */
@@ -239,7 +249,7 @@ public class ConsultingController {
 
         return "consulting/write_consulting";
     }
-
+    /*기록서 insert*/
     @RequestMapping("insert_Consulting")
     public String insert_Consulting(@RequestParam("consulting_dates") String consulting_dates,
                                     @RequestParam("old_paper_num") int old_paper_num,
@@ -266,8 +276,22 @@ public class ConsultingController {
         con.insert_consulting(counselrecord);
 
 
-        return "";
+        return ""; // 상담사 마이페이지의 상담사 기록서 모여있는 곳으로
     }
 
+    /*상담사 마이페이지에서 기록서 클릭했을 때 */
+/*
+    @RequestMapping("") // 상담사 마이페이지에서 클릭했을 때
+    public String get_Consulting_Details(
+            @RequestParam("record_num") int record_num,
+            CounselRecord counselrecord,
+            Model model
+            ) {
+         counselrecord = con.select_counsel_record(record_num);
+         model.addAttribute("counselrecord",counselrecord);
+
+        return null;
+    }
+*/
 
 }

@@ -1,8 +1,16 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <title>상담사 소개</title>
+
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/main_header.jsp" %>
+
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -19,17 +27,64 @@
                 alert("상담사를 선택해주세요.");
                 return false; // 폼 전송을 막기 위해 false 반환
             }
+            return true;
         }
     </script>
 
 </head>
 <body>
 
-<%--<main id="main" class="main">--%>
-<%--<section class="section">--%>
-<%--<div class="row">--%>
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 
-    <div style="margin-top: 250px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">
+<main id="main" class="main">
+
+    <div class="container" align="center">
+        <div class="row">
+            <table>
+                <p><p>
+                <div class="pagetitle">
+                    <h1>상담사 선택</h1>
+                </div>
+                <p><p>
+
+                <%-- 여기에 소빈님이 작업하신 것을 추가할 예정이였음 --%>
+
+            </table>
+
+
+
+            <%-- 소빈님 --%>
+            <table>
+                <c:forEach var="counsel" items="${counselorList}">
+                <div class="col-sm-3">
+                    <div>
+                        <div class="card">
+
+                            <c:if test="${!empty counsel.profile_num}">
+                                <img class="card-img-top" src="counselorImg/${counsel.profile_name}">
+                            </c:if>
+
+                            <c:if test="${empty counsel.profile_num}">
+                                <img src="images/memberdefault.png" width="250" height="250">
+                            </c:if>
+
+                            <div class="card-body">
+                                <h4 class="card-title">${counsel.name}</h4>
+                                <h4 class="card-title">${counsel.license}</h4>
+                                <h4 class="card-title">${counsel.career}</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </c:forEach>
+
+            </table>
+        </div>
+    </div>
+
+    <%-- 상담사 선택 --%>
+    <div style="margin-top: 20px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">
         <div class="col-lg-auto">
 
             <div class="card">
@@ -37,14 +92,14 @@
                     <h5 class="card-title">상담사 목록</h5>
 
                     <!-- General Form Elements -->
-                    <form action="choose_Consult_Time" method="POST">
+                    <form action="choose_Consult_Time" method="POST" onsubmit="return checkCounselorSelection()">
                         <div class="row mb-3">
                             <div class="col-sm-10">
 
                                 <select id="con_names_select" name="con_names">
                                     <option value="">상담사</option>
                                     <c:forEach var="counselor" items="${con_names}">
-                                        <option value="${counselor.m_id}" >${counselor.name}</option>
+                                        <option value="${counselor.m_id}">${counselor.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -53,8 +108,9 @@
                         <div class="row mb-3">
 
                             <div class="col-sm-10">
-                                <button type="submit" class="btn btn-primary" onclick="checkCounselorSelection()">상담사 선택</button>
+                                <button type="submit" class="btn btn-primary" >상담사 선택</button>
                             </div>
+
                         </div>
 
                     </form><!-- End General Form Elements -->
@@ -63,12 +119,12 @@
             </div>
 
         </div>
-    </div>
+    </div> <%-- 상담사 선택 end --%>
 
-<%--</div>--%>
-<%--</section>--%>
-<%--</main>--%>
+</main>
 
+<!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 </body>
 </html>

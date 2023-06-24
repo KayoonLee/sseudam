@@ -7,11 +7,17 @@
 </head>
 <body>
 
+<%-- 일반회원 - 동물목록 --%>
 <table id="example2" class="table is-striped" style="width:100%">
 
+    <br>
+
     <tr>
-        <h3> ${memberDto.name} 님의 동물목록</h3>
+        <h5 align="center"> ${memberDto.name} 님의 동물목록</h5>
     </tr>
+
+    <br>
+
     <tr>
         <th>동물이름</th>
         <th>강아지/고양이</th>
@@ -20,6 +26,7 @@
         <th>생일</th>
         <th>성별</th>
     </tr>
+    <tbody>
     <c:forEach var="pet" items="${pet}">
         <tr>
             <td>${pet.animal}</td>
@@ -43,9 +50,9 @@
             <c:if test="${pet.gender==1}">
                 <td>수컷</td>
             </c:if>
-                <%--<td rowspan="4">${pet.profile}</td>--%>         <!--동물리스트를 띄우는건데 필요?-->
         </tr>
     </c:forEach>
+    </tbody>
 </table>
 
 <!-- ===============수정중=================== -->

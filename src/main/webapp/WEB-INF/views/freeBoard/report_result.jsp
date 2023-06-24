@@ -16,7 +16,7 @@
 
 <c:if test="${result != 1}">
     <script>
-        alert("신고를 작성하였습니다.");
+        alert("신고가 작성되지 않았습니다.");
     </script>
 </c:if>
 

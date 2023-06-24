@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface ConsultingService {
 
+// 찬근
     List<Member> find_counselor_name ();
     List<Date> find_reservation_time(int g_id, int con_id);
 
@@ -29,4 +30,9 @@ public interface ConsultingService {
     void accept_consult (int paper_num);
     String now_time();
     void insert_consulting(CounselRecord counselrecord);
+    CounselRecord select_counsel_record(int record_num);
+    
+    // requestTIme 조회 sjw
+    List<CounselPaper> requestTime_list(int c_id);
+
 }

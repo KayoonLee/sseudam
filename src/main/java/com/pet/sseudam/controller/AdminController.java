@@ -461,4 +461,10 @@ public class AdminController {
         return "adminPage/admin_test4";
     }
 
+    @GetMapping("adminTest5")
+    public String adminTest5() {
+        System.out.println("상담사 예약 페이지 진입");
+        return "adminPage/admin_test5";
+    }
+
 }
