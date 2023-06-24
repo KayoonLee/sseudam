@@ -95,11 +95,11 @@
 <!-- ======= Dashboard ======= -->
 <main id="main" class="main">
     <%-- 나중에 삭제할 부분 --%>
-    <a href="adminTest">토스트ui 테스트</a>
+    <%--<a href="adminTest">토스트ui 테스트</a>
     <a href="adminTest2">calendar test1</a>
     <a href="adminTest3">calendar test2</a>
     <a href="adminTest4">상담사 예약 테스트</a>
-    <a href="adminTest5">상담사 예약 테스트2</a>
+    <a href="adminTest5">상담사 예약 테스트2</a>--%>
 
     <div class="pagetitle">
         <h1>회원수 통계</h1>

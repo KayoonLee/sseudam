@@ -37,7 +37,7 @@
 <!-- ======= Navigator ======= -->
 <%@ include file="../navigator_footer/main_navigator.jsp" %>
 
-<main id="main" class="main">
+<%--<main id="main" class="main">--%>
 
     <div class="container" align="center">
         <div class="row">
@@ -77,7 +77,7 @@
             </table>
         </div>
     </div>
-</main>
+<%--</main>--%>
 
     <%-- 상담사 선택 --%>
 <%--    <div style="margin-top: 20px; margin-left: 20px; margin-right: 20px; margin-bottom: 20px;">--%>
