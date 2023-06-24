@@ -63,8 +63,8 @@ private static final String from_address ="testbootforme@gmail.com";
         msg.setFrom(SendEmailService.from_address);
         msg.setSubject("[쓰담쓰담] 상담사 승인 거절 메일입니다.");
         msg.setTo(email);
-        msg.setText("안녕하세요. [쓰담쓰담] 입니다. "+ nick+"님의 가입 심사가 거절되었습니다. \n"+" 귀하의 역량과 자질이 우수하나" +
-                "제한된 인원을 선발할 수 밖에 없음을 이해하여 주시기 바랍니다. \n 다음에 더 좋은 모습으로 찾아뵙길 기대하겠습니다. 감사합니다.");
+        msg.setText("안녕하세요. [쓰담쓰담] 입니다. "+ nick+"님의 가입 심사가 거절되었습니다. \n"+
+                "다음에 더 좋은 모습으로 찾아뵙길 기대하겠습니다. 감사합니다.");
         mailSender.send(msg);
     }
 
