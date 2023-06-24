@@ -11,12 +11,14 @@
     </style>
 
     <script>
+        var email = $("#email").val();
+        var nick = $("#nick").val();
         function acceptCounselor(m_id) {
             var text = "이 회원을 상담사로 승인하시겠습니까?";
             if (confirm(text)) {
                 $.ajax({
                     url: "adminCounselorAccept",
-                    data: {m_id: m_id, identifier: 2},
+                    data: {m_id: m_id, identifier: 2, email: email, nick: nick},
                     success: function (response) {
                         if (response == 1) {
                             alert("성공");
@@ -35,7 +37,7 @@
             if (confirm(text)) {
                 $.ajax({
                     url: "adminCounselorDecline",
-                    data: {m_id: m_id},
+                    data: {m_id: m_id, email: email, nick: nick},
                     success: function (response) {
                         if (response == 1) {
                             alert("성공");
@@ -182,6 +184,8 @@
 
     </div>
 </div>
+<input type="hidden" id="email" value="${member.email}">
+<input type="hidden" id="nick" value="${member.nick}">
 
 <div id="nickTag">
     <form id="nick_frm" method="" action="">

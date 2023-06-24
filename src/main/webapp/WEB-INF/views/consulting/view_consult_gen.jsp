@@ -82,9 +82,10 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
+                    <c:if test="${counselpaper.confirmed != 3}">
                     <input type="submit" class="btn btn-primary" value="상담 수정하기" onclick="javascript: form.action='edit_Consult';">
                     <input type="submit" class="btn btn-primary" value="상담 취소하기" onclick="javascript: form.action='delete_Consult';">
-
+                    </c:if>
                 </div>
             </div>
 

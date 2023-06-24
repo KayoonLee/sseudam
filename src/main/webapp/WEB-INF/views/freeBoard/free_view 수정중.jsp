@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시판 상세페이지</title>
+    <title>게시판 수정 폼</title>
 
     <!-- ======= Header ======= -->
     <%@ include file="../navigator_footer/main_header.jsp" %>
@@ -57,15 +57,9 @@
                             data: {"num": num, "board_num": board_num, "m_id": m_id},
                             success: function (data) {
                                 if (data == 0) {
-                                    var _width = '450';
-                                    var _height = '520';
-
-                                    var _left = Math.ceil(( window.screen.width - _width )/2);
-                                    var _top = Math.ceil(( window.screen.height - _height )/2);
-
                                     window.open('reportAddForm?num=' + num + "&board_num=" + board_num + "&m_id=" + m_id,
                                         "_blank",
-                                        "width="+_width+", height="+_height+", resizable=no left="+_left+",top="+_top);
+                                        "top=20, left=30, width=450, height=400, resizable=no");
                                 } else {
                                     alert("이미 신고한 글입니다");
                                 }
@@ -131,7 +125,6 @@
                 $('#listRe').load('FreeReList?num=' + num + '&board_num=' + board_num + '&rpageNum=' + rpageNum);
             }
         });
-
         // 댓글 삭제 확인
         function delete_check() {
             var text = "정말로 삭제하시겠습니까?";
@@ -198,9 +191,7 @@
 <!-- ======= Navigator ======= -->
 <%@ include file="../navigator_footer/main_navigator.jsp" %>
 
-<p>
-<p>
-<p>
+<p><p><p>
 <h2 align="center">게시판 글 상세페이지</h2>
 
 <%--<main id="main" class="main">--%>
@@ -216,137 +207,102 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">제목</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject" name="subject" value="${fboard.subject}" disabled>
+                ${fboard.subject}
             </div>
         </div>
 
         <%-- 카테고리 --%>
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">카테고리</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="subject" value=
-                        "<c:if test="${fboard.category == 1}">자유주제</c:if>
-                        <c:if test="${fboard.category == 2}">질문과 답변</c:if>
-                        <c:if test="${fboard.category == 3}">토론</c:if>"
-                       disabled>
+            <div class="col-sm-10" align="center">
+                        <c:if test="${fboard.category == 1}">자유주제</c:if>
+                        <c:if test="${fboard.category == 2}">묻고 답하기</c:if>
+                        <c:if test="${fboard.category == 3}">토론</c:if>
             </div>
         </div>
-
-        <%-- 닉네임 --%>
         <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">프로필 사진/닉네임</label>
+            <label class="col-sm-2 col-form-label">제목</label>
             <div class="col-sm-10">
-                <c:if test="${not empty fboard.profile_num}">
-                    <img src="./memberImg/${fboard.profile_name}" class="profile_image">
-                </c:if>${fboard.nick}
+                <input type="text" class="form-control" id="subject" name="subject" value="${fboard.nick}">
             </div>
         </div>
 
-        <%-- 조회수 --%>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">조회수</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" name="subject" value="조회수 ${fboard.readcount}" disabled>
-            </div>
+        <div>
+            <c:forEach var="list" items="${img_list}">
+                <p><img src="./img/${list.file_name}" class="thumbnail"></p>
+            </c:forEach>
         </div>
 
-        <%-- 업로드한 이미지 --%>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">업로드한 파일</label>
-            <div class="col-sm-10">
-                <c:forEach var="list" items="${img_list}">
-                    <p><img src="./img/${list.file_name}" class="thumbnail" style="max-height: 200px"></p>
-                </c:forEach>
-            </div>
-        </div>
 
-        <%-- 본문 --%>
+<%-- ---------------------------------------------------------------------------------------------------- --%>
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">본문</label>
             <div class="col-sm-10">
+                <input type="file" id="imageInput" name="files" onchange="previewImage(this)" multiple>
                 <textarea class="form-control" id="content" name="reason"
-                          style="height: 150px" maxlength="2000" readonly>${fboard.content}</textarea><br>
+                          style="height: 150px" maxlength="2000">${fboard.content}</textarea><br>
             </div>
         </div>
 
-        <%-- 해시태그 --%>
+        <%-- 태그 --%>
         <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">해시태그#</label>
+            <label class="col-sm-2 col-form-label">태그#</label>
             <div class="col-sm-10">
-                <input type="text" id="hashtag" placeholder="#태그" class="form-control" value="${fboard.hashtag}"
-                       readonly>
+                <input type="hidden" id="tag" name="hashtag" value="">
+                <input type="text" id="hashtag" placeholder="#태그입력" class="form-control">
             </div>
         </div>
+            <div>${fboard.hashtag}</div>
 
-        <%-- 추천클릭 --%>
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">추천클릭!</label>
-            <div class="col-sm-10">
-                <img id="recom_image" src="images/muzik2.jpg" width="50" height="50"/>
-                <div id="recom_block">${fboard.recom}
-                </div>
-            </div>
+        <div>
+            <img id="recom_image" src="images/muzik2.jpg" width="50" height="50"/>
+            <div id="recom_block">${fboard.recom}</div>
         </div>
 
-        <%-- 글수정/글삭제/신고하기/목록 --%>
-        <div class="row mb-3">
-            <div class="col-sm-10">
-
-                <c:if test="${!empty member.m_id and member.m_id == fboard.m_id}">
-                    <button type="button" class="btn btn-primary"
-                            onclick="location.href='freeUpdateForm?num=${fboard.num}&board_num=${fboard.board_num}'">글
-                        수정
-                    </button>
-                    <button type="button" class="btn btn-danger" onclick="delete_check()">글 삭제</button>
-                </c:if>
-
-                <a href="freeList?&num=${fboard.num}&pageNum=${pageNum}" class="btn btn-primary">목록</a>
-                <c:if test="${!empty member.m_id}">
-                    <button type="button" id="report_button" class="btn btn-danger">신고하기</button>
-                </c:if>
-
+        <c:if test="${!empty member.m_id and member.m_id == fboard.m_id}">
+            <div align="center">
+                <button type="button" onclick="location.href=
+                        'freeUpdateForm?num=${fboard.num}&board_num=${fboard.board_num}'">글 수정
+                </button>
+                <button type="button" onclick="delete_check()" >글 삭제</button>
             </div>
-        </div>
-
-    </div>
-</div>
-<%--</main>--%>
-
-<div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 200px">
-    <div class="card-body">
-        <h5 class="card-title">댓글달기</h5>
-
-        <%-- 댓글들 --%>
-        <c:if test="${!empty member.m_id}">
-
-            <form id="frm" name="frm" enctype="multipart/form-data" onsubmit="return free_check()">
-
-                <input type="hidden" name=num value="${fboard.num}">
-                <input type="hidden" name=board_num value="${fboard.board_num}">
-                <input type="hidden" name=m_id value="${member.m_id}">
-
-                <div class="row mb-3">
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label">댓글</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" id="re_content" name="re_content"
-                                      style="height: 150px"></textarea>
-                            <input type="button" value="댓글입력" id="repl_insert" class="btn btn-primary">
-
-                            <p>
-                            <div id="previewContainer"></div>
-                            <input class="form-control" type="file" id="files" name="files" onchange="previewImage(this)">
-                        </div>
-                    </div>
-
-                </div>
-
-            </form>
-
         </c:if>
 
-        <%-- 댓글 --%>
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-primary" onclick="location.href=
+                        'freeUpdateForm?num=${fboard.num}&board_num=${fboard.board_num}'">글 수정</button>
+                <button type="submit" class="btn btn-primary" onclick="delete_check()>글 삭제</button>
+                <a class="btn btn-primary" href="freeList">목록</a>
+            </div>
+        </div>
+
+        <div>
+            <c:if test="${!empty member.m_id}">
+                <button type="button" id="report_button" class="btn btn-primary">신고하기</button>
+            </c:if>
+        </div>
+
+        <div>
+            <a href="freeList?&num=${fboard.num}&pageNum=${pageNum}">목록</a>
+        </div>
+
+
+        <c:if test="${!empty member.m_id}">
+            <div>
+                <form id="frm" name="frm" enctype="multipart/form-data" onsubmit="return free_check()">
+                    <input type="hidden" name=num value="${fboard.num }">
+                    <input type="hidden" name=board_num value="${fboard.board_num }">
+                    <input type="hidden" name=m_id value="${member.m_id }">
+                    댓글 :
+                    <textarea rows=3 cols=30 id="re_content" name="re_content"></textarea>
+                    <div id="previewContainer"></div>
+                    <input type="file" id="files" name="files" onchange="previewImage(this)">
+                    <input type="button" value="댓글입력" id="repl_insert">
+                </form>
+            </div>
+        </c:if>
         <div id="listRe"></div>
 
     </div>
@@ -354,6 +310,18 @@
 
 <!-- ======= Footer ======= -->
 <%@ include file="../navigator_footer/main_footer.jsp" %>
+
+
+
+
+
+
+
+
+<div class="bgcolor">
+    <div class="outbox">
+
+
 
 </body>
 </html>

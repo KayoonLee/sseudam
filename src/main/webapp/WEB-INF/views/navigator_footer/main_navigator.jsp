@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="../header/header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 
+<%-- 유효성 검사 세욱--%>
+    <script src="./js/free.js"></script>
 </head>
 
 <body>
@@ -64,7 +68,8 @@
                                         <a class="nav-link" href="counsel_list">상담사 소개</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="hasAnimal">상담신청</a>
+                                        <a class="nav-link" onclick="select_counselor(${member.identifier})"
+                                           href="#">상담신청</a>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="freeList?num=2" id="navbarDropdown"
@@ -73,7 +78,7 @@
                                             커뮤니티
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <a class="dropdown-item" href="freeList?num=2">자유게시판</a>
+                                            <a class="dropdown-item" href="freeList?num=2&category=1">자유게시판</a>
                                             <a class="dropdown-item" href="freeList?num=2&category=2">질문게시판</a>
                                             <a class="dropdown-item" href="freeList?num=2&category=3">토론게시판</a>
                                         </div>
@@ -116,4 +121,4 @@
     <!-- header part(헤더 끝) end-->
 
 </body>
-</ht
+</html>
