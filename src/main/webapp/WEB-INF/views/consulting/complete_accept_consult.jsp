@@ -6,7 +6,7 @@
   <title>Consultation Deletion Complete</title>
   <script>
     function redirectToMypage() {
-      window.location.href = "counselorpage_main";
+      window.location.href = "get_Consult_Details?paper_num=${paper_num}";
     }
 
     window.onload = function() {

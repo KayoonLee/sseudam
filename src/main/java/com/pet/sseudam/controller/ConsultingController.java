@@ -250,10 +250,12 @@ public class ConsultingController {
         return "consulting/complete_delete_consult";
     }
 
-    /* 상담 수락*/
+    /* 상담 수락*/      //신진우수정
     @RequestMapping("accept_Consult")
-    public String accept_Consult(@RequestParam("paper_num") int paper_num) {
+    public String accept_Consult(@RequestParam("paper_num") int paper_num, Model model) {
         con.accept_consult(paper_num);
+        
+        model.addAttribute("paper_num", paper_num);
         return "consulting/complete_accept_consult";
     }
 
@@ -304,7 +306,7 @@ public class ConsultingController {
         con.insert_consulting(counselrecord);
 
 
-        return "redirect:/counselorpage_main";
+        return "consulting/view_consulting";
         /* 나중에 상담기록서 리스트로 전달할 예정. */
     }
 
