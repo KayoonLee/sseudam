@@ -56,7 +56,7 @@
                 <label  class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
 
-                    <input type="text" class="form-control" value="<fmt:formatDate value="${counselpaper.request_time}" pattern="yyyy-MM-dd hh:mm"/>" disabled>
+                    <input type="text" class="form-control" value="<fmt:formatDate value="${counselpaper.request_time}" pattern="yyyy-MM-dd hh:00"/>" disabled>
                 </div>
             </div>
             <div class="row mb-3">
