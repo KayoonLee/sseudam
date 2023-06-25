@@ -40,81 +40,11 @@
 
     <!-- DATE -->
     <script>
-        function removeMinutes() {
-            var datetimeInput = document.getElementById("selected-dates"); /* request_times */
-            var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
-
-            var dateTime = datetimeInput.value;
-            var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
-            datetimeInput.value = dateTimeWithoutMinutes;
-            var dateTimeString = datetimeInput.value;
-            var dateTime1 = new Date(dateTimeString);
-            <!-- 수정중입니다 !!!!!!!!!!!!!!!!!!!!!!!!-->
-        }
-
-        // 유효성 검사
-        function validateForm() {
-            var petSelect = document.getElementById("p_id");
-            var datetimeInput = document.getElementById("selected-dates"); /* request_times */
-            var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
-
-            var purposeSelect = document.getElementById("purpose");
-            var reasonInput = document.getElementById("reason");
-            var wishListInput = document.getElementById("wish_list");
-            var nowdate = document.getElementById("nowdate");
-
-            // reservation_time 목록을 JavaScript 배열로 변환
-            var reservationTimeArray = [<c:forEach items="${reservation_time}" var="time">${time.getTime()}, </c:forEach>];
-
-            // dateTimeInput의 값을 가져와서 JavaScript Date 객체로 변환
-            var selectedDateTime = new Date(dateTimeInput.value);
-
-            // 선택된 날짜와 reservation_time 목록의 값을 비교하여 중복 여부 확인
-            var isDuplicate = reservationTimeArray.includes(selectedDateTime.getTime());
 
 
-            // 각 필드의 유효성 검사 로직을 구현하고, 필요한 조건에 맞지 않는 경우 알림을 표시하거나 작업을 수행합니다.
-            if (petSelect.value === "") {
-                alert("반려동물을 선택해주세요.");
-                return false;
-            }
-
-            if (dateTimeInput.value === "") {
-                alert("예약 시간을 입력해주세요.");
-                return false;
-            }
-
-            if (dateTimeInput.value <= nowdate.value) {
-                alert("예약 시간을 현재시간 이후로 설정해주세요.");
-                dateTimeInput.value = "";
-                return false;
-            }
-
-            if (isDuplicate) {
-                alert("이미 예약된 시간입니다.");
-                dateTimeInput.value = "";
-                return false;
-            }
-
-            if (purposeSelect.value === "") {
-                alert("상담 목적을 선택해주세요.");
-                return false;
-            }
-
-            if (reasonInput.value === "") {
-                alert("상담 사유를 입력해주세요.");
-                return false;
-            }
-
-            if (wishListInput.value === "") {
-                alert("요청 사항을 입력해주세요.");
-                return false;
-            }
-
-            // 필요한 유효성 검사를 모두 통과한 경우에는 true를 반환하여 폼이 제출됩니다.
-            return true;
-        }
     </script>
+
+
 </head>
 <body>
 
@@ -171,9 +101,9 @@
                 <label class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
                     <%-- 달력 테스트 --%>
-                    <div id="selected-dates">
-                        <input type="datetime-local" id="request_times" name="request_times" onchange="removeMinutes()">
+                    <div id="selected-dates"  onchange="removeMinutes()">
                     </div>
+                        <input type="hidden" id="request_times" name="request_times" value="">
                 </div>
             </div>
 
@@ -232,20 +162,22 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
+
     (function ($) {
         $('#picker').markyourcalendar({
             availability: [
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
             ],
             isMultiple: false,
+
+
             onClick: function (ev, data) {
                 // data is a list of datetimes
                 console.log(data);
@@ -255,18 +187,20 @@
                     var t = this.split(' ')[1];
                     html += `<p>` + d + ` ` + t + `</p>`;
                 });
-                $('#selected-dates').html(html);
+                if (validate_date(data)) {
+                    $('#selected-dates').html(html);
+                }
             },
             onClickNavigator: function (ev, instance) {
                 var arr = [
                     [
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
                     ]
                 ]
                 // var rn = Math.floor(Math.random() * 10) % 7;
@@ -274,6 +208,107 @@
             }
         });
     })(jQuery);
+
+
+    function removeMinutes() {
+        var selectedDatesDiv = document.getElementById("selected-dates"); /* request_times */
+        var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
+
+        // 분 짜르기
+        var dateTime = dateString.value;
+        var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
+        dateString.value = dateTimeWithoutMinutes;
+        // 분 짜르기
+
+        var dateTimeString = dateString.value;
+        <!-- 수정중입니다 !!!!!!!!!!!!!!!!!!!!!!!!-->
+    }
+
+    // 유효성 검사
+    function validateForm() {
+        var petSelect = document.getElementById("p_id");
+
+
+        var purposeSelect = document.getElementById("purpose");
+        var reasonInput = document.getElementById("reason");
+        var wishListInput = document.getElementById("wish_list");
+
+
+
+        // 각 필드의 유효성 검사 로직을 구현하고, 필요한 조건에 맞지 않는 경우 알림을 표시하거나 작업을 수행합니다.
+        if (petSelect.value === "") {
+            alert("반려동물을 선택해주세요.");
+            return false;
+        }
+
+
+        if (purposeSelect.value === "") {
+            alert("상담 목적을 선택해주세요.");
+            return false;
+        }
+
+        if (reasonInput.value === "") {
+            alert("상담 사유를 입력해주세요.");
+            return false;
+        }
+
+        if (wishListInput.value === "") {
+            alert("요청 사항을 입력해주세요.");
+            return false;
+        }
+
+        // 필요한 유효성 검사를 모두 통과한 경우에는 true를 반환하여 폼이 제출됩니다.
+        return true;
+    }
+
+
+    function validate_date(data) {
+       // var selectedDatesDiv = document.getElementById("selected-dates"); /* request_times */
+        //var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
+        //var dateTimeString = dateString.value;
+        // reservation_time 목록을 JavaScript 배열로 변환
+        var reservationTimeArray = [<c:forEach items="${reservation_time}" var="time">${time.getTime()}, </c:forEach>];
+        // dateTimeInput의 값을 가져와서 JavaScript Date 객체로 변환
+        var selectedDateTime = (new Date(data)).getTime();
+        console.log("selectedDateTime" + selectedDateTime);
+        // 선택된 날짜와 reservation_time 목록의 값을 비교하여 중복 여부 확인
+        var isDuplicate = reservationTimeArray.includes(selectedDateTime);
+        var nowdate = document.getElementById("nowdate");
+
+
+        if (selectedDateTime.value === "") {
+            alert("예약 시간을 입력해주세요.");
+            return false;
+        }
+
+        if (selectedDateTime.value <= nowdate.value) {
+            alert("예약 시간을 현재시간 이후로 설정해주세요.");
+            data.value = "";
+            console.log(data);
+            return false;
+        }
+
+        if (isDuplicate) {
+            alert("이미 예약된 시간입니다.");
+            data.value = "";
+            console.log(data);
+            return false;
+        }
+        //selectedDateTime = new Date(data);
+        var checkbull = isDuplicate;
+        var dateclick = selectedDateTime;
+        var arraytest = reservationTimeArray;
+        console.log("checkbull" + checkbull);
+        console.log("dateclick" + dateclick);
+        console.log("arraytest" + arraytest);
+        var inputElement = document.getElementById("request_times");
+
+        // 선택된 날짜와 시간 값을 input 요소의 값으로 설정
+        inputElement.value = selectedDateTime;
+        return true;
+    }
+
+
 </script>
 <script type="text/javascript">
 
@@ -292,6 +327,7 @@
     })();
 
 </script>
+
 <script>
     try {
         fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {

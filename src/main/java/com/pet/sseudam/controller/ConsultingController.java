@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -104,23 +105,14 @@ public class ConsultingController {
     @RequestMapping("submit_Insert_Consult")
     public String submit_Insert_Consult(@RequestParam("g_id") int g_id,
                                         @RequestParam("c_id") int c_id,
-                                        @RequestParam("request_times") String request_time,
+                                        @RequestParam("request_times") String request_times,
                                         
                                         Model model,
 
                                         CounselPaper counselpaper) {
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("yyyy-MM-dd HH:00");
-        Date date = null;
-        try {
-            /*  yyyy-MM-dd'T'HH:mm ->  yyyy-MM-dd HH:mm -> yyyy-MM-dd HH:00 */
-            date = inputFormat.parse(request_time);
-            String formattedDate = outputFormat.format(date);
-            date = outputFormat.parse(formattedDate);
-            System.out.println(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+        long timestamp = Long.parseLong(request_times);
+        Date date = new Date(timestamp);
 
 //        // Request Time 조회용 List
 //        List<Date> reservation_time;
