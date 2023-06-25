@@ -102,8 +102,8 @@
 
     <!-- 상담기록서 작성 -->
     <insert id="insert_consulting" parameterType="CounselRecord">
-        INSERT INTO counsel_record (paper_num, p_id, m_id, c_id, consulting_date, subject, topic, content, consult_status, etc)
-        VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{consult_status},#{etc})
+        INSERT INTO counsel_record (paper_num, p_id, m_id, c_id, consulting_date, subject, topic, content, etc)
+        VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{etc})
     </insert>
 
     <!-- 상당기록서 조회 -->
