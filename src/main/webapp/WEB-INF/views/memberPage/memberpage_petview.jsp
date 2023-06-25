@@ -1,17 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <meta charset="UTF-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>
-
-<%@ include file="../navigator_footer/member_header.jsp" %>
-
+    <%@ include file="../navigator_footer/member_header.jsp" %>
+    <!-- ======= Table ======= -->
+    <%@ include file="../navigator_footer/admin_table.jsp" %>
 </head>
 <body>
 <!-- ======= Header ======= -->
 <%@ include file="../navigator_footer/counselor_navigator.jsp" %>
-
 <!-- ======= Sidebar ======= -->
 <%@ include file="../navigator_footer/member_sidebar.jsp" %>
 

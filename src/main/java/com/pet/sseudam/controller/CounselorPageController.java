@@ -236,6 +236,23 @@ public class CounselorPageController {
         return "counselorPage/counselorpage_request";
     }
 
+    // 상담기록서
+    @RequestMapping("counselorpage_record")
+    public String counselorPageRecord(HttpSession session, Model model){
+        System.out.println("상담기록서 진입성공");
+
+        Member member = (Member) session.getAttribute("member");
+        System.out.println("member : " + member);
+
+        List<CounselRecord> recordList = ms.recordList(member.getM_id());
+        System.out.println("recordList:" + recordList);
+
+        model.addAttribute("recordList", recordList);
+        model.addAttribute("member", member);
+
+        return "counselorPage/counselorpage_record";
+    }
+
     // 상담사가 쓴 글
     @RequestMapping("counselorpage_mypost")
     public String counselorPagePost(HttpSession session, Model model){

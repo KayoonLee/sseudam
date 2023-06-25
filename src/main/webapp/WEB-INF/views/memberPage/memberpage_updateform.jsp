@@ -30,8 +30,6 @@
         }
       }
     };
-
-
   </script>
   <style type="text/css">
     input[type=file] {
