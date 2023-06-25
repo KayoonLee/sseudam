@@ -63,3 +63,8 @@ function select_counselor(identifier){
     }
     location.href = "hasAnimal";
 }
+
+// 쪽지
+function note_check(){
+
+}

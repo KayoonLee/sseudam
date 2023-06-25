@@ -61,6 +61,41 @@
                 <span>상담신청내역</span>
             </a>
         </li>
+<%--        <li class="nav-item">--%>
+<%--            <a class="nav-link collapsed" href="noteInsertForm">--%>
+<%--                <i class="bi bi-grid"></i>--%>
+<%--                <span>쪽지 작성하기</span>--%>
+<%--            </a>--%>
+<%--        </li>--%>
+<%--        <li class="nav-item">--%>
+<%--            <a class="nav-link collapsed" href="noteList">--%>
+<%--                <i class="bi bi-grid"></i>--%>
+<%--                <span>쪽지 확인하기</span>--%>
+<%--            </a>--%>
+<%--        </li>--%>
+
+        <li class="nav-item">
+            <a class="nav-link" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-menu-button-wide"></i><span>나의 쪽지함</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="noteInsertForm">
+                        <i class="bi bi-circle"></i><span>쪽지 작성하기</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="noteList">
+                        <i class="bi bi-circle"></i><span>내가 쓴 쪽지함</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="noteReceiveList">
+                        <i class="bi bi-circle"></i><span>받은 쪽지함</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
 
     </ul>
 </aside>

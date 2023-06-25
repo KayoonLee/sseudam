@@ -87,7 +87,7 @@
 <div class="col-lg-12">
 --%>
 
-<main id="main" class="main">
+<%--<main id="main" class="main">--%>
     <div class="card" style="margin: 50px">
         <div class="card-body">
             <h5 class="card-title">상담예약서 작성</h5>
@@ -166,7 +166,7 @@
 
         </div>
     </div>
-</main>
+<%--</main>--%>
 
 <%--
 </div>
