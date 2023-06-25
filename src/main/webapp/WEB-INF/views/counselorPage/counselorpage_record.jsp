@@ -42,7 +42,6 @@
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
           </tr>
         </c:if>
         <c:forEach var="counsel_record" items="${recordList}">
