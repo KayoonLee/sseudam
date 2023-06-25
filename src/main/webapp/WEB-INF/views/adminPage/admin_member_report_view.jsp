@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../header/header.jsp" %>
 
-
 <html>
 <head>
     <title>admin_member_report_view</title>
@@ -19,7 +18,6 @@
             //     }
             // });
         }
-
     </script>
 </head>
 <body>
@@ -37,21 +35,21 @@
 
 <div class="card">
     <div class="card-body">
-<table id="example" class="table is-striped" style="width:100%">
-    <tbody>
-    <tr>
-        <div class="card-title" align="center">신고내용</div>
-    </tr>
-    <tr>
-    <%--<tr id="${m_id}" value="${m_id}">--%>
-        <td onclick="reportBoardView(${report_board.num}, ${report_board.board_num})">${report_board.report_content}
-            <button type="button" class="btn btn-outline-primary">
-                글조회
-            </button>
-        </td>
-    </tr>
-    </tbody>
-</table>
+        <table id="example" class="table is-striped" style="width:100%">
+            <tbody>
+            <tr>
+                <div class="card-title" align="center">신고내용</div>
+            </tr>
+            <tr>
+                <%--<tr id="${m_id}" value="${m_id}">--%>
+                <td onclick="reportBoardView(${report_board.num}, ${report_board.board_num})">${report_board.report_content}
+                    <button type="button" class="btn btn-outline-primary">
+                        글조회
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

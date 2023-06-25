@@ -1,24 +1,12 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 <%@ include file="../header/header.jsp" %>
 
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>게시판 상세페이지</title>
-
-    <!-- ======= Header ======= -->
-    <%@ include file="../navigator_footer/main_header.jsp" %>
-
-    <!-- Vendor CSS Files -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <title>게시글 본문</title>
 
     <script src="./js/free.js"></script>
-
     <script>
         $(document).ready(function () {
             // 페이지 로딩 시 댓글 목록 출력
@@ -60,12 +48,12 @@
                                     var _width = '450';
                                     var _height = '520';
 
-                                    var _left = Math.ceil(( window.screen.width - _width )/2);
-                                    var _top = Math.ceil(( window.screen.height - _height )/2);
+                                    var _left = Math.ceil((window.screen.width - _width) / 2);
+                                    var _top = Math.ceil((window.screen.height - _height) / 2);
 
                                     window.open('reportAddForm?num=' + num + "&board_num=" + board_num + "&m_id=" + m_id,
                                         "_blank",
-                                        "width="+_width+", height="+_height+", resizable=no left="+_left+",top="+_top);
+                                        "width=" + _width + ", height=" + _height + ", resizable=no left=" + _left + ",top=" + _top);
                                 } else {
                                     alert("이미 신고한 글입니다");
                                 }
@@ -154,6 +142,7 @@
             }
         }
 
+
         //사진 미리보기
         function previewImage(input) {
             var previewContainer = document.getElementById("previewContainer");
@@ -192,31 +181,23 @@
             height: 30px;
         }
     </style>
+
 </head>
 <body>
 
-<!-- ======= Navigator ======= -->
-<%@ include file="../navigator_footer/main_navigator.jsp" %>
-
-<p>
-<p>
-<p>
-<h2 align="center">게시판 글 상세페이지</h2>
-
-<%--<main id="main" class="main">--%>
 <div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 200px">
     <div class="card-body">
         <h5 class="card-title">글 상세 보기</h5>
 
-        <input type="hidden" id="num" name=num value="${fboard.num}">
-        <input type="hidden" id="board_num" name="board_num" value="${fboard.board_num}">
-        <input type="hidden" id="m_id" name="m_id" value="${member.m_id}">
+        <input type="hidden" id="num" name=num value="${fboard.num }">
+        <input type="hidden" id="board_num" name=board_num value="${fboard.board_num }">
+        <input type="hidden" id="m_id" name="m_id" value="${member.m_id }">
 
         <%-- 제목 --%>
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">제목</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="subject" name="subject" value="${fboard.subject}" disabled>
+                <input type="text" class="form-control" value="${fboard.subject}" disabled>
             </div>
         </div>
 
@@ -224,11 +205,7 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">카테고리</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="subject" value=
-                        "<c:if test="${fboard.category == 1}">자유주제</c:if>
-                        <c:if test="${fboard.category == 2}">질문과 답변</c:if>
-                        <c:if test="${fboard.category == 3}">토론</c:if>"
-                       disabled>
+                <input type="text" class="form-control" value="${fboard.category}" disabled>
             </div>
         </div>
 
@@ -246,7 +223,7 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">조회수</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="subject" value="조회수 ${fboard.readcount}" disabled>
+                <input type="text" class="form-control" value="조회수 ${fboard.readcount}" disabled>
             </div>
         </div>
 
@@ -264,7 +241,7 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">본문</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="content" name="reason"
+                <textarea class="form-control"
                           style="height: 150px" maxlength="2000" readonly>${fboard.content}</textarea><br>
             </div>
         </div>
@@ -273,8 +250,7 @@
         <div class="row mb-3">
             <label class="col-sm-2 col-form-label">해시태그#</label>
             <div class="col-sm-10">
-                <input type="text" id="hashtag" placeholder="#태그" class="form-control" value="${fboard.hashtag}"
-                       readonly>
+                <input type="text" placeholder="#태그" class="form-control" value="${fboard.hashtag}" readonly>
             </div>
         </div>
 
@@ -307,10 +283,8 @@
 
             </div>
         </div>
-
     </div>
 </div>
-<%--</main>--%>
 
 <div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 200px">
     <div class="card-body">
@@ -335,7 +309,8 @@
                             <input type="button" value="댓글입력" id="repl_insert" class="btn btn-primary">
                             <p>
                             <div id="previewContainer"></div>
-                            <input class="form-control" type="file" id="files" name="files" onchange="previewImage(this)">
+                            <input class="form-control" type="file" id="files" name="files"
+                                   onchange="previewImage(this)">
                         </div>
                     </div>
 
@@ -344,14 +319,15 @@
             </form>
 
         </c:if>
+
         <%-- 댓글 --%>
         <div id="listRe"></div>
 
     </div>
 </div>
 
-<!-- ======= Footer ======= -->
-<%@ include file="../navigator_footer/main_footer.jsp" %>
+</div>
 
+</div>
 </body>
 </html>
