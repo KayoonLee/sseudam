@@ -306,7 +306,7 @@ public class ConsultingController {
         con.insert_consulting(counselrecord);
 
 
-        return "consulting/view_consulting";
+        return "redirect:/counselorpage_record";
         /* 나중에 상담기록서 리스트로 전달할 예정. */
     }
 
