@@ -41,22 +41,32 @@
     <!-- DATE -->
     <script>
         function removeMinutes() {
-            var datetimeInput = document.getElementById("selected-dates"); /* request_times */
+            var selectedDatesDiv  = document.getElementById("selected-dates"); /* request_times */
             var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
 
-            var dateTime = datetimeInput.value;
+            // 분 짜르기
+            var dateTime = dateString.value;
             var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
-            datetimeInput.value = dateTimeWithoutMinutes;
-            var dateTimeString = datetimeInput.value;
-            var dateTime1 = new Date(dateTimeString);
+            dateString.value = dateTimeWithoutMinutes;
+            // 분 짜르기
+
+            var dateTimeString = dateString.value;
             <!-- 수정중입니다 !!!!!!!!!!!!!!!!!!!!!!!!-->
         }
 
         // 유효성 검사
         function validateForm() {
             var petSelect = document.getElementById("p_id");
-            var datetimeInput = document.getElementById("selected-dates"); /* request_times */
+            var selectedDatesDiv = document.getElementById("selected-dates"); /* request_times */
             var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
+            console.log("우와 DATESTRING" + dateString);
+
+            var dateTimeString = dateString.value;
+
+            // input type = hidden 에 값넘겨주기
+            var requestTimesInput = document.getElementById("request_times_input");
+            requestTimesInput.value = dateString;
+
 
             var purposeSelect = document.getElementById("purpose");
             var reasonInput = document.getElementById("reason");
@@ -66,8 +76,8 @@
             // reservation_time 목록을 JavaScript 배열로 변환
             var reservationTimeArray = [<c:forEach items="${reservation_time}" var="time">${time.getTime()}, </c:forEach>];
 
-            // dateTimeInput의 값을 가져와서 JavaScript Date 객체로 변환
-            var selectedDateTime = new Date(dateTimeInput.value);
+            // dateTimeString의 값을 가져와서 JavaScript Date 객체로 변환
+            var selectedDateTime = new Date(dateTimeString);
 
             // 선택된 날짜와 reservation_time 목록의 값을 비교하여 중복 여부 확인
             var isDuplicate = reservationTimeArray.includes(selectedDateTime.getTime());
@@ -79,20 +89,20 @@
                 return false;
             }
 
-            if (dateTimeInput.value === "") {
+            if (requestTimesInput.value === "") {
                 alert("예약 시간을 입력해주세요.");
                 return false;
             }
 
-            if (dateTimeInput.value <= nowdate.value) {
+            if (requestTimesInput.value <= nowdate.value) {
                 alert("예약 시간을 현재시간 이후로 설정해주세요.");
-                dateTimeInput.value = "";
+                requestTimesInput.value = "";
                 return false;
             }
 
             if (isDuplicate) {
                 alert("이미 예약된 시간입니다.");
-                dateTimeInput.value = "";
+                requestTimesInput.value = "";
                 return false;
             }
 
@@ -171,9 +181,9 @@
                 <label class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
                     <%-- 달력 테스트 --%>
-                    <div id="selected-dates">
-                        <input type="datetime-local" id="request_times" name="request_times" onchange="removeMinutes()">
-                    </div>
+                        <div id="selected-dates" onchange="removeMinutes()"></div>
+                        <input type="hidden" name="request_times" id="request_times_input" >
+                </div>
                 </div>
             </div>
 
@@ -237,13 +247,13 @@
     (function ($) {
         $('#picker').markyourcalendar({
             availability: [
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                ['1:00', '2:00', '3:00', '4:00', '5:00'],
+                ['10:15', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
             ],
             isMultiple: false,
             onClick: function (ev, data) {
@@ -260,13 +270,13 @@
             onClickNavigator: function (ev, instance) {
                 var arr = [
                     [
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
-                        ['1:00', '2:00', '3:00', '4:00', '5:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00','16:00', '17:00'],
                     ]
                 ]
                 // var rn = Math.floor(Math.random() * 10) % 7;
