@@ -1,21 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="../header/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>보낸 쪽지 목록</title>
-
-    <!-- Image CSS -->
-    <link rel="stylesheet" href="css/image_image.css">
-    <style>
-        .profile_image {
-            width: 30px;
-            height: 30px;
-        }
-    </style>
+    <title>받은 쪽지 목록</title>
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,6 +14,17 @@
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/main_header.jsp" %>
+
+    <style>
+        .profile_image {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
 
     <script>
         function changeState(note_num) {
@@ -40,8 +41,17 @@
 </head>
 <body>
 <div>
-    <div>
-        <table>
+    <!-- ======= Navigator ======= -->
+    <%@ include file="../navigator_footer/main_navigator.jsp" %>
+
+    <!-- ======= Sidebar ======= -->
+    <%@ include file="../navigator_footer/member_sidebar.jsp" %>
+
+    <div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 330px">
+
+        <div class="card-body">
+            <h6 class="card-title" align="center">받은 쪽지 리스트</h6>
+            <table class="table table-hover">
             <tr>
                 <td>보낸 사람</td>
                 <td>제목</td>
