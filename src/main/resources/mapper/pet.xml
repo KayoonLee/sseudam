@@ -8,7 +8,7 @@
         SELECT *
         FROM pet
                  LEFT JOIN img_profile ON pet.profile_num = img_profile.profile_num
-                 WHERE  g_id=#{g_id}
+        WHERE  g_id=#{g_id}
         UNION
         SELECT *
         FROM pet
@@ -61,9 +61,9 @@
     <update id="p_modify" parameterType="pet">
         UPDATE pet
         SET animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
-        feature=#{feature}, gender=#{gender}, neutering=#{neutering}
+            feature=#{feature}, gender=#{gender}, neutering=#{neutering}
         WHERE
-        p_id=#{p_id}
+            p_id=#{p_id}
     </update>
 
 
@@ -76,10 +76,10 @@
         </selectKey>
 
         UPDATE pet
-            SET animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
-                feature=#{feature}, gender=#{gender}, neutering=#{neutering}, profile_num=#{profile_num}
+        SET animal=#{animal}, birth=#{birth}, kind=#{kind}, breed=#{breed},
+        feature=#{feature}, gender=#{gender}, neutering=#{neutering}, profile_num=#{profile_num}
         WHERE
-            p_id=#{p_id}
+        p_id=#{p_id}
     </update>
 
     <!-- 프로필사진 추가 -->
@@ -108,7 +108,7 @@
         END,
                 img_profile.profile_origin = CASE
                 WHEN pet.profile_num IS NOT NULL THEN #{profile_origin}
-                ELSE img_profile.profile_origin
+        ELSE img_profile.profile_origin
         END
     </update>
 
