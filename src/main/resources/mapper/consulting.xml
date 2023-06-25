@@ -88,6 +88,13 @@
         WHERE paper_num = #{paper_num}
     </update>
 
+    <!-- 상담예약서 상담완료 -->
+    <update id="replied_consult" >
+        UPDATE counsel_paper
+        SET confirmed = 2
+        WHERE paper_num = #{paper_num}
+    </update>
+
     <!-- 상담예약서 수락 -->
     <update id="accept_consult" >
         UPDATE counsel_paper

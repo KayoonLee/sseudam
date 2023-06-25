@@ -104,4 +104,9 @@ public class ConsultingServiceImpl implements ConsultingService {
         dao.update_consulting(record_num);
     }
 
+    @Override
+    public void replied_consult(int paper_num) {
+        dao.replied_consult(paper_num);
+    }
+
 }

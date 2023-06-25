@@ -303,6 +303,7 @@ public class ConsultingController {
             e.printStackTrace();
         }
 
+        con.replied_consult(old_paper_num);
         con.insert_consulting(counselrecord);
 
 

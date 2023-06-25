@@ -36,5 +36,6 @@ public interface ConsultingService {
     List<CounselPaper> requestTime_list(int c_id);
     void delete_consulting(int record_num);
     void update_consulting(int record_num);
+    void replied_consult(int paper_num);
 
 }

@@ -3,6 +3,18 @@
 
 <html>
 <head>
+
+
+    <%-- 달력 테스트 --%>
+    <div class="container">
+        <h1>상담사 예약시간 정하기</h1>
+        <div id="picker"></div>
+        <div>
+            <p>Selected dates / times:</p>
+            <%--<div id="selected-dates" ></div>--%>
+        </div>
+    </div>
+
     <title>상담예약서 작성</title>
 
     <meta charset="UTF-8">
@@ -36,6 +48,10 @@
         .container {
             margin: 50px auto;
 
+        }
+        #myc-available-time-container {
+            width: auto;
+            height: 450px;
         }
 
 
@@ -155,15 +171,6 @@
 </div>
 <%--</main>--%>
 
-<%-- 달력 테스트 --%>
-<div class="container">
-    <h1>상담사 예약시간 정하기</h1>
-    <div id="picker"></div>
-    <div>
-        <p>Selected dates / times:</p>
-        <%--<div id="selected-dates" ></div>--%>
-    </div>
-</div>
 
 <script type="text/javascript">
 
