@@ -34,8 +34,11 @@
         }
 
         .container {
-            margin: 150px auto;
+            margin: 50px auto;
+
         }
+
+
     </style>
 
     <!-- DATE -->

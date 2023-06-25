@@ -216,12 +216,12 @@ public class ConsultingController {
         model.addAttribute("pet_list", pet_list);
 
 
-        return "redirect:update_Consult";
+        return "consulting/edit_consult";
     }
 
     /* 수정페이지 업데이트 */
     @RequestMapping("update_Consult")
-    public String update_Consult(@RequestParam("old_paper_num") int old_paper_num,
+    public String update_Consult(@RequestParam("paper_num") int paper_num,
                                  @RequestParam("g_id") int g_id,
                                  @RequestParam("request_times") String request_time,
                                  CounselPaper counselpaper) {
@@ -234,7 +234,7 @@ public class ConsultingController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        counselpaper.setPaper_num(old_paper_num);
+        counselpaper.setPaper_num(paper_num);
         counselpaper.setM_id(g_id);
         counselpaper.setRequest_time(date);
         con.update_consult(counselpaper);

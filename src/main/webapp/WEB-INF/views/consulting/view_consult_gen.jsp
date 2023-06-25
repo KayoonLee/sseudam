@@ -31,6 +31,7 @@
         <!-- General Form Elements -->
         <form method="POST">
             <input type="hidden" name="paper_num" value="${counselpaper.paper_num}">
+
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담사이름</label>
                 <div class="col-sm-10">
