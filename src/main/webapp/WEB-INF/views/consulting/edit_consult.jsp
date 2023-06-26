@@ -87,10 +87,10 @@
 
         <!-- General Form Elements -->
 
-        <form action="submit_Insert_Consult" method="POST" onsubmit="return validateForm()">
+        <form action="update_Consult" method="POST" onsubmit="return validateForm()">
 
             <input type="hidden" id="nowdate" name="nowdate" value="${nowtime}">
-            <input type="hidden" name="old_paper_num" value="${counselpaper.paper_num}">
+            <input type="hidden" name="paper_num" value="${counselpaper.paper_num}">
 
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담사이름</label>
