@@ -1,6 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ include file="../header/header.jsp" %>
 
+<%@ include file="../navigator_footer/member_header.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +17,7 @@
 
 
     <!-- ======= Header ======= -->
-    <%@ include file="../navigator_footer/main_header.jsp" %>
+
 
     <style>
         .profile_image {
@@ -25,13 +25,22 @@
             height: 30px;
         }
     </style>
+    <script>
+        $(document).ready(function() {
+            var popupX = ((window.screen.width-600)/2);
+            var popupY = ((window.screen.height-400)/2);
+            $("#receiveMessage").on('click', function(){
+                window.open("note_view", "받은쪽지함", "resizeable=no, location=0, status=0, width=600, height=650, left="+popupX+", top="+popupY);
+            });
+        });
+    </script>
+
+
 
 </head>
 <body>
 <div>
-
-    <!-- ======= Navigator ======= -->
-    <%@ include file="../navigator_footer/main_navigator.jsp" %>
+    <%@ include file="../navigator_footer/counselor_navigator.jsp" %>
 
     <!-- ======= Sidebar ======= -->
     <%@ include file="../navigator_footer/member_sidebar.jsp" %>
@@ -57,7 +66,7 @@
                     <tr>
                         <td><img class="profile_image" src="./memberImg/${list.profile_name}"
                         >${list.receiver}</td>
-                        <td><a href="noteView?note_num=${list.note_num}">${list.subject}</a></td>
+                        <td><a href="noteView?note_num=${list.note_num}" id="receiveMessage">${list.subject}</a></td>
                         <td><fmt:formatDate value="${list.time }"
                                             pattern="yyyy-MM-dd HH시mm분"/>
                         <td><c:if test="${list.checking == 1}">미확인</c:if>

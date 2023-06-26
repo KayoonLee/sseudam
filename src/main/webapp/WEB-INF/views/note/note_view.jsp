@@ -21,12 +21,25 @@
                 }
             })
         }
-
     </script>
+
+    <style>
+        .message_receive_form{
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin: 15px auto;
+            max-width: 500px;
+            border-radius: 10px;
+        }
+
+
+    </style>
+
 </head>
 <body>
 
-<div>
+<div class="message_receive_form">
     <table>
         <tr>
             <td>제목</td>
