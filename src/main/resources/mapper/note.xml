@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.pet.sseudam.dao.NoteDao">
+
+    <insert id="insertNote" parameterType="note">
+        insert into note (sender, receiver, subject, content, time, checking)
+        values (#{sender}, #{receiver}, #{subject},
+                #{content}, CURRENT_TIMESTAMP, 1)
+    </insert>
+
+    <select id="checkReceiver" parameterType="note" resultType="int">
+        select count(*)
+        from member
+        where nick = #{receiver}
+    </select>
+
+    <select id="noteList" parameterType="note">
+        select t1.*, t3.profile_name
+        from note t1
+                 join member t2 on t1.receiver = t2.nick
+                 left join img_profile t3 on t2.profile_num = t3.profile_num
+        where sender = #{sender}
+    </select>
+
+    <select id="noteView" parameterType="note" resultType="note">
+        select t1.*,t2.nick, t3.profile_name
+        from note t1
+                 join member t2 on t1.sender = t2.m_id
+                 left join img_profile t3 on t2.profile_num = t3.profile_num
+        where note_num=#{note_num}
+    </select>
+
+<update id="noteChangeChecking" parameterType="note">
+    update note
+    set checking=0
+    where note_num = #{note_num}
+</update>
+
+    <delete id="noteDelete" parameterType="note">
+        delete
+        from note
+        where note_num = #{note_num}
+    </delete>
+
+    <select id="noteReceiveList" parameterType="note" resultType="note">
+        select t1.*, t2.nick, t3.profile_name
+        from note t1
+                 join member t2 on t1.sender = t2.m_id
+                 left join img_profile t3 on t2.profile_num = t3.profile_num
+        where receiver = #{receiver}
+    </select>
+
+    <select id="noteRecentList" parameterType="note" resultType="note">
+        select t1.*, t2.nick
+        from note t1
+                 join member t2 on t1.sender = t2.m_id
+        where checking = 1
+          and receiver = #{receiver}
+    </select>
+
+</mapper>

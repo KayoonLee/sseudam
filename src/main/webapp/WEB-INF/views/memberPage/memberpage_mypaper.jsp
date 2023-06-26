@@ -47,12 +47,11 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
                 </c:if>
                 <c:forEach var="counsel_paper" items="${mypaperList}">
                     <input type="hidden" name="paper_num" value="${paper_num}">
-                    <tr  onclick="location.href='get_Consult_Details?paper_num=${counsel_paper.paper_num}'">
+                    <tr onclick="location.href='get_Consult_Details?paper_num=${counsel_paper.paper_num}'" style="cursor: pointer;">
                         <td>${counsel_paper.animal}</td>
                         <td>${counsel_paper.purpose}</td>
                         <td><fmt:formatDate value="${counsel_paper.application_date}"
@@ -80,10 +79,7 @@
             </table>
         </div>
     </div>
-
 </main>
-
-
 </body>
 </html>
 
