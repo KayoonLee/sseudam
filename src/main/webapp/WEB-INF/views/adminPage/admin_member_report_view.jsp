@@ -19,6 +19,24 @@
             //     }
             // });
         }
+        //신고글 삭제
+        function report_delete_check(num,board_num) {
+            var text = "글을 삭제하시겠습니까?";
+            if (confirm(text)) {
+                $.ajax({
+                    type: "post",
+                    url: "freeDelete",
+                    data: {"num": num, "board_num": board_num},
+                    success: function (data) {
+                        if (data == 1) {
+                            location.reload();
+                        } else {
+                            alert("다시 시도해주세요");
+                        }
+                    }
+                });
+            }
+        }
 
     </script>
 </head>
@@ -44,10 +62,14 @@
     </tr>
     <tr>
     <%--<tr id="${m_id}" value="${m_id}">--%>
-        <td onclick="reportBoardView(${report_board.num}, ${report_board.board_num})">${report_board.report_content}
-            <button type="button" class="btn btn-outline-primary">
+        <td>${report_board.report_content}
+            <button type="button" class="btn btn-outline-primary"
+                    onclick="reportBoardView(${report_board.num}, ${report_board.board_num})">
                 글조회
             </button>
+        </td>
+        <td>
+            <button type="button" onclick="report_delete_check(${report_board.num}, ${report_board.board_num})">본문 삭제</button>
         </td>
     </tr>
     </tbody>

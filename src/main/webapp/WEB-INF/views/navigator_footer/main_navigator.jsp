@@ -57,7 +57,10 @@
                     var noteItem = $("<li></li>");
                     var noteLink = $("<a></a>")
                         .text(note.subject)
-                        .attr("href", "noteView?note_num=" + note.note_num); // 컨트롤러 URL과 쪽지 번호를 설정해주세요.
+                        .attr("href", "javascript:void(0);") // 클릭 이벤트 핸들러를 위해 href를 설정합니다.
+                        .click(function() {
+                            changeState(note.note_num); // 쪽지 확인 상태 변경 및 상세 페이지로 이동하는 함수를 호출합니다.
+                        });
                     var nickItem = $("<p></p>").text(note.nick);
 
                     noteItem.append(noteLink);
@@ -71,6 +74,18 @@
                 $("#unreadNotesList").html(notesList);
             }
         }
+
+        function changeState(note_num) {
+            $.ajax({
+                type: "post",
+                url: "changeChecking",
+                data: { note_num: note_num },
+                success: function(response) {
+                    location.href = "noteView?note_num=" + note_num;
+                }
+            });
+        }
+
     </script>
 
 </head>

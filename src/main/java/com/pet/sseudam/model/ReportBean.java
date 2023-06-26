@@ -21,5 +21,7 @@ public class ReportBean {
     private String nick;
     private String profile_name;
     private String profile_origin;
+    private int state;
+
 
 }

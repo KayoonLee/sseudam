@@ -65,7 +65,6 @@
                  join member t2 on t1.sender = t2.m_id
         where checking = 1
           and receiver = #{receiver}
-        limit 2
     </select>
 
 </mapper>

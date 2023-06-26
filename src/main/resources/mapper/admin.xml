@@ -51,6 +51,7 @@
                t1.report_content,
                t1.report_date,
                t2.subject,
+               t2.state,
                t3.nick,
                t4.profile_name
         from report t1

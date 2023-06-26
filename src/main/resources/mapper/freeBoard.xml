@@ -172,7 +172,7 @@
                   select COUNT(*)
                   from report
                   where board_num = #{board_num} AND num = #{num}
-              ) > 1;
+              ) > 4;
     </update>
 
     <!--이미지 관련-->
