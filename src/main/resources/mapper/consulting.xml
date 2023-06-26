@@ -28,9 +28,8 @@
     <select id="find_reservation_time" resultType="java.util.Date">
         SELECT DISTINCT request_time
         FROM counsel_paper
-        WHERE m_id = #{g_id}
-          or c_id = #{con_id}
-
+        WHERE (m_id = #{g_id} OR c_id = #{con_id})
+          AND confirmed IN (0, 1)
     </select>
 
     <!-- 해당 상담예약서의 동물 id로 동물 조회 -->

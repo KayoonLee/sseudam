@@ -226,21 +226,16 @@ public class ConsultingController {
                                  @RequestParam("request_times") String request_time,
                                  CounselPaper counselpaper) {
         System.out.println("update_Consult 진입");
+        long timestamp = Long.parseLong(request_time);
+        Date date = new Date(timestamp);
 
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        Date date = null;
-        try {
-            date = inputFormat.parse(request_time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         counselpaper.setPaper_num(paper_num);
         counselpaper.setM_id(g_id);
         counselpaper.setRequest_time(date);
         con.update_consult(counselpaper);
 
 
-        return "redirect:/get_Consult_Details";
+        return "redirect:/get_Consult_Details?paper_num=" + paper_num;
     }
 
     /*예약서삭제*/

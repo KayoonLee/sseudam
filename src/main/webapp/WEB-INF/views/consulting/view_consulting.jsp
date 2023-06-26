@@ -76,7 +76,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담 기록</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" style="height: 100px" id="content" name="content" maxlength="2000" disabled>${counselrecord.content}</textarea>
+                    <textarea class="form-control" style="height: 300px" id="content" name="content" maxlength="2000" disabled>${counselrecord.content}</textarea>
                 </div>
             </div>
             <%--
@@ -108,10 +108,10 @@
             </div>
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
-                <div class="col-sm-10">
-                    <input type="submit" class="btn btn-primary" value="상담기록 수정하기" onclick="javascript: form.action='edit_Consulting';">
-                    <input type="submit" class="btn btn-primary" value="상담기록 삭제하기" onclick="javascript: form.action='delete_Consulting';">
-                </div>
+<%--                <div class="col-sm-10">--%>
+<%--                    <input type="submit" class="btn btn-primary" value="상담기록 수정하기" onclick="javascript: form.action='edit_Consulting';">--%>
+<%--                    <input type="submit" class="btn btn-primary" value="상담기록 삭제하기" onclick="javascript: form.action='delete_Consulting';">--%>
+<%--                </div>--%>
             </div>
 
         </form><!-- End General Form Elements -->
