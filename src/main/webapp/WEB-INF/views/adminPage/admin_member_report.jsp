@@ -53,6 +53,7 @@
             <table id="example" class="table is-striped" style="width:100%">
                 <thead>
                 <tr>
+                    <th></th>
                     <th>신고한 유저</th>
                     <th>글 제목</th>
                     <th>신고사유</th>
@@ -63,6 +64,7 @@
                 <c:forEach var="list" items="${report_list}">
                     <c:set var="m_id" value="${list.m_id}"/>
                     <tr onclick="reportView(${m_id}, ${list.num}, ${list.board_num})">
+                        <td>${list.row_num}</td>
                         <td><img src="${list.profile_name}" alt="프로필">${list.nick}</td>
                         <td>${list.subject}</td>
                         <c:if test="${list.report_issue == 1}">

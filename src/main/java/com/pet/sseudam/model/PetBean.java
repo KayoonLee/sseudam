@@ -28,4 +28,6 @@ public class PetBean {
     private String profile_origin;
     private String profile_name;
 
+    //관리자용 정렬
+    private int row_num;
 }

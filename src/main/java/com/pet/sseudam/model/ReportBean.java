@@ -21,5 +21,6 @@ public class ReportBean {
     private String nick;
     private String profile_name;
     private String profile_origin;
-
+    //정렬용
+    private int row_num;
 }
