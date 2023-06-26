@@ -113,6 +113,7 @@
                         </c:if>
 
                         <c:if test="${!empty sessionScope.member.m_id or !empty sessionScope.admin.a_email}">
+
                             <a href="logout">로그아웃</a>
                         </c:if>
                     </div>
@@ -186,70 +187,48 @@
                             </ul>
                         </div>
 
-                        <%-- 알림창 --%>
-                        <nav class="header-nav ms-auto">
-                            <ul class="d-flex align-items-center">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-                                        <i class="bi bi-bell"></i>
-                                        <span class="badge bg-primary badge-number" id="unreadMessageCount"></span>
-                                    </a><!-- End Notification Icon -->
 
-                                    <%-- 알림 시작 --%>
-                                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-                                        <li class="dropdown-header">
-                                            <%--                                                You have 2 new notifications--%>
-                                            <%-- 알림 숫자--%>
-                                            <span id="unreadMessageContent"></span>
-                                            <%--                                                <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>--%>
-                                        </li>
-                                        <%--                                             <%-- 알림1 --%>
-                                        <%--                                            <li>--%>
-                                        <%--                                                <hr class="dropdown-divider">--%>
-                                        <%--                                            </li>--%>
-                                        <%--                                            <li class="notification-item">--%>
-                                        <%--                                                <i class="bi bi-exclamation-circle text-warning"></i>--%>
-                                        <%--                                                <div>--%>
-                                        <%--                                                    <h5>Lorem Ipsum</h5>--%>
-                                        <%--                                                    <p>Quae dolorem earum veritatis oditseno</p>--%>
-                                        <%--                                                </div>--%>
-                                        <%--                                            </li>--%>
-                                        <!-- 알림2 -->
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li class="notification-item">
-                                            <i class="bi bi-exclamation-circle text-warning"></i>
-                                            <div>
-                                                <%--                                                    <h5 id="unreadMessageContent"></h5>--%>
-                                                <ul id="unreadNotesList"></ul>
-                                            </div>
-                                        </li>
-                                        <%-- 알림2 --%>
-                                        <%--                                            <li>--%>
-                                        <%--                                                <hr class="dropdown-divider">--%>
-                                        <%--                                            </li>--%>
-                                        <%--                                            <li class="notification-item">--%>
-                                        <%--                                                <i class="bi bi-x-circle text-danger"></i>--%>
-                                        <%--                                                <div>--%>
-                                        <%--                                                    <h4>Atque rerum nesciunt</h4>--%>
-                                        <%--                                                    <p>Quae dolorem earum veritatis oditseno</p>--%>
-                                        <%--                                                    <p>1 hr. ago</p>--%>
-                                        <%--                                                </div>--%>
-                                        <%--                                            </li>--%>
-                                        <%-- 알림창 맨 밑 --%>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        <li class="dropdown-footer">
-                                            <a href="noteReceiveList">쪽지함 확인하기</a>
-                                        </li>
+              <%-- 알림창 --%>
+                     <nav class="header-nav ms-auto">
+                         <ul class="d-flex align-items-center">
+                              <li class="nav-item dropdown">
+                               <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                                 <i class="bi bi-bell"></i>
+                                 <span class="badge bg-primary badge-number" id="unreadMessageCount"></span>
+                               </a><!-- End Notification Icon -->
 
-                                    </ul><!-- End Notification Dropdown Items -->
-                                </li><!-- End Notification Nav -->
-                            </ul>
-                        </nav><!-- End Icons Navigation -->
+                         <%-- 알림 시작 --%>
+                         <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                               <li class="dropdown-header">
 
+                                <span id="unreadMessageContent"></span>
+
+                                </li>
+
+                                <!-- 알림2 -->
+                                <li>
+                                   <hr class="dropdown-divider">
+                                </li>
+
+                                <li class="notification-item">
+                                   <i class="bi bi-exclamation-circle text-warning"></i>
+                                   <div>
+                                      <ul id="unreadNotesList"></ul>
+                                    </div>
+                                </li>
+
+                                <%-- 알림창 맨 밑 --%>
+                                <li>
+                                   <hr class="dropdown-divider">
+                                </li>
+                                <li class="dropdown-footer">
+                                    <a href="noteReceiveList">쪽지함 확인하기</a>
+                                </li>
+
+                         </ul><!-- End Notification Dropdown Items -->
+                          </li><!-- End Notification Nav -->
+                       </ul>
+                     </nav><!-- End Icons Navigation -->
                         <c:if test="${!empty sessionScope.member.m_id}">
                             <a href="#" class="btn_1 d-none d-lg-block">${sessionScope.member.nick} 님</a>
                         </c:if>

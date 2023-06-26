@@ -135,12 +135,12 @@ public class MemberController {
    // 나의 email 있는지 확인
     @RequestMapping("findUserEmail")
     @ResponseBody
-    public String findEmail(Member member){
+    public Member findEmail(Member member){
         System.out.println("findUserEmail 진입");
         Member findmember = ms.searchEmail(member);
         System.out.println("findmember 확인:"+findmember);
 
-        return findmember.getEmail();
+        return findmember;
     }
 
    // 닉네임 일치하면 아이디랑 닉네임 알려주기
