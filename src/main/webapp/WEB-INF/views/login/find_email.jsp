@@ -14,17 +14,18 @@
 			$.ajax({
 				url:"findUserEmail",
 				data:{"nick":nick},
-				success:function(data){
-					if(JSON.stringify(data) != '{}'){
-						alert("고객님의 정보와 일치하는 ID입니다.");
-						console.log(data);
-						var email = data.email;
-						var nick = data.nick;
-						location.href="notice_email.do?email="+email+"&nick="+nick;
-					}
+				success:function(result){
+
+				//	 if(JSON.stringify(result) != '{}'){
+                		alert("고객님의 정보와 일치하는 ID입니다.");
+                		console.log(result);
+                //		var email = result.email;
+                //		var nick = result.nick;
+                		location.href="notice_email.do?email="+result+"&nick="+nick;
+                //	 }
                 },
-				error:function(error){
-					console.log(error);
+				error:function(err){
+					console.log(err);
 					alert("닉네임을 정확하게 입력해 주세요.");
 					$("#nick").val("");
 				}
@@ -110,7 +111,7 @@ input[type="submit"]:hover {
 <form>
    <label for="nick">가입한 닉네임</label>
    <input type="text" id="nick" name="nick" required="required" placeholder="닉네임을 입력하세요">
-   <input type="submit" value="ID 찾기" id="findEmail">
+   <input type="button" value="ID 찾기" id="findEmail">
    &nbsp;&nbsp;
    <input type="button" value="닫기" onclick="window.close()">
 </form>

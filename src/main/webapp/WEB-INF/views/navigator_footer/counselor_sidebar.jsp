@@ -55,7 +55,7 @@
                     <li>
                         <a href="counselorpage_mylike" >
                             <i class="bi bi-circle"></i>
-                            <span>내가 좋아요한 글</span>
+                            <span>내가 추천한 글</span>
                         </a>
                     </li>
                 </ul>

@@ -65,7 +65,7 @@
                 </li>
                 <li>
                     <a href="memberpage_mylike">
-                        <i class="bi bi-circle"></i><span>내가 좋아요한 글</span>
+                        <i class="bi bi-circle"></i><span>내가 추천한 글</span>
                     </a>
                 </li>
 

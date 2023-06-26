@@ -135,12 +135,12 @@ public class MemberController {
    // 나의 email 있는지 확인
     @RequestMapping("findUserEmail")
     @ResponseBody
-    public Member findEmail(Member member){
+    public String findEmail(Member member){
         System.out.println("findUserEmail 진입");
         Member findmember = ms.searchEmail(member);
         System.out.println("findmember 확인:"+findmember);
 
-        return findmember;
+        return findmember.getEmail();
     }
 
    // 닉네임 일치하면 아이디랑 닉네임 알려주기
@@ -170,7 +170,7 @@ public class MemberController {
 
             //임시 비밀번호 생성(UUID이용)
             String tempPw= UUID.randomUUID().toString().replace("-","");
-            tempPw = tempPw.substring(0,10);//tempPw를 앞에서부터 10자리 잘라줌
+            tempPw = tempPw.substring(0,6);//tempPw를 앞에서부터 10자리 잘라줌
             System.out.println("임시 비밀번호 " + tempPw);
 
             findmember.setPasswd(tempPw);//임시 비밀번호 담기
