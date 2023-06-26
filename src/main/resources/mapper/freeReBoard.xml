@@ -35,8 +35,8 @@
     <update id="update" parameterType="re_fboard">
         UPDATE board_reply
         SET re_content = #{re_content},
-            file_num = #{file_num},
-            re_reg_date = sysdate()
+        file_num = #{file_num},
+        re_reg_date = sysdate()
         WHERE board_renum = #{board_renum};
     </update>
 

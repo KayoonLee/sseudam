@@ -106,4 +106,9 @@ public class FreeServiceImpl implements FreeService{
         return dao.imgUpdate(imgBoard);
     }
 
+    @Override
+    public int reportAutoUpdate(ReportBean reportboard) {
+        return dao.reportAutoUpdate(reportboard);
+    }
+
 }
