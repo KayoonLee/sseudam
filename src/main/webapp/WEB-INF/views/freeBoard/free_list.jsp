@@ -231,8 +231,8 @@
                     <c:forEach var="board" items="${list }">
                         <tr>
                             <td width="100">${no}</td>
-                            <td width="500"><a href="freeView?num=${board.num}&board_num=${board.board_num}
-                           &pageNum=${pageNum}">
+                            <td width="500"><a href="freeView?num=${board.num}&board_num=${board.board_num}&pageNum=${pageNum}">
+
                                     ${board.subject}</a></td>
                             <td width="250"><c:if test="${not empty board.profile_num}">
                                 <img src="./memberImg/${board.profile_name}" class="profile_image"></c:if>
