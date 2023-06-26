@@ -207,9 +207,9 @@
 
 <%-- 리뷰갯수 --%>
 <div class="row mb-3">
-    <label class="col-sm-2 col-form-label">리뷰갯수</label>
+    <label class="col-sm-2 col-form-label">댓글 갯수</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="subject" name="subject" value="${total}개의 리뷰가 있습니다" disabled>
+        <input type="text" class="form-control" id="subject" name="subject" value="${total}개의 댓글이 있습니다" disabled>
     </div>
 </div>
 

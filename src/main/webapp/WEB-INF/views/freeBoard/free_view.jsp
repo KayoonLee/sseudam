@@ -332,6 +332,7 @@
                         <div class="col-sm-10">
                             <textarea class="form-control" id="re_content" name="re_content"
                                       style="height: 150px"></textarea>
+                            <p></p>
                             <input type="button" value="댓글입력" id="repl_insert" class="btn btn-primary">
                             <p>
                             <div id="previewContainer"></div>

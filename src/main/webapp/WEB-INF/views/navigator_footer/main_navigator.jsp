@@ -223,8 +223,8 @@
                             </nav>
                             <!-- End Icons Navigation -->
                         </c:if>
-                        <c:if test="${!empty sessionScope.member.m_id}">
-                            <a href="#" class="btn_1 d-none d-lg-block">${sessionScope.member.nick} 님</a>
+                        <c:if test="${!empty member.m_id}">
+                            <a href="#" class="btn_1 d-none d-lg-block">${member.nick} 님</a>
                         </c:if>
                         <c:if test="${!empty sessionScope.admin.a_email}">
                             <a href="#" class="btn_1 d-none d-lg-block">${sessionScope.admin.name} 님</a>
