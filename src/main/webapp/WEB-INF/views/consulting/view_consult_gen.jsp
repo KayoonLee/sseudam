@@ -23,6 +23,8 @@
 <%--<section class="section">--%>
 <%--<div class="row">--%>
 <%--<div class="col-lg-6">--%>
+<%@ include file="../navigator_footer/main_header.jsp" %>
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 
 <div class="card">
     <div class="card-body">
@@ -95,6 +97,8 @@
 
     </div>
 </div>
+
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 <%--</div>--%>
 <%--</div>--%>

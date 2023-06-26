@@ -17,6 +17,9 @@
 
 </head>
 <body>
+<%@ include file="../navigator_footer/main_header.jsp" %>
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
+
 
 <%--<section class="section">--%>
 <%--<div class="row">--%>
@@ -118,6 +121,7 @@
 
     </div>
 </div>
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 <%--</div>--%>
 <%--</div>--%>
