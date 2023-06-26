@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 
 <%@ include file="../navigator_footer/member_header.jsp" %>
@@ -14,6 +16,7 @@
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
 
 
     <!-- ======= Header ======= -->
@@ -25,12 +28,21 @@
             height: 30px;
         }
     </style>
+
     <script>
         $(document).ready(function() {
-            var popupX = ((window.screen.width-600)/2);
-            var popupY = ((window.screen.height-400)/2);
-            $("#receiveMessage").on('click', function(){
-                window.open("note_view", "받은쪽지함", "resizeable=no, location=0, status=0, width=600, height=650, left="+popupX+", top="+popupY);
+            var popupX = (window.screen.width - 600) / 2;
+            var popupY = (window.screen.height - 400) / 2;
+            $(".note-link").on("click", function(e) {
+                e.preventDefault();
+                window.open(
+                    $(this).attr("href"),
+                    "받은쪽지함",
+                    "resizeable=no, location=0, status=0, width=400, height=300, left=" +
+                    popupX +
+                    ", top=" +
+                    popupY
+                );
             });
         });
     </script>
@@ -66,7 +78,7 @@
                     <tr>
                         <td><img class="profile_image" src="./memberImg/${list.profile_name}"
                         >${list.receiver}</td>
-                        <td><a href="noteView?note_num=${list.note_num}" id="receiveMessage">${list.subject}</a></td>
+                        <td><a href="noteView?note_num=${list.note_num}" class="note-link">${list.subject}</a></td>
                         <td><fmt:formatDate value="${list.time }"
                                             pattern="yyyy-MM-dd HH시mm분"/>
                         <td><c:if test="${list.checking == 1}">미확인</c:if>

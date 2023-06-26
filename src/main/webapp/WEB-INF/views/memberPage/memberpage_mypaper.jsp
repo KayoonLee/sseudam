@@ -47,7 +47,6 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
                     </tr>
                 </c:if>
                 <c:forEach var="counsel_paper" items="${mypaperList}">
@@ -80,10 +79,7 @@
             </table>
         </div>
     </div>
-
 </main>
-
-
 </body>
 </html>
 
