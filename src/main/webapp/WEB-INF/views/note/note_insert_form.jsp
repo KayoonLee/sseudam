@@ -8,15 +8,8 @@
     <title>쪽지 작성 폼</title>
 
     <!-- ======= Header ======= -->
-    <%@ include file="../navigator_footer/main_header.jsp" %>
+    <%@ include file="../navigator_footer/member_header.jsp" %>
 
-    <!-- Vendor CSS Files -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
     <script>
         function send_note() {
@@ -59,7 +52,7 @@
 <body>
 
 <!-- ======= Navigator ======= -->
-<%@ include file="../navigator_footer/main_navigator.jsp" %>
+<%@ include file="../navigator_footer/counselor_navigator.jsp" %>
 
 <!-- ======= Sidebar ======= -->
 <%@ include file="../navigator_footer/member_sidebar.jsp" %>
