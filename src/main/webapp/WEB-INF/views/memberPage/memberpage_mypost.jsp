@@ -52,7 +52,7 @@
                     </tr>
                 </c:if>
                 <c:forEach var="board" items="${mypostList}">
-                <tr onclick="location.href='freeView?num=${board.num}&board_num=${board.board_num}&pageNum=${pageNum}'">
+                <tr onclick="location.href='freeView?num=${board.num}&board_num=${board.board_num}&pageNum=${pageNum}'" style="cursor: pointer;">
                     <td>
                         <c:if test="${board.category == '1'}">자유</c:if>
                         <c:if test="${board.category == '2'}">질문</c:if>
