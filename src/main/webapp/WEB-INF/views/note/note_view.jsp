@@ -38,7 +38,7 @@
                 success: function (data) {
                     if (data == 1) {
                         alert("쪽지가 삭제되었습니다");
-                        location.href = "noteList";
+                        window.close();
                     }
                 }
             })

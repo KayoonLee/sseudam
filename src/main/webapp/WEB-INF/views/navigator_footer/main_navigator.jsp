@@ -81,7 +81,15 @@
                 url: "changeChecking",
                 data: {note_num: note_num},
                 success: function (response) {
-                    location.href = "noteView?note_num=" + note_num;
+                    if (response == 1) {
+                        window.open(
+                            "noteView?note_num=" + note_num,
+                            "받은 쪽지",
+                            "width=400, height=300, resizable=no, location=0, status=0"
+                        );
+                    } else {
+                        alert("다시 시도해주세요");
+                    }
                 }
             });
         }

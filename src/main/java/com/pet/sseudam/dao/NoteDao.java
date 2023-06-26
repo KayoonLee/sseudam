@@ -21,7 +21,5 @@ public interface NoteDao {
 
     int noteChangeChecking(NoteBean note);
 
-    int noteCount(NoteBean note);
-
     List<NoteBean> noteRecentList(NoteBean note);
 }

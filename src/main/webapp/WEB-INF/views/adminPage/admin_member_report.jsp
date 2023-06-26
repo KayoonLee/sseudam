@@ -57,6 +57,7 @@
                     <th>글 제목</th>
                     <th>신고사유</th>
                     <th>신고일</th>
+                    <th>상태</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -84,7 +85,13 @@
                             <td>기타</td>
                         </c:if>
                         <td><fmt:formatDate value="${list.report_date}"
-                                            pattern=""/></td>
+                                            pattern="yyyy-MM-dd"/></td>
+                            <c:if test="${list.state == 1}">
+                        <td>미삭제</td>
+                        </c:if>
+                        <c:if test="${list.state == 0}">
+                            <td>삭제</td>
+                        </c:if>
                     </tr>
                 </c:forEach>
 

@@ -51,6 +51,7 @@
                t1.report_content,
                t1.report_date,
                t2.subject,
+               t2.state,
                t3.nick,
                t4.profile_name
         from report t1
@@ -175,7 +176,7 @@
         FROM VISITOR
         WHERE visit_time > DATE_SUB(NOW(), INTERVAL 7 DAY)
         GROUP BY (select DATE(visit_time))
-        ORDER BY (select DATE(visit_time));
+        ORDER BY (select DATE(visit_time))
     </select>
 
     <select id="getVisitDays" resultType="String" >
@@ -183,7 +184,7 @@
         FROM VISITOR
         WHERE visit_time > DATE_SUB(NOW(), INTERVAL 7 DAY)
         GROUP BY visit_date
-        ORDER BY visit_date;
+        ORDER BY visit_date
     </select>
 
     <select id="getVisitTotal" resultType="int">
