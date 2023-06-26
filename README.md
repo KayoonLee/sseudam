@@ -4,7 +4,7 @@
 
 
 # 1. 사용한 기술/툴
--JAVA11
+JAVA11<br>
 -Spring Boot MVC
 -Gradle
 -AJAX
