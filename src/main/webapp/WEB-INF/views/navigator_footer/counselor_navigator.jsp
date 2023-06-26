@@ -8,11 +8,11 @@
     <script>
 
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             $.ajax({
                 url: "noteRecentList",
                 type: "post",
-                success: function(response) {
+                success: function (response) {
                     showUnreadNotes(response);
                 }
             });
@@ -29,12 +29,12 @@
                 countSpan.text(unreadNotes.length);
 
                 var notesList = $("<ul></ul>");
-                $.each(unreadNotes, function(index, note) {
+                $.each(unreadNotes, function (index, note) {
                     var noteItem = $("<li></li>");
                     var noteLink = $("<a></a>")
                         .text(note.subject)
                         .attr("href", "javascript:void(0);") // 클릭 이벤트 핸들러를 위해 href를 설정합니다.
-                        .click(function() {
+                        .click(function () {
                             changeState(note.note_num); // 쪽지 확인 상태 변경 및 상세 페이지로 이동하는 함수를 호출합니다.
                         });
                     var nickItem = $("<p></p>").text(note.nick);
@@ -55,9 +55,17 @@
             $.ajax({
                 type: "post",
                 url: "changeChecking",
-                data: { note_num: note_num },
-                success: function(response) {
-                    location.href = "noteView?note_num=" + note_num;
+                data: {note_num: note_num},
+                success: function (response) {
+                    if (response == 1) {
+                        window.open(
+                            "noteView?note_num=" + note_num,
+                            "받은 쪽지",
+                            "width=400, height=300, resizable=no, location=0, status=0"
+                        );
+                    } else {
+                        alert("다시 시도해주세요");
+                    }
                 }
             });
         }
@@ -121,19 +129,17 @@
 
                         </ul><!-- End Notification Dropdown Items -->
                     </li><!-- End Notification Nav -->
-                    </uld
+                    </ul>
             </nav><!-- End Icons Navigation -->
 
 
             <li class="nav-item">
-                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="logout" >
+                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="logout">
                     <span class="d-none d-md-block ">로그아웃</span> &nbsp;&nbsp;&nbsp;
                 </a><!-- End Profile Iamge Icon -->
             </li><!-- End Profile Nav -->
         </ul>
     </nav><!-- End Icons Navigation -->
-
-
 
 
 </header>
