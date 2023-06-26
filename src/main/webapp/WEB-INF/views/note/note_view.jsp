@@ -50,7 +50,7 @@
 <body>
 <br>
 <div class="pagetitle">
-    <h1>보낸 쪽지&nbsp;<i class="ri-mail-send-line"></i></h1>
+    <h1>쪽지함&nbsp;<i class="ri-mail-send-line"></i></h1>
 </div>
 <div class="card">
     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">

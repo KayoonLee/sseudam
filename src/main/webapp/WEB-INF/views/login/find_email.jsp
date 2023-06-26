@@ -14,18 +14,17 @@
 			$.ajax({
 				url:"findUserEmail",
 				data:{"nick":nick},
-				success:function(result){
-
-				//	 if(JSON.stringify(result) != '{}'){
-                		alert("고객님의 정보와 일치하는 ID입니다.");
-                		console.log(result);
-                //		var email = result.email;
-                //		var nick = result.nick;
-                		location.href="notice_email.do?email="+result+"&nick="+nick;
-                //	 }
+				success:function(res){
+					if(JSON.stringify(res) != '{}'){
+						alert("고객님의 정보와 일치하는 ID입니다.");
+						console.log(res);
+						var email = res.email;
+						var nick = res.nick;
+						location.href="notice_email.do?email="+email+"&nick="+nick;
+					}
                 },
-				error:function(err){
-					console.log(err);
+				error:function(error){
+					console.log(error);
 					alert("닉네임을 정확하게 입력해 주세요.");
 					$("#nick").val("");
 				}

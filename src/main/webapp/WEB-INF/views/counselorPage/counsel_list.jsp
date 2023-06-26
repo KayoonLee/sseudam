@@ -58,6 +58,6 @@
             </div>
         </div>
     </main>
-
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 </body>
 </html>

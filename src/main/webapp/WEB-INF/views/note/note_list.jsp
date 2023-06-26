@@ -28,7 +28,7 @@
                 e.preventDefault();
                 window.open(
                     $(this).attr("href"),
-                    "받은쪽지함",
+                    "쪽지함",
                     "resizeable=no, location=0, status=0, width=400, height=300, left=" +
                     popupX +
                     ", top=" +
@@ -67,8 +67,7 @@
             <c:if test="${not empty note_list}">
                 <c:forEach var="list" items="${note_list}">
                     <tr>
-                        <td><img class="profile_image" src="./memberImg/${list.profile_name}"
-                        >${list.receiver}</td>
+                        <td><img class="profile_image" src="./memberImg/${list.profile_name}">${list.receiver}</td>
                         <td><a href="noteView?note_num=${list.note_num}" class="note-link">${list.subject}</a></td>
                         <td><fmt:formatDate value="${list.time }"
                                             pattern="yyyy-MM-dd HH시mm분"/>
