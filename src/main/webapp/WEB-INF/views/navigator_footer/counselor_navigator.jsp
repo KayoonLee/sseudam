@@ -122,7 +122,7 @@
 
                         </ul><!-- End Notification Dropdown Items -->
                     </li><!-- End Notification Nav -->
-                    </ul>
+                </ul>
             </nav><!-- End Icons Navigation -->
 
 
@@ -133,10 +133,6 @@
             </li><!-- End Profile Nav -->
         </ul>
     </nav><!-- End Icons Navigation -->
-
-
-
-
 </header>
 </body>
 </html>
