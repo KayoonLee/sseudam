@@ -24,7 +24,8 @@
 <%--<section class="section">--%>
 <%--<div class="row">--%>
 <%--<div class="col-lg-6">--%>
-
+<%@ include file="../navigator_footer/main_header.jsp" %>
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">상담예약서 상세페이지(상담사)</h5>
@@ -102,6 +103,7 @@
 
     </div>
 </div>
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 <%--</div>--%>
 <%--</div>--%>

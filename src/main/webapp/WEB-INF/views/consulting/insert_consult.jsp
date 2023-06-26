@@ -5,15 +5,8 @@
 <head>
 
 
-    <%-- 달력 테스트 --%>
-    <div class="container">
-        <h1>상담사 예약시간 정하기</h1>
-        <div id="picker"></div>
-        <div>
-            <p>Selected dates / times:</p>
-            <%--<div id="selected-dates" ></div>--%>
-        </div>
-    </div>
+
+
 
     <title>상담예약서 작성</title>
 
@@ -21,7 +14,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- ======= Header ======= -->
-    <%@ include file="../navigator_footer/main_header.jsp" %>
+
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -39,6 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script type="text/javascript" src="js/mark-your-calendar.js"></script>
+
 
     <style>
         body {
@@ -66,6 +60,15 @@
 
 </head>
 <body>
+<%-- 달력 테스트 --%>
+<div class="container">
+    <h3>상담사 예약시간 정하기</h3>
+    <div id="picker"></div>
+    <div>
+        <p>Selected dates / times:</p>
+        <%--<div id="selected-dates" ></div>--%>
+    </div>
+</div>
 
 <!-- ======= Navigator ======= -->
 <%--<%@ include file="../navigator_footer/main_navigator.jsp" %>--%>
