@@ -52,13 +52,6 @@
         where receiver = #{receiver}
     </select>
 
-    <select id="noteCount" parameterType="note" resultType="int">
-        select count(*)
-        from note
-        where checking = 1
-          and receiver = #{receiver}
-    </select>
-
     <select id="noteRecentList" parameterType="note" resultType="note">
         select t1.*, t2.nick
         from note t1

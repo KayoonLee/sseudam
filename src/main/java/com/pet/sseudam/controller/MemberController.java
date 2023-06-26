@@ -195,7 +195,8 @@ public class MemberController {
     // 로그아웃
     @RequestMapping("logout")
     public String logout(HttpSession session){
-        session.invalidate();
+//        session.invalidate();
+        session.removeAttribute("member");
         return "login/logout";
     }
 
