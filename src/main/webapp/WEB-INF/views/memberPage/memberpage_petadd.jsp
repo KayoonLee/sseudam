@@ -5,7 +5,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <head>
 <%@ include file="../navigator_footer/member_header.jsp" %>
-
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
     <script>
         // 이미지 업로드를 위한 JavaScript 함수
@@ -83,11 +83,6 @@
                                         <%-- 이미지 업로드 하기 --%>
                                         <button type="button" onclick="uploadImage()" class="btn btn-primary btn-sm"
                                                 title="Upload new profile image"><i class="bi bi-upload"></i>
-                                        </button>
-
-                                        <%-- 이미지 삭제 하기 --%>
-                                        <button type="button" onclick="removeImage()" class="btn btn-danger btn-sm"
-                                                title="Remove my profile image"><i class="bi bi-trash"></i>
                                         </button>
 
                                     </div>
