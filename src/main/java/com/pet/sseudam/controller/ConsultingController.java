@@ -6,12 +6,10 @@ import com.pet.sseudam.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -240,9 +238,17 @@ public class ConsultingController {
 
     /*예약서삭제*/
     @RequestMapping("delete_Consult")
-    public String delete_Consult(@RequestParam("paper_num") int paper_num) {
+    public String delete_Consult(@RequestParam("paper_num") int paper_num,HttpSession session) {
         con.delete_consult(paper_num);
-        return "consulting/complete_delete_consult";
+        Member member = (Member) session.getAttribute("member");
+        if(member.getIdentifier().equals("1")){
+
+            return "consulting/complete_delete_consult_m";
+        } else if (member.getIdentifier().equals("2")) {
+            return "consulting/complete_delete_consult_c";
+
+        }else
+        return "main_page";
     }
 
     /* 상담 수락*/      //신진우수정
