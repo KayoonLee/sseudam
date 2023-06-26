@@ -1,23 +1,13 @@
 <%@ page language="java" pageEncoding="UTF-8" %>
-<%@ include file="../header/header.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>받은 쪽지 목록</title>
 
-    <!-- Vendor CSS Files -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-
-
-    <!-- ======= Header ======= -->
-    <%@ include file="../navigator_footer/main_header.jsp" %>
+   <%@ include file="../navigator_footer/member_header.jsp" %>
 
     <style>
         .profile_image {
@@ -42,7 +32,7 @@
 <body>
 <div>
     <!-- ======= Navigator ======= -->
-    <%@ include file="../navigator_footer/main_navigator.jsp" %>
+  <%@ include file="../navigator_footer/counselor_navigator.jsp" %>
 
     <!-- ======= Sidebar ======= -->
     <%@ include file="../navigator_footer/member_sidebar.jsp" %>

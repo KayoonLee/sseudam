@@ -16,10 +16,7 @@
 
 <!-- ======= Sidebar ======= -->
 <%@ include file="../navigator_footer/counselor_sidebar.jsp" %>
-
-
     <main id="main" class="main">
-
         <div class="pagetitle">
             <h1>Profile</h1>
             <nav>

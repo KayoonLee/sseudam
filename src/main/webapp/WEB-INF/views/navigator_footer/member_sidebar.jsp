@@ -93,6 +93,7 @@
 <%--            </a>--%>
 <%--        </li>--%>
 
+<li class="nav-heading">Message</li>
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#msg-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-menu-button-wide"></i><span>나의 쪽지함</span><i class="bi bi-chevron-down ms-auto"></i>

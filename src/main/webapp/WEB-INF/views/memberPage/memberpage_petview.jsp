@@ -90,7 +90,7 @@
                                         <div class="col-lg-9 col-md-8">${pet.feature}</div>
                                     </div>
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-primary rounded-pill" onclick="location.href='/memberpage_petupdate.do?p_id=${pet.p_id}&pageNum=${pageNum}'">수정</button>
+                                        <button type="button" class="btn btn-primary rounded-pill" onclick="location.href='memberpage_petupdate.do?p_id=${pet.p_id}&pageNum=${pageNum}'">수정</button>
                                     </div>
                                 </div>
                             </div><!-- End Bordered Tabs -->

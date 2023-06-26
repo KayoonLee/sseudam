@@ -2,21 +2,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 
-<%@ include file="../navigator_footer/member_header.jsp" %>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>보낸 쪽지 목록</title>
-
-    <!-- Vendor CSS Files -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
-    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+   <%@ include file="../navigator_footer/member_header.jsp" %>
 
 
     <!-- ======= Header ======= -->
@@ -52,7 +43,7 @@
 </head>
 <body>
 <div>
-    <%@ include file="../navigator_footer/counselor_navigator.jsp" %>
+<%@ include file="../navigator_footer/counselor_navigator.jsp" %>
 
     <!-- ======= Sidebar ======= -->
     <%@ include file="../navigator_footer/member_sidebar.jsp" %>
