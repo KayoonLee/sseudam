@@ -45,3 +45,26 @@ function free_check() {
         }
     }
 }
+
+function report_check(){
+    if($.trim($("#report_content").val()) == ""){
+        alert("신고 사유를 적어주세요!");
+        return false;
+    }
+}
+
+function select_counselor(identifier){
+    if(identifier == '' || identifier == 'null'|| identifier == null){
+        alert("일반 회원으로 로그인해 주세요");
+        return false;
+    }else if(identifier == 2){
+        alert("일반 회원만 상담신청이 가능합니다");
+        return false;
+    }
+    location.href = "hasAnimal";
+}
+
+// 쪽지
+function note_check(){
+
+}

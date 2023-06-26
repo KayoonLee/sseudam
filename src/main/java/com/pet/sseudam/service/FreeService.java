@@ -51,4 +51,5 @@ public interface FreeService {
 
     int imgUpdate(ImgBean imgBoard);
 
+    int reportAutoUpdate(ReportBean reportboard);
 }

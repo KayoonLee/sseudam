@@ -151,16 +151,20 @@ public class FreeReplyController {
         String filename = mf.getOriginalFilename();
         int size = (int) mf.getSize();
 
+        int origin_filenum= reBoard.getFile_num();
+
+        System.out.println("origin_filenum : "+origin_filenum);
+
         //파일 첨부 관련
         if (size > 0) {
             System.out.println("수정할 파일이 있습니다");
 
-            String file_path = request.getRealPath("img");
-            System.out.println("file_path는 " + file_path);
-            System.out.println("filename은 " + filename);
-
             //이전 실제 첨부파일 삭제
             List<ImgBean> old_filelist = service.imgList(img_board);
+
+
+            String file_path = request.getRealPath("img");
+            System.out.println("file_path는 " + file_path);
 
             for (int j = 0; j < old_filelist.size(); j++) {
                 String real_name = old_filelist.get(j).getFile_name();
@@ -169,12 +173,13 @@ public class FreeReplyController {
                 real_file.delete();
             }
 
+            System.out.println("filename은 " + filename);
+
             String extension = filename.substring(filename.lastIndexOf("."));
             UUID uuid = UUID.randomUUID();
 
             String new_filename = uuid.toString().replace("-", "") + extension;
 
-            System.out.println("filename: " + filename);
             System.out.println("new_filename: " + new_filename);
 
             try {
@@ -186,6 +191,19 @@ public class FreeReplyController {
             img_board.setFile_origin(filename);
             img_board.setFile_name(new_filename);
 
+            if(origin_filenum == 0){
+
+                System.out.println("댓글 첨부파일 새로 다는 경우");
+                int max_num = service.getMaxnum() + 1;
+
+                img_board.setFile_num(max_num);
+                img_board.setFile_serial(1);
+
+                int count = service.imgAdd(img_board);
+
+                reBoard.setFile_num(max_num);
+            }
+
             int count = service.imgUpdate(img_board);
 
             if (count == 1) {
@@ -193,6 +211,8 @@ public class FreeReplyController {
             }
 
         }
+        System.out.println("-------------");
+        System.out.println("reBoard.getFile_num() : "+reBoard.getFile_num());
 
         reService.update(reBoard);            // 댓글 update SQL문 실행
 

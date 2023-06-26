@@ -53,7 +53,7 @@ public interface MemberService{
 
 
 //    Member profileAfter(int m_id);
-
+// 접속자수 count
     int visitCheck(Visitor visitor);
 
     int visitInsert(Visitor visitor);
@@ -69,4 +69,6 @@ public interface MemberService{
     int deletemember(String email);
 
     List<CounselPaper> mypaperList(int m_id);
+
+    List<CounselRecord> recordList(int mId);
 }

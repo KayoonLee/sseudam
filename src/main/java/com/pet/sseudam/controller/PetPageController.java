@@ -3,7 +3,6 @@ package com.pet.sseudam.controller;
 import com.pet.sseudam.model.Member;
 import com.pet.sseudam.model.PetBean;
 import com.pet.sseudam.model.ProfileBean;
-import com.pet.sseudam.service.MemberService;
 import com.pet.sseudam.service.PagingPgm;
 import com.pet.sseudam.service.PetPageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,6 @@ public class PetPageController {
     @Autowired
     private PetPageService pps;
 
-    @Autowired
-    private MemberService ms;
-
     // 나의 반려동물 목록
     // 주석
     @GetMapping("memberpage_mypet")
@@ -36,7 +32,6 @@ public class PetPageController {
         System.out.println("동물페이지로 진입성공");
 
         Member mem = (Member) session.getAttribute("member");
-
         pet.setG_id(mem.getM_id());
         System.out.println("G_id:"+ pet.getG_id());
 
@@ -169,7 +164,7 @@ public class PetPageController {
 
 
         }else {
-             result = pps.p_modify(pet);
+            result = pps.p_modify(pet);
             if(result==1){
                 System.out.println("동물 수정 성공");
             }
@@ -252,7 +247,7 @@ public class PetPageController {
 
         // 추가
         model.addAttribute("pet", pet);
-        
+
         return "memberPage/petadd";
     }
 

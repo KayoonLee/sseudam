@@ -159,6 +159,17 @@
         WHERE c.c_id = #{m_id}
     </select>
 
+    <!-- 상담사의 상담기록서리스트-->
+    <select id="recordList" parameterType="int" resultType="CounselRecord">
+        select c.*, m.*, p.*
+        from counsel_record c
+            join member m on m.m_id = c.m_id
+            join pet p on p.p_id=c.p_id
+        where c.c_id =#{m_id}
+    </select>
+
+
+
     <!-- 일반회원의 내가 쓴 글-->
     <select id="mypostList" parameterType="int" resultType="fboard">
         select b.*, m.nick from board b join member m on m.m_id=b.m_id where b.m_id=#{m_id}
