@@ -26,7 +26,7 @@
 
     <!-- 상담원과 회원의 예약시간 조회 -->
     <select id="find_reservation_time" resultType="java.util.Date">
-        SELECT request_time
+        SELECT DISTINCT request_time
         FROM counsel_paper
         WHERE m_id = #{g_id}
           or c_id = #{con_id}
@@ -110,5 +110,28 @@
     <select id="select_counsel_record" resultType="CounselRecord">
     SELECT * FROM counsel_record WHERE record_num = #{record_num}
     </select>
+
+    <!-- 상담기록서 삭제 -->
+    <update id="delete_consulting" >
+        UPDATE counsel_record
+        SET consult_status = 1
+        WHERE record_num = #{record_num}
+    </update>
+
+    <update id="update_consulting" parameterType="CounselRecord" >
+        UPDATE counsel_paper
+        SET paper_num = #{paper_num},
+        p_id = #{p_id},
+        m_id = #{m_id},
+        c_id = #{c_id},
+        consulting_date = DATE_FORMAT(#{consulting_date},'%Y-%m-%d %H:00') ,
+        subject = #{subject},
+        topic = #{topic},
+        content = #{content},
+        etc = #{etc}
+        WHERE record_num = #{record_num}
+    </update>
+
+
 
 </mapper>

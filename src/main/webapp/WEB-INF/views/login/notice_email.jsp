@@ -64,8 +64,8 @@ input[type="button"]:hover {
 	<div>
 		<form>
 			<label for="nick">닉네임</label>
-			<input type="text" id="nick" disabled="disabled" value="${nick}">
-			<label for="id">확인된 회원의 ID</label>
+			<input type="email" id="nick" disabled="disabled" value="${nick}">
+			<label for="nick">확인된 회원의 ID</label>
 			<input type="email" id="email" disabled="disabled" value="${email}">
 			<input type="button" value="확인" onclick="window.close()">
 		</form>

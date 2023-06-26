@@ -69,4 +69,6 @@ public interface MemberService{
     int deletemember(String email);
 
     List<CounselPaper> mypaperList(int m_id);
+
+    List<CounselRecord> recordList(int mId);
 }

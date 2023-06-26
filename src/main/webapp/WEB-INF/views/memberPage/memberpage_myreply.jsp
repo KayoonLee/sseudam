@@ -25,8 +25,8 @@
       <br>
       <div class="card">
           <div class="card-body">
-              <input type="hidden" id="num" name=num value="${fboard.num }">
-              <input type="hidden" id="board_num" name=board_num value="${fboard.board_num }">
+              <input type="hidden" id="num" name="num" value="${fboard.num }">
+              <input type="hidden" id="board_num" name="board_num" value="${fboard.board_num }">
               <input type="hidden" id="m_id" name="m_id" value="${member.m_id }">
               <br>
               <table id="example" class="table is-striped" style="width:100%">
@@ -52,7 +52,7 @@
                       </tr>
                   </c:if>
                   <c:forEach var="board" items="${myreplyList}">
-                      <tr onclick="location.href='freeView?num=${board.num}&board_num=${board.board_num}&pageNum=${pageNum}'">
+                      <tr onclick="location.href='freeView?num=${board.num}&board_num=${board.board_num}&pageNum=${pageNum}'" style="cursor: pointer;">
                           <td>
                               <c:if test="${board.category == '1'}">자유</c:if>
                               <c:if test="${board.category == '2'}">질문</c:if>

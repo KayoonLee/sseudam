@@ -15,7 +15,7 @@
                             left join img_profile t3 on t2.profile_num = t3.profile_num
                             left join img_file t4 on t1.file_num = t4.file_num
         WHERE t1.num=#{num} and t1.board_num=#{board_num}
-        order by ref desc,re_seq desc limit #{startRow}, 10
+        order by ref desc,board_renum desc limit #{startRow}, 10
     </select>
 
     <insert id="re_insert" parameterType="re_fboard">

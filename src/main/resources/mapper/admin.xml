@@ -89,9 +89,9 @@
         update member set identifier=#{identifier} where m_id=#{m_id}
     </update>
 
-    <delete id="admin_counsel_decline" parameterType="member">
-        delete from member where m_id=#{m_id}
-    </delete>
+    <update id="admin_counsel_decline" parameterType="member">
+        update member set identifier = 4 where m_id=#{m_id}
+    </update>
 
     <update id="admin_state_change" parameterType="member">
         update member set state=#{state} where m_id=#{m_id}
