@@ -291,8 +291,8 @@
             return false;
         }
 
-        if (selectedDateTime.value <= nowdate.value) {
-            alert("예약 시간을 현재시간 이후로 설정해주세요.");
+        if (new Date(selectedDateTime) <= new Date(nowdate.value)) {
+            alert("예약 시간을 현재시각 이후로 설정해주세요.");
             data.value = "";
             console.log(data);
             return false;
