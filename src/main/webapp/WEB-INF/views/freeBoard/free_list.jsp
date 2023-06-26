@@ -121,7 +121,7 @@
 
             // 선택된 값에 따라 페이지 이동 처리
             if (selectedValue === "latest") {
-                location.href = `freeList?num=${num}&category=${category}&sort=latest`;
+                location.href = `freeList?num=${num}&category=${category}&sort=board_num`;
             } else if (selectedValue === "readcount") {
                 location.href = `freeList?num=${num}&category=${category}&sort=readcount`;
             } else if (selectedValue === "recom") {
@@ -151,9 +151,9 @@
             <div class="row mb-3">
                 <div class="col-2">
                     <select class="form-select" aria-label="Default select example" onchange="handleOptionChange(this)">
-                        <option value="latest">최신순</option>
-                        <option value="readcount">조회순</option>
-                        <option value="recom">추천순</option>
+                        <option value="latest" <c:if test="${sort == 'latest'}">selected="selected"></c:if>>최신순</option>
+                        <option value="readcount" <c:if test="${sort == 'readcount'}">selected="selected"></c:if>>조회순</option>
+                        <option value="recom" <c:if test="${sort == 'recom'}">selected="selected"></c:if>>추천순</option>
                     </select>
                 </div>
             </div>

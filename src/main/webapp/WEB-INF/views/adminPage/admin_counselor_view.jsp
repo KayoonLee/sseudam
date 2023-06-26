@@ -176,7 +176,7 @@
             <button type="button" onclick="nickChange()" class="btn btn-outline-primary">닉네임 변경</button>
 
             <div id="nickTag">
-                <form id="nick_frm" method="" action="">
+                <form id="nick_frm">
                     <input type='hidden' name='m_id' value=${member.m_id}>
                     <input type="text" name="nick" id="nick" value="${member.nick}">
                     <button type="button" class="btn btn-outline-success" onclick="nickConfirm()">수정</button>

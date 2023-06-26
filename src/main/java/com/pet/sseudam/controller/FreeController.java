@@ -91,6 +91,7 @@ public class FreeController {
 
         model.addAttribute("num", fboard.getNum());
         model.addAttribute("category", fboard.getCategory());
+        model.addAttribute("sort", fboard.getSort());
         model.addAttribute("total", total);
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("list", list);
