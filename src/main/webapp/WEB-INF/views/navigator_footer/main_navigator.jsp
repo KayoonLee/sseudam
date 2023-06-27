@@ -156,7 +156,7 @@
                                     <a class="nav-link" href="counsel_list">상담사 소개</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" onclick="select_counselor(${member.identifier})"
+                                    <a class="nav-link" onclick="select_counselor(${sessionScope.member.identifier})"
                                        href="#">상담신청</a>
                                 </li>
                                 <li class="nav-item dropdown">
@@ -232,7 +232,7 @@
                             <!-- End Icons Navigation -->
                         </c:if>
                         <c:if test="${!empty member.m_id}">
-                            <a href="#" class="btn_1 d-none d-lg-block">${member.nick} 님</a>
+                            <a href="#" class="btn_1 d-none d-lg-block">${sessionScope.member.nick} 님</a>
                         </c:if>
                         <c:if test="${!empty sessionScope.admin.a_email}">
                             <a href="#" class="btn_1 d-none d-lg-block">${sessionScope.admin.name} 님</a>

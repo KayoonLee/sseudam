@@ -206,16 +206,16 @@ public class CounselorPageController {
     }
 
     //상담사 목록 페이지
-    @RequestMapping("counselor_list")
-    public String counselor_list(Member member, Model model){
-        System.out.println("상담사 목록 진입");
-
-        List<Member> counselorList = ms.counselorList(member);
-        System.out.println("counselor list:"+counselorList);
-
-        model.addAttribute("counselorList", counselorList);
-        return "counselorPage/counselor_list";
-    }
+//    @RequestMapping("counselor_list")
+//    public String counselor_list(Member member, Model model){
+//        System.out.println("상담사 목록 진입");
+//
+//        List<Member> counselorList = ms.counselorList(member);
+//        System.out.println("counselor list:"+counselorList);
+//
+//        model.addAttribute("counselorList", counselorList);
+//        return "counselorPage/counselor_list";
+//    }
 
     
     // 상담예약서목록
