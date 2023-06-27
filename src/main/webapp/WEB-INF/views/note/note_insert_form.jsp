@@ -56,7 +56,7 @@
 <%@ include file="../navigator_footer/member_sidebar.jsp" %>
 
 <div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 330px">
-    <div class="card-body">
+    <div class="card-body"
         <h6 class="card-title">쪽지 작성</h6>
 <form id="frm" name="frm">
     <input type="hidden" name="sender" value="${member.m_id}">

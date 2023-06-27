@@ -60,7 +60,7 @@
 
             </ul><!-- End Notification Dropdown Items -->
              </li><!-- End Notification Nav -->
-          </ul>
+          </uld
         </nav><!-- End Icons Navigation -->
 
 
