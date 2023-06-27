@@ -115,9 +115,9 @@
         <li>
             <div id="adminResultView"></div>
         </li>
-        <li>
+<%--        <li>
             <div id="z"></div>
-        </li>
+        </li>--%>
     </ul>
     <br>
 

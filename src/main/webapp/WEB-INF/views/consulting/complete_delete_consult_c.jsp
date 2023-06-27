@@ -6,7 +6,7 @@
   <title>Consultation Deletion Complete</title>
   <script>
     function redirectToMypage() {
-      window.location.href = "memberpage_main";
+      window.location.href = "counselorpage_request";
     }
 
     window.onload = function() {

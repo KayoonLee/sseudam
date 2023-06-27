@@ -6,11 +6,11 @@
   <title>Consultation Deletion Complete</title>
   <script>
     function redirectToMypage() {
-      window.location.href = "get_Consult_Details?paper_num=${paper_num}";
+      window.location.href = "memberpage_mypaper";
     }
 
     window.onload = function() {
-      alert("상담을 수락했습니다.");
+      alert("상담을 취소했습니다.");
       redirectToMypage();
     };
   </script>

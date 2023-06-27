@@ -100,10 +100,7 @@
                       <button type="button" onclick="uploadImage()" class="btn btn-primary btn-sm"
                               title="Upload new profile image"><i class="bi bi-upload"></i>
                       </button>
-                      <%-- 이미지 삭제 하기 --%>
-                      <button type="button" onclick="removeImage()" class="btn btn-danger btn-sm"
-                              title="Remove my profile image" ><i class="bi bi-trash"></i>
-                      </button>
+
 
                     </div>
                   </div>

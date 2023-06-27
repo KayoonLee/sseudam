@@ -54,10 +54,6 @@ public class NoteServiceImpl implements NoteService{
         return dao.noteChangeChecking(note);
     }
 
-    public int noteCount(NoteBean note) {
-        return dao.noteCount(note);
-    }
-
     @Override
     public List<NoteBean> noteRecentList(NoteBean note) {
         return dao.noteRecentList(note);

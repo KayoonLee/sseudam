@@ -28,9 +28,8 @@
     <select id="find_reservation_time" resultType="java.util.Date">
         SELECT DISTINCT request_time
         FROM counsel_paper
-        WHERE m_id = #{g_id}
-          or c_id = #{con_id}
-
+        WHERE (m_id = #{g_id} OR c_id = #{con_id})
+          AND confirmed IN (0, 1)
     </select>
 
     <!-- 해당 상담예약서의 동물 id로 동물 조회 -->
@@ -88,6 +87,13 @@
         WHERE paper_num = #{paper_num}
     </update>
 
+    <!-- 상담예약서 상담완료 -->
+    <update id="replied_consult" >
+        UPDATE counsel_paper
+        SET confirmed = 2
+        WHERE paper_num = #{paper_num}
+    </update>
+
     <!-- 상담예약서 수락 -->
     <update id="accept_consult" >
         UPDATE counsel_paper
@@ -102,8 +108,8 @@
 
     <!-- 상담기록서 작성 -->
     <insert id="insert_consulting" parameterType="CounselRecord">
-        INSERT INTO counsel_record (paper_num, p_id, m_id, c_id, consulting_date, subject, topic, content, consult_status, etc)
-        VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{consult_status},#{etc})
+        INSERT INTO counsel_record (paper_num, p_id, m_id, c_id, consulting_date, subject, topic, content, etc)
+        VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{etc})
     </insert>
 
     <!-- 상당기록서 조회 -->

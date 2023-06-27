@@ -112,7 +112,7 @@
         SELECT m.*, c.license, c.career, ip.profile_name
         FROM member AS m
         JOIN counselor AS c ON m.m_id = c.c_id
-        JOIN img_profile AS ip ON m.profile_num = ip.profile_num
+       left JOIN img_profile AS ip ON m.profile_num = ip.profile_num
         WHERE m.identifier = 2 AND m.state = 1;
 
     </select>
@@ -212,7 +212,7 @@
         FROM VISITOR
         WHERE SESSION_ID = #{session_id}
           AND IP_ADDR    = #{ip_addr}
-          AND VISIT_TIME > DATE_SUB(NOW(), INTERVAL 1 DAY);
+          AND VISIT_TIME > DATE_SUB(NOW(), INTERVAL 1 DAY)
     </select>
 
     <insert id="visitInsert" parameterType="visitor">

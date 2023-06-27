@@ -21,7 +21,5 @@ public interface NoteService {
 
     int noteChangeChecking(NoteBean note);
 
-    int noteCount(NoteBean note);
-
     List<NoteBean> noteRecentList(NoteBean note);
 }

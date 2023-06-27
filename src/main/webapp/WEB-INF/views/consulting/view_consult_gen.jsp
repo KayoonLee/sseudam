@@ -23,6 +23,8 @@
 <%--<section class="section">--%>
 <%--<div class="row">--%>
 <%--<div class="col-lg-6">--%>
+<%@ include file="../navigator_footer/main_header.jsp" %>
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 
 <div class="card">
     <div class="card-body">
@@ -83,7 +85,7 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <c:if test="${counselpaper.confirmed != 3}">
+                    <c:if test="${counselpaper.confirmed == 0}">
                     <input type="submit" class="btn btn-primary" value="상담 수정하기" onclick="javascript: form.action='edit_Consult';">
                     <input type="submit" class="btn btn-primary" value="상담 취소하기" onclick="javascript: form.action='delete_Consult';">
                     </c:if>
@@ -95,6 +97,8 @@
 
     </div>
 </div>
+
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 <%--</div>--%>
 <%--</div>--%>

@@ -115,7 +115,7 @@
 <div id="nickTag">
     <form id="nick_frm" method="" action="">
         <input type='hidden' name='m_id' value=${memberDto.m_id}>
-        <input type="text" name="nick" id="nick">
+        <input type="text" name="nick" id="nick" value="${memberDto.nick}">
         <button type="button" class="btn btn-outline-success" onclick="nickConfirm()">수정</button>
         <input type="reset" class="btn btn-outline-secondary" value="취소"/>
     </form>

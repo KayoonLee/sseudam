@@ -52,20 +52,12 @@
         where receiver = #{receiver}
     </select>
 
-    <select id="noteCount" parameterType="note" resultType="int">
-        select count(*)
-        from note
-        where checking = 1
-          and receiver = #{receiver}
-    </select>
-
     <select id="noteRecentList" parameterType="note" resultType="note">
         select t1.*, t2.nick
         from note t1
                  join member t2 on t1.sender = t2.m_id
         where checking = 1
           and receiver = #{receiver}
-        limit 2
     </select>
 
 </mapper>

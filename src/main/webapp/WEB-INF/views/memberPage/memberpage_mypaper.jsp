@@ -62,7 +62,7 @@
                             <c:if test="${counsel_paper.confirmed == '0'}">대기</c:if>
                             <c:if test="${counsel_paper.confirmed == '1'}">확정</c:if>
                             <c:if test="${counsel_paper.confirmed == '2'}">완료</c:if>
-                            <c:if test="${counsel_paper.confirmed == '3'}">거절</c:if>
+                            <c:if test="${counsel_paper.confirmed == '3'}">취소</c:if>
                         </td>
                     </tr>
                 </c:forEach>

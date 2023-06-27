@@ -174,6 +174,18 @@
 
         <c:if test="${member.identifier == '2'}">
             <button type="button" onclick="nickChange()" class="btn btn-outline-primary">닉네임 변경</button>
+
+            <div id="nickTag">
+                <form id="nick_frm">
+                    <input type='hidden' name='m_id' value=${member.m_id}>
+                    <input type="text" name="nick" id="nick" value="${member.nick}">
+                    <button type="button" class="btn btn-outline-success" onclick="nickConfirm()">수정</button>
+                    <input type="reset" class="btn btn-outline-secondary" value="취소" />
+                </form>
+            </div>
+
+
+
             <c:if test="${member.state == 0}">
                 <button type="button" onclick="stateChange(${member.m_id}, ${member.state})" class="btn btn-outline-primary">회원 복원</button>
             </c:if>
@@ -185,16 +197,16 @@
     </div>
 </div>
 <input type="hidden" id="email" value="${member.email}">
-<input type="hidden" id="nick" value="${member.nick}">
+<%--<input type="hidden" id="nick" value="${member.nick}">--%>
 
-<div id="nickTag">
+<%--<div id="nickTag">
     <form id="nick_frm" method="" action="">
         <input type='hidden' name='m_id' value=${member.m_id}>
         <input type="text" name="nick" id="nick">
         <button type="button" onclick="nickConfirm()">수정</button>
         <input type="reset" value="취소" />
     </form>
-</div>
+</div>--%>
 
 </body>
 </html>

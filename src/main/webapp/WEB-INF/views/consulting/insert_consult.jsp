@@ -3,13 +3,18 @@
 
 <html>
 <head>
+
+
+
+
+
     <title>상담예약서 작성</title>
 
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- ======= Header ======= -->
-    <%@ include file="../navigator_footer/main_header.jsp" %>
+
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -28,6 +33,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script type="text/javascript" src="js/mark-your-calendar.js"></script>
 
+
     <style>
         body {
             background-color: #fafafa;
@@ -36,6 +42,10 @@
         .container {
             margin: 50px auto;
 
+        }
+        #myc-available-time-container {
+            width: auto;
+            height: 450px;
         }
 
 
@@ -50,6 +60,15 @@
 
 </head>
 <body>
+<%-- 달력 테스트 --%>
+<div class="container">
+    <h3>상담사 예약시간 정하기</h3>
+    <div id="picker"></div>
+    <div>
+        <p>Selected dates / times:</p>
+        <%--<div id="selected-dates" ></div>--%>
+    </div>
+</div>
 
 <!-- ======= Navigator ======= -->
 <%--<%@ include file="../navigator_footer/main_navigator.jsp" %>--%>
@@ -155,15 +174,6 @@
 </div>
 <%--</main>--%>
 
-<%-- 달력 테스트 --%>
-<div class="container">
-    <h1>상담사 예약시간 정하기</h1>
-    <div id="picker"></div>
-    <div>
-        <p>Selected dates / times:</p>
-        <%--<div id="selected-dates" ></div>--%>
-    </div>
-</div>
 
 <script type="text/javascript">
 
@@ -284,8 +294,8 @@
             return false;
         }
 
-        if (selectedDateTime.value <= nowdate.value) {
-            alert("예약 시간을 현재시간 이후로 설정해주세요.");
+        if (new Date(selectedDateTime) <= new Date(nowdate.value)) {
+            alert("예약 시간을 현재시각 이후로 설정해주세요.");
             data.value = "";
             console.log(data);
             return false;

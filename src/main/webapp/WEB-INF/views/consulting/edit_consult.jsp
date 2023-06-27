@@ -6,6 +6,17 @@
 
 <html>
 <head>
+
+    <%-- 달력 테스트 --%>
+    <div class="container">
+        <h1>상담사 예약시간 정하기</h1>
+        <div id="picker"></div>
+        <div>
+            <p>Selected dates / times:</p>
+            <%--<div id="selected-dates" ></div>--%>
+        </div>
+    </div>
+
     <title>상담예약서 작성</title>
 
     <meta charset="UTF-8">
@@ -31,6 +42,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script type="text/javascript" src="js/mark-your-calendar.js"></script>
 
+
     <style>
         body {
             background-color: #fafafa;
@@ -39,6 +51,10 @@
         .container {
             margin: 50px auto;
 
+        }
+        #myc-available-time-container {
+            width: auto;
+            height: 450px;
         }
 
 
@@ -71,10 +87,10 @@
 
         <!-- General Form Elements -->
 
-        <form action="submit_Insert_Consult" method="POST" onsubmit="return validateForm()">
+        <form action="update_Consult" method="POST" onsubmit="return validateForm()">
 
             <input type="hidden" id="nowdate" name="nowdate" value="${nowtime}">
-            <input type="hidden" name="old_paper_num" value="${counselpaper.paper_num}">
+            <input type="hidden" name="paper_num" value="${counselpaper.paper_num}">
 
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">상담사이름</label>
@@ -161,15 +177,6 @@
 </div>
 <%--</main>--%>
 
-<%-- 달력 테스트 --%>
-<div class="container">
-    <h1>상담사 예약시간 정하기</h1>
-    <div id="picker"></div>
-    <div>
-        <p>Selected dates / times:</p>
-        <%--<div id="selected-dates" ></div>--%>
-    </div>
-</div>
 
 <script type="text/javascript">
 

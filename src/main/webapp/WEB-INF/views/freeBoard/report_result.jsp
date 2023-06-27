@@ -4,11 +4,10 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title>신고완료</title>
 </head>
 <body>
 
-${count}
 <div>
     <input type="hidden" id="count" value="${count}">
 </div>
@@ -20,11 +19,10 @@ ${count}
         // alert(count);
         alert("신고를 작성하였습니다.");
         if (count == 1) {
-            <%--location.href="freeList?num=${num}";--%>
             window.close();
             window.opener.location.href = "freeList?num=${num}";
-        } else if (count == null) {
-            // window.close();
+        } else if (count == 0) {
+            window.close();
         }
     </script>
 </c:if>
@@ -32,6 +30,7 @@ ${count}
 <c:if test="${result != 1}">
     <script>
         alert("신고가 작성되지 않았습니다.");
+        history.go(-1);
     </script>
 </c:if>
 </html>

@@ -6,12 +6,10 @@ import com.pet.sseudam.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -226,34 +224,39 @@ public class ConsultingController {
                                  @RequestParam("request_times") String request_time,
                                  CounselPaper counselpaper) {
         System.out.println("update_Consult 진입");
+        long timestamp = Long.parseLong(request_time);
+        Date date = new Date(timestamp);
 
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        Date date = null;
-        try {
-            date = inputFormat.parse(request_time);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
         counselpaper.setPaper_num(paper_num);
         counselpaper.setM_id(g_id);
         counselpaper.setRequest_time(date);
         con.update_consult(counselpaper);
 
 
-        return "redirect:/get_Consult_Details";
+        return "redirect:/get_Consult_Details?paper_num=" + paper_num;
     }
 
     /*예약서삭제*/
     @RequestMapping("delete_Consult")
-    public String delete_Consult(@RequestParam("paper_num") int paper_num) {
+    public String delete_Consult(@RequestParam("paper_num") int paper_num,HttpSession session) {
         con.delete_consult(paper_num);
-        return "consulting/complete_delete_consult";
+        Member member = (Member) session.getAttribute("member");
+        if(member.getIdentifier().equals("1")){
+
+            return "consulting/complete_delete_consult_m";
+        } else if (member.getIdentifier().equals("2")) {
+            return "consulting/complete_delete_consult_c";
+
+        }else
+        return "main_page";
     }
 
-    /* 상담 수락*/
+    /* 상담 수락*/      //신진우수정
     @RequestMapping("accept_Consult")
-    public String accept_Consult(@RequestParam("paper_num") int paper_num) {
+    public String accept_Consult(@RequestParam("paper_num") int paper_num, Model model) {
         con.accept_consult(paper_num);
+        
+        model.addAttribute("paper_num", paper_num);
         return "consulting/complete_accept_consult";
     }
 
@@ -301,10 +304,11 @@ public class ConsultingController {
             e.printStackTrace();
         }
 
+        con.replied_consult(old_paper_num);
         con.insert_consulting(counselrecord);
 
 
-        return "redirect:/counselorpage_main";
+        return "redirect:/counselorpage_record";
         /* 나중에 상담기록서 리스트로 전달할 예정. */
     }
 
