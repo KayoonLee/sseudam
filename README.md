@@ -31,7 +31,7 @@ http://3.35.16.133/index.jsp
 <br><br>
 
 # 구동 화면
-1. 메인페이지<br>
+<h1>1. 메인페이지</h1><br>
 ![메인페이지](https://github.com/KayoonLee/sseudam/assets/121711903/fb35f139-deb2-4cf2-a79f-c70b1b79bac2)
 <br><br>
 
