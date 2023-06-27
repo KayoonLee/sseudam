@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <%-- 유효성 검사 세욱--%>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+
+<%-- 유효성 검사 세욱--%>
     <script src="./js/free.js"></script>
 
     <script>
