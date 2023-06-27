@@ -53,4 +53,5 @@ public interface FreeDao {
 
     int imgUpdate(ImgBean imgBoard);
 
+    int reportAutoUpdate(ReportBean reportboard);
 }

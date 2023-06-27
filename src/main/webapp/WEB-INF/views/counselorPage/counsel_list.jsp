@@ -16,6 +16,7 @@
     <!-- Template Main CSS File -->
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
+
 </head>
 <body>
 
@@ -37,6 +38,21 @@
                     <div class="card">
                         <c:if test="${!empty counsel.profile_num}">
                             <img class="card-img-top" src="memberImg/${counsel.profile_name}">
+        <div class="container" align="center">
+            <div class="row">
+                <table>
+                <p>
+                <p>
+                    <h2>상담사 소개</h2>
+                    <p>
+                    <p>
+                    <p>
+                    <c:forEach var="counsel" items="${counselorList }">
+                            <div class="col-sm-3">
+                                <div>
+                                    <div class="card">
+                                        <c:if test="${!empty counsel.profile_num}">
+                                                <img class="card-img-top" src="memberImg/${counsel.profile_name}">
 
                         </c:if>
                         <c:if test="${empty counsel.profile_num}">
@@ -45,19 +61,19 @@
                         </c:if>
 
 
-                        <div class="card-body">
-                            <h4 class="card-title">${counsel.name }</h4>
-                            <h4 class="card-title">${counsel.license }</h4>
-                            <h4 class="card-title">${counsel.career}</h4>
-                        </div>
-                    </div>
-                </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title">${counsel.name }</h4>
+                                            <h4 class="card-title">${counsel.license }</h4>
+                                            <h4 class="card-title">${counsel.career}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    </c:forEach>
+               </table>
             </div>
-            </c:forEach>
-        </table>
-    </div>
-</div>
-<%--</main>--%>
-
+        </div>
+    <%--</main>--%>
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 </body>
 </html>

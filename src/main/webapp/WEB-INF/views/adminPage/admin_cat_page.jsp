@@ -50,6 +50,7 @@
             <table id="example" class="table is-striped" style="width:100%">
                 <thead>
                 <tr>
+                    <th></th>           <!--정렬용 -->
                     <th>회원번호</th>
                     <th>동물번호</th>
                     <th>동물이름</th>
@@ -65,14 +66,15 @@
                         <%--<c:set var="g_id" value="${cat.g_id}"/>--%>
                         <tr id="catView"
                             onclick="loadCatPage(${p_id})"> <%-- onClick 으로 조회하는 방법으로 하기(<a>태그로 감싸도 되고 안감싸도 됨) --%>
+                            <td>${cat.row_num}</td>
                             <td>${cat.g_id}</td>
                             <td>${cat.p_id}</td>
                             <td>${cat.animal}</td>
                             <td>${cat.birth}</td>
-                            <c:if test="${cat.gender == 0}">
+                            <c:if test="${cat.gender == 1}">
                                 <td>Male</td>
                             </c:if>
-                            <c:if test="${cat.gender == 1}">
+                            <c:if test="${cat.gender == 0}">
                                 <td>Female</td>
                             </c:if>
                             <%-- neutering(중성화) --%>
@@ -90,6 +92,7 @@
                 </tbody>
                 <tfoot>
                 <tr>
+                    <th></th>
                     <th>회원번호</th>
                     <th>동물번호</th>
                     <th>동물이름</th>

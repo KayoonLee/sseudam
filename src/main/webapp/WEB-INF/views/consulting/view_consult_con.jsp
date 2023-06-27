@@ -24,7 +24,8 @@
 <%--<section class="section">--%>
 <%--<div class="row">--%>
 <%--<div class="col-lg-6">--%>
-
+<%@ include file="../navigator_footer/main_header.jsp" %>
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
 <div class="card">
     <div class="card-body">
         <h5 class="card-title">상담예약서 상세페이지(상담사)</h5>
@@ -57,7 +58,8 @@
             <div class="row mb-3">
                 <label  class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" value="<fmt:formatDate value="${counselpaper.request_time}" pattern="yyyy-MM-dd hh:mm"/>" disabled>
+
+                    <input type="text" class="form-control" value="<fmt:formatDate value="${counselpaper.request_time}" pattern="yyyy-MM-dd HH:00"/>" disabled>
                 </div>
             </div>
             <div class="row mb-3">
@@ -83,8 +85,15 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
+
+                    <c:if test="${counselpaper.confirmed == '0'}">
                     <input type="submit" class="btn btn-primary" value="상담 수락하기" onclick="javascript: form.action='accept_Consult';">
                     <input type="submit" class="btn btn-primary" value="상담 취소하기" onclick="javascript: form.action='delete_Consult';">
+                    </c:if>
+
+                    <c:if test="${counselpaper.confirmed == '1'}">
+                        <input type="submit" class="btn btn-primary" value="상담 기록서 작성" onclick="javascript: form.action='write_Consulting';">
+                    </c:if>
 
                 </div>
             </div>
@@ -94,6 +103,7 @@
 
     </div>
 </div>
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 <%--</div>--%>
 <%--</div>--%>

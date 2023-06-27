@@ -14,12 +14,12 @@
 			$.ajax({
 				url:"findUserEmail",
 				data:{"nick":nick},
-				success:function(data){
-					if(JSON.stringify(data) != '{}'){
+				success:function(res){
+					if(JSON.stringify(res) != '{}'){
 						alert("고객님의 정보와 일치하는 ID입니다.");
-						console.log(data);
-						var email = data.email;
-						var nick = data.nick;
+						console.log(res);
+						var email = res.email;
+						var nick = res.nick;
 						location.href="notice_email.do?email="+email+"&nick="+nick;
 					}
                 },
@@ -110,7 +110,7 @@ input[type="submit"]:hover {
 <form>
    <label for="nick">가입한 닉네임</label>
    <input type="text" id="nick" name="nick" required="required" placeholder="닉네임을 입력하세요">
-   <input type="submit" value="ID 찾기" id="findEmail">
+   <input type="button" value="ID 찾기" id="findEmail">
    &nbsp;&nbsp;
    <input type="button" value="닫기" onclick="window.close()">
 </form>

@@ -77,14 +77,14 @@
         </table>
 
         <!-- 고양이 삭제/복구-->
-        <c:if test="${pet.state == 0}">
+        <c:if test="${pet.state == 1}">
             <button type="button" class="btn btn-outline-primary"
-                    onclick="adminCatStateChange(${pet.p_id}, ${pet.state})">고양이 복원</button>
+                    onclick="adminCatStateChange(${pet.p_id}, ${pet.state})">복원</button>
         </c:if>
 
-        <c:if test="${pet.state == 1}">
+        <c:if test="${pet.state == 0}">
             <button type="button" class="btn btn-outline-danger"
-                    onclick="adminCatStateChange(${pet.p_id}, ${pet.state})">고양이 삭제</button>
+                    onclick="adminCatStateChange(${pet.p_id}, ${pet.state})">삭제</button>
         </c:if>
 
     </div>

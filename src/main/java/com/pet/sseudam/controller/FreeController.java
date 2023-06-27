@@ -91,6 +91,7 @@ public class FreeController {
 
         model.addAttribute("num", fboard.getNum());
         model.addAttribute("category", fboard.getCategory());
+        model.addAttribute("sort", fboard.getSort());
         model.addAttribute("total", total);
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("list", list);
@@ -359,7 +360,13 @@ public class FreeController {
 
         int result = service.reportPlus(reportboard);
 
-        model.addAttribute("result",result);
+        int count = service.reportAutoUpdate(reportboard);
+
+        System.out.println("자동 리포트 결과는 " + count);
+
+        model.addAttribute("result", result);
+        model.addAttribute("count", count);
+        model.addAttribute("num", reportboard.getNum());
 
         return "freeBoard/report_result";
     }

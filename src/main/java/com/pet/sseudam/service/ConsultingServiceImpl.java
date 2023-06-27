@@ -94,4 +94,19 @@ public class ConsultingServiceImpl implements ConsultingService {
         return dao.requestTime_list(c_id);
     }
 
+    @Override
+    public void delete_consulting(int record_num) {
+        dao.delete_consulting(record_num);
+    }
+
+    @Override
+    public void update_consulting(int record_num) {
+        dao.update_consulting(record_num);
+    }
+
+    @Override
+    public void replied_consult(int paper_num) {
+        dao.replied_consult(paper_num);
+    }
+
 }

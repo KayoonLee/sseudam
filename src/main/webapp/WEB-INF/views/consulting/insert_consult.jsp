@@ -9,7 +9,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
     <!-- ======= Header ======= -->
-    <%@ include file="../navigator_footer/main_header.jsp" %>
+    <%--<%@ include file="../navigator_footer/main_header.jsp" %>--%>
 
     <!-- Vendor CSS Files -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,216 +19,51 @@
     <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
-    <!-- DATE -->
-    <script>
-        function removeMinutes() {
-            var datetimeInput = document.getElementById("request_times"); /* request_times */
-            var dateTime = datetimeInput.value;
-            var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
-            datetimeInput.value = dateTimeWithoutMinutes;
-            var dateTimeString = datetimeInput.value;
-            var dateTime1 = new Date(dateTimeString);
-            <!-- 수정중입니다 !!!!!!!!!!!!!!!!!!!!!!!!-->
-        }
+    <%-- 달력 테스트 --%>
+    <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css/mark-your-calendar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-        // 유효성 검사
-        function validateForm() {
-            var petSelect = document.getElementById("p_id");
-            var dateTimeInput = document.getElementById("request_times");       //요청시간
-            var purposeSelect = document.getElementById("purpose");
-            var reasonInput = document.getElementById("reason");
-            var wishListInput = document.getElementById("wish_list");
-            var nowdate = document.getElementById("nowdate");
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script type="text/javascript" src="js/mark-your-calendar.js"></script>
 
-            // reservation_time 목록을 JavaScript 배열로 변환
-            var reservationTimeArray = [<c:forEach items="${reservation_time}" var="time">${time.getTime()}, </c:forEach>];
 
-            // dateTimeInput의 값을 가져와서 JavaScript Date 객체로 변환
-            var selectedDateTime = new Date(dateTimeInput.value);
-
-            // 선택된 날짜와 reservation_time 목록의 값을 비교하여 중복 여부 확인
-            var isDuplicate = reservationTimeArray.includes(selectedDateTime.getTime());
-
-            // 각 필드의 유효성 검사 로직을 구현하고, 필요한 조건에 맞지 않는 경우 알림을 표시하거나 작업을 수행합니다.
-            if (petSelect.value === "") {
-                alert("반려동물을 선택해주세요.");
-                return false;
-            }
-
-            if (dateTimeInput.value === "") {
-                alert("예약 시간을 입력해주세요.");
-                return false;
-            }
-
-            if (dateTimeInput.value <= nowdate.value) {
-                alert("예약 시간을 현재시간 이후로 설정해주세요.");
-                dateTimeInput.value = "";
-                return false;
-            }
-
-            if (isDuplicate) {
-                alert("이미 예약된 시간입니다.");
-                dateTimeInput.value = "";
-                return false;
-            }
-
-            if (purposeSelect.value === "") {
-                alert("상담 목적을 선택해주세요.");
-                return false;
-            }
-
-            if (reasonInput.value === "") {
-                alert("상담 사유를 입력해주세요.");
-                return false;
-            }
-
-            if (wishListInput.value === "") {
-                alert("요청 사항을 입력해주세요.");
-                return false;
-            }
-
-            // 필요한 유효성 검사를 모두 통과한 경우에는 true를 반환하여 폼이 제출됩니다.
-            return true;
-        }
-    </script>
-
-<%-- 달력테스트 ----------------------------------------------------------------------------------------------------- --%>
     <style>
-        td {
-            width: 50px;
-            height: 50px;
+        body {
+            background-color: #fafafa;
         }
 
-        .Calendar {
-            text-align: center;
-            margin: 0 auto;
-        }
+        .container {
+            margin: 50px auto;
 
-        .Calendar > thead > tr:first-child > td {
-            font-weight: bold;
         }
-
-        .Calendar > thead > tr:last-child > td {
-            background-color: gray;
-            color: white;
-        }
-
-        .pastDay {
-            background-color: lightgray;
-        }
-
-        .today {
-            background-color: #FFCA64;
-            cursor: pointer;
-        }
-
-        .futureDay {
-            background-color: #FFFFFF;
-            cursor: pointer;
-        }
-
-        .futureDay.choiceDay, .today.choiceDay {
-            background-color: #3E85EF;
-            color: #fff;
-            cursor: pointer;
+        #myc-available-time-container {
+            width: auto;
+            height: 450px;
         }
     </style>
 
+    <!-- DATE -->
     <script>
-        window.onload = function () {
-            buildCalendar();
-        }    // 웹 페이지가 로드되면 buildCalendar 실행
-
-        let nowMonth = new Date();  // 현재 달을 페이지를 로드한 날의 달로 초기화
-        let today = new Date();     // 페이지를 로드한 날짜를 저장
-        today.setHours(0, 0, 0, 0);    // 비교 편의를 위해 today의 시간을 초기화
-
-        // 달력 생성 : 해당 달에 맞춰 테이블을 만들고, 날짜를 채워 넣는다.
-        function buildCalendar() {
-
-            let firstDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth(), 1);     // 이번달 1일
-            let lastDate = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, 0);  // 이번달 마지막날
-
-            let tbody_Calendar = document.querySelector(".Calendar > tbody");
-            document.getElementById("calYear").innerText = nowMonth.getFullYear();             // 연도 숫자 갱신
-            document.getElementById("calMonth").innerText = leftPad(nowMonth.getMonth() + 1);  // 월 숫자 갱신
-
-            while (tbody_Calendar.rows.length > 0) {                        // 이전 출력결과가 남아있는 경우 초기화
-                tbody_Calendar.deleteRow(tbody_Calendar.rows.length - 1);
-            }
-
-            let nowRow = tbody_Calendar.insertRow();        // 첫번째 행 추가
-
-            for (let j = 0; j < firstDate.getDay(); j++) {  // 이번달 1일의 요일만큼
-                let nowColumn = nowRow.insertCell();        // 열 추가
-            }
-
-            for (let nowDay = firstDate; nowDay <= lastDate; nowDay.setDate(nowDay.getDate() + 1)) {   // day는 날짜를 저장하는 변수, 이번달 마지막날까지 증가시키며 반복
-
-                let nowColumn = nowRow.insertCell();        // 새 열을 추가하고
-                nowColumn.innerText = leftPad(nowDay.getDate());      // 추가한 열에 날짜 입력
 
 
-                if (nowDay.getDay() == 0) {                 // 일요일인 경우 글자색 빨강으로
-                    nowColumn.style.color = "#DC143C";
-                }
-                if (nowDay.getDay() == 6) {                 // 토요일인 경우 글자색 파랑으로 하고
-                    nowColumn.style.color = "#0000CD";
-                    nowRow = tbody_Calendar.insertRow();    // 새로운 행 추가
-                }
-
-
-                if (nowDay < today) {                       // 지난날인 경우
-                    nowColumn.className = "pastDay";
-                } else if (nowDay.getFullYear() == today.getFullYear() && nowDay.getMonth() == today.getMonth() && nowDay.getDate() == today.getDate()) { // 오늘인 경우
-                    nowColumn.className = "today";
-                    nowColumn.onclick = function () {
-                        choiceDate(this);
-                    }
-                } else {                                      // 미래인 경우
-                    nowColumn.className = "futureDay";
-                    nowColumn.onclick = function () {
-                        choiceDate(this);
-                    }
-                }
-            }
-        }
-
-        // 날짜 선택
-        function choiceDate(nowColumn) {
-            if (document.getElementsByClassName("choiceDay")[0]) {                              // 기존에 선택한 날짜가 있으면
-                document.getElementsByClassName("choiceDay")[0].classList.remove("choiceDay");  // 해당 날짜의 "choiceDay" class 제거
-            }
-            nowColumn.classList.add("choiceDay");           // 선택된 날짜에 "choiceDay" class 추가
-        }
-
-        // 이전달 버튼 클릭
-        function prevCalendar() {
-            nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() - 1, nowMonth.getDate());   // 현재 달을 1 감소
-            buildCalendar();    // 달력 다시 생성
-        }
-
-        // 다음달 버튼 클릭
-        function nextCalendar() {
-            nowMonth = new Date(nowMonth.getFullYear(), nowMonth.getMonth() + 1, nowMonth.getDate());   // 현재 달을 1 증가
-            buildCalendar();    // 달력 다시 생성
-        }
-
-        // input값이 한자리 숫자인 경우 앞에 '0' 붙혀주는 함수
-        function leftPad(value) {
-            if (value < 10) {
-                value = "0" + value;
-                return value;
-            }
-            return value;
-        }
     </script>
-<%-- 달력테스트 ----------------------------------------------------------------------------------------------------- --%>
+
 </head>
 <body>
+<%-- 달력 테스트 --%>
+<div class="container">
+    <h3>상담사 예약시간 정하기</h3>
+    <div id="picker"></div>
+    <div>
+        <p>Selected dates / times:</p>
+        <%--<div id="selected-dates" ></div>--%>
+    </div>
+</div>
 
 <!-- ======= Navigator ======= -->
-<%@ include file="../navigator_footer/main_navigator.jsp" %>
+<%--<%@ include file="../navigator_footer/main_navigator.jsp" %>--%>
 
 <%--
 <section class="section">
@@ -279,38 +114,10 @@
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label">예약 시간</label>
                 <div class="col-sm-10">
-
-                    <%-- 기존에 있던 시간예약 --%>
-                    <input type="datetime-local" id="request_times" name="request_times" onchange="removeMinutes()">
-
-<%-- 달력테스트 ----------------------------------------------------------------------------------------------------- --%>
-                    <table class="Calendar">
-                        <thead>
-                        <tr>
-                            <td onClick="prevCalendar();" style="cursor:pointer;">&#60;</td>
-                            <td colspan="5">
-                                <span id="calYear"></span>년
-                                <span id="calMonth"></span>월
-                            </td>
-                            <td onClick="nextCalendar();" style="cursor:pointer;">&#62;</td>
-                        </tr>
-                        <tr>
-                            <td>일</td>
-                            <td>월</td>
-                            <td>화</td>
-                            <td>수</td>
-                            <td>목</td>
-                            <td>금</td>
-                            <td>토</td>
-                        </tr>
-                        </thead>
-
-                        <tbody>
-                        </tbody>
-                    </table>
-
-                    <div id="selectedDate"></div>
-<%-- 달력테스트 ----------------------------------------------------------------------------------------------------- --%>
+                    <%-- 달력 테스트 --%>
+                    <div id="selected-dates"  onchange="removeMinutes()">
+                    </div>
+                        <input type="hidden" id="request_times" name="request_times" value="">
                 </div>
             </div>
 
@@ -359,33 +166,200 @@
 </div>
 <%--</main>--%>
 
+
+<script type="text/javascript">
+
+    (function ($) {
+        $('#picker').markyourcalendar({
+            availability: [
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            ],
+            isMultiple: false,
+
+
+            onClick: function (ev, data) {
+                // data is a list of datetimes
+                console.log(data);
+                var html = ``;
+                $.each(data, function () {
+                    var d = this.split(' ')[0];
+                    var t = this.split(' ')[1];
+                    html += `<p>` + d + ` ` + t + `</p>`;
+                });
+                if (validate_date(data)) {
+                    $('#selected-dates').html(html);
+                }
+            },
+            onClickNavigator: function (ev, instance) {
+                var arr = [
+                    [
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                        ['10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+                    ]
+                ]
+                // var rn = Math.floor(Math.random() * 10) % 7;
+                instance.setAvailability(arr[0]);
+            }
+        });
+    })(jQuery);
+
+
+    function removeMinutes() {
+        var selectedDatesDiv = document.getElementById("selected-dates"); /* request_times */
+        var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
+
+        // 분 짜르기
+        var dateTime = dateString.value;
+        var dateTimeWithoutMinutes = dateTime.slice(0, -3) + ":00";
+        dateString.value = dateTimeWithoutMinutes;
+        // 분 짜르기
+
+        var dateTimeString = dateString.value;
+        <!-- 수정중입니다 !!!!!!!!!!!!!!!!!!!!!!!!-->
+    }
+
+    // 유효성 검사
+    function validateForm() {
+        var petSelect = document.getElementById("p_id");
+
+
+        var purposeSelect = document.getElementById("purpose");
+        var reasonInput = document.getElementById("reason");
+        var wishListInput = document.getElementById("wish_list");
+
+
+
+        // 각 필드의 유효성 검사 로직을 구현하고, 필요한 조건에 맞지 않는 경우 알림을 표시하거나 작업을 수행합니다.
+        if (petSelect.value === "") {
+            alert("반려동물을 선택해주세요.");
+            return false;
+        }
+
+
+        if (purposeSelect.value === "") {
+            alert("상담 목적을 선택해주세요.");
+            return false;
+        }
+
+        if (reasonInput.value === "") {
+            alert("상담 사유를 입력해주세요.");
+            return false;
+        }
+
+        if (wishListInput.value === "") {
+            alert("요청 사항을 입력해주세요.");
+            return false;
+        }
+
+        // 필요한 유효성 검사를 모두 통과한 경우에는 true를 반환하여 폼이 제출됩니다.
+        return true;
+    }
+
+
+    function validate_date(data) {
+       // var selectedDatesDiv = document.getElementById("selected-dates"); /* request_times */
+        //var dateString = selectedDatesDiv.querySelector("p").innerText; // <p> 태그 내부의 텍스트 값을 가져옵니다.
+        //var dateTimeString = dateString.value;
+        // reservation_time 목록을 JavaScript 배열로 변환
+        var reservationTimeArray = [<c:forEach items="${reservation_time}" var="time">${time.getTime()}, </c:forEach>];
+        // dateTimeInput의 값을 가져와서 JavaScript Date 객체로 변환
+        var selectedDateTime = (new Date(data)).getTime();
+        console.log("selectedDateTime" + selectedDateTime);
+        // 선택된 날짜와 reservation_time 목록의 값을 비교하여 중복 여부 확인
+        var isDuplicate = reservationTimeArray.includes(selectedDateTime);
+        var nowdate = document.getElementById("nowdate");
+
+
+        if (selectedDateTime.value === "") {
+            alert("예약 시간을 입력해주세요.");
+            return false;
+        }
+
+        if (new Date(selectedDateTime) <= new Date(nowdate.value)) {
+            alert("예약 시간을 현재시각 이후로 설정해주세요.");
+            data.value = "";
+            console.log(data);
+            return false;
+        }
+
+        if (isDuplicate) {
+            alert("이미 예약된 시간입니다.");
+            data.value = "";
+            console.log(data);
+            return false;
+        }
+        //selectedDateTime = new Date(data);
+        var checkbull = isDuplicate;
+        var dateclick = selectedDateTime;
+        var arraytest = reservationTimeArray;
+        console.log("checkbull" + checkbull);
+        console.log("dateclick" + dateclick);
+        console.log("arraytest" + arraytest);
+        var inputElement = document.getElementById("request_times");
+
+        // 선택된 날짜와 시간 값을 input 요소의 값으로 설정
+        inputElement.value = selectedDateTime;
+        return true;
+    }
+
+
+</script>
+<script type="text/javascript">
+
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+
+</script>
+
+<script>
+    try {
+        fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", {
+            method: 'HEAD',
+            mode: 'no-cors'
+        })).then(function (response) {
+            return true;
+        }).catch(function (e) {
+            var carbonScript = document.createElement("script");
+            carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+            carbonScript.id = "_carbonads_js";
+            document.getElementById("carbon-block").appendChild(carbonScript);
+        });
+    } catch (error) {
+        console.log(error);
+    }
+</script>
+
+
 <%--
 </div>
 </div>
 </section>
 --%>
 
-<%-- 달력테스트 ----------------------------------------------------------------------------------------------------- --%>
-<script>
-    // Get all the table cells for the calendar dates
-    const dateCells = document.querySelectorAll('.Calendar tbody td');
-
-    // Add click event listener to each date cell
-    dateCells.forEach((cell) => {
-        cell.addEventListener('click', () => {
-            // Get the selected date from the clicked cell
-            const selectedDate = cell.innerText;
-
-            // Display the selected date in the <div> tag
-            const selectedDateDiv = document.getElementById('selectedDate');
-            selectedDateDiv.innerText = `Selected Date: ${selectedDate}`;
-        });
-    });
-</script>
-<%-- 달력테스트 ----------------------------------------------------------------------------------------------------- --%>
-
 <!-- ======= Footer ======= -->
-<%@ include file="../navigator_footer/main_footer.jsp" %>
+<%--<%@ include file="../navigator_footer/main_footer.jsp" %>--%>
 
 </body>
 </html>

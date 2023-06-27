@@ -44,13 +44,16 @@
 <!-- 세욱 xml -->
     <!-- 신고테이블 -->
     <select id="admin_report_list" resultType="report_board">
-        select t1.board_num,
+        select
+               (ROW_NUMBER() OVER()) as row_num,
+               t1.board_num,
                t1.num,
                t1.m_id,
                t1.report_issue,
                t1.report_content,
                t1.report_date,
                t2.subject,
+               t2.state,
                t3.nick,
                t4.profile_name
         from report t1
@@ -119,7 +122,7 @@
 
     <!-- 반려동물-강아지 -->
     <select id="dog_list" resultType="pet">
-        select g_id, p_id, animal, birth, gender, neutering from pet where kind='d'
+        select (ROW_NUMBER() OVER()) as row_num, g_id, p_id, animal, birth, gender, neutering from pet where kind='d'
     </select>
 
     <!-- 반려동물: 강아지 상세페이지 -->
@@ -142,7 +145,7 @@
 
     <!-- 반려동물: 고양이 -->
     <select id="cat_list" resultType="pet">
-        SELECT g_id, p_id, animal, birth, gender, neutering FROM pet WHERE kind='c'
+        SELECT (ROW_NUMBER() OVER()) as row_num, g_id, p_id, animal, birth, gender, neutering FROM pet WHERE kind='c'
     </select>
 
     <!-- 반려동물: 고양이 상세페이지 -->
@@ -175,7 +178,7 @@
         FROM VISITOR
         WHERE visit_time > DATE_SUB(NOW(), INTERVAL 7 DAY)
         GROUP BY (select DATE(visit_time))
-        ORDER BY (select DATE(visit_time));
+        ORDER BY (select DATE(visit_time))
     </select>
 
     <select id="getVisitDays" resultType="String" >
@@ -183,7 +186,7 @@
         FROM VISITOR
         WHERE visit_time > DATE_SUB(NOW(), INTERVAL 7 DAY)
         GROUP BY visit_date
-        ORDER BY visit_date;
+        ORDER BY visit_date
     </select>
 
     <select id="getVisitTotal" resultType="int">

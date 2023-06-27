@@ -31,6 +31,10 @@
     <link rel="stylesheet" href="css/slick.css">
     <!-- style CSS -->
     <link rel="stylesheet" href="css/style.css">
+   <link href="css/member.css" rel="stylesheet">
+   <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+   <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
+   <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
 </body>

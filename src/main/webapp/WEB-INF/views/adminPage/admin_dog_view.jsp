@@ -67,24 +67,24 @@
                 <c:if test="${pet.neutering == 1}">
                     <td>중성화o</td>
                 </c:if>
-                <c:if test="${pet.state == 1}">
+                <c:if test="${pet.state == 0}">
                     <td>활동중</td>
                 </c:if>
-                <c:if test="${pet.state == 0}">
+                <c:if test="${pet.state == 1}">
                     <td>탈퇴</td>
                 </c:if>
             </tr>
         </table>
 
         <!-- 강아지 삭제/복구-->
-        <c:if test="${pet.state == 0}">
+        <c:if test="${pet.state == 1}">
             <button type="button" class="btn btn-outline-primary"
-                    onclick="adminDogStateChange(${pet.p_id}, ${pet.state})">강아지 복원</button>
+                    onclick="adminDogStateChange(${pet.p_id}, ${pet.state})">복원</button>
         </c:if>
 
-        <c:if test="${pet.state == 1}">
+        <c:if test="${pet.state == 0}">
             <button type="button" class="btn btn-outline-danger"
-                    onclick="adminDogStateChange(${pet.p_id}, ${pet.state})">강아지 삭제</button>
+                    onclick="adminDogStateChange(${pet.p_id}, ${pet.state})">삭제</button>
         </c:if>
 <%--
         <button onclick="location.href='adminDeleteBtn?m_id=${memberDto.m_id}'">활동</button>
@@ -96,7 +96,7 @@
 
 <%--<div class="row">--%>
 <%--<div class="col-lg-6">--%>
-<div class="card">
+<%--<div class="card">
     <div class="card-body">
         <h5 class="card-title">Default Tabs</h5>
 
@@ -138,8 +138,8 @@
 
     </div>
 </div>
-<%--</div>--%>
-<%--</div>--%>
+&lt;%&ndash;</div>&ndash;%&gt;
+&lt;%&ndash;</div>&ndash;%&gt;
 
 <button type="button" class="btn btn-outline-primary">Primary</button>
 
@@ -159,9 +159,9 @@
 </div>
 
 
-<%--<section class="section">--%>
-<%--<div class="row">--%>
-<%--<div class="col-lg-6">--%>
+&lt;%&ndash;<section class="section">&ndash;%&gt;
+&lt;%&ndash;<div class="row">&ndash;%&gt;
+&lt;%&ndash;<div class="col-lg-6">&ndash;%&gt;
 
 <div class="card">
     <div class="card-body">
@@ -438,7 +438,7 @@
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="#">커뮤니티</a></li>
-            <%-- adminDogPage --%>
+            &lt;%&ndash; adminDogPage &ndash;%&gt;
             <li class="breadcrumb-item">자유게시판</li>
         </ol>
     </nav>
@@ -500,7 +500,7 @@
         <!-- End Table with hoverable rows -->
 
     </div>
-</div>
+</div>--%>
 
 <%--</div>--%>
 <%--</div>--%>

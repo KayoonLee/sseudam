@@ -164,6 +164,17 @@
                                    sysdate())
     </insert>
 
+    <update id="reportAutoUpdate" parameterType="report_board">
+        update board
+        set state = 0
+        where board_num = #{board_num}
+          AND (
+                  select COUNT(*)
+                  from report
+                  where board_num = #{board_num} AND num = #{num}
+              ) > 4;
+    </update>
+
     <!--이미지 관련-->
     <select id="getMaxnum" resultType="int">
         select ifnull(max(file_num), 0) from img_file
