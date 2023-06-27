@@ -1,8 +1,10 @@
 package com.pet.sseudam.controller;
 
 
+import com.pet.sseudam.model.Counselor;
 import com.pet.sseudam.model.Member;
 
+import com.pet.sseudam.service.CounselorService;
 import com.pet.sseudam.service.MemberService;
 import com.pet.sseudam.service.SendEmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.UUID;
 public class MemberController {
     @Autowired
     private MemberService ms;
+
+    @Autowired
+    private CounselorService cs;
 
     @Resource(name = "SendEmailService")
     private SendEmailService emailService;
@@ -41,6 +46,8 @@ public class MemberController {
         int result = 0;
         Member member = ms.userCheck(email);
 
+
+
         if (member == null) {//등록되지 않은 회원일 때
             result = 1;
             model.addAttribute("result", result);
@@ -52,7 +59,7 @@ public class MemberController {
                         String nick = member.getNick(); // 화면에 닉네임 보여주기
                         model.addAttribute("nick", nick);
                         return "mainPage/main_page";
-                        //!@!나중에 일반회원, 상담회원 메인 분리해서 링크 걸기!!!
+
                 } else if (member.getIdentifier().equals("2")) { //상담사 회원일 때
 
                     session.setAttribute("member", member);
@@ -116,9 +123,6 @@ public class MemberController {
         System.out.println(result);
         return auth;
     }
-
-
-
 
 
 
@@ -191,7 +195,9 @@ public class MemberController {
     // 로그아웃
     @RequestMapping("logout")
     public String logout(HttpSession session){
-        session.invalidate();
+//        session.invalidate();
+        session.removeAttribute("member");
+        session.removeAttribute("admin");
         return "login/logout";
     }
 

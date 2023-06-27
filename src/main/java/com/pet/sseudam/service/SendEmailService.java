@@ -13,13 +13,13 @@ public class SendEmailService {
 private JavaMailSender mailSender;
 private static final String from_address ="testbootforme@gmail.com";
 
-// 가입 시 메일 인증 (회원용)
+// 가입 시 메일 인증 (일반 회원용)
     public void sendAuth(String email, String auth){
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setFrom(SendEmailService.from_address);
         msg.setSubject("[쓰담쓰담] 회원가입 인증 이메일입니다.");
         msg.setTo(email);
-        msg.setText("안녕하세요. 회원가입에 필요한 인증번호는 "+ auth + " 입니다."+"감사합니다.");
+        msg.setText("안녕하세요. [쓰담쓰담] 입니다. 회원가입에 필요한 인증번호는 "+ auth + " 입니다."+" 감사합니다.");
         mailSender.send(msg);
     }
 
@@ -41,10 +41,31 @@ private static final String from_address ="testbootforme@gmail.com";
         message.setFrom(SendEmailService.from_address);
         message.setSubject("[쓰담쓰담]"+nick+"님의 임시 비밀번호 안내 입니다."); // 메일 제목
         message.setTo(email);
-        message.setText("안녕하세요. 임시비밀번호 안내 관련 메일입니다."+ "[" + nick + "]" +"님의 임시 비밀번호는 "
+        message.setText("안녕하세요. 임시비밀번호 안내 관련 메일입니다. \n "+ "[" + nick + "]" +"님의 임시 비밀번호는 "
             + tempPw + " 입니다.");
 
         mailSender.send(message);
+    }
+
+    // 상담사 승인 축하 메일
+    public void joinMail(String email, String nick) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(SendEmailService.from_address);
+        msg.setSubject("[쓰담쓰담] 상담사 승인 안내 메일입니다.");
+        msg.setTo(email);
+        msg.setText("안녕하세요. [쓰담쓰담] 입니다. "+ nick+"님의 가입 심사가 승인되었습니다."+" 감사합니다.");
+        mailSender.send(msg);
+    }
+
+    // 상담사 승인 거절 메일
+    public void rejectMail(String email, String nick) {
+        SimpleMailMessage msg = new SimpleMailMessage();
+        msg.setFrom(SendEmailService.from_address);
+        msg.setSubject("[쓰담쓰담] 상담사 승인 거절 메일입니다.");
+        msg.setTo(email);
+        msg.setText("안녕하세요. [쓰담쓰담] 입니다. "+ nick+"님의 가입 심사가 거절되었습니다. \n"+
+                "다음에 더 좋은 모습으로 찾아뵙길 기대하겠습니다. 감사합니다.");
+        mailSender.send(msg);
     }
 
     // 6자리 랜덤 비번 생성

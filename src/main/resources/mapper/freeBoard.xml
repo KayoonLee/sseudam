@@ -1,51 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" ?>
- <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.pet.sseudam.dao.FreeDao">
 
     <!--목록 관련-->
- <select id="getTotal" resultType="int" parameterType="fboard">
-    select count(*) from board where
-    <if test="category != 0">
-    category=#{category} and
-    </if>
-    num=#{num} and state=1
- </select>
+    <select id="getTotal" resultType="int" parameterType="fboard">
+        select count(*) from board where
+        <if test="category != 0">
+            category=#{category} and
+        </if>
+        num=#{num} and state=1
+    </select>
 
-<select id="f_list" resultType="fboard" parameterType="fboard">
-    <!--select b.board_num,b.num,subject,category,b.m_id,content,
-    hashtag,file_num,readcount,recom,reg_date,state
-    from board b join board_recom r on b.board_num = r.board_num
-    and b.num = r.num
-    where state=1 and b.num=#{num}
-    <if test="category != 0">
-        and category=#{category}
-    </if>
-    <if test="keyword != null and search != 'subcon'">
-        and ${search} like CONCAT('%', #{keyword}, '%')
-    </if>
-    <if test="keyword != null and search == 'subcon'">
-        and subject like CONCAT('%', #{keyword}, '%') or
-        content like CONCAT('%', #{keyword}, '%')
-    </if>
-    order by
-    <choose>
-        <when test="sort == 'board_num'">b.board_num</when>
-        <when test="sort == 'recom'">recom</when>
-        <when test="sort == 'readcount'">readcount</when>
-    </choose>
-    limit #{startRow}, #{endRow}-->
-      select * from board where state=1 and num=#{num}
+    <select id="f_list" resultType="fboard" parameterType="fboard">
+        <!--select b.board_num,b.num,subject,category,b.m_id,content,
+        hashtag,file_num,readcount,recom,reg_date,state
+        from board b join board_recom r on b.board_num = r.board_num
+        and b.num = r.num
+        where state=1 and b.num=#{num}
         <if test="category != 0">
             and category=#{category}
         </if>
-    <if test="keyword != null and search != 'subcon'">
-        and ${search} like CONCAT('%', #{keyword}, '%')
-    </if>
-    <if test="keyword != null and search == 'subcon'">
-        and subject like CONCAT('%', #{keyword}, '%') or
-        content like CONCAT('%', #{keyword}, '%')
-    </if>
+        <if test="keyword != null and search != 'subcon'">
+            and ${search} like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="keyword != null and search == 'subcon'">
+            and subject like CONCAT('%', #{keyword}, '%') or
+            content like CONCAT('%', #{keyword}, '%')
+        </if>
+        order by
+        <choose>
+            <when test="sort == 'board_num'">b.board_num</when>
+            <when test="sort == 'recom'">recom</when>
+            <when test="sort == 'readcount'">readcount</when>
+        </choose>
+        limit #{startRow}, #{endRow}-->
+
+        select t1.*, nick, t2.profile_num, profile_name
+        from board t1 join member t2 on t1.m_id = t2.m_id
+        left join img_profile t3 on t2.profile_num = t3.profile_num
+        where t1.state=1 and t1.num=#{num}
+        <if test="category != 0">
+            and category=#{category}
+        </if>
+        <if test="keyword != null and search != 'subcon'">
+            and ${search} like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="keyword != null and search == 'subcon'">
+            and subject like CONCAT('%', #{keyword}, '%') or
+            content like CONCAT('%', #{keyword}, '%')
+        </if>
         order by
         <choose>
             <when test="sort == 'board_num'">board_num</when>
@@ -53,27 +57,27 @@
             <when test="sort == 'readcount'">readcount</when>
         </choose>
         desc limit #{startRow}, 10
-    <!--select a.board_num, a.num, subject, category, a.m_id, hashtag, file_num, readcount,
-            a.reg_date, (select count(*) from b where num=#{num} and board_num=#{board_num})
-    from board a join board_recom b on a.num=b.num and a.board_num = b.board_num
-    where state=1 and a.num=#{num}
-    <if test="category != 0">
-        and category=#{category}
-    </if>
-    <if test="keyword != null and search != 'subcon'">
-        and ${search} like CONCAT('%', #{keyword}, '%')
-    </if>
-    <if test="keyword != null and search == 'subcon'">
-        and subject like CONCAT('%', #{keyword}, '%') or
-        content like CONCAT('%', #{keyword}, '%')
-    </if>
-    order by
-    <choose>
-        <when test="sort == 'a.board_num'">board_num</when>
-        &lt;!&ndash;<when test="sort == 'recom'"></when>&ndash;&gt;
-        <when test="sort == 'readcount'">readcount</when>
-    </choose>
-    limit #{startRow}, #{endRow}-->
+        <!--select a.board_num, a.num, subject, category, a.m_id, hashtag, file_num, readcount,
+                a.reg_date, (select count(*) from b where num=#{num} and board_num=#{board_num})
+        from board a join board_recom b on a.num=b.num and a.board_num = b.board_num
+        where state=1 and a.num=#{num}
+        <if test="category != 0">
+            and category=#{category}
+        </if>
+        <if test="keyword != null and search != 'subcon'">
+            and ${search} like CONCAT('%', #{keyword}, '%')
+        </if>
+        <if test="keyword != null and search == 'subcon'">
+            and subject like CONCAT('%', #{keyword}, '%') or
+            content like CONCAT('%', #{keyword}, '%')
+        </if>
+        order by
+        <choose>
+            <when test="sort == 'a.board_num'">board_num</when>
+            &lt;!&ndash;<when test="sort == 'recom'"></when>&ndash;&gt;
+            <when test="sort == 'readcount'">readcount</when>
+        </choose>
+        limit #{startRow}, #{endRow}-->
         <!--SELECT a.board_num, a.num, subject, category, a.m_id, hashtag, file_num, readcount,
         a.reg_date, (select count(*) from board_recom where num=#{num} and board_num=#{board_num}) recom
         FROM board a JOIN board_recom b ON a.num=b.num AND a.board_num = b.board_num
@@ -95,66 +99,81 @@
             <when test="sort == 'readcount'">readcount</when>
         </choose>
         LIMIT #{startRow}, #{endRow}-->
-</select>
+    </select>
 
+    <insert id="fInsert" parameterType="fboard">
+        insert into board
+        (num, subject, category, m_id, content, hashtag, file_num, readcount, reg_date, state)
+        values (#{num}, #{subject}, #{category}, #{m_id}, #{content}, #{hashtag,jdbcType=VARCHAR},
+                #{file_num,jdbcType=VARCHAR},
+                0, sysdate(), 1)
+    </insert>
 
-<insert id="fInsert" parameterType="fboard">
-    insert into board (num, subject, category, m_id, content, hashtag, file_num, readcount, reg_date, state) values (
-        #{num},#{subject},#{category},#{m_id},#{content},#{hashtag,jdbcType=VARCHAR},#{file_num,jdbcType=VARCHAR},
-        0,sysdate(),1)
-</insert>
+    <select id="fView" parameterType="fboard" resultType="fboard">
+        select t1.*, nick, t2.profile_num, profile_name
+        from board t1 join member t2 on t1.m_id = t2.m_id
+                      left join img_profile t3 on t2.profile_num = t3.profile_num
+        where board_num=#{board_num} and num=#{num}
+    </select>
 
-<select id="fView" parameterType="fboard" resultType="fboard">
-    select * from board where board_num=#{board_num} and num=#{num}
-</select>
+    <update id="fUpdateReadcount" parameterType="fboard">
+        update board set readcount=readcount+1 where board_num=#{board_num} and num=#{num}
+    </update>
 
-<update id="fUpdateReadcount" parameterType="fboard">
-    update board set readcount=readcount+1 where board_num=#{board_num} and num=#{num}
-</update>
+    <update id="fUpdate" parameterType="fboard">
+        update board set subject=#{subject}, category=#{category},content=#{content},hashtag=#{hashtag}
+        where board_num=#{board_num} and num=#{num}
+    </update>
 
-<update id="fUpdate" parameterType="fboard">
-    update board set subject=#{subject}, category=#{category},content=#{content},hashtag=#{hashtag}
-    where board_num=#{board_num} and num=#{num}
-</update>
+    <update id="fDelete" parameterType="fboard">
+        update board set state=0 where board_num=#{board_num} and num=#{num}
+    </update>
 
-<update id="fDelete" parameterType="fboard">
-    update board set state=0 where board_num=#{board_num} and num=#{num}
-</update>
+    <!-- 추천 관련-->
+    <select id="recomCheck" parameterType="recom_board" resultType="int">
+        select count(*) from board_recom where num=#{num} and board_num=#{board_num} and m_id=#{m_id}
+    </select>
 
-<!-- 추천 관련-->
-<select id="recomCheck" parameterType="recom_board" resultType="int">
-    select count(*) from board_recom where num=#{num} and board_num=#{board_num} and m_id=#{m_id}
-</select>
+    <insert id="recomAdd" parameterType="recom_board">
+        insert into board_recom values(#{board_num}, #{num}, #{m_id})
+    </insert>
 
-<insert id="recomAdd" parameterType="recom_board">
-    insert into board_recom values(#{board_num}, #{num}, #{m_id})
-</insert>
+    <delete id="recomRemove" parameterType="recom_board">
+        delete from board_recom where board_num=#{board_num} and num=#{num} and m_id=#{m_id}
+    </delete>
 
-<delete id="recomRemove" parameterType="recom_board">
-    delete from board_recom where board_num=#{board_num} and num=#{num} and m_id=#{m_id}
-</delete>
-
-<update id="recomPlus" parameterType="recom_board">
-    update board set recom=recom+1 where board_num=#{board_num} and num=#{num}
-</update>
+    <update id="recomPlus" parameterType="recom_board">
+        update board set recom=recom+1 where board_num=#{board_num} and num=#{num}
+    </update>
 
     <update id="recomMinus" parameterType="recom_board">
         update board set recom=recom-1 where board_num=#{board_num} and num=#{num}
     </update>
 
-<select id="recomCount" parameterType="recom_board" resultType="int">
-    select count(*) from board_recom where board_num=#{board_num} and num=#{num}
-</select>
+    <select id="recomCount" parameterType="recom_board" resultType="int">
+        select count(*) from board_recom where board_num=#{board_num} and num=#{num}
+    </select>
 
-<!-- 신고 관련-->
-<select id="reportCheck" parameterType="report_board" resultType="int">
-    select count(*) from report where board_num=#{board_num} and num=#{num} and m_id=#{m_id}
-</select>
+    <!-- 신고 관련-->
+    <select id="reportCheck" parameterType="report_board" resultType="int">
+        select count(*) from report where board_num=#{board_num} and num=#{num} and m_id=#{m_id}
+    </select>
 
-<insert id="reportPlus" parameterType="report_board">
-    insert into report values (#{board_num}, #{num}, #{m_id},#{report_issue}, #{report_content},
-                               sysdate())
-</insert>
+    <insert id="reportPlus" parameterType="report_board">
+        insert into report values (#{board_num}, #{num}, #{m_id},#{report_issue}, #{report_content},
+                                   sysdate())
+    </insert>
+
+    <update id="reportAutoUpdate" parameterType="report_board">
+        update board
+        set state = 0
+        where board_num = #{board_num}
+          AND (
+                  select COUNT(*)
+                  from report
+                  where board_num = #{board_num} AND num = #{num}
+              ) > 4;
+    </update>
 
     <!--이미지 관련-->
     <select id="getMaxnum" resultType="int">
@@ -177,5 +196,9 @@
         delete from img_file where file_num=#{file_num}
     </delete>
 
+    <update id="imgUpdate" parameterType="image_board">
+        update img_file set file_origin=#{file_origin}, file_name=#{file_name}
+        where file_num = #{file_num}
+    </update>
 
 </mapper>

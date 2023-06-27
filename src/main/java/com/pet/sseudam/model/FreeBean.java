@@ -31,5 +31,10 @@ public class FreeBean {
     private String sort;
     // 추천수
     private String recom;
-}
+    //닉네임
+    private String nick;
+    //프로필
+    private Integer profile_num;
+    private String profile_name;
 
+}

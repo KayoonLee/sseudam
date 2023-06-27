@@ -3,7 +3,6 @@
 
 <mapper namespace="com.pet.sseudam.dao.CounselorDao">
 
-
     <!--    상담사 가입 부분-->
     <insert id="insert_counsel" parameterType="counselor">
         insert into counselor (c_id, career, license) values (#{c_id}, #{career}, #{license})
@@ -18,4 +17,17 @@
     <select id="nickChk" parameterType="String" resultType="member">
         select * from member where nick = #{nick}
     </select>
+
+    <!--    상담사 확인-->
+    <select id="counselChk" parameterType="int" resultType="counselor">
+        select * from counselor where c_id=#{c_id}
+    </select>
+
+    <!--    상담사 정보 수정-->
+    <update id="csUpdate" parameterType="counselor">
+        update counselor set
+        license=#{license}, career=#{career}
+        where c_id=#{c_id}
+    </update>
+
 </mapper>

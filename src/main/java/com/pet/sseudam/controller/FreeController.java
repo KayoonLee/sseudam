@@ -1,9 +1,6 @@
 package com.pet.sseudam.controller;
 
-import com.pet.sseudam.model.FreeBean;
-import com.pet.sseudam.model.ImgBean;
-import com.pet.sseudam.model.RecomBean;
-import com.pet.sseudam.model.ReportBean;
+import com.pet.sseudam.model.*;
 import com.pet.sseudam.service.FreeService;
 import com.pet.sseudam.service.PagingPgm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,22 +31,23 @@ public class FreeController {
     }
 
 
-    @GetMapping("home.do")
-    public String home(HttpServletRequest request) {
-        System.out.println("home.do 도착");
-
-        HttpSession session = request.getSession();
-        session.setAttribute("m_id", 1);
-
-        return "freeBoard/freeboard";
-    }
+//    @GetMapping("home.do")
+//    public String home(HttpServletRequest request) {
+//        System.out.println("home.do 도착");
+//
+//        HttpSession session = request.getSession();
+//        Member member = (Member) session.getAttribute("member");
+//        session.setAttribute("m_id", member.getM_id());
+//
+//        return "freeBoard/freeboard";
+//    }
 
     //자유게시판 목록
     @GetMapping("freeList")
     public String freeList(@RequestParam(value = "pageNum",
             required = false, defaultValue = "1") String pageNum,
                            @RequestParam(value = "category",
-                            required = false, defaultValue = "0") String categoryStr,
+                                   required = false, defaultValue = "0") String categoryStr,
                            FreeBean fboard, Model model) {
 
         System.out.println("freeList 진입");
@@ -66,32 +64,34 @@ public class FreeController {
             // category 값을 정수로 변환할 수 없는 경우 예외 처리
             fboard.setCategory(0); // 기본값으로 0 설정
         }
+        //페이징 처리
         final int rowPerPage = 10;
 
         int currentPage = Integer.parseInt(pageNum);
         int total = service.getTotal(fboard); // 검색
-        System.out.println("total:" + total);
 
-        System.out.println(total);
+        System.out.println("total:" + total);
         System.out.println("rowPerPage" + rowPerPage);
         System.out.println("currentPage" + currentPage);
 
         int startRow = (currentPage - 1) * rowPerPage;
-   //     int endRow = startRow + rowPerPage;
+        //     int endRow = startRow + rowPerPage;
         PagingPgm pp = new PagingPgm(total, rowPerPage, currentPage);
 
         fboard.setSort(fboard.getSort());
         fboard.setStartRow(startRow);
-  //      fboard.setEndRow(endRow);
         System.out.println("startRow" + startRow);
-  //      System.out.println("endRow" + endRow);
+        //      fboard.setEndRow(endRow);
+        //      System.out.println("endRow" + endRow);
         int number = total - startRow;
+        //페이징처리 종료
 
         List<FreeBean> list = service.f_list(fboard);
         System.out.println("list:" + list);
 
         model.addAttribute("num", fboard.getNum());
         model.addAttribute("category", fboard.getCategory());
+        model.addAttribute("sort", fboard.getSort());
         model.addAttribute("total", total);
         model.addAttribute("pageNum", pageNum);
         model.addAttribute("list", list);
@@ -118,9 +118,9 @@ public class FreeController {
 
         System.out.println("freeInsert 진입확인");
 
-        HttpSession session = request.getSession();
-        int m_id = (int) session.getAttribute("m_id");
-        fboard.setM_id(m_id);
+//        HttpSession session = request.getSession();
+//        int m_id = (int) session.getAttribute("m_id");
+        System.out.println("m_id는 "+fboard.getM_id());
 
         //파일 첨부 관련
         List<MultipartFile> file_list = mhr.getFiles("files");
@@ -137,30 +137,30 @@ public class FreeController {
 
             for(MultipartFile mf : file_list){
 
-            String multi_filename =mf.getOriginalFilename();
+                String multi_filename =mf.getOriginalFilename();
 
-            String extension = multi_filename.substring(multi_filename.lastIndexOf("."));
-            UUID uuid =UUID.randomUUID();
+                String extension = multi_filename.substring(multi_filename.lastIndexOf("."));
+                UUID uuid =UUID.randomUUID();
 
-            String new_multi_filename = uuid.toString().replace("-", "") + extension;
+                String new_multi_filename = uuid.toString().replace("-", "") + extension;
 
-            System.out.println("multi_filename: " + multi_filename);
-            System.out.println("new_multi_filename: " + new_multi_filename);
+                System.out.println("multi_filename: " + multi_filename);
+                System.out.println("new_multi_filename: " + new_multi_filename);
 
-            try{
-                mf.transferTo(new File(multi_path + "/" + new_multi_filename));
-            }catch(Exception e){
-                e.getMessage();
-            }
+                try{
+                    mf.transferTo(new File(multi_path + "/" + new_multi_filename));
+                }catch(Exception e){
+                    e.getMessage();
+                }
 
-            img_board.setFile_num(max_num);
-            img_board.setFile_serial(i);
-            img_board.setFile_origin(multi_filename);
-            img_board.setFile_name(new_multi_filename);
+                img_board.setFile_num(max_num);
+                img_board.setFile_serial(i);
+                img_board.setFile_origin(multi_filename);
+                img_board.setFile_name(new_multi_filename);
 
-            int count = service.imgAdd(img_board);
-            System.out.println(i + "번째 파일 업로드");
-            i++;
+                int count = service.imgAdd(img_board);
+                System.out.println(i + "번째 파일 업로드");
+                i++;
 
             } // for end
             fboard.setFile_num(max_num);
@@ -177,7 +177,7 @@ public class FreeController {
 
     // 글조회
     @GetMapping("freeView")
-    public String freeView(FreeBean freeboard, String pageNum, Model model) {
+    public String freeView(FreeBean freeboard, String pageNum, String rpageNum, Model model) {
 
         System.out.println("freeView 진입확인");
 
@@ -192,8 +192,9 @@ public class FreeController {
         model.addAttribute("fboard", fboard);
         model.addAttribute("img_list", img_list);
         model.addAttribute("pageNum", pageNum);
+        model.addAttribute("rpageNum", rpageNum);
 
-        return "freeBoard/free_view";
+            return "freeBoard/free_view";
     }
 
     // 글수정 폼
@@ -311,7 +312,6 @@ public class FreeController {
 
         int num = recomb.getNum();
         int board_num = recomb.getBoard_num();
-        int m_id = recomb.getM_id();
 
         if (check == 0) {
             int result = service.recomAdd(recomb);
@@ -345,7 +345,7 @@ public class FreeController {
         return check;
     }
 
-   //글 신고폼
+    //글 신고폼
     @GetMapping("reportAddForm")
     public String reportAddForm(ReportBean reportboard, Model model){
 
@@ -360,7 +360,13 @@ public class FreeController {
 
         int result = service.reportPlus(reportboard);
 
-        model.addAttribute("result",result);
+        int count = service.reportAutoUpdate(reportboard);
+
+        System.out.println("자동 리포트 결과는 " + count);
+
+        model.addAttribute("result", result);
+        model.addAttribute("count", count);
+        model.addAttribute("num", reportboard.getNum());
 
         return "freeBoard/report_result";
     }

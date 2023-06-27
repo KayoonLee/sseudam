@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입 화면 샘플 - Bootstrap</title>
-
+  <title>회원가입</title>
+ <link rel="icon" href="images/logo.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -158,7 +158,7 @@
              <div class="col-md-6 mb-3">
                 <label for="birth">닉네임</label>
                 <input type="text" class="form-control" id="nick" name="nick" placeholder="닉네임을 입력하세요" required>
-
+                <input type="button" id="nickChk" value="중복 확인">
                 <div class="invalid-feedback">
                   닉네임을 입력해주세요.
                  </div>
@@ -181,7 +181,7 @@
              <div class="col-md-6 mb-3">
                 <label for="auth">인증문자</label>
                 <input type="text" class="form-control" id="auth" name="auth" placeholder="인증번호를 입력하세요" required>
-                <input type="button" id="auth_btn" value="인증 번호 받기" onClick="authMail()">
+                <input type="button" id="auth_btn" value="인증 메일 받기" onClick="authMail()">
                 <div class="invalid-feedback">
                 인증번호를 입력해주세요.
                 </div><p>
@@ -212,7 +212,7 @@
       </div>
     </div>
     <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2021 YD</p>
+      <p class="mb-1">&copy; 2023 SSEUDAM </p>
     </footer>
   </div>
   <script>

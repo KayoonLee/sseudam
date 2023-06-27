@@ -1,13 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>로그인</title>
-
+ <link rel="icon" href="images/logo.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -67,7 +66,6 @@
         <h4 class="mb-3">로그인</h4>
         <form class="validation-form" novalidate method="post" action="login">
 
-
           <div class="mb-3">
             <label for="email">이메일</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="you@example.com" required>
@@ -77,24 +75,21 @@
           </div>
 
          <div class="mb-3">
-           <label for="address">비밀번호</label>
+           <label for="email">비밀번호</label>
             <input type="password" class="form-control" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요" required>
              <div class="invalid-feedback">
                  비밀번호를 입력해주세요.
              </div>
          </div>
 
-        <div class="row" align="center">
-            <div class="col-md-6 mb-3" align="center">
-                <button type="button" class="btn btn-secondary" id="findEmail">이메일아이디 찾기</button>
-
-                <button type="button" class="btn btn-secondary" id="findPasswd">비밀번호 찾기</button>
-              </div>
-        </div>
-
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">로그인</button>
-
+          <br><br>
+         <div class="mb-3" align="center">
+                <button type="button" class="btn btn-secondary" id="findEmail">ID 찾기</button>
+                <button type="button" class="btn btn-secondary" id="findPasswd">비밀번호 찾기</button>
+                <button type="button" class="btn btn-info" onclick="location.href='admin_login'">관리자 로그인</button>
+         </div>
         </form>
      <footer class="my-3 text-center text-small">
             <p class="mb-1">&copy; 2023 SSEUDAM</p>

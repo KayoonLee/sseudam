@@ -6,8 +6,8 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>회원가입 화면 샘플 - Bootstrap</title>
-
+  <title>회원가입</title>
+ <link rel="icon" href="images/logo.png">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -145,7 +145,7 @@
         <h4 class="mb-3">상담사 회원가입</h4>
 
         <form class="validation-form" action="insertCounsel" method="post">
-         <input type="hidden" name="identifier" value="3"><!--상담사 승인대기: 3-->
+         <input type="hidden" name="identifier" value="3"><!--상담사 승인대기: 3, 상담사: 2-->
           <div class="row">
             <div class="col-md-6 mb-3">
               <label for="name">이름</label>
@@ -188,8 +188,8 @@
 
             <div class="col-md-6 mb-3">
                  <label for="auth">이메일 인증</label>
-                 <input type="text" class="form-control" id="auth" name="auth" placeholder="인증문자를 입력하세요" required>
-                 <input type="button" id="auth_btn" value="인증 번호 받기" onClick="authEmail()">
+                 <input type="text" class="form-control" id="auth" name="auth" placeholder="인증번호를 입력하세요" required>
+                 <input type="button" id="auth_btn" value="인증 메일 받기" onClick="authEmail()">
                  <div class="invalid-feedback">
                  인증번호를 입력해주세요.
                  </div><p>
@@ -231,7 +231,7 @@
       </div>
     </div>
     <footer class="my-3 text-center text-small">
-      <p class="mb-1">&copy; 2021 YD</p>
+      <p class="mb-1">&copy; 2023 SSEUDAM </p>
     </footer>
   </div>
   <script>

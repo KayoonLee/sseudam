@@ -10,5 +10,6 @@ public class RecomBean {
     private int board_num;
     private int num;
     private int m_id;
+
 }
 

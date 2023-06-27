@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.sseudam.dao.ConsultingDao">
+
+    <!-- 상담원 전체 찾기 -->
+    <select id="find_counselor_name" resultType="Member">
+        select *
+        from member
+        where identifier = 2;
+    </select>
+
+    <!-- 해당 id 상담원 dto 구하기 -->
+    <select id="find_counselor" resultType="Member">
+        select *
+        from member
+        where identifier = 2
+          AND m_id = #{m_id};
+    </select>
+
+    <!-- 상담 예약시 상담원의 사용중인 예약 시간 가져오기 -->
+    <select id="requestTime_list" resultType="CounselPaper">
+        select request_time from counsel_paper where c_id = #{c_id}
+    </select>
+
+
+    <!-- 상담원과 회원의 예약시간 조회 -->
+    <select id="find_reservation_time" resultType="java.util.Date">
+        SELECT DISTINCT request_time
+        FROM counsel_paper
+        WHERE (m_id = #{g_id} OR c_id = #{con_id})
+          AND confirmed IN (0, 1)
+    </select>
+
+    <!-- 해당 상담예약서의 동물 id로 동물 조회 -->
+    <select id="select_pet" resultType="Pet">
+        SELECT *
+        FROM pet
+        WHERE p_id = #{g_id}
+    </select>
+
+    <!-- 해당회원의 동물 전체 조회 -->
+    <select id="find_pet" resultType="Pet">
+        SELECT *
+        FROM pet
+        WHERE g_id = #{g_id}
+    </select>
+
+    <!-- 해당 회원 id와 일치하는 회원 데이터 찾기 -->
+    <select id="find_general" resultType="Member">
+        SELECT *
+        FROM member
+        WHERE m_id = #{g_id}
+    </select>
+
+    <!-- insert consult -->
+    <insert id="insert_consult" parameterType="CounselPaper">
+        INSERT INTO counsel_paper (p_id, m_id, c_id, purpose, reason, request_time, wish_list)
+        VALUES (#{p_id}, #{m_id}, #{c_id}, #{purpose}, #{reason}, #{request_time}, #{wish_list})
+    </insert>
+
+    <!-- find_consult -->
+    <select id="find_consult" resultType="CounselPaper">
+        SELECT *
+        FROM counsel_paper
+        WHERE paper_num = #{paper_num}
+
+
+    </select>
+
+    <update id="update_consult" parameterType="CounselPaper" >
+        UPDATE counsel_paper
+        SET paper_num = #{paper_num},
+            p_id = #{p_id},
+            purpose = #{purpose},
+            reason = #{reason},
+            request_time = #{request_time},
+            wish_list = #{wish_list}
+
+
+        WHERE paper_num = #{paper_num}
+    </update>
+    <!-- 상담예약서 삭제 -->
+    <update id="delete_consult" >
+        UPDATE counsel_paper
+        SET confirmed = 3
+        WHERE paper_num = #{paper_num}
+    </update>
+
+    <!-- 상담예약서 상담완료 -->
+    <update id="replied_consult" >
+        UPDATE counsel_paper
+        SET confirmed = 2
+        WHERE paper_num = #{paper_num}
+    </update>
+
+    <!-- 상담예약서 수락 -->
+    <update id="accept_consult" >
+        UPDATE counsel_paper
+        SET confirmed = 1
+        WHERE paper_num = #{paper_num}
+    </update>
+
+    <!-- 현재 시간 조회 -->
+    <select id="now_time" resultType="String">
+        SELECT DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 1 HOUR), '%Y-%m-%d %H:00');
+    </select>
+
+    <!-- 상담기록서 작성 -->
+    <insert id="insert_consulting" parameterType="CounselRecord">
+        INSERT INTO counsel_record (paper_num, p_id, m_id, c_id, consulting_date, subject, topic, content, etc)
+        VALUES (#{paper_num}, #{p_id}, #{m_id}, #{c_id}, #{consulting_date}, #{subject}, #{topic},#{content},#{etc})
+    </insert>
+
+    <!-- 상당기록서 조회 -->
+    <select id="select_counsel_record" resultType="CounselRecord">
+    SELECT * FROM counsel_record WHERE record_num = #{record_num}
+    </select>
+
+    <!-- 상담기록서 삭제 -->
+    <update id="delete_consulting" >
+        UPDATE counsel_record
+        SET consult_status = 1
+        WHERE record_num = #{record_num}
+    </update>
+
+    <update id="update_consulting" parameterType="CounselRecord" >
+        UPDATE counsel_paper
+        SET paper_num = #{paper_num},
+        p_id = #{p_id},
+        m_id = #{m_id},
+        c_id = #{c_id},
+        consulting_date = DATE_FORMAT(#{consulting_date},'%Y-%m-%d %H:00') ,
+        subject = #{subject},
+        topic = #{topic},
+        content = #{content},
+        etc = #{etc}
+        WHERE record_num = #{record_num}
+    </update>
+
+
+
+</mapper>

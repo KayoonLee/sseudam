@@ -50,4 +50,8 @@ public interface FreeDao {
     List<ImgBean> imgList(ImgBean imgBoard);
 
     int imgDelete(int fileNum);
+
+    int imgUpdate(ImgBean imgBoard);
+
+    int reportAutoUpdate(ReportBean reportboard);
 }

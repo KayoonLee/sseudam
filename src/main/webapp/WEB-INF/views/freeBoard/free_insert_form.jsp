@@ -1,12 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="../header/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시판 작성폼</title>
+    <title>게시판 작성하기 폼</title>
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/main_header.jsp" %>
+
+    <!-- Vendor CSS Files -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="css/member.css" rel="stylesheet">
+    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
     <script src="./js/free.js"></script>
 
@@ -111,7 +121,6 @@
                         $(this).parent().remove();
                     });
                 });
-
     </script>
 
     <style type="text/css">
@@ -120,62 +129,98 @@
         }
 
         .thumbnail {
-            max-width: 500px;
-            max-height: 400px;
+            max-width: 700px;
+            max-height: 550px;
             margin: 5px;
         }
     </style>
-
 </head>
 <body>
 
-<div class="bgcolor">
-    <div class="outbox">
-        <h2 align="center">레시피 글 쓰기</h2><br>
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
+
+<p><p><p>
+<h2 align="center">게시판 글 쓰기</h2>
+
+<%--<main id="main" class="main">--%>
+<div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 200px">
+    <div class="card-body">
+        <h5 class="card-title">글작성</h5>
+
         <form enctype="multipart/form-data" action="freeInsert" method="post" onsubmit="return free_check()">
-            <input type="hidden" name="num" value="2">
-            <div class="container innerbox">
-                <div>
-                    <div>제목</div>
-                    <div><input type="text" id="subject" name="subject"></div>
-                    <div>분류</div>
-                    <div>
-                        <select id="category" name="category">
-                            <option value="">선택</option>
-                            <option value="1">자유게시판</option>
-                            <option value="2">묻고 답하기</option>
-                            <option value="3">토론 게시판</option>
-                        </select>
-                    </div>
+            <input type="hidden" name="num" value="2"> <%-- 공지 1번/자유 2번 --%>
+            <input type="hidden" name="m_id" value="${member.m_id}">
+
+            <%-- 제목 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">제목</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="subject" name="subject">
                 </div>
-                <div>본문</div>
-                <div>
+            </div>
+
+            <%-- 분류 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">분류</label>
+                <div class="col-sm-10">
+                    <select id="category" name="category" class="form-select" aria-label="Default select example">
+                        <option value="">선택</option>
+                        <option value="1">자유게시판</option>
+                        <option value="2">묻고 답하기</option>
+                        <option value="3">토론 게시판</option>
+                    </select>
+                </div>
+            </div>
+
+            <%-- 본문 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">본문</label>
+                <div class="col-sm-10">
                     <input type="file" id="imageInput" name="files" onchange="previewImage(this)" multiple>
-                    <textarea id="content" name="content" rows="5" cols="50"></textarea><br>
+                    <textarea class="form-control" id="content" name="content"
+                              style="height: 150px" maxlength="2000"></textarea><br>
                     <div id="previewContainer"></div>
                 </div>
-                <div>
-                    <button type="button" onclick="uploadImage()">이미지 업로드</button>
-                </div>
+            </div>
 
-                <div>
-                    <div class="tr_hashTag_area">
-                        <div class="form-group">
-                            <input type="hidden" id="tag" name="hashtag" value=""> <input
-                                type="text" id="hashtag" placeholder="#태그입력"
-                                class="form-control">
-                        </div>
-                        <ul id="tag-list"></ul>
+            <%-- 이미지 업로드 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">이미지 업로드</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile">
+                    <button type="button" onclick="uploadImage()" class="btn btn-outline-primary">이미지 업로드</button>
+                </div>
+            </div>
+
+            <%-- 태그 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">태그#</label>
+                <div class="col-sm-10">
+                    <input type="hidden" id="tag" name="hashtag" value="">
+                    <input type="text" id="hashtag" placeholder="#태그입력" class="form-control">
+                </div>
+                <ul id="tag-list"></ul>
+            </div>
+
+            <%-- 작성/취소/목록 --%>
+                <div class="row mb-3">
+                    <label class="col-sm-2 col-form-label"></label>
+                    <div class="col-sm-10">
+                        <input type="submit" class="btn btn-primary" value="작성">
+                        <input type="submit" class="btn btn-primary" value="취소">
+                        <a class="btn btn-primary" href="freeList">목록</a>
                     </div>
                 </div>
 
-                <input type="submit" value="작성">
-                <input type="reset" value="취소">
-                <a href="freeList">목록</a>
+        </form><!-- End General Form Elements -->
 
-            </div>
     </div>
 </div>
+<%--</main>--%>
+
+<!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 </body>
 </html>

@@ -1,11 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" %>
 <%@ include file="../header/header.jsp" %>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>게시판 수정</title>
+    <title>게시판 수정 폼</title>
+
+    <!-- ======= Header ======= -->
+    <%@ include file="../navigator_footer/main_header.jsp" %>
+
+    <!-- Vendor CSS Files -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="css/member.css" rel="stylesheet">
+    <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
     <script src="./js/free.js"></script>
 
@@ -113,79 +124,113 @@
 
     </script>
 
-
     <style type="text/css">
         input[type=file] {
             display: none;
         }
 
         .thumbnail {
-            max-width: 500px;
-            max-height: 400px;
+            max-width: 700px;
+            max-height: 550px;
             margin: 5px;
         }
     </style>
-
 </head>
 <body>
 
-<div class="bgcolor">
-    <div class="outbox">
-        <h2 align="center">게시판 글수정</h2><br>
-        <form enctype="multipart/form-data" action="freeUpdate" method="post" onSubmit="return free_check()">
+<!-- ======= Navigator ======= -->
+<%@ include file="../navigator_footer/main_navigator.jsp" %>
+
+<p><p><p>
+<h2 align="center">게시판 글 수정</h2>
+
+<%--<main id="main" class="main">--%>
+<div class="card" style="margin-top: 50px; margin-right: 200px; margin-bottom: 50px; margin-left: 200px">
+    <div class="card-body">
+        <h5 class="card-title">글작성</h5>
+
+        <form enctype="multipart/form-data" action="freeUpdate" method="post" onsubmit="return free_check()">
             <input type="hidden" name="num" value="${fboard.num}">
             <input type="hidden" name="board_num" value="${fboard.board_num}">
             <input type="hidden" name="file_num" value="${fboard.file_num}">
-            <div class="container innerbox">
-                <div>
-                    <div>제목</div>
-                    <div><input type="text" id="subject" name="subject" value="${fboard.subject}"></div>
-                    <div>분류</div>
-                    <div>
-                        <select id="category" name="category">
-                            <option value="">선택</option>
-                            <option value="1" <c:if test="${fboard.category == '1'}">selected</c:if>>자유게시판</option>
-                            <option value="2" <c:if test="${fboard.category == '2'}">selected</c:if>>묻고 답하기</option>
-                            <option value="3" <c:if test="${fboard.category == '3'}">selected</c:if>>토론 게시판</option>
-                        </select>
-                    </div>
+
+            <%-- 제목 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">제목</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="subject" name="subject" value="${fboard.subject}">
                 </div>
-                <div>본문</div>
-                <div>
+            </div>
+
+            <%-- 분류 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">분류</label>
+                <div class="col-sm-10">
+                    <select id="category" name="category" class="form-select" aria-label="Default select example">
+                        <option value="">선택</option>
+                        <option value="1" <c:if test="${fboard.category == '1'}">selected</c:if>>자유게시판</option>
+                        <option value="2" <c:if test="${fboard.category == '2'}">selected</c:if>>묻고 답하기</option>
+                        <option value="3" <c:if test="${fboard.category == '3'}">selected</c:if>>토론 게시판</option>
+                    </select>
+                </div>
+            </div>
+
+            <%-- 본문 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">본문</label>
+                <div class="col-sm-10">
                     <input type="file" id="imageInput" name="files" onchange="previewImage(this)" multiple>
-                    <textarea id="content" name="content" rows="5" cols="50">${fboard.content}</textarea><br>
+                    <textarea class="form-control" id="content" name="content"
+                              style="height: 150px" maxlength="2000">${fboard.content}</textarea><br>
                     <div id="previewContainer">
                         <c:forEach var="list" items="${img_list}">
                             <p><img src="./img/${list.file_name}" class="thumbnail"></p>
                         </c:forEach>
                     </div>
                 </div>
-                <div>
-                    <button type="button" onclick="uploadImage()">이미지 업로드</button>
-                </div>
-
-                <div>
-                    <div class="tr_hashTag_area">
-                        <div class="form-group">
-                            <input type="hidden" id="tag" name="hashtag" value=""> <input
-                                type="text" id="hashtag" placeholder="#태그입력"
-                                class="form-control">
-                        </div>
-                        <ul id="tag-list">
-                            <c:forEach var="hash" items="${hashtag}">
-                                <li>${hash}<span class="del-btn">x</span></li>
-                            </c:forEach>
-                        </ul>
-                    </div>
-                </div>
-
-                <input type="submit" value="작성">
-                <input type="reset" value="취소">
-                <a href="freeList">목록</a>
             </div>
-        </form>
+
+            <%-- 이미지 업로드 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">이미지 업로드</label>
+                <div class="col-sm-10">
+                    <input class="form-control" type="file" id="formFile">
+                    <button type="button" onclick="uploadImage()" class="btn btn-outline-primary">이미지 업로드</button>
+                </div>
+            </div>
+
+            <%-- 태그 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label">태그#</label>
+                <div class="col-sm-10">
+                    <input type="hidden" id="tag" name="hashtag" value="">
+                    <input type="text" id="hashtag" placeholder="#태그입력" class="form-control">
+                </div>
+                <ul id="tag-list">
+                    <c:forEach var="hash" items="${hashtag}">
+                        <li>${hash}<span class="del-btn">x</span></li>
+                    </c:forEach>
+                </ul>
+            </div>
+
+            <%-- 작성/취소/목록 --%>
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input type="submit" class="btn btn-primary" value="작성">
+                    <input type="submit" class="btn btn-primary" value="취소">
+                    <button type="button" class="btn btn-primary" onclick="history.go(-1)">본문으로</button>
+                </div>
+            </div>
+
+        </form><!-- End General Form Elements -->
+
     </div>
 </div>
+<%--</main>--%>
+
+<!-- ======= Footer ======= -->
+<%@ include file="../navigator_footer/main_footer.jsp" %>
 
 </body>
 </html>

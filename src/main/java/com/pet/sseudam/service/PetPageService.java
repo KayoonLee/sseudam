@@ -2,6 +2,7 @@ package com.pet.sseudam.service;
 
 //import com.pet.sseudam.model.*;
 import com.pet.sseudam.model.PetBean;
+import com.pet.sseudam.model.ProfileBean;
 
 import java.util.List;
 
@@ -16,9 +17,25 @@ public interface PetPageService {
 
     void setEndRow(int endRow);
 
-    PetBean p_select(Integer p_id);
+    PetBean p_select(int p_id);
 
     int p_update(PetBean pet);
 
     int p_insert(PetBean pet);
+
+
+    int getMaxnum();
+
+    int profileDelete(int profileNum);
+
+    int profileAdd(ProfileBean profileBoard);
+
+
+    int profileUpdate(ProfileBean profileBoard);
+
+    String profileSelect(ProfileBean profileBoard);
+
+    int profileInsert(PetBean pet);
+
+    int p_modify(PetBean pet);
 }
