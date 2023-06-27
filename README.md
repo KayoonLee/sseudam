@@ -47,22 +47,18 @@ http://3.35.16.133/index.jsp
 <br><br>
 
 4. 상담예약서/상담기록<br><br>
+
 <br><br>
 
 5. 쪽지<br><br>
-<br><br>
 
-5. 관리자 페이지(회원수 통계 + 일반회원/상담사/동물회원 관리)<br><br>
-![관리자페이지통계](https://github.com/KayoonLee/sseudam/assets/121711903/8b5540f9-40f8-40df-b58d-d2e867547059)
-![일반회원ajax방식으로띄우기](https://github.com/KayoonLee/sseudam/assets/121711903/a257f147-fbff-4bed-a91c-b82ee146e32e)
 <br><br>
 
 6. 자유게시판<br><br>
 ![자유게시판](https://github.com/KayoonLee/sseudam/assets/121711903/1b8a74eb-bd6e-4235-a5a7-8a297dc324bd)
 <br><br>
 
-
-
-
-
-
+7. 관리자 페이지(회원수 통계 + 일반회원/상담사/동물회원 관리)<br><br>
+![관리자페이지통계](https://github.com/KayoonLee/sseudam/assets/121711903/8b5540f9-40f8-40df-b58d-d2e867547059)
+![일반회원ajax방식으로띄우기](https://github.com/KayoonLee/sseudam/assets/121711903/a257f147-fbff-4bed-a91c-b82ee146e32e)
+<br><br>
