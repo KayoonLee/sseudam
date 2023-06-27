@@ -31,30 +31,33 @@ http://3.35.16.133/index.jsp
 <br><br>
 
 # 구동 화면
-<h1>1. 메인페이지</h1><br>
+1. 메인페이지<br><br>
 ![메인페이지](https://github.com/KayoonLee/sseudam/assets/121711903/fb35f139-deb2-4cf2-a79f-c70b1b79bac2)
 <br><br>
 
-2. 회원가입/로그인<br>
+2. 회원가입/로그인<br><br>
 ![회원가입](https://github.com/KayoonLee/sseudam/assets/121711903/e6c010f0-3915-4df5-b168-4fc2f6ba882a)
 ![회원가입유효성검사](https://github.com/KayoonLee/sseudam/assets/121711903/37ab7d05-a11c-4f6b-bbb1-8db4ad6826fb)
 ![로그인페이지](https://github.com/KayoonLee/sseudam/assets/121711903/585c1675-6e92-4389-8028-158e33f732bc)
 <br><br>
 
-3. 일반회원/상담사 마이페이지<br>
+3. 일반회원/상담사 마이페이지<br><br>
 ![내반려동물페이지](https://github.com/KayoonLee/sseudam/assets/121711903/25861613-8b5d-435b-a335-d44475286a21)
 ![내반려동물페이지2](https://github.com/KayoonLee/sseudam/assets/121711903/1e7a2ef2-4952-458f-8c80-7b0b2eb38831)
 <br><br>
 
-4. 상담예약서/상담기록<br>
+4. 상담예약서/상담기록<br><br>
 <br><br>
 
-5. 관리자 페이지(회원수 통계 + 일반회원/상담사/동물회원 관리)<br>
+5. 쪽지<br><br>
+<br><br>
+
+5. 관리자 페이지(회원수 통계 + 일반회원/상담사/동물회원 관리)<br><br>
 ![관리자페이지통계](https://github.com/KayoonLee/sseudam/assets/121711903/8b5540f9-40f8-40df-b58d-d2e867547059)
 ![일반회원ajax방식으로띄우기](https://github.com/KayoonLee/sseudam/assets/121711903/a257f147-fbff-4bed-a91c-b82ee146e32e)
 <br><br>
 
-6. 자유게시판<br>
+6. 자유게시판<br><br>
 ![자유게시판](https://github.com/KayoonLee/sseudam/assets/121711903/1b8a74eb-bd6e-4235-a5a7-8a297dc324bd)
 <br><br>
 
