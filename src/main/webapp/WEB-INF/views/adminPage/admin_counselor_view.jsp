@@ -99,7 +99,8 @@
                     success: function (response) {
                         if (response == 1) {
                             alert("회원의 상태값이 변경되었습니다");
-                            location.href = "adminCounselorPage?identifier=2";
+                            loadCounselorPage(m_id);
+                            // location.href = "adminCounselorPage?identifier=2";
                         } else {
                             alert("오류 발생. 다시 시도해주세요");
                         }

@@ -66,7 +66,7 @@ public class AdminController {
             } else {    // 비밀번호가 다른 경우
                 result = 2;
                 model.addAttribute("result", result);
-                return "admin/admin_logRes";
+                return "adminPage/admin_logRes";
             }
         }
     }

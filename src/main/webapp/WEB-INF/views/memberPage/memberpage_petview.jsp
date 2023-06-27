@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">생일</div>
-                                        <div class="col-lg-9 col-md-8">${pet.birth}</div>
+                                        <div class="col-lg-9 col-md-8">${pet.birth} (${birthYear}살)</div>
                                     </div>
                                     <div class="row">
                                         <div class="col-lg-3 col-md-4 label">성별</div>

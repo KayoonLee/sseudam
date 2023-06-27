@@ -74,13 +74,13 @@
                             <c:if test="${member.identifier != '1' and  member.identifier != '2' and member.identifier != '3'}">
                                 <td>Bug</td>
                             </c:if>
-                            <!-- 탈퇴회원 구분여부-->
+<%--                            <!-- 탈퇴회원 구분여부-->
                             <c:if test="${member.state == 1}">
                                 <td>활동</td>
                             </c:if>
                             <c:if test="${member.state == 0}">
                                 <td>탈퇴</td>
-                            </c:if>
+                            </c:if>--%>
                             <td>${member.join_date}</td>
                         </tr>
                     </c:forEach>
@@ -94,7 +94,7 @@
                     <th>이메일</th>
                     <th>닉네임</th>
                     <th>회원</th>
-                    <th>상태</th>
+<%--                    <th>상태</th>--%>
                     <th>가입날짜</th>
                 </tr>
                 </thead>
@@ -106,7 +106,7 @@
                     <th>이메일</th>
                     <th>닉네임</th>
                     <th>회원</th>
-                    <th>상태</th>
+<%--                    <th>상태</th>--%>
                     <th>가입날짜</th>
                 </tr>
                 </tfoot>

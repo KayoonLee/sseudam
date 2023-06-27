@@ -6,16 +6,17 @@ import com.pet.sseudam.model.ProfileBean;
 import com.pet.sseudam.service.PagingPgm;
 import com.pet.sseudam.service.PetPageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -84,6 +85,14 @@ public class PetPageController {
         System.out.println("상세정보 구하기 성공");
         System.out.println("이미지도 구해옴");
 
+        LocalDate now = LocalDate.now();
+        int currentYear = now.getYear();
+
+        LocalDate birthDate = LocalDate.parse(pet.getBirth());  // String을 LocalDate로 변환
+        int birthYear = (currentYear - birthDate.getYear()) + 1;
+        System.out.println("birthYear : " + birthYear);
+
+        model.addAttribute("birthYear", birthYear);
         model.addAttribute("pet", pet);
         model.addAttribute("pageNum", pageNum);
 
