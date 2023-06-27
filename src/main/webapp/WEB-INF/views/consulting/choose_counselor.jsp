@@ -16,7 +16,7 @@
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Template Main CSS File -->
-    <link href="css/member.css" rel="stylesheet">
+        <link href="css/member.css" rel="stylesheet">
     <script src="vendor/bootstrap/js/bootstrap.bundle.js"></script>
 
     <!-- 상담사 선택 이벤트 -->

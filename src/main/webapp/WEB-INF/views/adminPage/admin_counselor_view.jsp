@@ -72,7 +72,6 @@
                 $.ajax({
                     type: "post",
                     url: "AdminNickChange",
-
                     data: formData,
                     success: function (response) {
                         if (response == 1) {
@@ -188,9 +187,9 @@
 <input type="hidden" id="nick" value="${member.nick}">
 
 <div id="nickTag">
-    <form id="nick_frm" method="" action="">
+    <form id="nick_frm">
         <input type='hidden' name='m_id' value=${member.m_id}>
-        <input type="text" name="nick" id="nick">
+        <input type="text" name="nick" value="${member.nick}">
         <button type="button" onclick="nickConfirm()">수정</button>
         <input type="reset" value="취소" />
     </form>
