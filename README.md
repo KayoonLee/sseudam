@@ -31,11 +31,11 @@ http://3.35.16.133/index.jsp
 <br><br>
 
 # 구동 화면
-1. 메인페이지<br><br>
+# 메인페이지<br><br>
 ![메인페이지](https://github.com/KayoonLee/sseudam/assets/121711903/fb35f139-deb2-4cf2-a79f-c70b1b79bac2)
 <br><br>
 
-2. 회원가입/로그인<br><br>
+# 회원가입/로그인<br><br>
 ![회원가입](https://github.com/KayoonLee/sseudam/assets/121711903/e6c010f0-3915-4df5-b168-4fc2f6ba882a)
 ![회원가입유효성검사](https://github.com/KayoonLee/sseudam/assets/121711903/37ab7d05-a11c-4f6b-bbb1-8db4ad6826fb)
 ![로그인페이지](https://github.com/KayoonLee/sseudam/assets/121711903/585c1675-6e92-4389-8028-158e33f732bc)
