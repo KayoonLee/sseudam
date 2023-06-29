@@ -13,7 +13,7 @@
 <br><br>
 
 # 2. DB
-![c조 db](https://github.com/KayoonLee/sseudam/assets/121711903/0dbf2506-4296-4e36-9838-e4d23386a823)
+![db](https://github.com/KayoonLee/sseudam/assets/121711903/6b285197-e4fd-449d-ab8b-2f831870d87f)
 <br><br>
 
 # 3. 구현기능
