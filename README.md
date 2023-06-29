@@ -4,12 +4,12 @@
 <br><br>
 
 # 1. 사용한 기술/툴
-JAVA11<br>
-Spring Boot MVC<br>
-Gradle<br>
-AJAX<br>
-MyBatis<br>
-jQuery
+1. JAVA11<br>
+2. Spring Boot MVC<br>
+3. Gradle<br>
+4. AJAX<br>
+5. MyBatis<br>
+6. jQuery
 <br><br>
 
 # 2. DB
@@ -51,7 +51,9 @@ http://3.35.16.133/index.jsp
 <br><br>
 
 5. 쪽지<br><br>
-
+![Uploading 쪽지1.png…]()
+![쪽지2](https://github.com/KayoonLee/sseudam/assets/121711903/16a145c0-5765-4b31-87f1-3fffa735f92f)
+![쪽지3](https://github.com/KayoonLee/sseudam/assets/121711903/40341b11-6a9d-4e91-a4c5-dbbf4e9a52fd)
 <br><br>
 
 6. 자유게시판<br><br>
