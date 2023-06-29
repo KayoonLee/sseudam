@@ -47,11 +47,11 @@ http://3.35.16.133/index.jsp
 <br><br>
 
 4. 상담예약서/상담기록<br><br>
-
+![상담예약시간정하기](https://github.com/KayoonLee/sseudam/assets/121711903/f6205cd4-1223-4393-8080-42f6264f3ec2)
 <br><br>
 
 5. 쪽지<br><br>
-![Uploading 쪽지1.png…]()
+![쪽지1](https://github.com/KayoonLee/sseudam/assets/121711903/09fd03e7-12f1-41b8-ae5f-88257a4057d2)
 ![쪽지2](https://github.com/KayoonLee/sseudam/assets/121711903/16a145c0-5765-4b31-87f1-3fffa735f92f)
 ![쪽지3](https://github.com/KayoonLee/sseudam/assets/121711903/40341b11-6a9d-4e91-a4c5-dbbf4e9a52fd)
 <br><br>
